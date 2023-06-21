@@ -1,0 +1,768 @@
+fileFormatVersion: 2
+guid: 3cce460cb3e273f4594eb5ed96f14ac0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6610802490810478768
+    second: ironclad_0
+  - first:
+      213: -147339675914656943
+    second: ironclad_1
+  - first:
+      213: -3701747418476604702
+    second: ironclad_2
+  - first:
+      213: -1268106275790993660
+    second: ironclad_3
+  - first:
+      213: 1957076148476590885
+    second: ironclad_4
+  - first:
+      213: -3925049284794968617
+    second: ironclad_5
+  - first:
+      213: 6206827420104245558
+    second: ironclad_6
+  - first:
+      213: -4607356913591804325
+    second: ironclad_7
+  - first:
+      213: 2448737807733153879
+    second: ironclad_8
+  - first:
+      213: -6747951589795441619
+    second: ironclad_9
+  - first:
+      213: 3619256205177467748
+    second: ironclad_10
+  - first:
+      213: -5126338844174160041
+    second: ironclad_11
+  - first:
+      213: -3483307598269451847
+    second: ironclad_12
+  - first:
+      213: 8448697349835019998
+    second: ironclad_13
+  - first:
+      213: -3829093939336305502
+    second: ironclad_14
+  - first:
+      213: 6717068308664773625
+    second: ironclad_15
+  - first:
+      213: -6842213904737038169
+    second: ironclad_16
+  - first:
+      213: 2140164417313313966
+    second: ironclad_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ironclad_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 90
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b0b60107d94ebb50800000000000000
+      internalID: 6610802490810478768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 90
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15329cb685b84fdf0800000000000000
+      internalID: -147339675914656943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 90
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e29b79e550c0acc0800000000000000
+      internalID: -3701747418476604702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 90
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 407c8069f08c66ee0800000000000000
+      internalID: -1268106275790993660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_4
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 90
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b3654536ee82b10800000000000000
+      internalID: 1957076148476590885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 89
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d515e5a87c6789c0800000000000000
+      internalID: -3925049284794968617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_6
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 72
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 631c77547a4132650800000000000000
+      internalID: 6206827420104245558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_7
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 72
+        width: 42
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e9be34c416f00c0800000000000000
+      internalID: -4607356913591804325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 72
+        width: 27
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750e00aef0aabf120800000000000000
+      internalID: 2448737807733153879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_9
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 72
+        width: 29
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d24d5b008c57a52a0800000000000000
+      internalID: -6747951589795441619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_10
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 72
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4633bbcc75e2a3230800000000000000
+      internalID: 3619256205177467748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_11
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 4
+        width: 92
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones:
+      - name: bone_9
+        position: {x: 109.7215, y: 76.42656, z: 0}
+        rotation: {x: 0, y: 0, z: -0.024349282, w: 0.9997035}
+        length: 38.62735
+        parentId: -1
+      - name: bone_10
+        position: {x: 38.627327, y: 0.000019083313, z: 0}
+        rotation: {x: 0, y: 0, z: -0.58209836, w: 0.81311846}
+        length: 15.515503
+        parentId: 0
+      - name: bone_11
+        position: {x: 108.49078, y: 13.595175, z: 0}
+        rotation: {x: 0, y: 0, z: 0.3349912, w: 0.9422213}
+        length: 35.950443
+        parentId: -1
+      - name: bone_12
+        position: {x: 35.950436, y: -0.000009332808, z: 0}
+        rotation: {x: 0, y: 0, z: -0.23518859, w: 0.97194976}
+        length: 17.39605
+        parentId: 2
+      - name: bone_13
+        position: {x: 17.396078, y: -0.0000035987484, z: 0}
+        rotation: {x: 0, y: 0, z: -0.687016, w: 0.7266423}
+        length: 11.789289
+        parentId: 3
+      - name: bone_39
+        position: {x: 40.988678, y: 9.356322, z: 0}
+        rotation: {x: 0, y: 0, z: 0.68509555, w: 0.7284533}
+        length: 40.724304
+        parentId: -1
+      - name: bone_40
+        position: {x: 40.724304, y: -0.0000072859307, z: 0}
+        rotation: {x: 0, y: 0, z: -0.010227717, w: 0.9999477}
+        length: 21.823088
+        parentId: 5
+      - name: bone_41
+        position: {x: 21.823092, y: 0.000008840005, z: 0}
+        rotation: {x: 0, y: 0, z: 0.012347823, w: 0.99992377}
+        length: 12.49993
+        parentId: 6
+      - name: bone_42
+        position: {x: 12.499927, y: 0.0000024958124, z: 0}
+        rotation: {x: 0, y: 0, z: 0.028553093, w: 0.9995923}
+        length: 1.0696715
+        parentId: 7
+      - name: bone_43
+        position: {x: 2.0953617, y: -24.16589, z: 0}
+        rotation: {x: 0, y: -0, z: -0.9793905, w: 0.20197585}
+        length: 41.97976
+        parentId: 7
+      - name: bone_44
+        position: {x: 41.979755, y: -0.000005292622, z: 0}
+        rotation: {x: 0, y: 0, z: 0.15728657, w: 0.98755306}
+        length: 1.1598368
+        parentId: 9
+      - name: bone_45
+        position: {x: 4.3833933, y: 29.536058, z: 0}
+        rotation: {x: 0, y: -0, z: 0.9999998, w: 0.00062246714}
+        length: 34.645294
+        parentId: 7
+      - name: bone_51
+        position: {x: 1.2115916, y: -155.29681, z: 0}
+        rotation: {x: 0, y: -0, z: 0.86562043, w: 0.5007008}
+        length: 15.148537
+        parentId: 11
+      - name: bone_52
+        position: {x: 15.148536, y: -0.0000093124345, z: 0}
+        rotation: {x: 0, y: 0, z: -0.8453516, w: 0.5342104}
+        length: 17.831533
+        parentId: 12
+      - name: bone_53
+        position: {x: -93.174484, y: -226.37837, z: 0}
+        rotation: {x: 0, y: 0, z: 0.45565897, w: 0.8901545}
+        length: 14.448356
+        parentId: 9
+      - name: bone_54
+        position: {x: 14.448354, y: -0.000001342939, z: 0}
+        rotation: {x: 0, y: 0, z: 0.7536079, w: 0.6573242}
+        length: 15.4806
+        parentId: 14
+      - name: bone_55
+        position: {x: 32.88542, y: 418.5504, z: 0}
+        rotation: {x: 0, y: -0, z: -0.9998869, w: 0.01504086}
+        length: 11.415476
+        parentId: 5
+      - name: bone_56
+        position: {x: 11.415474, y: 0.000016200267, z: 0}
+        rotation: {x: 0, y: 0, z: -0.0070885234, w: 0.9999749}
+        length: 15.704803
+        parentId: 16
+      - name: bone_57
+        position: {x: 49.899326, y: 56.521008, z: 0}
+        rotation: {x: 0, y: -0, z: -0.9122223, w: 0.40969554}
+        length: 75.14016
+        parentId: 17
+      - name: bone_58
+        position: {x: 44.539986, y: -53.299294, z: 0}
+        rotation: {x: 0, y: -0, z: 0.90633655, w: 0.4225567}
+        length: 68.67631
+        parentId: 17
+      - name: bone_59
+        position: {x: -7.4837484, y: 143.69359, z: 0}
+        rotation: {x: 0, y: 0, z: 0.33549857, w: 0.94204074}
+        length: 17.485981
+        parentId: 8
+      - name: bone_60
+        position: {x: 17.485973, y: -0.0000037148811, z: 0}
+        rotation: {x: 0, y: 0, z: -0.8441927, w: 0.5360398}
+        length: 10.290901
+        parentId: 20
+      - name: bone_61
+        position: {x: 53.357098, y: -58.54579, z: 0}
+        rotation: {x: 0, y: -0, z: 0.88720936, w: 0.46136704}
+        length: 21.232513
+        parentId: 21
+      - name: bone_62
+        position: {x: 21.23251, y: -0.0000041490484, z: 0}
+        rotation: {x: 0, y: -0, z: -0.93371814, w: 0.35800904}
+        length: 19.61398
+        parentId: 22
+      - name: bone_63
+        position: {x: 19.61398, y: 0.0000034581599, z: 0}
+        rotation: {x: 0, y: 0, z: -0.3571991, w: 0.9340283}
+        length: 20.729534
+        parentId: 23
+      - name: bone_64
+        position: {x: -165.68845, y: 27.26205, z: 0}
+        rotation: {x: 0, y: -0, z: -0.7135035, w: 0.70065176}
+        length: 8.913962
+        parentId: 23
+      - name: bone_65
+        position: {x: 8.913965, y: -0.0000028469528, z: 0}
+        rotation: {x: 0, y: 0, z: 0.7438184, w: 0.6683818}
+        length: 20.081598
+        parentId: 25
+      - name: bone_66
+        position: {x: -210.69316, y: -146.62791, z: 0}
+        rotation: {x: 0, y: 0, z: 0.7014418, w: 0.7127267}
+        length: 17.6776
+        parentId: 24
+      - name: bone_67
+        position: {x: -13.5996475, y: 236.7913, z: 0}
+        rotation: {x: 0, y: -0, z: -0.9962033, w: 0.08705783}
+        length: 9.990017
+        parentId: 15
+      - name: bone_68
+        position: {x: -9.311536, y: -305.08945, z: 0}
+        rotation: {x: 0, y: 0, z: 0.2292019, w: 0.9733789}
+        length: 8.4527855
+        parentId: 13
+      - name: bone_69
+        position: {x: -254.04587, y: -220.47679, z: 0}
+        rotation: {x: 0, y: 0, z: -0.6858257, w: 0.72776586}
+        length: 33.341595
+        parentId: 10
+      - name: bone_70
+        position: {x: 33.341595, y: 0.000013415909, z: 0}
+        rotation: {x: 0, y: 0, z: -0.83435166, w: 0.5512327}
+        length: 4.510147
+        parentId: 30
+      - name: bone_71
+        position: {x: 34.64529, y: -0.0000034996565, z: 0}
+        rotation: {x: 0, y: -0, z: -0.83492136, w: 0.5503693}
+        length: 9.3958235
+        parentId: 11
+      - name: bone_72
+        position: {x: 9.395824, y: 0.0000020809132, z: 0}
+        rotation: {x: 0, y: 0, z: -0.24111408, w: 0.97049683}
+        length: 5.9642663
+        parentId: 32
+      - name: bone_73
+        position: {x: 246.30812, y: 269.68008, z: 0}
+        rotation: {x: 0, y: 0, z: 0.26407006, w: 0.9645035}
+        length: 16.296947
+        parentId: 33
+      - name: bone_74
+        position: {x: 16.296984, y: -0.000010437757, z: 0}
+        rotation: {x: 0, y: 0, z: -0.88780516, w: 0.4602195}
+        length: 4.042775
+        parentId: 34
+      - name: bone_75
+        position: {x: 24.61333, y: -25.683521, z: 0}
+        rotation: {x: 0, y: 0, z: 0.57229155, w: 0.82005024}
+        length: 7.410852
+        parentId: 35
+      - name: bone_76
+        position: {x: 7.410846, y: 0.00000093686026, z: 0}
+        rotation: {x: 0, y: 0, z: 0.2408685, w: 0.97055775}
+        length: 6.6592093
+        parentId: 36
+      - name: bone_77
+        position: {x: 28.490051, y: 25.60736, z: 0}
+        rotation: {x: 0, y: 0, z: 0.6243946, w: 0.7811091}
+        length: 10.451801
+        parentId: 31
+      - name: bone_78
+        position: {x: 10.451788, y: -0.000002679293, z: 0}
+        rotation: {x: 0, y: 0, z: -0.65391207, w: 0.75657064}
+        length: 2.8586748
+        parentId: 38
+      - name: bone_79
+        position: {x: -175.4134, y: -139.35646, z: 0}
+        rotation: {x: 0, y: 0, z: 0.40934563, w: 0.91237944}
+        length: 13.191577
+        parentId: 37
+      - name: bone_80
+        position: {x: -102.65976, y: -220.53821, z: 0}
+        rotation: {x: 0, y: 0, z: 0.61541307, w: 0.7882048}
+        length: 15.59997
+        parentId: 39
+      - name: bone_81
+        position: {x: 15.599977, y: -0.0000009088828, z: 0}
+        rotation: {x: 0, y: 0, z: 0.021985939, w: 0.99975836}
+        length: 28.082527
+        parentId: 41
+      - name: bone_82
+        position: {x: 13.191579, y: -0.0000023039506, z: 0}
+        rotation: {x: 0, y: 0, z: 0.02264415, w: 0.99974364}
+        length: 168.91731
+        parentId: 40
+      spriteID: 75f66b25bf59bd8b0800000000000000
+      internalID: -5126338844174160041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_12
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 57
+        width: 59
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1fab9d13ec8afc0800000000000000
+      internalID: -3483307598269451847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_13
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 128
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed653bff97dcf3570800000000000000
+      internalID: 8448697349835019998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_14
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 41
+        width: 238
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4224e79535cdac0800000000000000
+      internalID: -3829093939336305502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_15
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 41
+        width: 47
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb6ff5c902d73d50800000000000000
+      internalID: 6717068308664773625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_16
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 4
+        width: 63
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a019ea84b29b01a0800000000000000
+      internalID: -6842213904737038169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ironclad_17
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 4
+        width: 302
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea414eec23463bd10800000000000000
+      internalID: 2140164417313313966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
