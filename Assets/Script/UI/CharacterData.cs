@@ -11,6 +11,7 @@ namespace FrameWork.Data
     public class CharacterInfoCollet
     {
         public CharacterCollect characterCollect;
+
     }
 
     [Serializable]
@@ -25,24 +26,19 @@ namespace FrameWork.Data
     [Serializable]
     public class CharacterData
     {
-        public CharacterInfoCollet characterCollect;
+        public CharacterInfoCollet characterCollectt;
 
         public void Init(string path)
         {
-            //AwaitFileRead(path);   
-
-            var stts = AwaitFileRead("Assets/DataJson/CharacterCollect.json").Result;
-            Debug.Log(stts);
+            AwaitFileRead(path);   
         }
 
-        private async Task<string> AwaitFileRead(string filePath)
+        private async void AwaitFileRead(string filePath)
         {
             var fileTest = await ReadAllTextAsync(filePath);
-            characterCollect = JsonConvert.DeserializeObject<CharacterInfoCollet>(fileTest);
-
-            return fileTest;
-         
+            characterCollectt = JsonConvert.DeserializeObject<CharacterInfoCollet>(fileTest);
         }
+
         static Task<string> ReadAllTextAsync(string filepath)
         {
             return Task.Factory.StartNew(() =>

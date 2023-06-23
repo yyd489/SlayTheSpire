@@ -5,13 +5,6 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
 
-//public interface aa
-//{
-
-//    int hh { get; }
-//    void Record() { get; }
-//}
-
 [System.Serializable]
 public class CharacterInfoCollet
 {
