@@ -2,15 +2,17 @@
 namespace FrameWork.Data
 {
     using System;
-   
+
     //using Newtonsoft.Json;
     public partial class DataManager
     {
-        public static void LoadDataJson(String path = "Assets/DataJson")
+        public void LoadDataJson()
         {
             DataList data = new DataList();
-            //CurrencyRecordList.
-           
+            data.characterData = new CharacterData();
+            data.characterData.Init("Assets/DataJson/CharacterCollect.json");
+
+            
         }
 
     }
@@ -18,8 +20,10 @@ namespace FrameWork.Data
     [Serializable]
     public class DataList
     {
-       
+        public CharacterData characterData;
     }
+  
 
-   
+
+
 }

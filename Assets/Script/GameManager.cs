@@ -9,5 +9,18 @@ namespace FrameWork
     {
         public static DataManager dataManager { get; private set; }
 
+
+        private void Start()
+        {
+            Init();
+           
+        }
+
+        public void Init()
+        {
+            dataManager = new DataManager();
+            dataManager.LoadDataJson();
+          
+        }
     }
 }

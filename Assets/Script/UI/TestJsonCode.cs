@@ -4,26 +4,52 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
+
+//public interface aa
+//{
+
+//    int hh { get; }
+//    void Record() { get; }
+//}
+
+[System.Serializable]
+public class CharacterInfoCollet
+{
+    public CharacterCollectt characterCollectt;
+
+}
+
+[System.Serializable]
+public class CharacterCollectt
+{
+   public string name;
+   public int hp;
+   public int mp;
+   public int attack;
+    
+}
+
 public class TestJsonCode : MonoBehaviour
 {
     [SerializeField]
     string asdasd;
+
+    [SerializeField]
+    CharacterInfoCollet characterInfoCollet;
+
     // Start is called before the first frame update
     void Start()
     {
-        //var aa = ReadAllTextAsync("Assets/DataJson/equipInfo.json");
-
-        AwaitFileRead("Assets/DataJson/equipInfo.json");
-
-        
+        AwaitFileRead("Assets/DataJson/CharacterCollect.json");
     }
 
-    private static async void AwaitFileRead(string filePath)
+    private async void AwaitFileRead(string filePath)
     {
         string fileTest = await ReadAllTextAsync(filePath);
-        Debug.Log(fileTest);
+
+        characterInfoCollet = JsonConvert.DeserializeObject<CharacterInfoCollet>(fileTest);
     }
-    static Task<string> ReadAllTextAsync(string filepath)
+    Task<string> ReadAllTextAsync(string filepath)
     {
         return Task.Factory.StartNew(() =>
         {   
