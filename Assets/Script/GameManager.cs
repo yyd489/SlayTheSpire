@@ -19,8 +19,22 @@ namespace FrameWork
         public void Init()
         {
             dataManager = new DataManager();
-            dataManager.LoadDataJson();
-          
+            dataManager.Init();
+
+            //var aas = GetData<CharacterCollect>(dataManager.data.characterData.characterInfoCollect.characterCollect);
+
+
+            //StartCoroutine(Example(aas));
         }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.T))
+            {
+               
+            }
+        }
+
+
     }
 }

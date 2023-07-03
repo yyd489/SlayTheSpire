@@ -26,27 +26,31 @@ namespace FrameWork.Data
     [Serializable]
     public class CharacterData
     {
-        public CharacterInfoCollet characterCollectt;
+        public CharacterInfoCollet characterInfoCollect;
 
         public void Init(string path)
         {
-            AwaitFileRead(path);   
+            AwaitFileRead(path);
+
+            //GameManager.dataManager
         }
 
         private async void AwaitFileRead(string filePath)
         {
             var fileTest = await ReadAllTextAsync(filePath);
-            characterCollectt = JsonConvert.DeserializeObject<CharacterInfoCollet>(fileTest);
+            characterInfoCollect = JsonConvert.DeserializeObject<CharacterInfoCollet>(fileTest);
+            DataManager.GetData<CharacterCollect>(characterInfoCollect.characterCollect);
         }
 
         static Task<string> ReadAllTextAsync(string filepath)
         {
             return Task.Factory.StartNew(() =>
             {
-                // 텍스트 파일 불러올 시 한글 깨질 때, Encoind.Default 추가
                 return File.ReadAllText(filepath);
             });
         }
+
+       
 
     }
 
