@@ -6,16 +6,33 @@ namespace FrameWork.Data
     //using Newtonsoft.Json;
     public partial class DataManager
     {
+        public DataList data;
+
+        public void Init()
+        {
+            LoadDataJson();
+        }
+
         public void LoadDataJson()
         {
-            DataList data = new DataList();
+            data = new DataList();
             data.characterData = new CharacterData();
             data.characterData.Init("Assets/DataJson/CharacterCollect.json");
-
             
         }
 
+        public static T GetData<T>(T value) where T : class
+        {       
+            //사용법
+            //var Temp = GetData<CharacterCollect>(GameManager.dataManager.data.characterData.characterInfoCollect.characterCollect);
+            //var attack = Temp.attack;
+            //var hp = Temp.hp...;
+            return value;
+        }
+
     }
+
+
 
     [Serializable]
     public class DataList
@@ -24,6 +41,6 @@ namespace FrameWork.Data
     }
   
 
-
+   
 
 }
