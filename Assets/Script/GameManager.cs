@@ -9,11 +9,10 @@ namespace FrameWork
     {
         public static DataManager dataManager { get; private set; }
 
-
         private void Start()
         {
             Init();
-           
+        
         }
 
         public void Init()
@@ -21,19 +20,15 @@ namespace FrameWork
             dataManager = new DataManager();
             dataManager.Init();
 
-            //var aas = GetData<CharacterCollect>(dataManager.data.characterData.characterInfoCollect.characterCollect);
+           // var ss = dataManager.data.characterData;
+           //var ss = await dataManager.data.characterData.AwaitGetCharacter();
+           //Debug.Log(ss.attack)
+           // Debug.Log(ss.Result.attack);
+           // var Temp = DataManager.GetData<CharacterInfoCollet>(GameManager.dataManager.data.characterData.characterInfoCollect);
+          
 
-
-            //StartCoroutine(Example(aas));
         }
 
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-               
-            }
-        }
 
 
     }

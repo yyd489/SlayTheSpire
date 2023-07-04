@@ -1,17 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+
 namespace FrameWork.Data
 {
+    interface DataInterface
+    {   
+        void AwaitFileRead(string filePath);
+        void Init(string path);
+        Task<string>ReadAllTextAsync(string filepath);
+    }
+
     [Serializable]
     public class CharacterInfoCollet
     {
         public CharacterCollect characterCollect;
-
     }
 
     [Serializable]
@@ -24,34 +31,48 @@ namespace FrameWork.Data
     }
 
     [Serializable]
-    public class CharacterData
+    public class CharacterData : DataInterface
     {
         public CharacterInfoCollet characterInfoCollect;
-
-        public void Init(string path)
+       
+        public async void Init(string path)
         {
             AwaitFileRead(path);
 
-            //GameManager.dataManager
+           var ss = await AwaitGetCharacter();
+           
+          // Debug.Log( ss.Result.characterCollect.attack);
+        }
+        public async Task<CharacterCollect> AwaitGetCharacter()
+        {
+           await UniTask.WaitUntil(() => characterInfoCollect != null);
+           CharacterCollect character = characterInfoCollect.characterCollect;
+           return character;
         }
 
-        private async void AwaitFileRead(string filePath)
+        public async void AwaitFileRead(string filePath)
         {
             var fileTest = await ReadAllTextAsync(filePath);
             characterInfoCollect = JsonConvert.DeserializeObject<CharacterInfoCollet>(fileTest);
-            DataManager.GetData<CharacterCollect>(characterInfoCollect.characterCollect);
+            
         }
 
-        static Task<string> ReadAllTextAsync(string filepath)
+        public Task<string> ReadAllTextAsync(string filepath)
         {
             return Task.Factory.StartNew(() =>
             {
+                var aa = File.ReadAllText(filepath);
+
                 return File.ReadAllText(filepath);
+
+            
             });
         }
 
-       
+   
+        
 
+        
     }
 
 }
