@@ -39,11 +39,11 @@ namespace FrameWork.Data
         {
             AwaitFileRead(path);
 
-           var ss = await AwaitGetCharacter();
-           
+
+            
           // Debug.Log( ss.Result.characterCollect.attack);
         }
-        public async Task<CharacterCollect> AwaitGetCharacter()
+        public async Task<CharacterCollect> AwaitGetCharacter()//실행함수가 async로 실행되야함.
         {
            await UniTask.WaitUntil(() => characterInfoCollect != null);
            CharacterCollect character = characterInfoCollect.characterCollect;

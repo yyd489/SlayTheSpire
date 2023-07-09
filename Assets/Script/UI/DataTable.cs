@@ -30,24 +30,7 @@ namespace FrameWork.Data
         //    Debug.Log(value);
         //}
 
-        public async static void aa<T>(T value) where T : class
-        {
-            await UniTask.WaitUntil(() => value != null);
-            Debug.Log(value);
-        }
-
-        public static T GetData<T>(T value) where T : class
-        {
-           
-            aa(value);
-
-            var GetValue = value;
-            //사용법
-            //var Temp = GetData<CharacterCollect>(GameManager.dataManager.data.characterData.characterInfoCollect.characterCollect);
-            //var attack = Temp.attack;
-            //var hp = Temp.hp...;
-            return GetValue;
-        }
+       
 
     }
 
