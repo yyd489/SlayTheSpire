@@ -39,9 +39,6 @@ namespace FrameWork.Data
         {
             AwaitFileRead(path);
 
-
-            
-          // Debug.Log( ss.Result.characterCollect.attack);
         }
         public async Task<CharacterCollect> AwaitGetCharacter()//실행함수가 async로 실행되야함.
         {
@@ -61,18 +58,10 @@ namespace FrameWork.Data
         {
             return Task.Factory.StartNew(() =>
             {
-                var aa = File.ReadAllText(filepath);
-
                 return File.ReadAllText(filepath);
-
-            
             });
         }
 
-   
-        
-
-        
     }
 
 }

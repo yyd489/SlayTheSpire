@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 public class testcode : MonoBehaviour
 {
 
@@ -17,18 +19,25 @@ public class testcode : MonoBehaviour
             // Screen.SetResolution(1920, 1080, false);
 
             Debug.Log(aa.options[aa.value].text);
-            ss(aa.options[aa.value].text);
+          
         }
 
     }
 
-    public void ss(string cc)
+    private void Start()
     {
-        Debug.Log(cc);
-        string[] pp = cc.Split('x');
-        Screen.SetResolution(int.Parse(pp[0]), int.Parse(pp[1]), false);
-        
-        
+      //  Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/UI/OptionCanvas.prefab").Completed += cdcd;
+    
+    }
+
+  
+
+    public void cdcd(AsyncOperationHandle<GameObject> obj)
+    {
+        GameObject asa = obj.Result;
+
+        Instantiate(asa);
+
     }
 
 }

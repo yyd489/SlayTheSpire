@@ -16,30 +16,20 @@ namespace FrameWork
         {
 
             optionButton = GameObject.Find("OptionButton").GetComponent<Button>();
+            optionButton.onClick.AddListener(() => InstantiateUI("Assets/Prefabs/UI/OptionCanvas.prefab"));
+
             deckButton = GameObject.Find("DeckButton").GetComponent<Button>();
+
+
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();
 
-            var assetPrefabs = UImanager.listUIPrefab;
-
-            for (int i = 0; i < assetPrefabs.Count; i++)
-            {
-
-                if (assetPrefabs[i].key == "Option")
-                {   
-                    int index = i;
-                    optionButton.onClick.AddListener(() => InstantiateUI(assetPrefabs[index].value));
-                    
-                }
-            }
         }
 
-        private void InstantiateUI(GameObject UI)
+        private void InstantiateUI(string path)
         {
-            Instantiate(UI);
+            UImanager.RegisterUI(path);
            
         }
-
-        
 
     }
 }

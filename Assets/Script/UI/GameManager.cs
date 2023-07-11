@@ -13,9 +13,6 @@ namespace FrameWork
         public static IngameUI ingameUI { get; private set; }
 
         [SerializeField] Initializer initilizer;
-
-
-
         private void Start()
         {
             Init();
@@ -41,7 +38,6 @@ namespace FrameWork
                 uiManager = new UImanager();
             }
 
-            uiManager.Init();
 
             if (ingameUI == null)
             {

@@ -2,44 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 namespace FrameWork
 {
-    public struct AssetPrefab { 
-        
-        public string key; 
-        public GameObject value;
-
-        public AssetPrefab(string key, GameObject value)
-        {
-            this.key = key;
-            this.value = value;
-        }
-    
-    }
-
-   public partial class UImanager
+   
+   public class UImanager
    {
-        //public static List<GameObject> listUiPrefab = new List<GameObject>();
-        public static List<AssetPrefab> listUIPrefab = new List<AssetPrefab>();
-        //public static GameObject activeUI;
-        // Start is called before the first frame update
-        public void Init()
+      
+        public static void RegisterUI(string path)
         {
-            RegisterPath();
+            Addressables.LoadAssetAsync<GameObject>(path).Completed += InstansPrefab;
         }
 
-        public static void RegisterUI(string key, string path)
+        public static void InstansPrefab(AsyncOperationHandle<GameObject> obj)
         {
-            AssetPrefab assetprefab = new AssetPrefab(key, (GameObject)AssetDatabase.LoadAssetAtPath(path, typeof(GameObject)));
-            listUIPrefab.Add(assetprefab);
-        }
-
-        public void RegisterPath()
-        {
-            RegisterUI("Option","Assets/Prefabs/UI/OptionCanvas.prefab");
-
-        }
-
-         
+            GameObject prefab = obj.Result;
+            MonoBehaviour.Instantiate(prefab);
+        }     
    }
 }
