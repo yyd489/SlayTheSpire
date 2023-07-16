@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading;
 
-public class Ironclad : CharacterBase
+namespace FrameWork
 {
-    
-    public override void Init() 
+    public class Ironclad : CharacterBase
     {
-        name = "Ironclad";
-        healthPoint = 100f;
-        maxHealthPoint = healthPoint;
-        attackDamage = 0f;
-        defence = 0f;
+        public override void Init()
+        {
+            name = "Ironclad";
+            hp = 100;
+            maxHp = hp;
+            damage = 0;
+            defence = 0;
+            isMonster = false;
+        }
     }
-    public override void Attack() { }
-    public override void Hit() { }
 }
