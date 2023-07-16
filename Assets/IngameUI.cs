@@ -10,6 +10,7 @@ namespace FrameWork
         public Button optionButton;
         public Button deckButton;
         public Button mapButton;
+        
         // Start is called before the first frame update
 
         public void Init()
@@ -22,7 +23,7 @@ namespace FrameWork
 
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();
-
+            mapButton.onClick.AddListener(() => InstantiateUI("Assets/Prefabs/UI/MapPopup.prefab"));
         }
 
         private void InstantiateUI(string path)

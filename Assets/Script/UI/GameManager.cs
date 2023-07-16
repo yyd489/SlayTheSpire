@@ -38,7 +38,6 @@ namespace FrameWork
                 uiManager = new UImanager();
             }
 
-
             if (ingameUI == null)
             {
                 ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameUI>();

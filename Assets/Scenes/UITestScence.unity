@@ -525,6 +525,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8824718718166185027, guid: 1a2b525b0548bdf4b89b51a135a5838a,
+        type: 3}
+      propertyPath: m_text
+      value: ironclade
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824718718166185027, guid: 1a2b525b0548bdf4b89b51a135a5838a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 32.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824718718166185027, guid: 1a2b525b0548bdf4b89b51a135a5838a,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8824718718589972665, guid: 1a2b525b0548bdf4b89b51a135a5838a,
         type: 3}
       propertyPath: m_Color.a
@@ -1864,7 +1879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b184d7b382e10c4ba844aa77151add0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aa: {fileID: 1869467605}
 --- !u!1001 &2061817048
 PrefabInstance:
   m_ObjectHideFlags: 0

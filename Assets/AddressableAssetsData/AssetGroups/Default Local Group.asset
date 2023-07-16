@@ -22,6 +22,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ba55267bbc686740b5c8f4d03da1849
+    m_Address: Assets/Prefabs/UI/MapPopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5eafa0ea37ea8954fb08bd026222dd6f, type: 2}
   m_SchemaSet:
