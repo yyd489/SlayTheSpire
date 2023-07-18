@@ -5,7 +5,7 @@ using Cysharp.Threading;
 
 namespace FrameWork
 {
-    public class Ironclad : CharacterBase
+    public class BlueSlaver : CharacterBase
     {
         private void Start()
         {
@@ -14,12 +14,12 @@ namespace FrameWork
 
         public override void Init()
         {
-            name = "아이언 클래드";
+            name = "노예 상인";
             hp = 100;
             maxHp = hp;
             damage = 0;
             defence = 0;
-            isMonster = false;
+            isMonster = true;
         }
 
         public override void Attack(CharacterBase target)

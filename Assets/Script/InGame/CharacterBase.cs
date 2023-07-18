@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 namespace FrameWork
 {
@@ -15,6 +16,8 @@ namespace FrameWork
         protected Animator animator;
         [SerializeField] private float moveSpeed;
 
+        private Vector2 charaterPos;
+
         [SerializeField] protected ObjectResource objectResource;
 
         public abstract void Init();
@@ -23,6 +26,7 @@ namespace FrameWork
         void OnValidate()
         {
             animator = objectResource.Animator;
+            charaterPos = transform.position;
         }
 #endif
         public void ActiveRender(bool isActive)
@@ -31,37 +35,46 @@ namespace FrameWork
                 objectResource.ActiveRender(isActive);
         }
 
-        public void Attack(Vector2 targetPos)
-        {
-            float modifyPos = 0.1f;
-            if (isMonster) modifyPos = -0.1f;
-
-            Vector2 attackPos = new Vector2(targetPos.x + modifyPos, transform.position.y);
-            ChangeState(1);
-
-            transform.DOPunchPosition(attackPos, 2f);
-        }
-
         public void InitHp(int health)
         {
             hp = health;
         }
 
-        public void Hit(int hitDamage)
+        public virtual async void Attack(CharacterBase target)
         {
-            float modifyPos = -0.1f;
-            if (isMonster) modifyPos = 0.1f;
+            float modifyPos = -2f;
+            if (isMonster) modifyPos *= -1f;
 
-            Vector3 knockBackPos = new Vector3(transform.position.x + modifyPos, transform.position.y);
-            transform.DOPunchPosition(knockBackPos, 0.1f);
+            float attackPosX = target.transform.position.x + modifyPos;
 
+            await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
+
+            ChangeState(1);
+            target.Hit(damage);
+        }
+
+        public async void Hit(int hitDamage)
+        {
+            float modifyPos = -1f;
+            if (isMonster) modifyPos *= -1f;
+
+            float knockBackPosX = transform.position.x + modifyPos;
+
+            await transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
             hp -= hitDamage;
+            ReturnPosition();
 
             if (IsDead())
             {
-                if (isMonster) gameObject.SetActive(false);
+                if (isMonster) objectResource.ActiveRender(false);
                 Debug.Log("사망");
             }
+        }
+
+        public async void ReturnPosition()
+        {
+            await transform.DOMoveX(charaterPos.x, 0.1f).SetEase(Ease.Linear);
+            ChangeState(0);
         }
 
         protected void SetPosition(Vector3 characterPos)
