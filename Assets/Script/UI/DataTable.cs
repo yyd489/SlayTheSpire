@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using UnityEngine;
-using System.Collections;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
+﻿
 namespace FrameWork.Data
 {
     using System;
@@ -22,22 +18,17 @@ namespace FrameWork.Data
         {
             data = new DataList();
             data.characterData = new CharacterData();
-            data.characterData.Init("Assets/DataJson/CharacterCollect.json"); 
+            data.characterData.Init("Assets/DataJson/CharacterCollect.json");
+           // data.mapData.Init("Assets/DataJson/CharacterCollect.json");
         }
-        //public static async  aas <T>(T value =null) where T : class
-        //{
-        //    await UniTask.WaitUntil(() => value != null);
-        //    Debug.Log(value);
-        //}
-
-       
-
+        
     }
 
     [Serializable]
     public class DataList
     {
         public CharacterData characterData;
+        public MapData mapData;
     }
   
 }

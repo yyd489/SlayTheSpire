@@ -28,7 +28,7 @@ namespace FrameWork
 
         private void InstantiateUI(string path)
         {
-            UImanager.RegisterUI(path);
+            UImanager.InstansUI(path);
            
         }
 

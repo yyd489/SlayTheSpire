@@ -9,8 +9,8 @@ namespace FrameWork
    
    public class UImanager
    {
-      
-        public static void RegisterUI(string path)
+
+        public static void InstansUI(string path, Vector2 pos = new Vector2())
         {
             Addressables.LoadAssetAsync<GameObject>(path).Completed += InstansPrefab;
         }
@@ -19,6 +19,12 @@ namespace FrameWork
         {
             GameObject prefab = obj.Result;
             MonoBehaviour.Instantiate(prefab);
-        }     
-   }
+        }
+
+        public static void InstansPrefab(AsyncOperationHandle<GameObject> obj, Vector2 pos, Transform parent)
+        {
+            GameObject prefab = obj.Result;
+            MonoBehaviour.Instantiate(prefab, pos, Quaternion.identity,parent);
+        }
+    }
 }

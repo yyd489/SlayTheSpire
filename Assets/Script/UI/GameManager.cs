@@ -16,7 +16,6 @@ namespace FrameWork
         private void Start()
         {
             Init();
-        
         }
 
         public void Init()
