@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 6706575005711760359}
   - component: {fileID: 6706575005711760352}
   m_Layer: 5
-  m_Name: BangCardCanvas
+  m_Name: CardCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

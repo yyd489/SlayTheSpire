@@ -20,11 +20,7 @@ namespace FrameWork
             damage = 0;
             defence = 0;
             isMonster = true;
-        }
-
-        public override void Attack(CharacterBase target)
-        {
-            base.Attack(target);
+            isHold = false;
         }
     }
 }
