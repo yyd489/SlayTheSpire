@@ -27,6 +27,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b70125bc675d598408680c4e9dd893cc
+    m_Address: Assets/Prefabs/UI/MapNode.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5eafa0ea37ea8954fb08bd026222dd6f, type: 2}
   m_SchemaSet:

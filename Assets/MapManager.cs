@@ -79,9 +79,26 @@ namespace FrameWork
 
             }
 
-            int randomNodeSize = Random.Range(0,6);
-            //for(int i = 0; i < randomNodeSize; i++)
-            //UImanager.InstansUI(node,new Vector2(,))
+            int maxYsize = 40;
+            int minYsize = -40;
+            string objectPath = "Assets/Prefabs/UI/MapNode.prefab";
+            int[] arrNodeXPosition = { 100,0,-100,-200,-300,-400};
+
+            for (int i = 1; i < listNodeZones.Count; i++)//오브젝트 생성 
+            {
+                Transform parent = listNodeZones[i].GetComponent<Transform>();
+                int randomNodeSize = Random.Range(1, 6);
+
+                for (int z = 0; z < randomNodeSize; z++)
+                {
+      
+                    float randomY = Random.Range(minYsize, maxYsize);
+                    UImanager.InstansUI(objectPath, new Vector2(parent.position.x + arrNodeXPosition[randomNodeSize] + Random.Range(-30,30) + z * 200
+                        ,parent.position.y + randomY), parent);
+                }
+
+            }
+            
         }
 
         public void Start()
