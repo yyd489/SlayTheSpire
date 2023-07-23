@@ -55,6 +55,12 @@ namespace FrameWork
                 float attackPosX = target.transform.position.x + modifyPos;
 
                 await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
+
+                if (!isMonster)
+                {
+                    TargetHit();
+                    ReturnPosition();
+                }
             }
         }
 
