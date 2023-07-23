@@ -1508,20 +1508,4 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.033333335
-    functionName: ReturnPosition
-    data: 
-    objectReferenceParameter: {fileID: 7329232644720498342, guid: 18fc18940b8cf054f925ad80c49b0049,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.033333335
-    functionName: TargetHit
-    data: 
-    objectReferenceParameter: {fileID: 7329232644720498342, guid: 18fc18940b8cf054f925ad80c49b0049,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
