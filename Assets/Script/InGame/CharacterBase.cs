@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 namespace FrameWork
 {
@@ -12,8 +13,13 @@ namespace FrameWork
         protected int damage;
         protected int defence;
         protected bool isMonster;
+        protected bool isHold;
         protected Animator animator;
         [SerializeField] private float moveSpeed;
+
+        private CharacterBase targetCharacter;
+
+        private Vector2 charaterPos;
 
         [SerializeField] protected ObjectResource objectResource;
 
@@ -23,6 +29,7 @@ namespace FrameWork
         void OnValidate()
         {
             animator = objectResource.Animator;
+            charaterPos = transform.position;
         }
 #endif
         public void ActiveRender(bool isActive)
@@ -31,37 +38,48 @@ namespace FrameWork
                 objectResource.ActiveRender(isActive);
         }
 
-        public void Attack(Vector2 targetPos)
-        {
-            float modifyPos = 0.1f;
-            if (isMonster) modifyPos = -0.1f;
-
-            Vector2 attackPos = new Vector2(targetPos.x + modifyPos, transform.position.y);
-            ChangeState(1);
-
-            transform.DOPunchPosition(attackPos, 2f);
-        }
-
         public void InitHp(int health)
         {
             hp = health;
         }
 
-        public void Hit(int hitDamage)
+        public async void Attack(CharacterBase target)
         {
-            float modifyPos = -0.1f;
-            if (isMonster) modifyPos = 0.1f;
+            targetCharacter = target;
+            ChangeState(1);
+            if (!isHold)
+            {
+                float modifyPos = -4f;
+                if (isMonster) modifyPos *= -1f;
 
-            Vector3 knockBackPos = new Vector3(transform.position.x + modifyPos, transform.position.y);
-            transform.DOPunchPosition(knockBackPos, 0.1f);
+                float attackPosX = target.transform.position.x + modifyPos;
 
-            hp -= hitDamage;
+                await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
+            }
+        }
+
+        protected async void TargetHit()
+        {
+            float modifyPos = -1f;
+            if (targetCharacter.isMonster) modifyPos *= -1f;
+
+            float knockBackPosX = targetCharacter.transform.position.x + modifyPos;
+
+            await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
+            targetCharacter.hp -= damage;
 
             if (IsDead())
             {
-                if (isMonster) gameObject.SetActive(false);
+                if (targetCharacter.isMonster) targetCharacter.objectResource.ActiveRender(false);
                 Debug.Log("사망");
             }
+            targetCharacter.ReturnPosition();
+        }
+
+        protected async void ReturnPosition()
+        {
+            await transform.DOMoveX(charaterPos.x, 0.1f).SetEase(Ease.Linear);
+            ChangeState(0);
         }
 
         protected void SetPosition(Vector3 characterPos)
@@ -75,7 +93,7 @@ namespace FrameWork
             return hp <= 0;
         }
 
-        private void ChangeState(int animIndex = 0)
+        protected void ChangeState(int animIndex = 0)
         {
             if(animator == null) animator = GetComponent<Animator>();
             
