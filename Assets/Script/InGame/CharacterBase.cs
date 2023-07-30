@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 
 namespace FrameWork
@@ -15,7 +16,6 @@ namespace FrameWork
         protected bool isMonster;
         protected bool isHold;
         protected Animator animator;
-        [SerializeField] private float moveSpeed;
 
         private CharacterBase targetCharacter;
 
@@ -43,7 +43,7 @@ namespace FrameWork
             hp = health;
         }
 
-        public async void Attack(CharacterBase target)
+        public async Task<bool> Attack(CharacterBase target)
         {
             targetCharacter = target;
             ChangeState(1);
@@ -62,6 +62,8 @@ namespace FrameWork
                     ReturnPosition();
                 }
             }
+
+            return true;
         }
 
         protected async void TargetHit()

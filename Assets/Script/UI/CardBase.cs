@@ -3,18 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace FrameWork
 {
     public class CardBase : MonoBehaviour
     {
-        [SerializeField] protected TextMeshProUGUI CardName;
-        [SerializeField] protected TextMeshProUGUI CardText;
-        [SerializeField] protected TextMeshProUGUI CardPoint;
-        [SerializeField] protected TextMeshProUGUI CardType;
-        [SerializeField] protected Image CardImg;
+        [SerializeField] private TextMeshProUGUI CardName;
+        [SerializeField] private TextMeshProUGUI CardText;
+        [SerializeField] private TextMeshProUGUI CardPoint;
+        [SerializeField] private TextMeshProUGUI CardType;
+        [SerializeField] private Image CardImg;
+
+        [SerializeField] private CardSorting cardSorting;
 
         [SerializeField] List<Sprite> cardSprites;
+        public Vector2 defaltPos;
+        public int cardIndex;
+
+        Vector2 defaultPos;
+        private bool onDrag;
+
+        private void Start()
+        {
+            Init();
+            onDrag = false;
+        }
 
         private void Init()
         {
@@ -25,9 +39,34 @@ namespace FrameWork
             CardImg.sprite = cardSprites[0];
         }
 
-        private void Start()
+        private void FixedUpdate()
         {
-            Init();
+            if(onDrag)
+            {
+                transform.position = Input.mousePosition;
+            }
+        }
+
+        public void OnPointDown()
+        {
+            if (!onDrag)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    defaltPos = transform.localPosition;
+                    onDrag = !onDrag;
+                    cardSorting.SelectCard(this);
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButton(1))
+                {
+                    onDrag = false;
+                    transform.localPosition = defaltPos;
+                    cardSorting.DefaltCardSorting();
+                }
+            }
         }
     }
 }
