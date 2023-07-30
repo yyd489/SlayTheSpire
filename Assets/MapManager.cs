@@ -1,40 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
+using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
+using UnityEngine.ResourceManagement;
+using UnityEngine.UI;
 namespace FrameWork
 {
-    public class MapGraph
+    public enum MapField
     {
-        public class Node
-        {
-            
-            public List<Node> listAdjacent;
-            public bool marked;
-            public MapField field;
+        unknown,
+        monster,
+        eliteMonster,
+        shop,
+        sleep,
+        treasure
+    }
 
-            public Node()
-            {
-                listAdjacent = new List<Node>();
-            }
 
-        }
+    [System.Serializable]
+    public class mapNode
+    {
+        public List<mapNode> listAdjacent = new List<mapNode>();//연결
+        public bool marked;
+        public MapField field;
+        public int myIndex;
+        public int myFloor;
+        public int myPosition;
 
-        public Node[] arrNodes;
-
-        public MapGraph(int size)
-        {
-            arrNodes = new Node[size];
-
-            for (int i = 0; i < arrNodes.Length; i++)
-            {
-                arrNodes[i] = new Node();
-
-            }
-
-        }
-
-        public void addEdge(Node i1, Node i2)
+        public void addEdge(mapNode i1, mapNode i2)
         {
             if (!i1.listAdjacent.Contains(i2))
             {
@@ -48,57 +43,77 @@ namespace FrameWork
 
         }
 
-    }
-    public enum MapField
-    {
-        unknown,
-        monster,
-        eliteMonster,
-        shop,
-        sleep,
-        treasure
-    }
+        public mapNode FindLink(mapNode mapNode, int myPosition, List<mapNode> listFloor)
+        {
 
+            Debug.Log($"----my node Floor : {mapNode.myFloor } / Position : {mapNode.myPosition} = = {myPosition}, target count {listFloor.Count}");
+
+            for (int i = 0; i < listFloor.Count; i++)
+            {
+                Debug.Log($"  [{i}] listFloorPosition {listFloor[i].myPosition}");
+
+                if (myPosition == listFloor[i].myPosition)
+                {
+                    Debug.Log("====== end");
+                    return listFloor[i];
+                }
+
+            }
+
+            int increase = 1;
+
+            for (int i = 0; i < listFloor.Count;)
+            {
+                Debug.Log($" increase {increase} => target {listFloor[i].myPosition} ({i}/{listFloor.Count}) - {myPosition - increase} || + {myPosition + increase }");
+
+                if (myPosition - increase == listFloor[i].myPosition)
+                {
+                    return listFloor[i];
+                }
+
+                else if (myPosition + increase == listFloor[i].myPosition)
+                {
+                    return listFloor[i];
+
+                }
+
+                Debug.Log($"i {i} - count {listFloor.Count} ||| next {i < listFloor.Count - 1} reset {i == listFloor.Count - 1}" +"여기" );
+                if (i <listFloor.Count -1)
+                {
+                    i++;
+                }
+
+                else if (i == listFloor.Count - 1)
+                {
+                    increase++;
+                    i = 0;
+                }
+            }
+
+            return null;
+        }
+
+    }
 
     public class MapManager : MonoBehaviour
     {
         public Transform mapObject;
-
-        public MapGraph mapGraph;
-
+        public List<mapNode> listMapGraph = new List<mapNode>();
         public GameObject node;
-        //MapGraph g = new MapGraph(16);
         public List<GameObject> listNodeZones;
         public List<GameObject> listNodes;
+        public GameObject objectLine;
 
         public void Init()
-        {
-            for(int i = 0; i < mapObject.childCount; i++)
+        { 
+           
+            for (int i = 0; i < mapObject.childCount; i++)
             {
                 listNodeZones.Add(mapObject.GetChild(i).gameObject);
-
             }
 
-            int maxYsize = 40;
-            int minYsize = -40;
-            string objectPath = "Assets/Prefabs/UI/MapNode.prefab";
-            int[] arrNodeXPosition = { 100,0,-100,-200,-300,-400};
-
-            for (int i = 1; i < listNodeZones.Count; i++)//오브젝트 생성 
-            {
-                Transform parent = listNodeZones[i].GetComponent<Transform>();
-                int randomNodeSize = Random.Range(1, 6);
-
-                for (int z = 0; z < randomNodeSize; z++)
-                {
-      
-                    float randomY = Random.Range(minYsize, maxYsize);
-                    UImanager.InstansUI(objectPath, new Vector2(parent.position.x + arrNodeXPosition[randomNodeSize] + Random.Range(-30,30) + z * 200
-                        ,parent.position.y + randomY), parent);
-                }
-
-            }
-            
+            SettingNode();
+            // Save();
         }
 
         public void Start()
@@ -106,5 +121,125 @@ namespace FrameWork
             Init();
         }
 
+        public void Save()
+        {
+            string json = JsonConvert.SerializeObject(listMapGraph);
+            File.WriteAllText(Application.dataPath + "/DataJson"+"/testMap.json", json);
+        }
+
+        public void SettingNode()
+        {
+            int maxYsize = 30;
+            int minYsize = -30;
+            //string objectPath = "Assets/Prefabs/UI/MapNode.prefab";
+            int[] arrNodeXPosition = { 100, 0, -100, -200, -300, -400 };
+            ///////////////////////////// 보스 노드 오브젝트 넣어주기
+            listNodes.Add(listNodeZones[0].transform.GetChild(0).gameObject);
+            listMapGraph.Add(new mapNode());
+            listMapGraph[listMapGraph.Count - 1].myFloor = 0;
+            ///////////////////////////// 보스 노드 오브젝트 넣어주기
+            for (int i = 1; i < listNodeZones.Count; i++)//일반 노드 오브젝트 생성 
+            {
+                Transform parent = listNodeZones[i].GetComponent<Transform>();
+                int randomNodeSize = Random.Range(1, 6);
+                
+                for (int z = 0; z < randomNodeSize; z++)
+                {
+                    float randomY = Random.Range(minYsize, maxYsize);
+                    GameObject obj = Instantiate(node, new Vector2(parent.position.x + arrNodeXPosition[randomNodeSize] + Random.Range(-30, 30) + z * 200
+                         , parent.position.y + randomY),Quaternion.identity, parent);
+
+                    listNodes.Add(obj);
+                    listMapGraph.Add(new mapNode());
+                    listMapGraph[listMapGraph.Count - 1].myFloor = i;
+                    listMapGraph[listMapGraph.Count - 1].myPosition = z;
+                    listMapGraph[listMapGraph.Count - 1].myIndex = listMapGraph.Count - 1;
+                    int Index = listMapGraph.Count - 1;
+                    obj.GetComponent<Button>().onClick.AddListener(() => ClickNodeButton(Index));
+                }
+
+            }
+
+            linkNodes();
+        }
+
+        public void linkNodes()
+        {
+            for (int i = 0; i < listMapGraph.Count; i++)
+            {
+                    List<mapNode> listUnderFloor = new List<mapNode>();
+                    List<mapNode> listUpperFloor = new List<mapNode>();
+
+                    for (int z = i - 1; z > -1; z--) // 왼쪽부터 위로
+                    {
+                        if (listMapGraph[i].myFloor -1 == listMapGraph[z].myFloor)
+                        {
+                            listUpperFloor.Add(listMapGraph[z]);
+                        }
+                    }
+
+                    var linkTargetUpObject = listMapGraph[i].FindLink(listMapGraph[i], listMapGraph[i].myPosition, listUpperFloor);
+                  
+                    if (linkTargetUpObject != null)
+                        listMapGraph[i].addEdge(listMapGraph[i], linkTargetUpObject);
+
+                    for (int z = i + 1; z < listMapGraph.Count; z++)//우측부터 밑으로 
+                    {
+                        if (listMapGraph[i].myFloor + 1 == listMapGraph[z].myFloor )
+                        {
+                            listUnderFloor.Add(listMapGraph[z]);
+                        }
+                    }
+
+                    var linkTargetDownObject = listMapGraph[i].FindLink(listMapGraph[i],listMapGraph[i].myPosition, listUnderFloor);
+
+                    if (linkTargetDownObject != null)
+                        listMapGraph[i].addEdge(listMapGraph[i], linkTargetDownObject);
+
+            }
+            
+            DrawLinkLine();
+        }
+
+        public void DrawLinkLine()
+        {
+           
+            for(int i = listMapGraph.Count -1; i > -1; i--)
+            {
+                List<int> listLinkIndex = new List<int>();
+
+                for (int z = 0; z < listMapGraph[i].listAdjacent.Count; z++)
+                {   
+                    listLinkIndex.Add(listMapGraph[i].listAdjacent[z].myIndex);
+                }
+
+                Transform parent = listNodes[i].GetComponent<Transform>().transform.parent;
+
+                for (int z = 0; z < listLinkIndex.Count; z++)
+                {
+                    Vector2 standardNode =  listNodes[i].transform.position;
+                    Vector2 targetNode = listNodes[listLinkIndex[z]].transform.position;
+
+                    float x = standardNode.x + targetNode.x;
+                    float y = standardNode.y + targetNode.y;
+
+                    Vector3 offset = standardNode - targetNode;
+
+                    float deg = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+                    float width = Vector2.Distance(standardNode, targetNode);
+                    //float angle = Vector2.Angle(Up.transform.position, Down.transform.position);
+
+                    GameObject obj = Instantiate(objectLine, new Vector2(x / 2, y / 2), Quaternion.Euler(0, 0, deg), parent);
+                    obj.GetComponent<RectTransform>().sizeDelta = new Vector2(width - 100, obj.GetComponent<RectTransform>().sizeDelta.y);
+                    
+                }
+               
+            }
+        }
+
+        public void ClickNodeButton(int Index)
+        {
+            Debug.Log(listMapGraph[Index].myIndex);
+        }
     }
 }

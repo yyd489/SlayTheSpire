@@ -22,13 +22,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3ba55267bbc686740b5c8f4d03da1849
-    m_Address: Assets/Prefabs/UI/MapPopup.prefab
+  - m_GUID: b70125bc675d598408680c4e9dd893cc
+    m_Address: Assets/Prefabs/UI/MapNode.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b70125bc675d598408680c4e9dd893cc
-    m_Address: Assets/Prefabs/UI/MapNode.prefab
+  - m_GUID: cc8401784e4082c4f83d0c17670537c9
+    m_Address: Assets/Prefabs/UI/MapLinkLine.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
