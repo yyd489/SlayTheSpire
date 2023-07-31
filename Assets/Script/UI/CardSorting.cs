@@ -12,6 +12,10 @@ namespace FrameWork
 
         void Start()
         {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                cards.Add(transform.GetChild(i).GetComponent<CardBase>());
+            }
             DefaltCardSorting();
         }
 
@@ -19,17 +23,42 @@ namespace FrameWork
         {
             int cardCount = cards.Count;
             int halfCount = (int)(cardCount * 0.5f);
+            bool isEvenNumber = (cardCount % 2 == 0);
+            if (isEvenNumber) halfCount--;
 
             for (int i = 0; i < cardCount; i++)
             {
                 cards[i].cardIndex = i;
                 int tempInt = i - halfCount;
-                float xPos = tempInt * 180f;
+                float xPos = 0f;
                 float yPos = 0f;
+                float zRot = 0f;
+
+                // x좌표
+                if (isEvenNumber)
+                {
+                    if (cardCount * 0.5f > halfCount)
+                    {
+                        xPos = -90f;
+                        if (i == halfCount) halfCount++;
+                    }
+                    else xPos = 90f;
+                }
+
+                xPos += tempInt * 180f;
+
+                // 각도
+                zRot -= tempInt * 5f;
+                if (isEvenNumber)
+                {
+                    if (xPos < 0) zRot += 5f;
+                    else if (xPos > 0) zRot -= 5f;
+                }
 
                 cards[i].transform.rotation = Quaternion.identity;
-                cards[i].transform.Rotate(new Vector3(0f, 0f, 0f - tempInt * 5f));
-
+                cards[i].transform.Rotate(new Vector3(0f, 0f, zRot));
+                
+                // y좌표
                 if (tempInt < 0) tempInt *= -1;
 
                 for (int j = 1; j <= tempInt; j++)
@@ -48,13 +77,13 @@ namespace FrameWork
             if (cardIndex > 0)
             {
                 Vector3 movePos = cards[cardIndex - 1].transform.localPosition - new Vector3(50f, 0f);
-                cards[cardIndex - 1].transform.DOLocalMove(movePos, 0.5f);
+                cards[cardIndex - 1].transform.localPosition = movePos;
             }
 
-            if(cardIndex + 1 <= cards.Count )
+            if(cardIndex + 1 < cards.Count )
             {
                 Vector3 movePos = cards[cardIndex + 1].transform.localPosition + new Vector3(50f, 0f);
-                cards[cardIndex + 1].transform.DOLocalMove(movePos, 0.5f);
+                cards[cardIndex + 1].transform.localPosition = movePos;
             }
         }
 

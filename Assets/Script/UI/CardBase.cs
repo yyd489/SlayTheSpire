@@ -54,7 +54,8 @@ namespace FrameWork
                 if (Input.GetMouseButton(0))
                 {
                     defaltPos = transform.localPosition;
-                    onDrag = !onDrag;
+                    onDrag = true;
+                    transform.rotation = Quaternion.identity;
                     cardSorting.SelectCard(this);
                 }
             }
