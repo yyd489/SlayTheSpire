@@ -28,6 +28,7 @@ namespace FrameWork.Data
         public int hp;
         public int mp;
         public int attack;
+        public int gold;
     }
 
     [Serializable]

@@ -19,7 +19,7 @@ namespace FrameWork
     }
 
 
-    [System.Serializable]
+    
     public class mapNode
     {
         public List<mapNode> listAdjacent = new List<mapNode>();//연결
@@ -46,15 +46,15 @@ namespace FrameWork
         public mapNode FindLink(mapNode mapNode, int myPosition, List<mapNode> listFloor)
         {
 
-            Debug.Log($"----my node Floor : {mapNode.myFloor } / Position : {mapNode.myPosition} = = {myPosition}, target count {listFloor.Count}");
+           // Debug.Log($"----my node Floor : {mapNode.myFloor } / Position : {mapNode.myPosition} = = {myPosition}, target count {listFloor.Count}");
 
             for (int i = 0; i < listFloor.Count; i++)
             {
-                Debug.Log($"  [{i}] listFloorPosition {listFloor[i].myPosition}");
+              //  Debug.Log($"  [{i}] listFloorPosition {listFloor[i].myPosition}");
 
                 if (myPosition == listFloor[i].myPosition)
                 {
-                    Debug.Log("====== end");
+                  //  Debug.Log("====== end");
                     return listFloor[i];
                 }
 
@@ -64,7 +64,7 @@ namespace FrameWork
 
             for (int i = 0; i < listFloor.Count;)
             {
-                Debug.Log($" increase {increase} => target {listFloor[i].myPosition} ({i}/{listFloor.Count}) - {myPosition - increase} || + {myPosition + increase }");
+               // Debug.Log($" increase {increase} => target {listFloor[i].myPosition} ({i}/{listFloor.Count}) - {myPosition - increase} || + {myPosition + increase }");
 
                 if (myPosition - increase == listFloor[i].myPosition)
                 {
@@ -77,7 +77,7 @@ namespace FrameWork
 
                 }
 
-                Debug.Log($"i {i} - count {listFloor.Count} ||| next {i < listFloor.Count - 1} reset {i == listFloor.Count - 1}" +"여기" );
+                //Debug.Log($"i {i} - count {listFloor.Count} ||| next {i < listFloor.Count - 1} reset {i == listFloor.Count - 1}" +"여기" );
                 if (i <listFloor.Count -1)
                 {
                     i++;
@@ -103,6 +103,9 @@ namespace FrameWork
         public List<GameObject> listNodeZones;
         public List<GameObject> listNodes;
         public GameObject objectLine;
+        public GameObject nodeCircle;
+
+        public int nowIndex = 999;
 
         public void Init()
         { 
@@ -156,11 +159,18 @@ namespace FrameWork
                     listMapGraph[listMapGraph.Count - 1].myIndex = listMapGraph.Count - 1;
                     int Index = listMapGraph.Count - 1;
                     obj.GetComponent<Button>().onClick.AddListener(() => ClickNodeButton(Index));
+                    
                 }
 
             }
 
+            //임시 인덱스 셋팅  
+        
+        
             linkNodes();
+            SettingNodeButton();
+
+
         }
 
         public void linkNodes()
@@ -197,6 +207,7 @@ namespace FrameWork
                         listMapGraph[i].addEdge(listMapGraph[i], linkTargetDownObject);
 
             }
+
             
             DrawLinkLine();
         }
@@ -230,16 +241,97 @@ namespace FrameWork
                     //float angle = Vector2.Angle(Up.transform.position, Down.transform.position);
 
                     GameObject obj = Instantiate(objectLine, new Vector2(x / 2, y / 2), Quaternion.Euler(0, 0, deg), parent);
-                    obj.GetComponent<RectTransform>().sizeDelta = new Vector2(width - 100, obj.GetComponent<RectTransform>().sizeDelta.y);
+                    obj.GetComponent<RectTransform>().sizeDelta = new Vector2(width - 85, obj.GetComponent<RectTransform>().sizeDelta.y);
                     
                 }
                
             }
         }
 
-        public void ClickNodeButton(int Index)
+        public void ClickNodeButton(int index)
         {
-            Debug.Log(listMapGraph[Index].myIndex);
+            for (int i = 0; i < listMapGraph.Count; i++)
+            {
+                if (listMapGraph[index].myFloor == listMapGraph[i].myFloor)
+                {
+                    listNodes[i].GetComponent<Button>().interactable = false;
+                }
+
+            }
+
+            if (index != 0)
+            {
+                Animator objCircle = Instantiate(nodeCircle, listNodes[index].transform.position,
+                    Quaternion.identity, listNodes[index].transform.parent).GetComponent<Animator>();
+                objCircle.SetBool("DrowCircle", true);
+            }
+
+            listMapGraph[index].marked = true;
+            listNodes[index].GetComponent<Button>().enabled = false;
+            nowIndex = index;
+            StartCoroutine(WaitDrowCircle());
+            
         }
+
+        IEnumerator WaitDrowCircle()
+        {
+            yield return new WaitForSeconds(0.45f);
+
+            for (int i = 0; i < listMapGraph[nowIndex].listAdjacent.Count; i++)
+            {
+                  if(listMapGraph[nowIndex].myFloor -1 ==  listMapGraph[nowIndex].listAdjacent[i].myFloor)
+                  {
+                        listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().interactable = true;
+                  }
+
+            }   
+            this.transform.parent.gameObject.SetActive(false);
+
+        }
+
+        public void SettingNodeButton()
+        {
+          
+            if(nowIndex == 999)
+            {
+               for(int i = 0; i<listMapGraph.Count; i++)
+               {
+                    if(listMapGraph[i].myFloor == 10)
+                    {
+                        listNodes[i].GetComponent<Button>().interactable = true;
+                    }
+               }
+            }
+
+           for (int i = 0; i <listNodes.Count;i++)
+           {
+                
+                if(listMapGraph[i].marked == true)
+                {
+                    listNodes[i].GetComponent<Button>().enabled = false;
+
+                    Instantiate(nodeCircle, listNodes[i].transform.position, 
+                    Quaternion.identity, listNodes[i].transform.parent);
+                }
+           }
+
+            if (nowIndex != 999)
+            {
+                for (int i = 0; i < listMapGraph[nowIndex].listAdjacent.Count; i++)
+                {
+
+                    if (listMapGraph[nowIndex].myFloor - 1 == listMapGraph[nowIndex].listAdjacent[i].myFloor)
+                    {
+                        int index = listMapGraph[nowIndex].listAdjacent[i].myIndex;
+                        listNodes[index].GetComponent<Button>().interactable = true;
+                    }
+
+                }
+            }
+            
+
+        }
+
+        
     }
 }

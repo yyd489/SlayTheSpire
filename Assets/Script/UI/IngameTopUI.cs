@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 namespace FrameWork
 {
+    using FrameWork.Data;
 
     public class IngameTopUI : MonoBehaviour
     {
@@ -12,6 +14,10 @@ namespace FrameWork
         public Button mapButton;
 
         public GameObject mapPop;
+        public GameObject optionPop;
+
+        public static TextMeshProUGUI goldText;
+       
         // Start is called before the first frame update
 
         public void Init()
@@ -24,6 +30,10 @@ namespace FrameWork
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
         }
 
+        public static void ClearStage()
+        {
+            goldText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
+        }
     }
 }
 

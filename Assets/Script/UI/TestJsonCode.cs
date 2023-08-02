@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 [System.Serializable]
 public class CharacterInfoCollet
 {
-    public CharacterCollectt characterCollectt;
+    public CharacterCollect characterCollectt;
 
 }
 
 [System.Serializable]
-public class CharacterCollectt
+public class CharacterCollect
 {
    public string name;
    public int hp;

@@ -6,7 +6,7 @@ namespace FrameWork.Data
     //using Newtonsoft.Json;
     public partial class DataManager
     {
-        public DataList data;
+        public static DataList data;
 
         public void Init()
         {
@@ -20,6 +20,7 @@ namespace FrameWork.Data
             data.characterData = new CharacterData();
             data.characterData.Init("Assets/DataJson/CharacterCollect.json");
            // data.mapData.Init("Assets/DataJson/CharacterCollect.json");
+           
         }
         
     }
@@ -29,6 +30,7 @@ namespace FrameWork.Data
     {
         public CharacterData characterData;
         public MapData mapData;
+     
     }
   
 }
