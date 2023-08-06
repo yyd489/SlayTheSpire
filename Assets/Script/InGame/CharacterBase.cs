@@ -43,7 +43,7 @@ namespace FrameWork
             hp = health;
         }
 
-        public async Task<bool> Attack(CharacterBase target)
+        public async Task<bool> Attack(CharacterBase target, int cardDamage)
         {
             targetCharacter = target;
             ChangeState(1);
@@ -58,7 +58,7 @@ namespace FrameWork
 
                 if (!isMonster)
                 {
-                    TargetHit();
+                    TargetHit(cardDamage);
                     ReturnPosition();
                 }
             }
@@ -66,7 +66,7 @@ namespace FrameWork
             return true;
         }
 
-        protected async void TargetHit()
+        protected async void TargetHit(int cardDamage)
         {
             float modifyPos = -1f;
             if (targetCharacter.isMonster) modifyPos *= -1f;
@@ -74,7 +74,7 @@ namespace FrameWork
             float knockBackPosX = targetCharacter.transform.position.x + modifyPos;
 
             await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
-            targetCharacter.hp -= damage;
+            targetCharacter.hp -= damage + cardDamage;
 
             if (IsDead())
             {
@@ -106,6 +106,16 @@ namespace FrameWork
             if(animator == null) animator = GetComponent<Animator>();
             
             animator.SetInteger("state", animIndex);
+        }
+
+        public void OnPointEnter()
+        {
+            GameManager.playerControler.targetCharacter = this;
+        }
+
+        public void OnPointExit()
+        {
+            GameManager.playerControler.targetCharacter = null;
         }
     }
 }

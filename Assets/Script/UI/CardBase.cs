@@ -9,28 +9,35 @@ namespace FrameWork
 {
     public class CardBase : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI CardName;
-        [SerializeField] private TextMeshProUGUI CardText;
-        [SerializeField] private TextMeshProUGUI CardPoint;
-        [SerializeField] private TextMeshProUGUI CardType;
-        [SerializeField] private Image CardImg;
+        public TextMeshProUGUI CardName;
+        public TextMeshProUGUI CardText;
+        public TextMeshProUGUI CardPoint;
+        public TextMeshProUGUI CardType;
+        public Image CardImg;
 
-        [SerializeField] private CardSorting cardSorting;
+        public CardSorting cardSorting;
+        private Image image;
 
         [SerializeField] List<Sprite> cardSprites;
-        public Vector2 defaltPos;
         public int cardIndex;
 
-        Vector2 defaultPos;
+        // 카드 선택 & 드래그
+        public Vector2 defaultPos;
+
+        // 레이캐스트
+        private float maxDistance = 100f;
+        private Vector3 mousePos;
+
         private bool onDrag;
 
         private void Start()
         {
             Init();
+            image = GetComponent<Image>();
             onDrag = false;
         }
 
-        private void Init()
+        public void Init()
         {
             CardName.text = "Test";
             CardText.text = "Test Text";
@@ -39,35 +46,27 @@ namespace FrameWork
             CardImg.sprite = cardSprites[0];
         }
 
-        private void FixedUpdate()
-        {
-            if(onDrag)
-            {
-                transform.position = Input.mousePosition;
-            }
-        }
-
         public void OnPointDown()
         {
-            if (!onDrag)
+            if (Input.GetMouseButton(0))
             {
-                if (Input.GetMouseButton(0))
+                if (!GameManager.playerControler.onDrag)
                 {
-                    defaltPos = transform.localPosition;
                     onDrag = true;
+                    defaultPos = transform.localPosition;
                     transform.rotation = Quaternion.identity;
                     cardSorting.SelectCard(this);
                 }
             }
-            else
-            {
-                if (Input.GetMouseButton(1))
-                {
-                    onDrag = false;
-                    transform.localPosition = defaltPos;
-                    cardSorting.DefaltCardSorting();
-                }
-            }
+
+            GameManager.playerControler.onDrag = onDrag;
+        }
+
+        public void CancleDrag()
+        {
+            onDrag = false;
+            transform.localPosition = defaultPos;
+            cardSorting.DefaltCardSorting();
         }
     }
 }

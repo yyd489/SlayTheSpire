@@ -162,7 +162,7 @@ MonoBehaviour:
   - {fileID: 5849191450162089410}
   - {fileID: 4451571330003664695}
   m_Bounds:
-    m_Center: {x: 0.02500093, y: -0.001305297, z: 0}
+    m_Center: {x: 0.025000691, y: -0.0013052374, z: 0}
     m_Extent: {x: 1.2250005, y: 0.13630524, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -298,8 +298,8 @@ MonoBehaviour:
   - {fileID: 1580646557073405857}
   - {fileID: 1157352410817196797}
   m_Bounds:
-    m_Center: {x: -0.00071015954, y: 0.01999998, z: 0}
-    m_Extent: {x: 0.43684015, y: 0.73000014, z: 0}
+    m_Center: {x: -0.00071024895, y: 0.02000004, z: 0}
+    m_Extent: {x: 0.43684006, y: 0.73000014, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &2718137957229126309
@@ -464,8 +464,8 @@ MonoBehaviour:
   - {fileID: 946435868790630525}
   - {fileID: 8186585205603460051}
   m_Bounds:
-    m_Center: {x: -0.0013252199, y: 0.0024501383, z: 0}
-    m_Extent: {x: 0.088675216, y: 0.33754992, z: 0}
+    m_Center: {x: -0.0013251007, y: 0.0024500191, z: 0}
+    m_Extent: {x: 0.0886751, y: 0.33755004, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5438041958876058066
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 1157352410817196797}
   m_Bounds:
-    m_Center: {x: -0.0021947622, y: 0.008669823, z: 0}
+    m_Center: {x: -0.0021950006, y: 0.008669883, z: 0}
     m_Extent: {x: 0.31256497, y: 0.22607999, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2742725727065627266}
   m_Bounds:
-    m_Center: {x: 0.020785242, y: -0.0023351908, z: 0}
+    m_Center: {x: 0.020785004, y: -0.002335161, z: 0}
     m_Extent: {x: 0.16421503, y: 0.17739493, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -836,7 +836,7 @@ MonoBehaviour:
   - {fileID: 5992729901671906198}
   - {fileID: 7524544265684231021}
   m_Bounds:
-    m_Center: {x: 0.0015751421, y: 0.0018348694, z: 0}
+    m_Center: {x: 0.0015751421, y: 0.001834929, z: 0}
     m_Extent: {x: 0.37633494, y: 0.47067478, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 2742725727065627266}
   m_Bounds:
-    m_Center: {x: 0.00051517785, y: 0.06836966, z: 0}
+    m_Center: {x: 0.0005149394, y: 0.0683697, z: 0}
     m_Extent: {x: 0.19448498, y: 0.25836995, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1247,8 +1247,8 @@ MonoBehaviour:
   - {fileID: 5584155269857113837}
   - {fileID: 1116051080446043042}
   m_Bounds:
-    m_Center: {x: 0.00480552, y: -0.009839982, z: 0}
-    m_Extent: {x: 0.13078485, y: 0.41458017, z: 0}
+    m_Center: {x: 0.0048054755, y: -0.009839863, z: 0}
+    m_Extent: {x: 0.13078481, y: 0.41458017, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7814877758033786381
@@ -1330,9 +1330,11 @@ GameObject:
   - component: {fileID: 5004128777872710817}
   - component: {fileID: 5004128777872710816}
   - component: {fileID: 3466169717302959888}
+  - component: {fileID: 5483699161835821512}
+  - component: {fileID: 32116319219827021}
   m_Layer: 0
   m_Name: blueSlaver
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1373,7 +1375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5849793d8ef268945a41f78402ce9c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
   objectResource: {fileID: 5004128777872710816}
 --- !u!114 &5004128777872710816
 MonoBehaviour:
@@ -1417,6 +1418,75 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &5483699161835821512
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874958416860687681}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 1.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2}
+  m_EdgeRadius: 0
+--- !u!114 &32116319219827021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874958416860687681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5004128777872710817}
+          m_MethodName: OnPointEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5004128777872710817}
+          m_MethodName: OnPointExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &9178998791119696104
 GameObject:
   m_ObjectHideFlags: 0
