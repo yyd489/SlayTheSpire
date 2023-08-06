@@ -76,7 +76,7 @@ namespace FrameWork
                 isPlayerControl = true;
                 energy--;
                 energyText.text = energy + "/" + maxEnergy;
-                await playerCharacter.Attack(enemyCharacters[0]);
+                await playerCharacter.Attack(enemyCharacters[0], 0);
                 isPlayerControl = false;
             }
         }
@@ -87,7 +87,7 @@ namespace FrameWork
             for (int i = 0; i < enemyCharacters.Count; i++)
             {
                 await UniTask.Delay(delayTime);
-                await enemyCharacters[i].Attack(playerCharacter);
+                await enemyCharacters[i].Attack(playerCharacter, 0);
                 await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
             }
 

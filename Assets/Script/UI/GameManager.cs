@@ -11,8 +11,10 @@ namespace FrameWork
         public static DataManager dataManager { get; private set; }
         public static Soundmanager soundManager { get; private set; }
         public static IngameTopUI ingameUI { get; private set; }
+        public static PlayerControler playerControler { get; private set; }
 
         [SerializeField] Initializer initilizer;
+
         private void Start()
         {
             Init();
@@ -20,13 +22,20 @@ namespace FrameWork
 
         public void Init()
         {
+            if (playerControler == null)
+            {
+                playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
+            }
+
+            playerControler.Init();
+
             if (dataManager == null)
             {
                 dataManager = new DataManager();
             }
             dataManager.Init();
 
-            if(soundManager == null)
+            if (soundManager == null)
             {
                 soundManager = new Soundmanager();
             }
@@ -38,11 +47,7 @@ namespace FrameWork
                 ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
             }
 
-            ingameUI.Init();
-
+            ingameUI.Init();            
         }
-
-
-
     }
 }

@@ -9,6 +9,8 @@ namespace FrameWork
     public class CardSorting : MonoBehaviour
     {
         [SerializeField] List<CardBase> cards;
+        [SerializeField] CardBase selectCard;
+        [SerializeField] GameObject usedCardBox;
 
         void Start()
         {
@@ -21,6 +23,8 @@ namespace FrameWork
 
         public void DefaltCardSorting()
         {
+            selectCard.gameObject.SetActive(false);
+
             int cardCount = cards.Count;
             int halfCount = (int)(cardCount * 0.5f);
             bool isEvenNumber = (cardCount % 2 == 0);
@@ -70,9 +74,13 @@ namespace FrameWork
             }
         }
 
-        public void SelectCard(CardBase selectCard)
+        public void SelectCard(CardBase useCard)
         {
-            int cardIndex = selectCard.cardIndex;
+            int cardIndex = useCard.cardIndex;
+            GameManager.playerControler.selectCard = useCard;
+            useCard.gameObject.SetActive(false);
+            selectCard.gameObject.SetActive(true);
+            selectCard.Init();
 
             if (cardIndex > 0)
             {
@@ -87,5 +95,12 @@ namespace FrameWork
             }
         }
 
+        public void UseCard(CardBase useCard)
+        {
+            useCard.transform.parent = usedCardBox.transform;
+            selectCard.gameObject.SetActive(false);
+            cards.Remove(useCard);
+            DefaltCardSorting();
+        }
     }
 }
