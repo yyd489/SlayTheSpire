@@ -20,7 +20,7 @@ namespace FrameWork.Data
             data.characterData = new CharacterData();
             data.characterData.Init("Assets/DataJson/CharacterCollect.json");
             data.cardData = new CardData();
-            data.cardData.WriteJson();
+            data.cardData.Init("Assets/DataJson/cardData.json");
            // data.mapData.Init("Assets/DataJson/CharacterCollect.json");
            
         }

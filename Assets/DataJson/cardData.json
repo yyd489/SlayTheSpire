@@ -20,48 +20,48 @@
       "canDelete": false
     },
     {
-      "cardName": null,
+      "cardName": "타격",
       "cardType": 0,
-      "cardGuide": null,
-      "cardCost": 0,
-      "cardEffect": 0,
+      "cardGuide": "피해를 6줍니다.",
+      "cardCost": 1,
+      "cardEffect": 6,
       "cardSubEffect": 0,
       "canDelete": false
     },
     {
-      "cardName": null,
+      "cardName": "천둥",
       "cardType": 0,
-      "cardGuide": null,
-      "cardCost": 0,
-      "cardEffect": 0,
+      "cardGuide": "적 전체에게 피해를 4 주고 <color=yellow> 취약을 1 부여합니다. : </color>",
+      "cardCost": 1,
+      "cardEffect": 4,
+      "cardSubEffect": 1,
+      "canDelete": false
+    },
+    {
+      "cardName": "흘려보내기",
+      "cardType": 1,
+      "cardGuide": "<color=yellow> 방어도를 8 얻습니다. : </color> 카드를 1장 뽑습니다.",
+      "cardCost": 1,
+      "cardEffect": 8,
+      "cardSubEffect": 1,
+      "canDelete": false
+    },
+    {
+      "cardName": "발화",
+      "cardType": 1,
+      "cardGuide": "힘을 2 얻습니다.",
+      "cardCost": 1,
+      "cardEffect": 1,
       "cardSubEffect": 0,
       "canDelete": false
     },
     {
-      "cardName": null,
-      "cardType": 0,
-      "cardGuide": null,
-      "cardCost": 0,
-      "cardEffect": 0,
+      "cardName": "혈안",
+      "cardType": 1,
+      "cardGuide": "2 코스트를 얻습니다. <color=yellow> 소멸 : </color>",
+      "cardCost": 1,
+      "cardEffect": 2,
       "cardSubEffect": 0,
-      "canDelete": false
-    },
-    {
-      "cardName": null,
-      "cardType": 0,
-      "cardGuide": null,
-      "cardCost": 0,
-      "cardEffect": 0,
-      "cardSubEffect": 0,
-      "canDelete": false
-    },
-    {
-      "cardName": null,
-      "cardType": 0,
-      "cardGuide": null,
-      "cardCost": 0,
-      "cardEffect": 0,
-      "cardSubEffect": 0,
-      "canDelete": false
+      "canDelete": true
     }
   ]}

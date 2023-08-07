@@ -9,7 +9,7 @@ public class testscr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string aa = "<color=green>Message : </color>" + "메세지";
+        string aa = "<color=yellow>Message : </color>" + "메세지";
 
         aas.text = aa;
     }

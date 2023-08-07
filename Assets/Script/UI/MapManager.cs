@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 namespace FrameWork
 {
+    using FrameWork.Data;
     public enum MapField
     {
         Event,
