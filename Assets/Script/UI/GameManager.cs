@@ -11,7 +11,8 @@ namespace FrameWork
         public static DataManager dataManager { get; private set; }
         public static Soundmanager soundManager { get; private set; }
         public static IngameTopUI ingameUI { get; private set; }
-        public static PlayerControler playerControler { get; private set; }
+        public PlayerControler playerControler { get; private set; }
+        public CardSorting cardSorting { get; private set; }
 
         [SerializeField] Initializer initilizer;
 
@@ -28,6 +29,13 @@ namespace FrameWork
             }
 
             playerControler.Init();
+
+            if (cardSorting == null)
+            {
+                cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
+            }
+
+            cardSorting.Init();
 
             if (dataManager == null)
             {
