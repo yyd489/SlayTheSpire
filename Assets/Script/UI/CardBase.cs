@@ -9,32 +9,26 @@ namespace FrameWork
 {
     public class CardBase : MonoBehaviour
     {
+        // 카드 UI
         public TextMeshProUGUI CardName;
         public TextMeshProUGUI CardText;
         public TextMeshProUGUI CardPoint;
         public TextMeshProUGUI CardType;
         public Image CardImg;
 
-        public CardSorting cardSorting;
-        private Image image;
-
+        // 카드 이미지 리소스 - 추후 이동필요
         [SerializeField] List<Sprite> cardSprites;
+
+        // 카드정렬
+        public CardSorting cardSorting;
         public int cardIndex;
 
         // 카드 선택 & 드래그
         public Vector2 defaultPos;
 
-        // 레이캐스트
-        private float maxDistance = 100f;
-        private Vector3 mousePos;
-
-        private bool onDrag;
-
         private void Start()
         {
             Init();
-            image = GetComponent<Image>();
-            onDrag = false;
         }
 
         public void Init()
@@ -52,19 +46,16 @@ namespace FrameWork
             {
                 if (!GameManager.Instance.playerControler.onDrag)
                 {
-                    onDrag = true;
                     defaultPos = transform.localPosition;
                     transform.rotation = Quaternion.identity;
                     cardSorting.SelectCard(this);
+                    GameManager.Instance.playerControler.onDrag = true;
                 }
             }
-
-            GameManager.Instance.playerControler.onDrag = onDrag;
         }
 
         public void CancleDrag()
         {
-            onDrag = false;
             transform.localPosition = defaultPos;
             cardSorting.DefaltCardSorting();
         }

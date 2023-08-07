@@ -48,9 +48,11 @@ namespace FrameWork
                 case BattleState.PlayerTurn:
                     battleState = BattleState.EnemyTurn;
                     EnemyTurn();
+                    GameManager.Instance.cardSorting.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
                     battleState = BattleState.PlayerTurn;
+                    GameManager.Instance.cardSorting.ResetPlayerCard();
                     break;
                 case BattleState.EndBattle:
                     break;

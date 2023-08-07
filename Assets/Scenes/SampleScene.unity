@@ -550,6 +550,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215a279346ff27f4bb34d8b4eb72302c, type: 3}
+--- !u!1 &428998874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1879498491, guid: 54bda7b744cf81a4fa15f515e4b95f24,
+    type: 3}
+  m_PrefabInstance: {fileID: 5574681725817906432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &480637817 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1342274350475043197, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
@@ -1069,12 +1075,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989558183a3c19941b640c706030fc47, type: 3}
---- !u!224 &1118727044 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5574681724687833691, guid: 54bda7b744cf81a4fa15f515e4b95f24,
-    type: 3}
-  m_PrefabInstance: {fileID: 5574681725817906432}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1284114126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1491,41 +1491,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1879498491
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1879498492}
-  m_Layer: 5
-  m_Name: UsedCard
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1879498492
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879498491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1118727044}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2112571001 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7037717343380695527, guid: 989558183a3c19941b640c706030fc47,
@@ -1734,7 +1699,11 @@ PrefabInstance:
     - target: {fileID: 493359184, guid: 54bda7b744cf81a4fa15f515e4b95f24, type: 3}
       propertyPath: usedCardBox
       value: 
-      objectReference: {fileID: 1879498491}
+      objectReference: {fileID: 428998874}
+    - target: {fileID: 1879498492, guid: 54bda7b744cf81a4fa15f515e4b95f24, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5574681724687833687, guid: 54bda7b744cf81a4fa15f515e4b95f24,
         type: 3}
       propertyPath: m_Name

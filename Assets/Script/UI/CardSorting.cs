@@ -12,7 +12,9 @@ namespace FrameWork
         [SerializeField] CardBase selectCard;
         [SerializeField] GameObject usedCardBox;
 
-        void Start()
+        private Queue<CardBase> usedCards = new Queue<CardBase>();
+
+        public void Init()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -100,7 +102,46 @@ namespace FrameWork
             useCard.transform.parent = usedCardBox.transform;
             selectCard.gameObject.SetActive(false);
             cards.Remove(useCard);
+            usedCards.Enqueue(useCard);
             DefaltCardSorting();
+        }
+
+        public void DrawCard()
+        {
+                     
+        }
+
+        public void RemovePlayerCard()
+        {
+            if (usedCards.Count == 0) return;
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].transform.parent = usedCardBox.transform;
+                cards[i].gameObject.SetActive(false);
+                usedCards.Enqueue(cards[i]);
+            }
+            cards.Clear();
+        }
+
+        public void ResetPlayerCard()
+        {
+            CardBase tempCard;
+            for(int i = 0; i < 5; i++)
+            {
+                tempCard = usedCards.Dequeue();
+                tempCard.gameObject.SetActive(true);
+                tempCard.Init();
+                tempCard.transform.parent = this.transform;
+                cards.Add(tempCard);
+            }
+
+            DefaltCardSorting();
+        }
+
+        public void ResetCardDeck()
+        {
+            
         }
     }
 }
