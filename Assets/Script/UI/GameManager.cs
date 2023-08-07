@@ -14,6 +14,7 @@ namespace FrameWork
         public PlayerControler playerControler { get; private set; }
 
         public static StageManager stageManager { get; private set; }
+        public CardSorting cardSorting { get; private set; }
 
         [SerializeField] Initializer initilizer;
 
@@ -54,6 +55,13 @@ namespace FrameWork
 
             //}
             //playerControler.Init();
+
+            //if(cardSorting == null)
+            //{
+            //    cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
+            //}
+
+            //cardSorting.Init();
 
             DontDestroyOnLoad(this);
             DontDestroyOnLoad(gameObject);
