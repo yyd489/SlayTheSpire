@@ -19,6 +19,8 @@ namespace FrameWork.Data
             data = new DataList();
             data.characterData = new CharacterData();
             data.characterData.Init("Assets/DataJson/CharacterCollect.json");
+            data.cardData = new CardData();
+            data.cardData.WriteJson();
            // data.mapData.Init("Assets/DataJson/CharacterCollect.json");
            
         }
@@ -30,6 +32,7 @@ namespace FrameWork.Data
     {
         public CharacterData characterData;
         public MapData mapData;
+        public CardData cardData;
      
     }
   

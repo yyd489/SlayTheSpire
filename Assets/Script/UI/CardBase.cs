@@ -50,7 +50,7 @@ namespace FrameWork
         {
             if (Input.GetMouseButton(0))
             {
-                if (!GameManager.playerControler.onDrag)
+                if (!GameManager.Instance.playerControler.onDrag)
                 {
                     onDrag = true;
                     defaultPos = transform.localPosition;
@@ -59,7 +59,7 @@ namespace FrameWork
                 }
             }
 
-            GameManager.playerControler.onDrag = onDrag;
+            GameManager.Instance.playerControler.onDrag = onDrag;
         }
 
         public void CancleDrag()

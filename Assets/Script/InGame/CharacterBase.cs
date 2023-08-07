@@ -110,12 +110,12 @@ namespace FrameWork
 
         public void OnPointEnter()
         {
-            GameManager.playerControler.targetCharacter = this;
+            GameManager.Instance.playerControler.targetCharacter = this;
         }
 
         public void OnPointExit()
         {
-            GameManager.playerControler.targetCharacter = null;
+            GameManager.Instance.playerControler.targetCharacter = null;
         }
     }
 }

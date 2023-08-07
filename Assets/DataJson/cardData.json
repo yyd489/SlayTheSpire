@@ -1,0 +1,67 @@
+{
+  "listcardData": 
+  [
+    {
+      "cardName": "강타",
+      "cardType": 0,
+      "cardGuide": "피해를 8 부여합니다.<color=yellow> 취약을 2 부여합니다. : </color>",
+      "cardCost": 2,
+      "cardEffect": 8,
+      "cardSubEffect": 2,
+      "canDelete": false
+    },
+    {
+      "cardName": "수비",
+      "cardType": 1,
+      "cardGuide": "방어도를 5 얻습니다.",
+      "cardCost": 1,
+      "cardEffect": 5,
+      "cardSubEffect": 0,
+      "canDelete": false
+    },
+    {
+      "cardName": null,
+      "cardType": 0,
+      "cardGuide": null,
+      "cardCost": 0,
+      "cardEffect": 0,
+      "cardSubEffect": 0,
+      "canDelete": false
+    },
+    {
+      "cardName": null,
+      "cardType": 0,
+      "cardGuide": null,
+      "cardCost": 0,
+      "cardEffect": 0,
+      "cardSubEffect": 0,
+      "canDelete": false
+    },
+    {
+      "cardName": null,
+      "cardType": 0,
+      "cardGuide": null,
+      "cardCost": 0,
+      "cardEffect": 0,
+      "cardSubEffect": 0,
+      "canDelete": false
+    },
+    {
+      "cardName": null,
+      "cardType": 0,
+      "cardGuide": null,
+      "cardCost": 0,
+      "cardEffect": 0,
+      "cardSubEffect": 0,
+      "canDelete": false
+    },
+    {
+      "cardName": null,
+      "cardType": 0,
+      "cardGuide": null,
+      "cardCost": 0,
+      "cardEffect": 0,
+      "cardSubEffect": 0,
+      "canDelete": false
+    }
+  ]}

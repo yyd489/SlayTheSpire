@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class testscence : MonoBehaviour
 {
     public GameObject Up;
@@ -30,6 +30,14 @@ public class testscence : MonoBehaviour
 
 
     }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        SceneManager.LoadScene("UITestScence");
+    //    }
+    //}
 
 
 }

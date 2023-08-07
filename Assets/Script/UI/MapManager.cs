@@ -6,16 +6,18 @@ using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine.ResourceManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 namespace FrameWork
 {
     public enum MapField
     {
-        unknown,
-        monster,
-        eliteMonster,
-        shop,
-        sleep,
-        treasure
+        Event,
+        Monster,
+        EliteMonster,
+        Shop,
+        Sleep,
+        Treasure,
+        Boss
     }
 
 
@@ -104,19 +106,25 @@ namespace FrameWork
         public List<GameObject> listNodes;
         public GameObject objectLine;
         public GameObject nodeCircle;
-
+        public Sprite[] nodeImages;
+        public static MapField fieldInfo;
         public int nowIndex = 999;
+        
+        public CanvasGroup fadingCanvasGroup;
+      
 
         public void Init()
-        { 
+        {
            
             for (int i = 0; i < mapObject.childCount; i++)
             {
                 listNodeZones.Add(mapObject.GetChild(i).gameObject);
             }
-
+            
             SettingNode();
-            // Save();
+
+
+           
         }
 
         public void Start()
@@ -157,6 +165,17 @@ namespace FrameWork
                     listMapGraph[listMapGraph.Count - 1].myFloor = i;
                     listMapGraph[listMapGraph.Count - 1].myPosition = z;
                     listMapGraph[listMapGraph.Count - 1].myIndex = listMapGraph.Count - 1;
+                    listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
+
+                    if(listMapGraph[listMapGraph.Count - 1].field == MapField.EliteMonster)//엘리트 확률 줄이기
+                    listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
+
+                    if(listMapGraph[listMapGraph.Count - 1].myFloor == 10)
+                        listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
+
+                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 1)
+                        listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
+
                     int Index = listMapGraph.Count - 1;
                     obj.GetComponent<Button>().onClick.AddListener(() => ClickNodeButton(Index));
                     
@@ -269,22 +288,33 @@ namespace FrameWork
             listMapGraph[index].marked = true;
             listNodes[index].GetComponent<Button>().enabled = false;
             nowIndex = index;
+
+            fieldInfo = listMapGraph[index].field;
+
             StartCoroutine(WaitDrowCircle());
+            
             
         }
 
         IEnumerator WaitDrowCircle()
         {
+
+
             yield return new WaitForSeconds(0.45f);
+
+            FadeOut();
+            GameManager.stageManager.ControlField(fieldInfo);
 
             for (int i = 0; i < listMapGraph[nowIndex].listAdjacent.Count; i++)
             {
                   if(listMapGraph[nowIndex].myFloor -1 ==  listMapGraph[nowIndex].listAdjacent[i].myFloor)
                   {
-                        listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().interactable = true;
+                      if(listMapGraph[nowIndex].listAdjacent[i].myFloor != 0)
+                      listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().interactable = true;
                   }
 
-            }   
+            }
+
             this.transform.parent.gameObject.SetActive(false);
 
         }
@@ -292,7 +322,7 @@ namespace FrameWork
         public void SettingNodeButton()
         {
           
-            if(nowIndex == 999)
+            if(nowIndex == 999)//저장되어있는 노드가 없다면 999임 즉 새로시작이라면
             {
                for(int i = 0; i<listMapGraph.Count; i++)
                {
@@ -313,6 +343,9 @@ namespace FrameWork
                     Instantiate(nodeCircle, listNodes[i].transform.position, 
                     Quaternion.identity, listNodes[i].transform.parent);
                 }
+
+                if( i >= 1)
+                listNodes[i].GetComponent<Image>().sprite = nodeImages[(int)listMapGraph[i].field];
            }
 
             if (nowIndex != 999)
@@ -324,14 +357,21 @@ namespace FrameWork
                     {
                         int index = listMapGraph[nowIndex].listAdjacent[i].myIndex;
                         listNodes[index].GetComponent<Button>().interactable = true;
-                    }
-
+                    }     
                 }
             }
-            
-
         }
 
-        
+        public void FadeOut()
+        {
+            float fadeDuration = 1;
+            float fadeAmount = 0;
+            fadingCanvasGroup.alpha = 1;
+            fadingCanvasGroup.gameObject.SetActive(true);
+            fadingCanvasGroup.DOFade(fadeAmount, fadeDuration).OnComplete(
+             () => fadingCanvasGroup.gameObject.SetActive(false));
+        }
+
+       
     }
 }

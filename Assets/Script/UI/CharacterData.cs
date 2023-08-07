@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace FrameWork.Data
 {
@@ -26,6 +23,7 @@ namespace FrameWork.Data
     {
         public string name;
         public int hp;
+        public int maxHp = 88;
         public int mp;
         public int attack;
         public int gold;
@@ -36,14 +34,14 @@ namespace FrameWork.Data
     {
         public CharacterInfoCollet characterInfoCollect;
        
-        public async void Init(string path)
+        public void Init(string path)
         {
             AwaitFileRead(path);
 
         }
-        public async Task<CharacterCollect> AwaitGetCharacter()//이 함수의 실행함수가 async로 실행되야함.
+        public CharacterCollect AwaitGetCharacter()//이 함수의 실행함수가 async로 실행되야함.
         {
-           await UniTask.WaitUntil(() => characterInfoCollect != null);
+          // await UniTask.WaitUntil(() => characterInfoCollect != null);
            CharacterCollect character = characterInfoCollect.characterCollect;
            return character;
         }

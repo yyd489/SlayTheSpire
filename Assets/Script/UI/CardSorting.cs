@@ -77,7 +77,7 @@ namespace FrameWork
         public void SelectCard(CardBase useCard)
         {
             int cardIndex = useCard.cardIndex;
-            GameManager.playerControler.selectCard = useCard;
+            GameManager.Instance.playerControler.selectCard = useCard;
             useCard.gameObject.SetActive(false);
             selectCard.gameObject.SetActive(true);
             selectCard.Init();

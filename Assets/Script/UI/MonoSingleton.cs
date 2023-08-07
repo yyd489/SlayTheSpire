@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public static T instance;
+    static T instance;
 
     public static T Instance
     {
@@ -25,6 +25,19 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
 
             return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as T;
+        }
+        else
+        {
+            if (instance != this)
+                Destroy(gameObject);
         }
     }
 }
