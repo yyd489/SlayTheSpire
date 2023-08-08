@@ -20,7 +20,7 @@ namespace FrameWork
         public void ClickRewardButton()
         {
             DataManager.data.characterData.characterInfoCollect.characterCollect.gold += rewardGold;
-            IngameTopUI.ClearStage();
+            GameManager.Instance.ingameUI.ChangeState();
         }
 
     }

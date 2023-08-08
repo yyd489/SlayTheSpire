@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 namespace FrameWork
 {
     using FrameWork.Data;
-
+   
     public enum FieldEvenets
     {
         GoldEvent,
@@ -31,9 +31,10 @@ namespace FrameWork
                     case MapField.Event:
 
                     int randomEvent = Random.Range(0, arrEvents.Length);
-                    GameObject eventObj = Instantiate(arrEvents[randomEvent]);
-                    eventObj.transform.Find("EffectButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(eventObj));
-                    eventObj.transform.Find("EffectButton").GetComponent<Button>().onClick.AddListener(() => ActiveEvent((FieldEvenets)randomEvent));
+                    Transform eventObj = Instantiate(arrEvents[randomEvent].transform);
+                    eventObj.Find("EffectButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(eventObj.gameObject));
+                    eventObj.Find("EffectButton").GetComponent<Button>().onClick.AddListener(() => ActiveEvent((FieldEvenets)randomEvent));
+                    ControlEventText(eventObj, randomEvent);
 
                     break;
 
@@ -89,9 +90,16 @@ namespace FrameWork
 
         }
 
+        public void ControlEventText( Transform eventTransform,int eventType)
+        {
+            eventTransform.Find("EventTitleText").GetComponent<TextMeshProUGUI>().text = DataManager.data.eventData.GetEventData()[eventType].eventName;
+            eventTransform.Find("TitleBackGround").Find("EventText").GetComponent<TextMeshProUGUI>().text = DataManager.data.eventData.GetEventData()[eventType].eventGuide;
+            eventTransform.Find("EffectButton").Find("EffectText").GetComponent<TextMeshProUGUI>().text = DataManager.data.eventData.GetEventData()[eventType].effectText;
+        }
+
         public void ActiveEvent(FieldEvenets eventType)
         {
-            switch(eventType)
+            switch (eventType)
             {
                 case FieldEvenets.GoldEvent:
 
@@ -101,7 +109,7 @@ namespace FrameWork
                     break;
 
                 case FieldEvenets.FireEvenet:
-                    
+
                     int fillHp = 30;
                     DataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
 
@@ -115,9 +123,7 @@ namespace FrameWork
                     DataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
 
                     break;
-
             }
-
 
         }
         // Start is called before the first frame update

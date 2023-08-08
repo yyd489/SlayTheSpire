@@ -41,7 +41,7 @@ namespace FrameWork.Data
         {
             var fileTest = await ReadAllTextAsync(filePath);
             cardCollect = JsonConvert.DeserializeObject<CardDataCollect>(fileTest);
-
+        
         }
 
         public void Init(string path)

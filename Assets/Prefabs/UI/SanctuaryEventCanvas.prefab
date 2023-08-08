@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 229633826520280422}
   - component: {fileID: 229633826520280423}
   m_Layer: 5
-  m_Name: effectText
+  m_Name: EffectText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 229633827194691563}
   - component: {fileID: 229633827194691564}
   m_Layer: 5
-  m_Name: sanctuaryDetail
+  m_Name: EventText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 229633827484308339}
   - component: {fileID: 229633827484308340}
   m_Layer: 5
-  m_Name: RibbornText
+  m_Name: EventTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1444,6 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff48e2ffb47b8f439909ddf18f70fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 1880375746}
   initilizer: {fileID: 1880375744}
 --- !u!4 &1880375743
 Transform:

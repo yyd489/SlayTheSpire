@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 1402067710991069169}
   - component: {fileID: 1402067710991069168}
   m_Layer: 5
-  m_Name: effectText
+  m_Name: EffectText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 1402067712205705700}
   - component: {fileID: 1402067712205705699}
   m_Layer: 5
-  m_Name: RibbornText
+  m_Name: EventTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 1402067712470359420}
   - component: {fileID: 1402067712470359419}
   m_Layer: 5
-  m_Name: ClericDetail
+  m_Name: EventText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

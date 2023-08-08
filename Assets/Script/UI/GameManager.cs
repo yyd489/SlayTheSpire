@@ -50,6 +50,15 @@ namespace FrameWork
 
             ingameUI.Init();
 
+
+            if (stageManager == null)
+            {
+                stageManager = this.GetComponent<StageManager>();
+
+            }
+
+            ingameUI.Init();
+
             //if (playerControler == null)
             //{
             //    playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();

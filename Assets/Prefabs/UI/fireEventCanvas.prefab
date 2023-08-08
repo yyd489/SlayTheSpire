@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2818005692570066043}
   - component: {fileID: 2818005692570066042}
   m_Layer: 5
-  m_Name: effectText
+  m_Name: EffectText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 2818005692710969966}
   - component: {fileID: 2818005692710969961}
   m_Layer: 5
-  m_Name: RibbornText
+  m_Name: EventTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 2818005692975623926}
   - component: {fileID: 2818005692975623921}
   m_Layer: 5
-  m_Name: fireDetail
+  m_Name: EventText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

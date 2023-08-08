@@ -21,8 +21,10 @@ namespace FrameWork.Data
             data.characterData.Init("Assets/DataJson/CharacterCollect.json");
             data.cardData = new CardData();
             data.cardData.Init("Assets/DataJson/cardData.json");
+            data.eventData = new EventData();
+            data.eventData.Init("Assets/DataJson/eventData.json");
            // data.mapData.Init("Assets/DataJson/CharacterCollect.json");
-           
+            
         }
         
     }
@@ -33,7 +35,8 @@ namespace FrameWork.Data
         public CharacterData characterData;
         public MapData mapData;
         public CardData cardData;
-     
+        public EventData eventData;
+        
     }
   
 }

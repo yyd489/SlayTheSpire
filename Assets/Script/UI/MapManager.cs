@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 namespace FrameWork
 {
-    using FrameWork.Data;
+    
     public enum MapField
     {
         Event,
@@ -109,11 +109,8 @@ namespace FrameWork
         public GameObject nodeCircle;
         public Sprite[] nodeImages;
         public static MapField fieldInfo;
-        public int nowIndex = 999;
-        
+        public int nowIndex = 999;        
         public CanvasGroup fadingCanvasGroup;
-      
-
         public void Init()
         {
            
@@ -124,8 +121,11 @@ namespace FrameWork
             
             SettingNode();
 
+            Debug.Log(FrameWork.Data.DataManager.data.cardData.GetCardStat());
+            Debug.Log(FrameWork.Data.DataManager.data.eventData.GetEventData());
+           // Debug.LogError(FrameWork.Data.DataManager.data.eventData.GetEventData()[0].effectText);
 
-           
+
         }
 
         public void Start()
@@ -185,8 +185,6 @@ namespace FrameWork
             }
 
             //임시 인덱스 셋팅  
-        
-        
             linkNodes();
             SettingNodeButton();
 
@@ -299,8 +297,6 @@ namespace FrameWork
 
         IEnumerator WaitDrowCircle()
         {
-
-
             yield return new WaitForSeconds(0.45f);
 
             FadeOut();
@@ -313,11 +309,10 @@ namespace FrameWork
                       if(listMapGraph[nowIndex].listAdjacent[i].myFloor != 0)
                       listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().interactable = true;
                   }
-
             }
 
             this.transform.parent.gameObject.SetActive(false);
-
+           
         }
 
         public void SettingNodeButton()
