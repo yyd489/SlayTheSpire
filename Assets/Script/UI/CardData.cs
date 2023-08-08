@@ -58,6 +58,13 @@ namespace FrameWork.Data
             });
         }
 
+        public List<CardJsonData> GetCharacterStat()//이 함수의 실행함수가 async로 실행되야함.
+        {
+            // await UniTask.WaitUntil(() => characterInfoCollect != null);
+            List<CardJsonData> listCardData = cardCollect.listcardData;
+            return listCardData;
+        }
+
         //public void WriteJson()
         //{
 
@@ -90,6 +97,6 @@ namespace FrameWork.Data
         //    string json = JsonConvert.SerializeObject(cardCollect);
         //    File.WriteAllText(Application.dataPath+"/DataJson/cardData.json", json);
         //}
-        
+
     }
 }

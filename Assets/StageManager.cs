@@ -79,10 +79,10 @@ namespace FrameWork
         public void FillHp()
         {
             int fillHp = 30;
-            int maxHp = DataManager.data.characterData.AwaitGetCharacter().maxHp;
+            int maxHp = DataManager.data.characterData.GetCharacterStat().maxHp;
             DataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
 
-            if (DataManager.data.characterData.AwaitGetCharacter().hp > maxHp)
+            if (DataManager.data.characterData.GetCharacterStat().hp > maxHp)
             {
                 DataManager.data.characterData.characterInfoCollect.characterCollect.hp = maxHp;
             }

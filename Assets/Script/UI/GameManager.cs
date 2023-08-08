@@ -13,7 +13,7 @@ namespace FrameWork
         public IngameTopUI ingameUI { get; private set; }
         public PlayerControler playerControler { get; private set; }
 
-        public static StageManager stageManager { get; private set; }
+        public StageManager stageManager { get; private set; }
         public CardSorting cardSorting { get; private set; }
 
         [SerializeField] Initializer initilizer;
@@ -45,6 +45,7 @@ namespace FrameWork
             if (ingameUI == null)
             {
                 ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
+             
             }
 
             ingameUI.Init();

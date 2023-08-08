@@ -304,7 +304,7 @@ namespace FrameWork
             yield return new WaitForSeconds(0.45f);
 
             FadeOut();
-            GameManager.stageManager.ControlField(fieldInfo);
+            GameManager.Instance.stageManager.ControlField(fieldInfo);
 
             for (int i = 0; i < listMapGraph[nowIndex].listAdjacent.Count; i++)
             {
