@@ -550,12 +550,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215a279346ff27f4bb34d8b4eb72302c, type: 3}
---- !u!1 &428998874 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1879498491, guid: 54bda7b744cf81a4fa15f515e4b95f24,
-    type: 3}
-  m_PrefabInstance: {fileID: 5574681725817906432}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &480637817 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1342274350475043197, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
@@ -1696,13 +1690,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 493359184, guid: 54bda7b744cf81a4fa15f515e4b95f24, type: 3}
-      propertyPath: usedCardBox
-      value: 
-      objectReference: {fileID: 428998874}
-    - target: {fileID: 1879498492, guid: 54bda7b744cf81a4fa15f515e4b95f24, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
+    - target: {fileID: 1879498491, guid: 54bda7b744cf81a4fa15f515e4b95f24, type: 3}
+      propertyPath: m_Name
+      value: UsedCardDeck
       objectReference: {fileID: 0}
     - target: {fileID: 5574681724687833687, guid: 54bda7b744cf81a4fa15f515e4b95f24,
         type: 3}

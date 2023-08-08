@@ -22,14 +22,13 @@ namespace FrameWork.Data
     public class CardJsonData//선수들의 스텟 및 정보
     {
         public string cardName;
+        public int imageIndex;
         public CardType cardType;
         public string cardGuide;
         public int cardCost;
         public int cardEffect;
         public int cardSubEffect;
         public bool canDelete;
-       
-
     }
 
 
@@ -41,13 +40,11 @@ namespace FrameWork.Data
         {
             var fileTest = await ReadAllTextAsync(filePath);
             cardCollect = JsonConvert.DeserializeObject<CardDataCollect>(fileTest);
-
         }
 
         public void Init(string path)
         {
             AwaitFileRead(path);
-
         }
 
         public Task<string> ReadAllTextAsync(string filepath)

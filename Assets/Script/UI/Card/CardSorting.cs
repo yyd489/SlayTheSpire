@@ -1,24 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using Cysharp.Threading.Tasks;
 
 namespace FrameWork
 {
+    using FrameWork.Data;
+
     public class CardSorting : MonoBehaviour
     {
         [SerializeField] List<CardBase> cards;
         [SerializeField] CardBase selectCard;
+
         [SerializeField] GameObject usedCardBox;
+        private CardPool cardPool;
 
-        private Queue<CardBase> usedCards = new Queue<CardBase>();
+        public List<Sprite> cardImages;
+        private List<CardJsonData> cardDatas;
+        
 
-        public void Init()
+        public async UniTaskVoid Init()
         {
-            for (int i = 0; i < transform.childCount; i++)
+            cardPool = usedCardBox.GetComponent<CardPool>();
+            await UniTask.WaitUntil(() => DataManager.data.cardData.cardCollect != null);
+
+            cardDatas = DataManager.data.cardData.GetCardStat();
+
+            for (int i = 0; i < 5; i++)
             {
-                cards.Add(transform.GetChild(i).GetComponent<CardBase>());
+                cards.Add(cardPool.GetObject(this.transform));
+                cards[i].cardSorting = this;
+                cards[i].Init(cardDatas[i]);
             }
             DefaltCardSorting();
         }
@@ -82,7 +94,7 @@ namespace FrameWork
             GameManager.Instance.playerControler.selectCard = useCard;
             useCard.gameObject.SetActive(false);
             selectCard.gameObject.SetActive(true);
-            selectCard.Init();
+            selectCard.Init(useCard.cardData);
 
             if (cardIndex > 0)
             {
@@ -99,27 +111,28 @@ namespace FrameWork
 
         public void UseCard(CardBase useCard)
         {
-            useCard.transform.parent = usedCardBox.transform;
+            cardPool.ReturnObject(useCard);
             selectCard.gameObject.SetActive(false);
             cards.Remove(useCard);
-            usedCards.Enqueue(useCard);
             DefaltCardSorting();
         }
 
         public void DrawCard()
         {
-                     
+            CardBase tempCard;
+
+            tempCard = cardPool.GetObject(this.transform);
+
+            tempCard.Init(cardDatas[0]);
+
+            cards.Add(tempCard);
         }
 
         public void RemovePlayerCard()
         {
-            if (usedCards.Count == 0) return;
-
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].transform.parent = usedCardBox.transform;
-                cards[i].gameObject.SetActive(false);
-                usedCards.Enqueue(cards[i]);
+                cardPool.ReturnObject(cards[i]);
             }
             cards.Clear();
         }
@@ -129,10 +142,8 @@ namespace FrameWork
             CardBase tempCard;
             for(int i = 0; i < 5; i++)
             {
-                tempCard = usedCards.Dequeue();
-                tempCard.gameObject.SetActive(true);
-                tempCard.Init();
-                tempCard.transform.parent = this.transform;
+                tempCard = cardPool.GetObject(this.transform);
+                tempCard.Init(cardDatas[i]);
                 cards.Add(tempCard);
             }
 

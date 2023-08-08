@@ -32,7 +32,7 @@ namespace FrameWork
             {
                 if (targetCharacter != null && Input.GetMouseButtonDown(0))
                 {
-                    playerCharacter.Attack(targetCharacter, 5);
+                    playerCharacter.Attack(targetCharacter, selectCard.cardData.cardEffect);
                     onDrag = false;
                     cardSorting.UseCard(selectCard);
                 }
@@ -41,6 +41,7 @@ namespace FrameWork
                 {
                     onDrag = false;
                     selectCard.gameObject.SetActive(true);
+                    selectCard = null;
                     selectCard.CancleDrag();
                 }
             }
