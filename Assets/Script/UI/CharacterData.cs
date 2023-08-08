@@ -39,7 +39,7 @@ namespace FrameWork.Data
             AwaitFileRead(path);
 
         }
-        public CharacterCollect AwaitGetCharacter()//이 함수의 실행함수가 async로 실행되야함.
+        public CharacterCollect GetCharacterStat()//이 함수의 실행함수가 async로 실행되야함.
         {
           // await UniTask.WaitUntil(() => characterInfoCollect != null);
            CharacterCollect character = characterInfoCollect.characterCollect;
