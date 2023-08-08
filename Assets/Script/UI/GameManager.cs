@@ -11,9 +11,10 @@ namespace FrameWork
         public DataManager dataManager { get; private set; }
         public Soundmanager soundManager { get; private set; }
         public IngameTopUI ingameUI { get; private set; }
-        public PlayerControler playerControler { get; private set; }
+        
 
         public StageManager stageManager { get; private set; }
+        public PlayerControler playerControler { get; private set; }
         public CardSorting cardSorting { get; private set; }
 
         [SerializeField] Initializer initilizer;
@@ -27,8 +28,6 @@ namespace FrameWork
 
         public void Init()
         {
-           
-
             if (dataManager == null)
             {
                 dataManager = new DataManager();
@@ -39,7 +38,7 @@ namespace FrameWork
             {
                 soundManager = new Soundmanager();
             }
-
+            
             soundManager.Init(initilizer);
 
             if (ingameUI == null)
@@ -47,7 +46,7 @@ namespace FrameWork
                 ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
              
             }
-
+            
             ingameUI.Init();
 
 
@@ -62,19 +61,18 @@ namespace FrameWork
             //if (playerControler == null)
             //{
             //    playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
-
+            //
             //}
             //playerControler.Init();
-
-            //if(cardSorting == null)
+            //
+            //if (cardSorting == null)
             //{
             //    cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
             //}
-
             //cardSorting.Init();
-
-            DontDestroyOnLoad(this);
-            DontDestroyOnLoad(gameObject);
+            //
+            //DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(gameObject);
 
         }
 

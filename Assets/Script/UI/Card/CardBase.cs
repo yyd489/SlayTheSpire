@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 namespace FrameWork
 {
+    using FrameWork.Data;
     public class CardBase : MonoBehaviour
     {
+        public CardJsonData cardData;
         // 카드 UI
         public TextMeshProUGUI CardName;
         public TextMeshProUGUI CardText;
         public TextMeshProUGUI CardPoint;
         public TextMeshProUGUI CardType;
         public Image CardImg;
-
-        // 카드 이미지 리소스 - 추후 이동필요
-        [SerializeField] List<Sprite> cardSprites;
 
         // 카드정렬
         public CardSorting cardSorting;
@@ -26,18 +24,14 @@ namespace FrameWork
         // 카드 선택 & 드래그
         public Vector2 defaultPos;
 
-        private void Start()
+        public void Init(CardJsonData data)
         {
-            Init();
-        }
-
-        public void Init()
-        {
-            CardName.text = "Test";
-            CardText.text = "Test Text";
-            CardPoint.text = "5";
-            CardType.text = "Attack";
-            CardImg.sprite = cardSprites[0];
+            cardData = data;
+            CardName.text = cardData.cardName;
+            CardText.text = cardData.cardGuide;
+            CardPoint.text = cardData.cardCost.ToString();
+            CardType.text = cardData.cardType.ToString();
+            CardImg.sprite = cardSorting.cardImages[cardData.imageIndex];
         }
 
         public void OnPointDown()
