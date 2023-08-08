@@ -29,6 +29,8 @@ namespace FrameWork.Data
         public int cardEffect;
         public int cardSubEffect;
         public bool canDelete;
+       
+
     }
 
 
@@ -40,15 +42,13 @@ namespace FrameWork.Data
         {
             var fileTest = await ReadAllTextAsync(filePath);
             cardCollect = JsonConvert.DeserializeObject<CardDataCollect>(fileTest);
-<<<<<<<< HEAD:Assets/Script/UI/Data/CardData.cs
         
-========
->>>>>>>> 70118e3c4e5e5d4dca211809fe271c624ea1ddb3:Assets/Script/UI/Card/CardData.cs
         }
 
         public void Init(string path)
         {
             AwaitFileRead(path);
+
         }
 
         public Task<string> ReadAllTextAsync(string filepath)
