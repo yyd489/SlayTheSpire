@@ -55,8 +55,8 @@ namespace FrameWork
                 stageManager = this.GetComponent<StageManager>();
 
             }
-
-            ingameUI.Init();
+            
+           
 
             //if (playerControler == null)
             //{

@@ -25,7 +25,7 @@ namespace FrameWork
     
     public class mapNode
     {
-        public List<mapNode> listAdjacent = new List<mapNode>();//연결
+        public List<mapNode> listAdjacent = new List<mapNode>();//연결링크
         public bool marked;
         public MapField field;
         public int myIndex;

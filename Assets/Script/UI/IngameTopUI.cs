@@ -19,7 +19,10 @@ namespace FrameWork
         public TextMeshProUGUI goldText;
         public TextMeshProUGUI maxHpText;
         public TextMeshProUGUI nowHpText;
-       
+
+        public List<Image> listRelicImages = new List<Image>();
+        public GameObject relicObject;
+
         // Start is called before the first frame update
 
         public void Init()
@@ -30,6 +33,9 @@ namespace FrameWork
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();    
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
+
+            //for(int i = 0;i<DataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic.Count)
+            //Instantiate(relicObject)
         }
 
         public void ChangeState()
