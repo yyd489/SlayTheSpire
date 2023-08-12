@@ -40,9 +40,9 @@ namespace FrameWork
 
         public void ChangeState()
         {
-            goldText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
-            maxHpText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
-            nowHpText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
+            goldText.text =GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
+            maxHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
+            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
 
         }
     }

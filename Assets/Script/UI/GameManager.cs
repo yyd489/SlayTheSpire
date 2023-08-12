@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 namespace FrameWork
 {
     using FrameWork.Data;
@@ -12,7 +13,7 @@ namespace FrameWork
         public Soundmanager soundManager { get; private set; }
         public IngameTopUI ingameUI { get; private set; }
         
-
+        
         public StageManager stageManager { get; private set; }
         public PlayerControler playerControler { get; private set; }
         public CardSorting cardSorting { get; private set; }
@@ -23,16 +24,21 @@ namespace FrameWork
 
         private void Start()
         {
+            
             Init();
         }
 
-        public void Init()
+        public async UniTaskVoid Init()
         {
             if (dataManager == null)
             {
                 dataManager = new DataManager();
             }
             dataManager.Init();
+            //await UniTask.WaitUntil(() => dataManager.data.);
+
+            //await  Task.Run(() => dataManager.Init());
+
 
             if (soundManager == null)
             {

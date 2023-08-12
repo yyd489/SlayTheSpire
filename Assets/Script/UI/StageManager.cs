@@ -80,21 +80,21 @@ namespace FrameWork
         public void FillHp()
         {
             int fillHp = 30;
-            int maxHp = DataManager.data.characterData.GetCharacterStat().maxHp;
-            DataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
+            int maxHp = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().maxHp;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
 
-            if (DataManager.data.characterData.GetCharacterStat().hp > maxHp)
+            if (GameManager.Instance.dataManager.data.characterData.GetCharacterStat().hp > maxHp)
             {
-                DataManager.data.characterData.characterInfoCollect.characterCollect.hp = maxHp;
+                GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp = maxHp;
             }
 
         }
 
         public void ControlEventText( Transform eventTransform,int eventType)
         {
-            eventTransform.Find("EventTitleText").GetComponent<TextMeshProUGUI>().text = DataManager.data.eventData.GetEventData()[eventType].eventName;
-            eventTransform.Find("TitleBackGround").Find("EventText").GetComponent<TextMeshProUGUI>().text = DataManager.data.eventData.GetEventData()[eventType].eventGuide;
-            eventTransform.Find("EffectButton").Find("EffectText").GetComponent<TextMeshProUGUI>().text = DataManager.data.eventData.GetEventData()[eventType].effectText;
+            eventTransform.Find("EventTitleText").GetComponent<TextMeshProUGUI>().text = GameManager.Instance.dataManager.data.eventData.GetEventData()[eventType].eventName;
+            eventTransform.Find("TitleBackGround").Find("EventText").GetComponent<TextMeshProUGUI>().text = GameManager.Instance.dataManager.data.eventData.GetEventData()[eventType].eventGuide;
+            eventTransform.Find("EffectButton").Find("EffectText").GetComponent<TextMeshProUGUI>().text = GameManager.Instance.dataManager.data.eventData.GetEventData()[eventType].effectText;
         }
 
         public void ActiveEvent(FieldEvenets eventType)
@@ -104,14 +104,14 @@ namespace FrameWork
                 case FieldEvenets.GoldEvent:
 
                     int rewardGold = 30;
-                    DataManager.data.characterData.characterInfoCollect.characterCollect.gold += rewardGold;
+                    GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold += rewardGold;
 
                     break;
 
                 case FieldEvenets.FireEvenet:
 
                     int fillHp = 30;
-                    DataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
+                    GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
 
                     break;
 
@@ -119,8 +119,8 @@ namespace FrameWork
 
                     int fillLittleHp = 10;
 
-                    DataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
-                    DataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
+                    GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
+                    GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
 
                     break;
             }

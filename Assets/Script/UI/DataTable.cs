@@ -6,7 +6,7 @@ namespace FrameWork.Data
     //using Newtonsoft.Json;
     public partial class DataManager
     {
-        public static DataList data;
+        public DataList data;
        
         public void Init()
         {
