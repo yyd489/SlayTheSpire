@@ -1,0 +1,23 @@
+{
+  "listRelicData": [
+    {
+      "name": "꺼지지 않는 화염",
+      "relicEffect": 10,
+      "relicType": 0
+    },
+    {
+      "name": "꽈배기",
+      "relicEffect": 10,
+      "relicType": 1
+    },
+    {
+      "name": "저주받은 부적",
+      "relicEffect": 5,
+      "relicType": 2
+    },
+    {
+      "name": "공허의 선물",
+      "relicEffect": 10,
+      "relicType": 3
+    }
+  ]}

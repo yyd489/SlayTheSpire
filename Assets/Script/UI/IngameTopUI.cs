@@ -19,7 +19,10 @@ namespace FrameWork
         public TextMeshProUGUI goldText;
         public TextMeshProUGUI maxHpText;
         public TextMeshProUGUI nowHpText;
-       
+
+        public List<Image> listRelicImages = new List<Image>();
+        public GameObject relicObject;
+
         // Start is called before the first frame update
 
         public void Init()
@@ -30,13 +33,16 @@ namespace FrameWork
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();    
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
+
+            //for(int i = 0;i<DataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic.Count)
+            //Instantiate(relicObject)
         }
 
         public void ChangeState()
         {
-            goldText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
-            maxHpText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
-            nowHpText.text = DataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
+            goldText.text =GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
+            maxHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
+            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
 
         }
     }

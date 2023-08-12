@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Cysharp.Threading.Tasks;
 namespace FrameWork
 {
     using FrameWork.Data;
@@ -13,7 +13,7 @@ namespace FrameWork
         public Soundmanager soundManager { get; private set; }
         public IngameTopUI ingameUI { get; private set; }
         
-
+        
         public StageManager stageManager { get; private set; }
         public PlayerControler playerControler { get; private set; }
         public CardSorting cardSorting { get; private set; }
@@ -24,55 +24,61 @@ namespace FrameWork
 
         private void Start()
         {
+            
             Init();
         }
 
-        public void Init()
+        public async UniTaskVoid Init()
         {
             if (dataManager == null)
             {
                 dataManager = new DataManager();
             }
             dataManager.Init();
+            //await UniTask.WaitUntil(() => dataManager.data.);
 
-            //if (soundManager == null)
-            //{
-            //    soundManager = new Soundmanager();
-            //}
-            //
-            //soundManager.Init(initilizer);
-            //
-            //if (ingameUI == null)
-            //{
-            //    ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
-            // 
-            //}
-            //
-            //ingameUI.Init();
+            //await  Task.Run(() => dataManager.Init());
 
-            //if (stageManager == null)
-            //{
-            //    stageManager = this.GetComponent<StageManager>();
-            //
-            //}
-            //
-            //ingameUI.Init();
 
-            if (playerControler == null)
+            if (soundManager == null)
             {
-                playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
-            
+                soundManager = new Soundmanager();
             }
-            playerControler.Init();
             
-            if (cardSorting == null)
+            soundManager.Init(initilizer);
+
+            if (ingameUI == null)
             {
-                cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
+                ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
+             
             }
-            cardSorting.Init();
             
-            DontDestroyOnLoad(this);
-            DontDestroyOnLoad(gameObject);
+            ingameUI.Init();
+
+
+            if (stageManager == null)
+            {
+                stageManager = this.GetComponent<StageManager>();
+
+            }
+            
+           
+
+            //if (playerControler == null)
+            //{
+            //    playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
+            //
+            //}
+            //playerControler.Init();
+            //
+            //if (cardSorting == null)
+            //{
+            //    cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
+            //}
+            //cardSorting.Init();
+            //
+            //DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(gameObject);
 
         }
 

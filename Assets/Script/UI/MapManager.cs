@@ -25,7 +25,7 @@ namespace FrameWork
     
     public class mapNode
     {
-        public List<mapNode> listAdjacent = new List<mapNode>();//연결
+        public List<mapNode> listAdjacent = new List<mapNode>();//연결링크
         public bool marked;
         public MapField field;
         public int myIndex;
@@ -121,8 +121,8 @@ namespace FrameWork
             
             SettingNode();
 
-            Debug.Log(FrameWork.Data.DataManager.data.cardData.GetCardStat());
-            Debug.Log(FrameWork.Data.DataManager.data.eventData.GetEventData());
+            Debug.Log(GameManager.Instance.dataManager.data.cardData.GetCardStat());
+            Debug.Log(GameManager.Instance.dataManager.data.eventData.GetEventData());
            // Debug.LogError(FrameWork.Data.DataManager.data.eventData.GetEventData()[0].effectText);
 
 
