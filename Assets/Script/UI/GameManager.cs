@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 namespace FrameWork
 {
     using FrameWork.Data;
@@ -34,45 +35,44 @@ namespace FrameWork
             }
             dataManager.Init();
 
-            if (soundManager == null)
-            {
-                soundManager = new Soundmanager();
-            }
-            
-            soundManager.Init(initilizer);
-
-            if (ingameUI == null)
-            {
-                ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
-             
-            }
-            
-            ingameUI.Init();
-
-
-            if (stageManager == null)
-            {
-                stageManager = this.GetComponent<StageManager>();
-
-            }
-
-            ingameUI.Init();
-
-            //if (playerControler == null)
+            //if (soundManager == null)
             //{
-            //    playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
+            //    soundManager = new Soundmanager();
+            //}
+            //
+            //soundManager.Init(initilizer);
+            //
+            //if (ingameUI == null)
+            //{
+            //    ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
+            // 
+            //}
+            //
+            //ingameUI.Init();
+
+            //if (stageManager == null)
+            //{
+            //    stageManager = this.GetComponent<StageManager>();
             //
             //}
-            //playerControler.Init();
             //
-            //if (cardSorting == null)
-            //{
-            //    cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
-            //}
-            //cardSorting.Init();
-            //
-            //DontDestroyOnLoad(this);
-            //DontDestroyOnLoad(gameObject);
+            //ingameUI.Init();
+
+            if (playerControler == null)
+            {
+                playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
+            
+            }
+            playerControler.Init();
+            
+            if (cardSorting == null)
+            {
+                cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
+            }
+            cardSorting.Init();
+            
+            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
 
         }
 

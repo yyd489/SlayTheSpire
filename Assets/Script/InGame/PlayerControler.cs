@@ -41,8 +41,8 @@ namespace FrameWork
                 {
                     onDrag = false;
                     selectCard.gameObject.SetActive(true);
-                    selectCard = null;
                     selectCard.CancleDrag();
+                    selectCard = null;
                 }
             }
         }

@@ -9,7 +9,7 @@ namespace FrameWork
     {
         protected string characterName;
         protected int maxHp;
-        protected int hp;
+        [SerializeField] protected int hp;
         protected int shield;
         protected int damage;
         protected int defence;

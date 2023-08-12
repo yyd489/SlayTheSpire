@@ -15,10 +15,15 @@ namespace FrameWork
         [SerializeField] GameObject usedCardBox;
         private CardPool cardPool;
 
-        public List<Sprite> cardImages;
+        [SerializeField] private List<Sprite> cardImages;
+        [HideInInspector] public Dictionary<string, Sprite> dicCardImages = new Dictionary<string, Sprite>();
         private List<CardJsonData> cardDatas;
-        
 
+        // 덱
+        [SerializeField] Queue<CardJsonData> queMainDeck = new Queue<CardJsonData>();
+        [SerializeField] List<CardJsonData> listUseDeck = new List<CardJsonData>();
+
+        // 덱 만드는중
         public async UniTaskVoid Init()
         {
             cardPool = usedCardBox.GetComponent<CardPool>();
@@ -26,10 +31,17 @@ namespace FrameWork
 
             cardDatas = DataManager.data.cardData.GetCardStat();
 
+            for (int i = 0; i < cardDatas.Count; i++)
+            {
+                dicCardImages.Add(cardDatas[i].cardName, cardImages[i]);
+            }
+
             for (int i = 0; i < 5; i++)
             {
                 cards.Add(cardPool.GetObject(this.transform));
                 cards[i].cardSorting = this;
+
+                //캐릭터 데이터에 있는 덱 데이터 입력으로 변경필요
                 cards[i].Init(cardDatas[i]);
             }
             DefaltCardSorting();
@@ -123,7 +135,11 @@ namespace FrameWork
 
             tempCard = cardPool.GetObject(this.transform);
 
-            tempCard.Init(cardDatas[0]);
+            //tempCard.Init(cardDatas[0]);
+            if (queMainDeck.Count <= 0)
+                ReloadCardDeck();
+
+            tempCard.Init(queMainDeck.Dequeue());
 
             cards.Add(tempCard);
         }
@@ -131,17 +147,20 @@ namespace FrameWork
         public void RemovePlayerCard()
         {
             for (int i = 0; i < cards.Count; i++)
-            {
                 cardPool.ReturnObject(cards[i]);
-            }
+
             cards.Clear();
         }
 
-        public void ResetPlayerCard()
+        public void ReloadPlayerCard()
         {
             CardBase tempCard;
             for(int i = 0; i < 5; i++)
             {
+                CardJsonData tempDeckCard = queMainDeck.Dequeue();
+
+                if(!tempDeckCard.canDelete) listUseDeck.Add(tempDeckCard);
+
                 tempCard = cardPool.GetObject(this.transform);
                 tempCard.Init(cardDatas[i]);
                 cards.Add(tempCard);
@@ -150,9 +169,18 @@ namespace FrameWork
             DefaltCardSorting();
         }
 
-        public void ResetCardDeck()
+        public void ReloadCardDeck()
         {
-            
+            int listCount = listUseDeck.Count;
+
+            for (int i = 0; i < listCount; i++)
+            {
+                int random = Random.Range(0, listUseDeck.Count);
+
+                queMainDeck.Enqueue(listUseDeck[random]);
+
+                listUseDeck.RemoveAt(random);
+            }
         }
     }
 }

@@ -25,9 +25,11 @@ namespace FrameWork
         public CharacterBase playerCharacter;
         public List<CharacterBase> enemyCharacters;
 
-        [SerializeField] private TextMeshProUGUI energyText;
-        [SerializeField] GameObject TurnEndBtn;
+        [SerializeField] private GameObject TurnEndBtn;
 
+        [SerializeField] private TextMeshProUGUI deckCount;
+        [SerializeField] private TextMeshProUGUI useDeckCount;
+        [SerializeField] private TextMeshProUGUI energyText;
 
         void Start()
         {
@@ -35,6 +37,7 @@ namespace FrameWork
             energy = maxEnergy;
             isPlayerControl = false;
             battleState = BattleState.Ready;
+            RefreshEnergyText(3);
             TurnChange();
         }
 
@@ -52,7 +55,7 @@ namespace FrameWork
                     break;
                 case BattleState.EnemyTurn:
                     battleState = BattleState.PlayerTurn;
-                    GameManager.Instance.cardSorting.ResetPlayerCard();
+                    GameManager.Instance.cardSorting.ReloadPlayerCard();
                     break;
                 case BattleState.EndBattle:
                     break;
@@ -62,12 +65,23 @@ namespace FrameWork
             {
                 TurnEndBtn.SetActive(true);
                 energy = maxEnergy;
-                energyText.text = energy + "/" + maxEnergy;
+                RefreshEnergyText(3);
             }
             else
             {
                 TurnEndBtn.SetActive(false);
             }
+        }
+
+        public void RefreshDeckCountText(int deck, int useDeck)
+        {
+            deckCount.text = deck.ToString();
+            useDeckCount.text = useDeckCount.ToString();
+        }
+
+        public void RefreshEnergyText(int energyPoint)
+        {
+            energyText.text = string.Format("{0}/3", energyPoint);
         }
 
         // 테스트용---------------------------------------------------------------------------------------------------------

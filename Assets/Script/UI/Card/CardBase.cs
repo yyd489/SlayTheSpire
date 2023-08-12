@@ -23,7 +23,7 @@ namespace FrameWork
 
         // 카드 선택 & 드래그
         public Vector2 defaultPos;
-
+        
         public void Init(CardJsonData data)
         {
             cardData = data;
@@ -31,7 +31,7 @@ namespace FrameWork
             CardText.text = cardData.cardGuide;
             CardPoint.text = cardData.cardCost.ToString();
             CardType.text = cardData.cardType.ToString();
-            CardImg.sprite = cardSorting.cardImages[cardData.imageIndex];
+            CardImg.sprite = cardSorting.dicCardImages[cardData.cardName];
         }
 
         public void OnPointDown()
