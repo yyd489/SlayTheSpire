@@ -27,9 +27,9 @@ namespace FrameWork
         public async UniTaskVoid Init()
         {
             cardPool = usedCardBox.GetComponent<CardPool>();
-            await UniTask.WaitUntil(() => DataManager.data.cardData.cardCollect != null);
+            await UniTask.WaitUntil(() => GameManager.Instance.dataManager.data.cardData.cardCollect != null);
 
-            cardDatas = DataManager.data.cardData.GetCardStat();
+            cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
 
             for (int i = 0; i < cardDatas.Count; i++)
             {
