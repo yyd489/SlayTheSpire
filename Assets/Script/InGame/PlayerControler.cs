@@ -14,15 +14,14 @@ namespace FrameWork
         [HideInInspector] public CharacterBase targetCharacter;
 
         // 카드
-        private CardSorting cardSorting;
         [HideInInspector] public CardBase selectCard;
         [HideInInspector] public bool onDrag;
 
         public void Init()
         {
             Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
-            cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
-            selectCard = GameObject.Find("CardCanvas").transform.Find("SelectCard").GetComponent<CardBase>();
+            //playerCharacter = GameObject.Find("ironclad").GetComponent<CharacterBase>();
+            selectCard = transform.Find("Card").transform.Find("SelectCard").GetComponent<CardBase>();
         }
 
         private void FixedUpdate()
@@ -33,7 +32,7 @@ namespace FrameWork
                 {
                     playerCharacter.Attack(targetCharacter, selectCard.cardData.cardEffect);
                     onDrag = false;
-                    cardSorting.UseCard(selectCard);
+                    GameManager.Instance.cardSorting.UseCard(selectCard);
                 }
 
                 if (Input.GetMouseButtonDown(1))

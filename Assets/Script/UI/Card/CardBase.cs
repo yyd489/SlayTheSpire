@@ -38,8 +38,9 @@ namespace FrameWork
         {
             if (Input.GetMouseButton(0))
             {
-                if (!GameManager.Instance.playerControler.onDrag)
+                if (!GameManager.Instance.playerControler.onDrag && cardData.cardCost <= GameManager.Instance.battleManager.energy)
                 {
+                    GameManager.Instance.battleManager.RefreshEnergyText(cardData.cardCost);
                     defaultPos = transform.localPosition;
                     transform.rotation = Quaternion.identity;
                     cardSorting.SelectCard(this);

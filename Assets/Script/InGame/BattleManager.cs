@@ -19,7 +19,7 @@ namespace FrameWork
     {
         private BattleState battleState;
         private int maxEnergy;
-        private int energy;
+        public int energy;
         private bool isPlayerControl;
 
         public CharacterBase playerCharacter;
@@ -76,12 +76,13 @@ namespace FrameWork
         public void RefreshDeckCountText(int deck, int useDeck)
         {
             deckCount.text = deck.ToString();
-            useDeckCount.text = useDeckCount.ToString();
+            useDeckCount.text = useDeck.ToString();
         }
 
-        public void RefreshEnergyText(int energyPoint)
+        public void RefreshEnergyText(int useEnergy)
         {
-            energyText.text = string.Format("{0}/3", energyPoint);
+            energy -= useEnergy;
+            energyText.text = string.Format("{0}/3", energy);
         }
 
         // 테스트용---------------------------------------------------------------------------------------------------------
