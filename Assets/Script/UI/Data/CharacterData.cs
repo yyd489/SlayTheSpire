@@ -38,7 +38,7 @@ namespace FrameWork.Data
         public void Init(string path)
         {
             AwaitFileRead(path);
-            
+           
         }
         public CharacterCollect GetCharacterStat()//이 함수의 실행함수가 async로 실행되야함.
         {
@@ -72,6 +72,7 @@ namespace FrameWork.Data
         //    characterInfoCollect.characterCollect.gold = 0;
         //    characterInfoCollect.characterCollect.name = "아이언클래드";
         //    characterInfoCollect.characterCollect.dicHaveRelic.Add(relicType.HealFire, 10);
+        //    characterInfoCollect.characterCollect.dicHaveRelic.Add(relicType.Twist, 10);
         //    characterInfoCollect.characterCollect.mp = 3;
 
         //    for (int i = 0; i < 5; i++)
@@ -84,9 +85,9 @@ namespace FrameWork.Data
         //        characterInfoCollect.characterCollect.listHaveCard.Add(1);
         //    }
 
-           
-        //      characterInfoCollect.characterCollect.listHaveCard.Add(0);
-            
+
+        //    characterInfoCollect.characterCollect.listHaveCard.Add(0);
+
 
 
         //    string json = JsonConvert.SerializeObject(characterInfoCollect);

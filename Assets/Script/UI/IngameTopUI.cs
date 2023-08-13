@@ -20,7 +20,7 @@ namespace FrameWork
         public TextMeshProUGUI maxHpText;
         public TextMeshProUGUI nowHpText;
 
-        public List<Image> listRelicImages = new List<Image>();
+        public List<Sprite> listRelicSprites = new List<Sprite>();
         public GameObject relicObject;
 
         // Start is called before the first frame update
@@ -34,18 +34,23 @@ namespace FrameWork
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();    
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
 
-            Debug.Log(GameManager.Instance.dataManager.data.characterData.characterInfoCollect);
+            var dicRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic;
+            int relicCount = dicRelic.Count;
+           
 
-            for (int i = 0; i < GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic.Count; i++)
+            for (int i = 0; i < relicCount; i++)
             {
-                Debug.Log(GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect);
-                Instantiate(relicObject);
+               Image relicImage = Instantiate(relicObject,GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
+               
+               if(dicRelic.ContainsKey((relicType)i) == true)
+               relicImage.sprite = listRelicSprites[i]; 
             }
+
         }
 
         public void ChangeState()
         {
-            goldText.text =GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
+            goldText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
             maxHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
             nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
 

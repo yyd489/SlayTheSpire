@@ -1,11 +1,15 @@
 {
-  "characterCollect": 
-  {
+  "characterCollect": {
     "name": "아이언클래드",
     "hp": 88,
     "maxHp": 88,
     "mp": 3,
     "gold": 0,
-    "dicHaveRelic": { "HealFire": 10 },
+    "dicHaveRelic": 
+    {
+      "HealFire": 10,
+      "Twist": 10
+    },
     "listHaveCard": [ 2, 2, 2, 2, 2, 1, 1, 1, 1, 0 ]
-  }}
+  }
+}

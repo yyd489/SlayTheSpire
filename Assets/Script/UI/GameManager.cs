@@ -75,9 +75,8 @@ namespace FrameWork
             //    cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
             //}
             //cardSorting.Init();
-            
-            //DontDestroyOnLoad(this);
-            //DontDestroyOnLoad(gameObject);
+
+            DontDestroyOnLoad(gameObject);
 
         }
 
