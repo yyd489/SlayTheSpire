@@ -34,8 +34,13 @@ namespace FrameWork
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();    
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
 
-            //for(int i = 0;i<DataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic.Count)
-            //Instantiate(relicObject)
+            Debug.Log(GameManager.Instance.dataManager.data.characterData.characterInfoCollect);
+
+            for (int i = 0; i < GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic.Count; i++)
+            {
+                Debug.Log(GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect);
+                Instantiate(relicObject);
+            }
         }
 
         public void ChangeState()

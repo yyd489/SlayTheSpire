@@ -34,11 +34,12 @@ namespace FrameWork
             {
                 dataManager = new DataManager();
             }
+
             dataManager.Init();
-            //await UniTask.WaitUntil(() => dataManager.data.);
 
-            //await  Task.Run(() => dataManager.Init());
-
+            await UniTask.WaitUntil(() => dataManager.data.characterData.characterInfoCollect != null &&
+              dataManager.data.cardData.cardCollect != null   && dataManager.data.relicsData.relicData != null
+              && dataManager.data.eventData.eventData != null);
 
             if (soundManager == null)
             {
