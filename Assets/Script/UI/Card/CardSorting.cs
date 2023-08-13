@@ -24,10 +24,10 @@ namespace FrameWork
         [SerializeField] List<CardJsonData> listUseDeck = new List<CardJsonData>();
 
         // 덱 만드는중
-        public async UniTaskVoid Init()
+        public void Init()
         {
             cardPool = usedCardBox.GetComponent<CardPool>();
-            await UniTask.WaitUntil(() => GameManager.Instance.dataManager.data.cardData.cardCollect != null);
+            //await UniTask.WaitUntil(() => GameManager.Instance.dataManager.data.cardData.cardCollect != null);
 
             cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
 

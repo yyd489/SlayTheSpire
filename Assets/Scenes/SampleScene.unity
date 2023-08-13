@@ -831,12 +831,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!1 &981795757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1342274350204313525, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1342274348443990077}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1010870710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,50 +900,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18fc18940b8cf054f925ad80c49b0049, type: 3}
---- !u!1 &1037125441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1342274349401344465, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1342274348443990077}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1037125442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037125441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f24a05ee5c106840a0bf75e1884e7f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorImg: {fileID: 2800000, guid: 7997629b55217ac478f9231566d48731, type: 3}
-  playerCharacter: {fileID: 0}
-  targetCharacter: {fileID: 0}
-  selectCard: {fileID: 0}
-  onDrag: 0
---- !u!114 &1037125443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037125441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b14ca4929a76e849b656a59c3599c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 2141649554}
-  enemyCharacters:
-  - {fileID: 1317782478}
-  - {fileID: 293503207}
-  - {fileID: 2112571001}
-  energyText: {fileID: 0}
-  TurnEndBtn: {fileID: 981795757}
-  deckCount: {fileID: 0}
-  useDeckCount: {fileID: 0}
 --- !u!1001 &1095704696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1466,6 +1416,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1037125442, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
+      propertyPath: playerCharacter
+      value: 
+      objectReference: {fileID: 2141649554}
+    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
+      propertyPath: playerCharacter
+      value: 
+      objectReference: {fileID: 2141649554}
+    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
+      propertyPath: enemyCharacters.Array.data[0]
+      value: 
+      objectReference: {fileID: 1317782478}
+    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
+      propertyPath: enemyCharacters.Array.data[1]
+      value: 
+      objectReference: {fileID: 293503207}
+    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
+      propertyPath: enemyCharacters.Array.data[2]
+      value: 
+      objectReference: {fileID: 2112571001}
     - target: {fileID: 1342274349401344461, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1575,11 +1545,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InGameUiCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 1342274350204313520, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1342274350508181188, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}

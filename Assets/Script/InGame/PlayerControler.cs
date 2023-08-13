@@ -21,7 +21,6 @@ namespace FrameWork
         public void Init()
         {
             Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
-            playerCharacter = GameObject.Find("ironclad").GetComponent<CharacterBase>();
             cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
             selectCard = GameObject.Find("CardCanvas").transform.Find("SelectCard").GetComponent<CardBase>();
         }

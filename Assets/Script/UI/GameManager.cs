@@ -62,12 +62,10 @@ namespace FrameWork
                 stageManager = this.GetComponent<StageManager>();
 
             }
-            
-           
 
             //if (playerControler == null)
             //{
-            //    playerControler = GameObject.Find("BattleManager").GetComponent<PlayerControler>();
+            //    playerControler = GameObject.Find("InGameUiCanvas").GetComponent<PlayerControler>();
             //
             //}
             //playerControler.Init();
@@ -77,7 +75,7 @@ namespace FrameWork
             //    cardSorting = GameObject.Find("CardCanvas").transform.Find("Hand").GetComponent<CardSorting>();
             //}
             //cardSorting.Init();
-            //
+            
             //DontDestroyOnLoad(this);
             //DontDestroyOnLoad(gameObject);
 
