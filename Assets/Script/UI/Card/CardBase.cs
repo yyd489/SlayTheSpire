@@ -18,7 +18,7 @@ namespace FrameWork
         public Image CardImg;
 
         // 카드정렬
-        public CardSorting cardSorting;
+        public CardManager cardManager;
         public int cardIndex;
 
         // 카드 선택 & 드래그
@@ -31,7 +31,7 @@ namespace FrameWork
             CardText.text = cardData.cardGuide;
             CardPoint.text = cardData.cardCost.ToString();
             CardType.text = cardData.cardType.ToString();
-            CardImg.sprite = cardSorting.dicCardImages[cardData.cardName];
+            CardImg.sprite = cardManager.dicCardImages[cardData.cardName];
         }
 
         public void OnPointDown()
@@ -40,10 +40,9 @@ namespace FrameWork
             {
                 if (!GameManager.Instance.playerControler.onDrag && cardData.cardCost <= GameManager.Instance.battleManager.energy)
                 {
-                    GameManager.Instance.battleManager.RefreshEnergyText(cardData.cardCost);
                     defaultPos = transform.localPosition;
                     transform.rotation = Quaternion.identity;
-                    cardSorting.SelectCard(this);
+                    cardManager.SelectCard(this);
                     GameManager.Instance.playerControler.onDrag = true;
                 }
             }
@@ -52,7 +51,7 @@ namespace FrameWork
         public void CancleDrag()
         {
             transform.localPosition = defaultPos;
-            cardSorting.DefaltCardSorting();
+            cardManager.DefaltCardSorting();
         }
     }
 }

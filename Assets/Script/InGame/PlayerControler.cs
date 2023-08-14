@@ -30,9 +30,10 @@ namespace FrameWork
             {
                 if (targetCharacter != null && Input.GetMouseButtonDown(0))
                 {
+                    GameManager.Instance.battleManager.RefreshEnergyText(selectCard.cardData.cardCost);
                     playerCharacter.Attack(targetCharacter, selectCard.cardData.cardEffect);
                     onDrag = false;
-                    GameManager.Instance.cardSorting.UseCard(selectCard);
+                    GameManager.Instance.cardManager.UseCard(selectCard);
                 }
 
                 if (Input.GetMouseButtonDown(1))

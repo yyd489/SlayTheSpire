@@ -37,7 +37,6 @@ namespace FrameWork
             energy = maxEnergy;
             isPlayerControl = false;
             battleState = BattleState.Ready;
-            RefreshEnergyText(3);
             TurnChange();
         }
 
@@ -51,11 +50,11 @@ namespace FrameWork
                 case BattleState.PlayerTurn:
                     battleState = BattleState.EnemyTurn;
                     EnemyTurn();
-                    GameManager.Instance.cardSorting.RemovePlayerCard();
+                    GameManager.Instance.cardManager.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
                     battleState = BattleState.PlayerTurn;
-                    GameManager.Instance.cardSorting.ReloadPlayerCard();
+                    GameManager.Instance.cardManager.ReloadPlayerCard();
                     break;
                 case BattleState.EndBattle:
                     break;
@@ -65,7 +64,7 @@ namespace FrameWork
             {
                 TurnEndBtn.SetActive(true);
                 energy = maxEnergy;
-                RefreshEnergyText(3);
+                RefreshEnergyText();
             }
             else
             {
@@ -79,7 +78,7 @@ namespace FrameWork
             useDeckCount.text = useDeck.ToString();
         }
 
-        public void RefreshEnergyText(int useEnergy)
+        public void RefreshEnergyText(int useEnergy = 0)
         {
             energy -= useEnergy;
             energyText.text = string.Format("{0}/3", energy);

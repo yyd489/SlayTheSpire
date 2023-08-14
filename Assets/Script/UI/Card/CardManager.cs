@@ -7,7 +7,7 @@ namespace FrameWork
 {
     using FrameWork.Data;
 
-    public class CardSorting : MonoBehaviour
+    public class CardManager : MonoBehaviour
     {
         [SerializeField] List<CardBase> cards;
         [SerializeField] CardBase selectCard;
@@ -52,7 +52,7 @@ namespace FrameWork
             for (int i = 0; i < 5; i++)
             {
                 cards.Add(cardPool.GetObject(this.transform));
-                cards[i].cardSorting = this;
+                cards[i].cardManager = this;
 
                 //캐릭터 데이터에 있는 덱 데이터 입력으로 변경필요
                 CardJsonData newCard = queMainDeck.Dequeue();
