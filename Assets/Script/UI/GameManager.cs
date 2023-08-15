@@ -64,28 +64,27 @@ namespace FrameWork
 
             }
 
-            //GameObject ingameUi = GameObject.Find("InGameUiCanvas");
-            //
-            //if (playerControler == null)
-            //{
-            //    playerControler = ingameUi.GetComponent<PlayerControler>();
-            //
-            //}
-            //playerControler.Init();
-            //
-            //if (battleManager == null)
-            //{
-            //    battleManager = ingameUi.GetComponent<BattleManager>();
-            //
-            //}
-            //playerControler.Init();
-            //
-            //if (cardManager == null)
-            //{
-            //    cardManager = ingameUI.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
-            //}
-            //cardManager.Init();
-            //cardSorting.Init();
+            GameObject ingameUi = GameObject.Find("InGameUiCanvas");
+
+            if (playerControler == null)
+            {
+                playerControler = ingameUi.GetComponent<PlayerControler>();
+
+            }
+            playerControler.Init();
+
+            if (battleManager == null)
+            {
+                battleManager = ingameUi.GetComponent<BattleManager>();
+
+            }
+            playerControler.Init();
+
+            if (cardManager == null)
+            {
+                cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
+            }
+            cardManager.Init();
 
             DontDestroyOnLoad(gameObject);
 
