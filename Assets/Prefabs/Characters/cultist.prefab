@@ -1264,8 +1264,7 @@ GameObject:
   - component: {fileID: 3175804429572823624}
   - component: {fileID: 3175804429572823625}
   - component: {fileID: 5081677654899917538}
-  - component: {fileID: 2403599071843498187}
-  - component: {fileID: -2964239706342872177}
+  - component: {fileID: 551256743127924178}
   m_Layer: 0
   m_Name: cultist
   m_TagString: Monster
@@ -1353,6 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7220620427538594287062f9f705f065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   objectResource: {fileID: 3175804429572823624}
 --- !u!61 &5081677654899917538
 BoxCollider2D:
@@ -1380,15 +1380,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2}
   m_EdgeRadius: 0
---- !u!222 &2403599071843498187
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537190587907291892}
-  m_CullTransparentMesh: 0
---- !u!114 &-2964239706342872177
+--- !u!114 &551256743127924178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

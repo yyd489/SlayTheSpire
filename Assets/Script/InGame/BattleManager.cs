@@ -85,17 +85,6 @@ namespace FrameWork
         }
 
         // 테스트용---------------------------------------------------------------------------------------------------------
-        public async void PlayerAttack()
-        {
-            if (energy > 0 && !isPlayerControl && battleState == BattleState.PlayerTurn)
-            {
-                isPlayerControl = true;
-                energy--;
-                energyText.text = energy + "/" + maxEnergy;
-                await playerCharacter.Attack(enemyCharacters[0], 0);
-                isPlayerControl = false;
-            }
-        }
 
         private async UniTask EnemyTurn()
         {
