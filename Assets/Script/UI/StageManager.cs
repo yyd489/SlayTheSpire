@@ -121,7 +121,7 @@ namespace FrameWork
 
                     GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
                     GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
-
+                    
                     break;
             }
 

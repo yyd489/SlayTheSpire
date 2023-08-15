@@ -16,7 +16,7 @@ namespace FrameWork
         
         public StageManager stageManager { get; private set; }
         public PlayerControler playerControler { get; private set; }
-        public CardSorting cardSorting { get; private set; }
+        public CardManager cardManager { get; private set; }
         public BattleManager battleManager { get; private set; }
 
         [SerializeField] Initializer initilizer;
@@ -80,10 +80,11 @@ namespace FrameWork
             //}
             //playerControler.Init();
             //
-            //if (cardSorting == null)
+            //if (cardManager == null)
             //{
-            //    cardSorting = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardSorting>();
+            //    cardManager = ingameUI.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             //}
+            //cardManager.Init();
             //cardSorting.Init();
 
             DontDestroyOnLoad(gameObject);

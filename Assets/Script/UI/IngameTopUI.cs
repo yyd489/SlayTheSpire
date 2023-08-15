@@ -27,12 +27,7 @@ namespace FrameWork
 
         public void Init()
         {
-            optionButton = GameObject.Find("OptionButton").GetComponent<Button>();
-            optionButton.onClick.AddListener(() => AsyncUIregister.InstansUI("Assets/Prefabs/UI/OptionCanvas.prefab"));
-            deckButton = GameObject.Find("DeckButton").GetComponent<Button>();
-
-            mapButton = GameObject.Find("MapButton").GetComponent<Button>();    
-            mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
+            ControlTopButton();
 
             var dicRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic;
             int relicCount = dicRelic.Count;
@@ -46,6 +41,18 @@ namespace FrameWork
                relicImage.sprite = listRelicSprites[i]; 
             }
 
+        }
+
+        public void ControlTopButton()
+        {
+            optionButton = GameObject.Find("OptionButton").GetComponent<Button>();
+            optionButton.onClick.AddListener(() => AsyncUIregister.InstansUI("Assets/Prefabs/UI/OptionCanvas.prefab"));
+
+            deckButton = GameObject.Find("DeckButton").GetComponent<Button>();
+            deckButton.onClick.AddListener(() => AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab"));
+
+            mapButton = GameObject.Find("MapButton").GetComponent<Button>();
+            mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
         }
 
         public void ChangeState()

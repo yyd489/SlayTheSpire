@@ -32,6 +32,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 447e474da5ef62348809da3977b0f325
+    m_Address: Assets/Prefabs/UI/DeckPopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5eafa0ea37ea8954fb08bd026222dd6f, type: 2}
   m_SchemaSet:
