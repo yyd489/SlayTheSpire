@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
+using System.Linq;
 
 namespace FrameWork
 {
@@ -38,8 +38,10 @@ namespace FrameWork
             {
                 dicCardImages.Add(cardDatas[i].cardName, cardImages[i]);
             }
+            
+            List<int> listDeckData = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard;
+            List<int> listHaveCard = listDeckData.ToList();
 
-            List<int> listHaveCard = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard;
             int haveCount = listHaveCard.Count;
 
             for (int i = 0; i < haveCount; i++)
@@ -153,6 +155,8 @@ namespace FrameWork
 
             tempCard = cardPool.GetObject(this.transform);
 
+            tempCard.cardManager = this;
+
             //tempCard.Init(cardDatas[0]);
             if (queMainDeck.Count <= 0)
                 ReloadCardDeck();
@@ -184,6 +188,7 @@ namespace FrameWork
                 if(!tempDeckCard.canDelete) listUseDeck.Add(tempDeckCard);
 
                 tempCard = cardPool.GetObject(this.transform);
+                tempCard.cardManager = this;
                 tempCard.Init(cardDatas[i]);
                 cards.Add(tempCard);
             }
