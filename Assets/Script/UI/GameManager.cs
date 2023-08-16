@@ -13,7 +13,6 @@ namespace FrameWork
         public Soundmanager soundManager { get; private set; }
         public IngameTopUI ingameUI { get; private set; }
         
-        
         public StageManager stageManager { get; private set; }
         public PlayerControler playerControler { get; private set; }
         public CardManager cardManager { get; private set; }
