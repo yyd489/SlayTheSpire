@@ -10,7 +10,7 @@ namespace FrameWork
         [SerializeField] private Texture2D cursorImg;
 
         // 캐릭터
-        [SerializeField] private CharacterBase playerCharacter;
+        [HideInInspector] public CharacterBase playerCharacter;
         [HideInInspector] public CharacterBase targetCharacter;
 
         // 카드
@@ -20,7 +20,6 @@ namespace FrameWork
         public void Init()
         {
             Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
-            //playerCharacter = GameObject.Find("ironclad").GetComponent<CharacterBase>();
             selectCard = transform.Find("Card").transform.Find("SelectCard").GetComponent<CardBase>();
         }
 
@@ -28,15 +27,22 @@ namespace FrameWork
         {
             if (onDrag)
             {
-                if (targetCharacter != null && Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
-                    GameManager.Instance.battleManager.RefreshEnergyText(selectCard.cardData.cardCost);
-                    playerCharacter.Attack(targetCharacter, selectCard.cardData.cardEffect);
-                    onDrag = false;
-                    GameManager.Instance.cardManager.UseCard(selectCard);
+                    if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
+                    {
+                        selectCard.UseSelectCard();
+                        onDrag = false;
+                        GameManager.Instance.cardManager.UseCard(selectCard);
+                    }
+                    else if(selectCard.cardData.cardType != Data.CardType.Attack)
+                    {
+                        selectCard.UseSelectCard();
+                        onDrag = false;
+                        GameManager.Instance.cardManager.UseCard(selectCard);
+                    }
                 }
-
-                if (Input.GetMouseButtonDown(1))
+                else if (Input.GetMouseButtonDown(1))
                 {
                     onDrag = false;
                     selectCard.gameObject.SetActive(true);

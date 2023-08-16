@@ -10,7 +10,7 @@ namespace FrameWork
         protected string characterName;
         protected int maxHp;
         [SerializeField] protected int hp;
-        protected int shield;
+        [SerializeField] protected int shield;
         protected int damage;
         protected int defence;
         protected bool isMonster;
@@ -43,7 +43,7 @@ namespace FrameWork
             hp = health;
         }
 
-        public async Task<bool> Attack(CharacterBase target, int cardDamage)
+        public async Task<bool> Attack(CharacterBase target, int cardDamage, int debuff, bool isAllAttack = false)
         {
             targetCharacter = target;
             ChangeState(1);
@@ -58,7 +58,19 @@ namespace FrameWork
 
                 if (!isMonster)
                 {
-                    TargetHit(cardDamage);
+                    if (isAllAttack)
+                    {
+                        for (int i = 0; i < GameManager.Instance.battleManager.enemyCharacters.Count; i++)
+                        {
+                            targetCharacter = GameManager.Instance.battleManager.enemyCharacters[i];
+                            TargetHit(cardDamage);
+                        }
+                    }
+                    else
+                    {
+                        TargetHit(cardDamage);
+                    }
+
                     ReturnPosition();
                 }
             }
@@ -66,15 +78,31 @@ namespace FrameWork
             return true;
         }
 
-        protected async void TargetHit(int cardDamage)
+        private async void TargetHit(int cardDamage)
         {
+            Debug.Log(gameObject.name);
             float modifyPos = -1f;
             if (targetCharacter.isMonster) modifyPos *= -1f;
 
             float knockBackPosX = targetCharacter.transform.position.x + modifyPos;
 
             await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
-            targetCharacter.hp -= damage + cardDamage;
+
+            int targetShield = targetCharacter.shield;
+            int attackDamage = damage + cardDamage;
+
+            if (targetShield > 0 )
+            {
+                if (targetShield > attackDamage)
+                    targetCharacter.shield -= attackDamage;
+                else
+                {
+                    attackDamage -= shield;
+                    targetCharacter.shield = 0;
+                }
+            }
+
+            targetCharacter.hp -= attackDamage;
 
             if (IsDead())
             {
@@ -106,6 +134,11 @@ namespace FrameWork
             if(animator == null) animator = GetComponent<Animator>();
             
             animator.SetInteger("state", animIndex);
+        }
+
+        public void SetShield(int getShield)
+        {
+            shield += getShield;
         }
 
         public void OnPointEnter()

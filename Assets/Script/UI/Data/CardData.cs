@@ -9,7 +9,8 @@ namespace FrameWork.Data
     public enum CardType
     {
         Attack,
-        Skill
+        Skill,
+        Defence
     }
 
     [System.Serializable]
@@ -22,7 +23,6 @@ namespace FrameWork.Data
     public class CardJsonData//선수들의 스텟 및 정보
     {
         public string cardName;
-        public int imageIndex;
         public CardType cardType;
         public string cardGuide;
         public int cardCost;

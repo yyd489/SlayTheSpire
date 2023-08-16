@@ -92,7 +92,7 @@ namespace FrameWork
             for (int i = 0; i < enemyCharacters.Count; i++)
             {
                 await UniTask.Delay(delayTime);
-                await enemyCharacters[i].Attack(playerCharacter, 0);
+                await enemyCharacters[i].Attack(playerCharacter, 0, 0);
                 await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
             }
 

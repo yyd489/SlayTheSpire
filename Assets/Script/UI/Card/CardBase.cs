@@ -23,17 +23,19 @@ namespace FrameWork
 
         // 카드 선택 & 드래그
         public Vector2 defaultPos;
-        
+
         public void Init(CardJsonData data)
         {
             cardData = data;
             CardName.text = cardData.cardName;
             CardText.text = cardData.cardGuide;
             CardPoint.text = cardData.cardCost.ToString();
-            CardType.text = cardData.cardType.ToString();
             CardImg.sprite = cardManager.dicCardImages[cardData.cardName];
-        }
 
+            if (cardData.cardType == Data.CardType.Defence) CardType.text = Data.CardType.Skill.ToString();
+            else CardType.text = cardData.cardType.ToString();
+        }
+    
         public void OnPointDown()
         {
             if (Input.GetMouseButton(0))
@@ -44,6 +46,39 @@ namespace FrameWork
                     transform.rotation = Quaternion.identity;
                     cardManager.SelectCard(this);
                     GameManager.Instance.playerControler.onDrag = true;
+                }
+            }
+        }
+
+        public void UseSelectCard()
+        {
+            GameManager.Instance.battleManager.RefreshEnergyText(cardData.cardCost);
+            CharacterBase playerCharacter = GameManager.Instance.playerControler.playerCharacter;
+
+            if (cardData.cardType == Data.CardType.Attack)
+            {
+                bool isAllAttack = false;
+                if(cardData.cardName == "천둥")
+                    isAllAttack = true;
+
+                playerCharacter.Attack(GameManager.Instance.playerControler.targetCharacter, cardData.cardEffect, cardData.cardSubEffect, isAllAttack);
+            }
+            else if (cardData.cardType == Data.CardType.Defence)
+            {
+                playerCharacter.SetShield(cardData.cardEffect);
+
+                if (cardData.cardSubEffect > 0) GameManager.Instance.cardManager.DrawCard();
+            }
+            else if (cardData.cardType == Data.CardType.Skill)
+            {
+                if(cardData.cardName == "발화")
+                {
+                    // 버프 추가 예정 공격력+2, 1턴지속
+                    Debug.Log("버프 추가 예정 공격력+2, 1턴지속");
+                }
+                else
+                {
+                    GameManager.Instance.battleManager.energy += 2;
                 }
             }
         }
