@@ -2,17 +2,25 @@
 using DG.Tweening;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace FrameWork
 {
+    public enum Buff
+    {
+        None = 0,
+        PowerUp = 1,
+        DefenceDown = 2
+    }
+
     public abstract class CharacterBase : MonoBehaviour
     {
         protected string characterName;
         protected int maxHp;
         [SerializeField] protected int hp;
         [SerializeField] protected int shield;
-        protected int damage;
-        protected int defence;
+        [SerializeField] protected int damage;
+        [SerializeField] protected int defence;
         protected bool isMonster;
         protected bool isHold;
         protected Animator animator;
@@ -20,6 +28,8 @@ namespace FrameWork
         private CharacterBase targetCharacter;
 
         private Vector2 charaterPos;
+
+        public List<BuffStatus> listBuff = new List<BuffStatus>();
 
         [SerializeField] protected ObjectResource objectResource;
 
@@ -38,12 +48,7 @@ namespace FrameWork
                 objectResource.ActiveRender(isActive);
         }
 
-        public void InitHp(int health)
-        {
-            hp = health;
-        }
-
-        public async Task<bool> Attack(CharacterBase target, int cardDamage, int debuff, bool isAllAttack = false)
+        public async Task<bool> Attack(CharacterBase target, int cardDamage, int debuffTurn, bool isAllAttack = false)
         {
             targetCharacter = target;
             ChangeState(1);
@@ -63,11 +68,25 @@ namespace FrameWork
                         for (int i = 0; i < GameManager.Instance.battleManager.enemyCharacters.Count; i++)
                         {
                             targetCharacter = GameManager.Instance.battleManager.enemyCharacters[i];
+
+                            if(debuffTurn > 0)
+                            {
+                                BuffStatus newBuff = new BuffStatus();
+                                newBuff.InitBuff(Buff.DefenceDown, debuffTurn);
+                                targetCharacter.AddBuffStat(newBuff);
+                            }
+
                             TargetHit(cardDamage);
                         }
                     }
                     else
                     {
+                        if (debuffTurn > 0)
+                        {
+                            BuffStatus newBuff = new BuffStatus();
+                            newBuff.InitBuff(Buff.DefenceDown, debuffTurn);
+                            targetCharacter.AddBuffStat(newBuff);
+                        }
                         TargetHit(cardDamage);
                     }
 
@@ -80,7 +99,6 @@ namespace FrameWork
 
         private async void TargetHit(int cardDamage)
         {
-            Debug.Log(gameObject.name);
             float modifyPos = -1f;
             if (targetCharacter.isMonster) modifyPos *= -1f;
 
@@ -89,7 +107,7 @@ namespace FrameWork
             await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
 
             int targetShield = targetCharacter.shield;
-            int attackDamage = damage + cardDamage;
+            int attackDamage = damage + cardDamage + targetCharacter.defence;
 
             if (targetShield > 0 )
             {
@@ -124,12 +142,12 @@ namespace FrameWork
             transform.position = characterPos;
         }
 
-        private bool IsDead()
+        public bool IsDead()
         {
             return hp <= 0;
         }
 
-        protected void ChangeState(int animIndex = 0)
+        private void ChangeState(int animIndex = 0)
         {
             if(animator == null) animator = GetComponent<Animator>();
             
@@ -143,12 +161,47 @@ namespace FrameWork
 
         public void OnPointEnter()
         {
-            GameManager.Instance.playerControler.targetCharacter = this;
+            if(GameManager.Instance.playerControler.onDrag)
+                GameManager.Instance.playerControler.targetCharacter = this;
         }
 
         public void OnPointExit()
         {
-            GameManager.Instance.playerControler.targetCharacter = null;
+            if (GameManager.Instance.playerControler.onDrag)
+                GameManager.Instance.playerControler.targetCharacter = null;
+        }
+
+        public void InputBuffStat()
+        {
+            int buffDamage = 0;
+            int buffDefence = 0;
+
+            for (int i = 0; i < listBuff.Count; i++)
+            {
+                if (listBuff[i].buff == Buff.PowerUp) buffDamage = 2;
+                else if (listBuff[i].buff == Buff.DefenceDown) buffDefence = 2;
+            }
+
+            damage = buffDamage;
+            defence = buffDefence;
+        }
+
+        public void AddBuffStat(BuffStatus buffStatus)
+        {
+            listBuff.Add(buffStatus);
+            InputBuffStat();
+        }
+    }
+
+    public class BuffStatus
+    {
+        public Buff buff;
+        public int turn;
+
+        public void InitBuff(Buff initBuff, int initTurn)
+        {
+            buff = initBuff;
+            turn = initTurn;
         }
     }
 }
