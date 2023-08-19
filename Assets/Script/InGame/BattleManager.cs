@@ -50,11 +50,18 @@ namespace FrameWork
                 case BattleState.PlayerTurn:
                     battleState = BattleState.EnemyTurn;
                     EnemyTurn();
+                    RefreshBuff(playerCharacter);
                     GameManager.Instance.cardManager.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
                     battleState = BattleState.PlayerTurn;
                     GameManager.Instance.cardManager.ReloadPlayerCard();
+                    for (int i = 0; i < enemyCharacters.Count; i++)
+                    {
+                        if (enemyCharacters[i].IsDead()) continue;
+
+                        RefreshBuff(enemyCharacters[i]);
+                    }
                     break;
                 case BattleState.EndBattle:
                     break;
@@ -70,6 +77,19 @@ namespace FrameWork
             {
                 TurnEndBtn.SetActive(false);
             }
+        }
+
+        public void RefreshBuff(CharacterBase character)
+        {
+            for (int i = 0; i < character.listBuff.Count; i++)
+            {
+                character.listBuff[i].turn--;
+
+                // 버프아이콘 제거필요
+                if (character.listBuff[i].turn == 0) character.listBuff.RemoveAt(i);
+            }
+
+            character.InputBuffStat();
         }
 
         public void RefreshDeckCountText(int deck, int useDeck)

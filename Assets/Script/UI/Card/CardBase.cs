@@ -73,8 +73,9 @@ namespace FrameWork
             {
                 if(cardData.cardName == "발화")
                 {
-                    // 버프 추가 예정 공격력+2, 1턴지속
-                    Debug.Log("버프 추가 예정 공격력+2, 1턴지속");
+                    BuffStatus newBuff = new BuffStatus();
+                    newBuff.InitBuff(Buff.PowerUp, 1);
+                    playerCharacter.AddBuffStat(newBuff);
                 }
                 else
                 {
