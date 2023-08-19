@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 6972552302558934898}
   - component: {fileID: 6972552302558934899}
   m_Layer: 5
-  m_Name: Firecamp
+  m_Name: RestPop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

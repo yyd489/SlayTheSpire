@@ -21,6 +21,7 @@ namespace FrameWork
           public GameObject shopPop;
           public GameObject restPop;
           public GameObject[] arrEvents;
+         
 
           public void ControlField(MapField fieldInfo)
           {
@@ -49,8 +50,9 @@ namespace FrameWork
                     case MapField.Shop:
 
                     GameObject shopObj = Instantiate(shopPop);
-                    shopObj.transform.Find("ShopPanel").Find("BackButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
-
+                    //shopObj.transform.Find("ShopPanel").Find("BackButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
+                    shopObj.transform.Find("Canvas").Find("NextButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
+                    
                     break;
 
                     case MapField.Sleep:

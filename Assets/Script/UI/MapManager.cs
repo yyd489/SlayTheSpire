@@ -120,9 +120,6 @@ namespace FrameWork
             }
             
             SettingNode();
-
-            Debug.Log(GameManager.Instance.dataManager.data.cardData.GetCardStat());
-            Debug.Log(GameManager.Instance.dataManager.data.eventData.GetEventData());
            // Debug.LogError(FrameWork.Data.DataManager.data.eventData.GetEventData()[0].effectText);
 
 

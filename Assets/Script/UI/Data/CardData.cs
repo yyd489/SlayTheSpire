@@ -12,6 +12,12 @@ namespace FrameWork.Data
         Skill,
         Defence
     }
+    public enum Rare
+    {
+        Nomal,
+        Rare,
+        Unique
+    }
 
     [System.Serializable]
     public class CardDataCollect
@@ -28,6 +34,7 @@ namespace FrameWork.Data
         public int cardCost;
         public int cardEffect;
         public int cardSubEffect;
+        public Rare rare;
         public bool canDelete;
        
 

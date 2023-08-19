@@ -29,6 +29,9 @@ namespace FrameWork
         {
             ControlTopButton();
 
+            if(mapPop == null)
+            mapPop = GameManager.Instance.mapManager.gameObject;
+
             var dicRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic;
             int relicCount = dicRelic.Count;
            

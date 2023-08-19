@@ -6,17 +6,20 @@ using Cysharp.Threading.Tasks;
 namespace FrameWork
 {
     using FrameWork.Data;
+    [System.Serializable]
     public class GameManager : MonoSingleton<GameManager>
     {
 
-        public DataManager dataManager { get; private set; }
-        public Soundmanager soundManager { get; private set; }
-        public IngameTopUI ingameUI { get; private set; }
-        
-        public StageManager stageManager { get; private set; }
-        public PlayerControler playerControler { get; private set; }
-        public CardManager cardManager { get; private set; }
-        public BattleManager battleManager { get; private set; }
+        public DataManager dataManager;
+        public Soundmanager soundManager;
+        public IngameTopUI ingameUI;
+
+        public StageManager stageManager;
+        public PlayerControler playerControler;
+        public CardManager cardManager;
+        public BattleManager battleManager;
+
+        public MapManager mapManager;
 
         [SerializeField] Initializer initilizer;
 
@@ -41,6 +44,8 @@ namespace FrameWork
               dataManager.data.cardData.cardCollect != null   && dataManager.data.relicsData.relicData != null
               && dataManager.data.eventData.eventData != null);
 
+
+            //---------------------------------------DataManager 무조건 선순위----------------------------------------------------------
             if (soundManager == null)
             {
                 soundManager = new Soundmanager();
@@ -83,6 +88,12 @@ namespace FrameWork
             {
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             }
+
+            if(stageManager == null)
+            {
+                stageManager = new StageManager();
+            }
+
             cardManager.Init();
 
             DontDestroyOnLoad(gameObject);

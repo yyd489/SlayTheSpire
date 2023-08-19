@@ -8,6 +8,7 @@
       "cardCost": 2,
       "cardEffect": 8,
       "cardSubEffect": 2,
+      "rare": 1,
       "canDelete": false
     },
     {
@@ -17,6 +18,7 @@
       "cardCost": 1,
       "cardEffect": 5,
       "cardSubEffect": 0,
+      "rare": 0,
       "canDelete": false
     },
     {
@@ -26,6 +28,7 @@
       "cardCost": 1,
       "cardEffect": 6,
       "cardSubEffect": 0,
+      "rare": 0,
       "canDelete": false
     },
     {
@@ -35,6 +38,7 @@
       "cardCost": 1,
       "cardEffect": 4,
       "cardSubEffect": 1,
+      "rare": 1,
       "canDelete": false
     },
     {
@@ -44,6 +48,7 @@
       "cardCost": 1,
       "cardEffect": 8,
       "cardSubEffect": 1,
+      "rare": 1,
       "canDelete": false
     },
     {
@@ -53,6 +58,7 @@
       "cardCost": 1,
       "cardEffect": 2,
       "cardSubEffect": 0,
+      "rare": 2,
       "canDelete": false
     },
     {
@@ -62,6 +68,7 @@
       "cardCost": 1,
       "cardEffect": 2,
       "cardSubEffect": 0,
+      "rare": 2,
       "canDelete": true
     }
   ]}
