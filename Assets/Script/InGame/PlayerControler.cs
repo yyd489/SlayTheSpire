@@ -10,7 +10,7 @@ namespace FrameWork
         [SerializeField] private Texture2D cursorImg;
 
         // 캐릭터
-        [HideInInspector] public CharacterBase playerCharacter;
+        public CharacterBase playerCharacter;
         [HideInInspector] public CharacterBase targetCharacter;
 
         // 카드
@@ -29,6 +29,10 @@ namespace FrameWork
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    Vector3 pos = Camera.main.WorldToViewportPoint(Input.mousePosition);
+                    Debug.Log(pos.y);
+                    if (pos.y < 20f) return;
+
                     if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
                     {
                         selectCard.UseSelectCard();
@@ -53,21 +57,3 @@ namespace FrameWork
         }
     }
 }
-
-
-/*
-float mouseYPos = Camera.main.ScreenToViewportPoint(setCard.transform.position).y;
-if (mouseYPos <= 0.25f)
-  {
-      setCard.transform.position = Input.mousePosition;
-  }
-  else
-  {
-      setCard.gameObject.SetActive(false);
-
-      if(targetCharacter != null && Input.GetMouseButtonDown(0))
-      {
-
-      }
-  }
-*/

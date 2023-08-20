@@ -9,6 +9,11 @@ namespace FrameWork
     {
         private void Start()
         {
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            pos.x = 0.8f;
+            Debug.Log(gameObject.name + " : " + pos.x);
+            transform.position = Camera.main.ViewportToWorldPoint(pos);
+            charaterPos = transform.position;
             Init();
         }
 

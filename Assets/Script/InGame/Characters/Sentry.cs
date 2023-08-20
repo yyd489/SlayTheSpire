@@ -9,6 +9,7 @@ namespace FrameWork
     {
         private void Start()
         {
+            charaterPos = transform.position;
             Init();
         }
 
