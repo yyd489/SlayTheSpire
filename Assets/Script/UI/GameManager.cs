@@ -71,23 +71,18 @@ namespace FrameWork
             if (playerControler == null)
             {
                 playerControler = ingameUi.GetComponent<PlayerControler>();
-
             }
             playerControler.Init();
 
             if (battleManager == null)
             {
                 battleManager = ingameUi.GetComponent<BattleManager>();
-
             }
-            playerControler.Init();
 
             if (cardManager == null)
             {
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             }
-
-            
             cardManager.Init();
 
             DontDestroyOnLoad(gameObject);
