@@ -26,7 +26,7 @@ namespace FrameWork.Data
 
     }
     [System.Serializable]
-    public class CardJsonData//선수들의 스텟 및 정보
+    public class CardJsonData
     {
         public string cardName;
         public CardType cardType;
@@ -36,7 +36,7 @@ namespace FrameWork.Data
         public int cardSubEffect;
         public Rare rare;
         public bool canDelete;
-       
+        public int cost;
 
     }
 

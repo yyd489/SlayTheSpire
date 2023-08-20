@@ -9,7 +9,8 @@
       "cardEffect": 8,
       "cardSubEffect": 2,
       "rare": 1,
-      "canDelete": false
+      "canDelete": false,
+      "cost": 10
     },
     {
       "cardName": "수비",
@@ -19,7 +20,8 @@
       "cardEffect": 5,
       "cardSubEffect": 0,
       "rare": 0,
-      "canDelete": false
+      "canDelete": false,
+      "cost": 5
     },
     {
       "cardName": "타격",
@@ -29,7 +31,8 @@
       "cardEffect": 6,
       "cardSubEffect": 0,
       "rare": 0,
-      "canDelete": false
+      "canDelete": false,
+      "cost": 5
     },
     {
       "cardName": "천둥",
@@ -39,7 +42,8 @@
       "cardEffect": 4,
       "cardSubEffect": 1,
       "rare": 1,
-      "canDelete": false
+      "canDelete": false,
+      "cost": 10
     },
     {
       "cardName": "흘려보내기",
@@ -49,7 +53,8 @@
       "cardEffect": 8,
       "cardSubEffect": 1,
       "rare": 1,
-      "canDelete": false
+      "canDelete": false,
+      "cost": 10
     },
     {
       "cardName": "발화",
@@ -59,7 +64,8 @@
       "cardEffect": 2,
       "cardSubEffect": 0,
       "rare": 2,
-      "canDelete": false
+      "canDelete": false,
+      "cost": 20
     },
     {
       "cardName": "혈안",
@@ -69,6 +75,7 @@
       "cardEffect": 2,
       "cardSubEffect": 0,
       "rare": 2,
-      "canDelete": true
+      "canDelete": true,
+      "cost": 20
     }
   ]}

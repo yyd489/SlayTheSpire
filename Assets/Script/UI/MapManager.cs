@@ -121,8 +121,6 @@ namespace FrameWork
             
             SettingNode();
            // Debug.LogError(FrameWork.Data.DataManager.data.eventData.GetEventData()[0].effectText);
-
-
         }
 
         public void Start()

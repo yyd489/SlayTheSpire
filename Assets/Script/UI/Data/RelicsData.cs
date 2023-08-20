@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 namespace FrameWork.Data
 {
-    public enum relicType
+    public enum RelicType
     {
         HealFire,
         Twist,
@@ -15,28 +15,43 @@ namespace FrameWork.Data
        
     }
 
-    public class RelicDataCollect
+    public enum PotionType
+    {
+        Fire,
+        Heal,
+        Card,
+    }
+
+    public class ItemDataCollect
     {
         public List<RelicJsonData> listRelicData;
-
+        public List<PotionJsonData> listPotionData;
     }
 
     public class RelicJsonData
     {
         public string name;
         public int relicEffect;
-        public relicType relicType;
+        public RelicType relicType;
 
     }
 
-    public class RelicsData : DataInterface
+    public class PotionJsonData
     {
-        public RelicDataCollect relicData;
+        public string name;
+        public int potionEffect;
+        public PotionType potionType;
+
+    }
+
+    public class ItemData : DataInterface
+    {
+        public ItemDataCollect itemData;
 
         public async void AwaitFileRead(string filePath)
         {
             var fileTest = await ReadAllTextAsync(filePath);
-            relicData = JsonConvert.DeserializeObject<RelicDataCollect>(fileTest);
+            itemData = JsonConvert.DeserializeObject<ItemDataCollect>(fileTest);
         }
 
         public void Init(string path)
@@ -55,7 +70,7 @@ namespace FrameWork.Data
         public List<RelicJsonData> GetEventData()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
-            List<RelicJsonData> listRelicData = relicData.listRelicData;
+            List<RelicJsonData> listRelicData = itemData.listRelicData;
             return listRelicData;
         }
 

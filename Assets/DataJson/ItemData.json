@@ -1,0 +1,49 @@
+{
+  "listRelicData": [
+    {
+      "name": "꺼지지 않는 화염",
+      "relicEffect": 10,
+      "relicType": 0,
+      "cost": 30
+    },
+    {
+      "name": "꽈배기",
+      "relicEffect": 10,
+      "relicType": 1,
+      "cost": 20
+    },
+    {
+      "name": "저주받은 부적",
+      "relicEffect": 5,
+      "relicType": 2,
+      "cost": 20
+    },
+    {
+      "name": "공허의 선물",
+      "relicEffect": 10,
+      "relicType": 3,
+      "cost": 30
+    }
+  ],
+  "listPotionData": [
+    {
+      "name": "화염 포션",
+      "potionEffect": 10,
+      "itemType": 0,
+      "cost": 20
+    },
+    {
+      "name": "체력 포션",
+      "potionEffect": 10,
+      "itemType": 1,
+      "cost": 10
+    },
+    {
+      "name": "카드 포션",
+      "potionEffect": 5,
+      "itemType": 2,
+      "cost": 10
+    }
+  ]
+
+}

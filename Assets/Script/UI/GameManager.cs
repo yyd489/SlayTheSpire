@@ -23,8 +23,6 @@ namespace FrameWork
 
         [SerializeField] Initializer initilizer;
 
-       
-
         private void Start()
         {
             
@@ -41,7 +39,7 @@ namespace FrameWork
             dataManager.Init();
 
             await UniTask.WaitUntil(() => dataManager.data.characterData.characterInfoCollect != null &&
-              dataManager.data.cardData.cardCollect != null   && dataManager.data.relicsData.relicData != null
+              dataManager.data.cardData.cardCollect != null   && dataManager.data.itemData.itemData != null
               && dataManager.data.eventData.eventData != null);
 
 
@@ -89,11 +87,7 @@ namespace FrameWork
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             }
 
-            if(stageManager == null)
-            {
-                stageManager = new StageManager();
-            }
-
+            
             cardManager.Init();
 
             DontDestroyOnLoad(gameObject);

@@ -40,7 +40,7 @@ namespace FrameWork
             {
                Image relicImage = Instantiate(relicObject,GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
                
-               if(dicRelic.ContainsKey((relicType)i) == true)
+               if(dicRelic.ContainsKey((RelicType)i) == true)
                relicImage.sprite = listRelicSprites[i]; 
             }
 
@@ -56,6 +56,7 @@ namespace FrameWork
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
+            
         }
 
         public void ChangeState()
