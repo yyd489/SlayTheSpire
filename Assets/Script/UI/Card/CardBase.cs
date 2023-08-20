@@ -61,6 +61,7 @@ namespace FrameWork
                 if(cardData.cardName == "천둥")
                     isAllAttack = true;
 
+                Debug.Log(GameManager.Instance.playerControler.targetCharacter + " / " + cardData.cardEffect + " / " + cardData.cardSubEffect);
                 playerCharacter.Attack(GameManager.Instance.playerControler.targetCharacter, cardData.cardEffect, cardData.cardSubEffect, isAllAttack);
             }
             else if (cardData.cardType == Data.CardType.Defence)

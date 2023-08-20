@@ -27,7 +27,7 @@ namespace FrameWork
 
         private CharacterBase targetCharacter;
 
-        private Vector2 charaterPos;
+        protected Vector2 charaterPos;
 
         public List<BuffStatus> listBuff = new List<BuffStatus>();
 
@@ -39,7 +39,6 @@ namespace FrameWork
         void OnValidate()
         {
             animator = objectResource.Animator;
-            charaterPos = transform.position;
         }
 #endif
         public void ActiveRender(bool isActive)
@@ -104,8 +103,6 @@ namespace FrameWork
 
             float knockBackPosX = targetCharacter.transform.position.x + modifyPos;
 
-            await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
-
             int targetShield = targetCharacter.shield;
             int attackDamage = damage + cardDamage + targetCharacter.defence;
 
@@ -122,24 +119,23 @@ namespace FrameWork
 
             targetCharacter.hp -= attackDamage;
 
-            if (IsDead())
+            if (targetCharacter.IsDead())
             {
                 if (targetCharacter.isMonster) targetCharacter.objectResource.ActiveRender(false);
                 Debug.Log("사망");
             }
-            targetCharacter.ReturnPosition();
+            else
+            {
+                await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
+
+                targetCharacter.ReturnPosition();
+            }
         }
 
         protected async void ReturnPosition()
         {
             await transform.DOMoveX(charaterPos.x, 0.1f).SetEase(Ease.Linear);
             ChangeState(0);
-        }
-
-        protected void SetPosition(Vector3 characterPos)
-        {
-            if (isMonster) transform.localScale = new Vector3(-1f, 1f, 1f);
-            transform.position = characterPos;
         }
 
         public bool IsDead()
@@ -157,18 +153,6 @@ namespace FrameWork
         public void SetShield(int getShield)
         {
             shield += getShield;
-        }
-
-        public void OnPointEnter()
-        {
-            if(GameManager.Instance.playerControler.onDrag)
-                GameManager.Instance.playerControler.targetCharacter = this;
-        }
-
-        public void OnPointExit()
-        {
-            if (GameManager.Instance.playerControler.onDrag)
-                GameManager.Instance.playerControler.targetCharacter = null;
         }
 
         public void InputBuffStat()
@@ -190,6 +174,20 @@ namespace FrameWork
         {
             listBuff.Add(buffStatus);
             InputBuffStat();
+        }
+
+
+        // 이벤트 트리거 함수
+        public void OnPointEnter()
+        {
+            if (GameManager.Instance.playerControler.onDrag)
+                GameManager.Instance.playerControler.targetCharacter = this;
+        }
+
+        public void OnPointExit()
+        {
+            if (GameManager.Instance.playerControler.onDrag)
+                GameManager.Instance.playerControler.targetCharacter = null;
         }
     }
 

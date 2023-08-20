@@ -54,7 +54,9 @@ namespace FrameWork
                     GameManager.Instance.cardManager.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
-                    battleState = BattleState.PlayerTurn;
+                    if (!playerCharacter.IsDead()) battleState = BattleState.PlayerTurn;
+                    else battleState = BattleState.EndBattle;
+
                     GameManager.Instance.cardManager.ReloadPlayerCard();
                     for (int i = 0; i < enemyCharacters.Count; i++)
                     {
@@ -64,6 +66,7 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
+                    Debug.Log("전투 종료");
                     break;
             }
 
@@ -109,14 +112,23 @@ namespace FrameWork
         private async UniTask EnemyTurn()
         {
             TimeSpan delayTime = TimeSpan.FromSeconds(1);
+            bool isLosePlayer = false;
             for (int i = 0; i < enemyCharacters.Count; i++)
             {
                 await UniTask.Delay(delayTime);
                 await enemyCharacters[i].Attack(playerCharacter, 0, 0);
                 await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
+
+                if (playerCharacter.IsDead())
+                {
+                    isLosePlayer = true;
+                    break;
+                }
             }
 
-            await UniTask.Delay(delayTime);
+            if (!isLosePlayer)
+                await UniTask.Delay(delayTime);
+
             TurnChange();
         }
     }
