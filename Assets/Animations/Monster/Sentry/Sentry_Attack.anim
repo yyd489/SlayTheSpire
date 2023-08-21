@@ -352,7 +352,7 @@ AnimationClip:
   - time: 0.083333336
     functionName: TargetHit
     data: 
-    objectReferenceParameter: {fileID: 9195890002648768996, guid: c51632a19cc9b3243a7c502ba19a1b34,
+    objectReferenceParameter: {fileID: 1589788037383519275, guid: 37cac2dfa2074d147b14beda7c60c1c4,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -360,7 +360,7 @@ AnimationClip:
   - time: 0.16666667
     functionName: ChangeState
     data: 
-    objectReferenceParameter: {fileID: 9195890002648768996, guid: c51632a19cc9b3243a7c502ba19a1b34,
+    objectReferenceParameter: {fileID: 1589788037383519275, guid: 37cac2dfa2074d147b14beda7c60c1c4,
       type: 3}
     floatParameter: 0
     intParameter: 0

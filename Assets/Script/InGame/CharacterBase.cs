@@ -27,7 +27,7 @@ namespace FrameWork
 
         private CharacterBase targetCharacter;
 
-        protected Vector2 charaterPos;
+        public Vector2 charaterPos;
 
         public List<BuffStatus> listBuff = new List<BuffStatus>();
 
@@ -35,12 +35,19 @@ namespace FrameWork
 
         public abstract void Init();
 
+        // 하위 캐릭터 오브젝트에 스크립트 넣고 죽을때 체크해야됨
+
 #if UNITY_EDITOR
         void OnValidate()
         {
             animator = objectResource.Animator;
         }
 #endif
+        private void Start()
+        {
+            Init();
+        }
+
         public void ActiveRender(bool isActive)
         {
             if (null != objectResource)
@@ -122,7 +129,6 @@ namespace FrameWork
             if (targetCharacter.IsDead())
             {
                 if (targetCharacter.isMonster) targetCharacter.objectResource.ActiveRender(false);
-                Debug.Log("사망");
             }
             else
             {
@@ -145,7 +151,7 @@ namespace FrameWork
 
         private void ChangeState(int animIndex = 0)
         {
-            if(animator == null) animator = GetComponent<Animator>();
+            if(animator == null) animator = objectResource.Animator;
             
             animator.SetInteger("state", animIndex);
         }

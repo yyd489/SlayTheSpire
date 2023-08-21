@@ -7,16 +7,6 @@ namespace FrameWork
 {
     public class BlueSlaver : CharacterBase
     {
-        private void Start()
-        {
-            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-            pos.x = 0.75f;
-            Debug.Log(gameObject.name + " : " + pos.x);
-            transform.position = Camera.main.ViewportToWorldPoint(pos);
-            charaterPos = transform.position;
-            Init();
-        }
-
         public override void Init()
         {
             name = "노예 상인";

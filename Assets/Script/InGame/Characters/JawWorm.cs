@@ -7,12 +7,6 @@ namespace FrameWork
 {
     public class JawWorm : CharacterBase
     {
-        private void Start()
-        {
-            charaterPos = transform.position;
-            Init();
-        }
-
         public override void Init()
         {
             name = "턱벌레";

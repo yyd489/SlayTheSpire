@@ -1072,7 +1072,7 @@ AnimationClip:
   - time: 0.5
     functionName: TargetHit
     data: 
-    objectReferenceParameter: {fileID: 8874958416860687681, guid: e6360082cf042514f9c07f7c287b782b,
+    objectReferenceParameter: {fileID: 7764152958796322838, guid: 7d72598dea53d244d99beaefdf868e9c,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -1080,7 +1080,7 @@ AnimationClip:
   - time: 0.6666667
     functionName: ReturnPosition
     data: 
-    objectReferenceParameter: {fileID: 8874958416860687681, guid: e6360082cf042514f9c07f7c287b782b,
+    objectReferenceParameter: {fileID: 7764152958796322838, guid: 7d72598dea53d244d99beaefdf868e9c,
       type: 3}
     floatParameter: 0
     intParameter: 0

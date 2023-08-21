@@ -7,16 +7,6 @@ namespace FrameWork
 {
     public class Ironclad : CharacterBase
     {
-        private void Start()
-        {
-            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-            pos.x = 0.25f;
-            transform.position = Camera.main.ViewportToWorldPoint(pos);
-            Debug.Log(gameObject.name + " : " + transform.position.x);
-            charaterPos = transform.position;
-            Init();
-        }
-
         public override void Init()
         {
             name = "아이언 클래드";
@@ -26,6 +16,12 @@ namespace FrameWork
             defence = 0;
             isMonster = false;
             isHold = false;
+
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            pos.x = 0.25f;
+            pos.y = 0.5f;
+            transform.parent.position = Camera.main.ViewportToWorldPoint(pos);
+            charaterPos = transform.parent.position;
         }
     }
 }

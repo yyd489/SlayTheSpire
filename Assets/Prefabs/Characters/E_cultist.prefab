@@ -611,7 +611,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380743632665751815}
-  - component: {fileID: 4380743632665751834}
   - component: {fileID: 4380743632665751813}
   - component: {fileID: 4380743632665751812}
   m_Layer: 0
@@ -636,23 +635,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4380743632665751834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4380743632665751814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7220620427538594287062f9f705f065, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  shield: 0
-  damage: 0
-  defence: 0
-  objectResource: {fileID: 3216093662965062838}
 --- !u!61 &4380743632665751813
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -696,7 +678,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4380743632665751834}
+        - m_Target: {fileID: 5012824230212745515}
           m_MethodName: OnPointEnter
           m_Mode: 1
           m_Arguments:
@@ -711,7 +693,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4380743632665751834}
+        - m_Target: {fileID: 5012824230212745515}
           m_MethodName: OnPointExit
           m_Mode: 1
           m_Arguments:
@@ -1382,6 +1364,7 @@ GameObject:
   - component: {fileID: 2123570682129829311}
   - component: {fileID: 3216093662965062833}
   - component: {fileID: 3216093662965062838}
+  - component: {fileID: 5012824230212745515}
   m_Layer: 0
   m_Name: cultist
   m_TagString: Monster
@@ -1457,6 +1440,24 @@ MonoBehaviour:
   - {fileID: 6365290292002889091}
   - {fileID: 5041537024035514669}
   - {fileID: 953696945947231224}
+--- !u!114 &5012824230212745515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505846428024421386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7220620427538594287062f9f705f065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  shield: 0
+  damage: 0
+  defence: 0
+  charaterPos: {x: 0, y: 0}
+  objectResource: {fileID: 3216093662965062838}
 --- !u!1 &7529694227045562023
 GameObject:
   m_ObjectHideFlags: 0

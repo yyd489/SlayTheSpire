@@ -78,6 +78,7 @@ namespace FrameWork
             {
                 battleManager = ingameUi.GetComponent<BattleManager>();
             }
+            battleManager.Init();
 
             if (cardManager == null)
             {

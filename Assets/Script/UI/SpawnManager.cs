@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace FrameWork
 {
+    public enum Stage
+    {
+        NormalMonster,
+        NamedMonster,
+        BossMonster
+    }
+
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] GameObject[] arrNormarMonsters;
@@ -12,51 +19,55 @@ namespace FrameWork
 
         public void Init()
         {
-            
+            SpawnMonster(Stage.NormalMonster);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void SpawnMonster(Stage enemyStage)
         {
+            List<GameObject> listSpawnMonster = new List<GameObject>();
 
-        }
-
-        private void SpawnUnit()
-        {
-            // 몬스터 6.5 7.5 8.5
-
-            int unitCount = 3;
-            float[] spawnPosX = new float[unitCount];
-
-            if (unitCount == 1) spawnPosX[0] = 7.5f;
-            else if(unitCount == 2)
+            switch(enemyStage)
             {
-                spawnPosX[0] = 7f;
-                spawnPosX[1] = 8f;
+                case Stage.NormalMonster:
+                    int unitCount = Random.Range(1, 4);
+                    for(int i = 0; i < unitCount; i++)
+                        listSpawnMonster.Add(arrNormarMonsters[Random.Range(0, arrNormarMonsters.Length)]);
+                    break;
+                case Stage.NamedMonster:
+                    for (int i = 0; i < 3; i++)
+                        listSpawnMonster.Add(namedMonster);
+                    break;
+                case Stage.BossMonster:
+                    listSpawnMonster.Add(bossMonster);
+                    break;
+            }
+
+            float[] spawnPosX = new float[listSpawnMonster.Count];
+
+            if (listSpawnMonster.Count == 1) spawnPosX[0] = 0.75f;
+            else if(listSpawnMonster.Count == 2)
+            {
+                spawnPosX[0] = 0.65f;
+                spawnPosX[1] = 0.85f;
             }
             else
             {
-                spawnPosX[0] = 6.5f;
-                spawnPosX[1] = 7.5f;
-                spawnPosX[2] = 8.5f;
+                spawnPosX[0] = 0.6f;
+                spawnPosX[1] = 0.75f;
+                spawnPosX[2] = 0.9f;
             }
 
-            for (int i = 0; i < unitCount; i++)
+            for (int i = 0; i < listSpawnMonster.Count; i++)
             {
-                CharacterBase character = Instantiate(arrNormarMonsters[i], new Vector2(spawnPosX[i], 0f), Quaternion.identity, this.transform).GetComponent<CharacterBase>();
+                GameObject characterParent = Instantiate(listSpawnMonster[i], Vector2.zero, Quaternion.identity, this.transform);
+                CharacterBase character = characterParent.transform.GetChild(0).GetComponent<CharacterBase>();
+                Vector3 pos = Camera.main.WorldToViewportPoint(characterParent.transform.position);
+                pos.x = spawnPosX[i];
+                pos.y = 0.5f;
+                pos = Camera.main.ViewportToWorldPoint(pos);
+                characterParent.transform.position = character.charaterPos = pos;
                 GameManager.Instance.battleManager.enemyCharacters.Add(character);
             }
         }
     }
 }
-
-/*
-   ironclad -4.65
-   blueSlaver -2.95
-   champ -6.15
-   cultist -3.45
-   fungiBeast -3.45
-   jawWorm -3.95
-   looter -3.35
-   sentry -2.95
-   */
