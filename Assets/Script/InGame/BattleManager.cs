@@ -20,24 +20,25 @@ namespace FrameWork
         private BattleState battleState;
         private int maxEnergy;
         public int energy;
-        private bool isPlayerControl;
 
-        public CharacterBase playerCharacter;
-        public List<CharacterBase> enemyCharacters;
+        private CharacterBase playerCharacter;
+        public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
+
+        [SerializeField] private SpawnManager spawnManager;
 
         [SerializeField] private GameObject TurnEndBtn;
-
         [SerializeField] private TextMeshProUGUI deckCount;
         [SerializeField] private TextMeshProUGUI useDeckCount;
         [SerializeField] private TextMeshProUGUI energyText;
 
-        void Start()
+        public void Init()
         {
             maxEnergy = 3;
             energy = maxEnergy;
-            isPlayerControl = false;
             battleState = BattleState.Ready;
+            playerCharacter = GameManager.Instance.playerControler.playerCharacter;
             TurnChange();
+            spawnManager.Init();
         }
 
         public void TurnChange()

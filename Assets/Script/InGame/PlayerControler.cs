@@ -35,14 +35,14 @@ namespace FrameWork
 
                     if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
                     {
-                        selectCard.UseSelectCard();
                         onDrag = false;
+                        selectCard.UseSelectCard();
                         GameManager.Instance.cardManager.UseCard(selectCard);
                     }
                     else if(selectCard.cardData.cardType != Data.CardType.Attack)
                     {
-                        selectCard.UseSelectCard();
                         onDrag = false;
+                        selectCard.UseSelectCard();
                         GameManager.Instance.cardManager.UseCard(selectCard);
                     }
                 }

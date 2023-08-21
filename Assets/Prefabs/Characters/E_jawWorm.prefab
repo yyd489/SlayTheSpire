@@ -136,7 +136,7 @@ MonoBehaviour:
   - {fileID: 4359037318963748861}
   - {fileID: 859637464781425827}
   m_Bounds:
-    m_Center: {x: -0.018350005, y: 0.06537479, z: 0}
+    m_Center: {x: -0.018349886, y: 0.06537479, z: 0}
     m_Extent: {x: 1.24961, y: 0.571605, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -528,8 +528,8 @@ MonoBehaviour:
   - {fileID: 4359037318963748861}
   - {fileID: 859637464781425827}
   m_Bounds:
-    m_Center: {x: -0.007450044, y: -0.0049951375, z: 0}
-    m_Extent: {x: 0.5024501, y: 0.16999501, z: 0}
+    m_Center: {x: -0.0074501634, y: -0.0049951375, z: 0}
+    m_Extent: {x: 0.50245005, y: 0.16999501, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1854683174948910189
@@ -821,8 +821,8 @@ MonoBehaviour:
   - {fileID: 3319488021250424668}
   - {fileID: 1745366351484753382}
   m_Bounds:
-    m_Center: {x: 0.039999932, y: -0.005510181, z: 0}
-    m_Extent: {x: 0.17499986, y: 0.15449001, z: 0}
+    m_Center: {x: 0.039999947, y: -0.005510181, z: 0}
+    m_Extent: {x: 0.17499985, y: 0.15449001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4094860100383712340
@@ -834,7 +834,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4094860100383712336}
-  - component: {fileID: 4094860100383712337}
   - component: {fileID: 4094860100383712338}
   - component: {fileID: 4094860100383712339}
   m_Layer: 0
@@ -859,23 +858,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4094860100383712337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4094860100383712340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30dee372ca80034f9729b569f064a25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  shield: 0
-  damage: 0
-  defence: 0
-  objectResource: {fileID: 7602615704463519274}
 --- !u!61 &4094860100383712338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -889,7 +871,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.12, y: -1.2}
+  m_Offset: {x: 0.15, y: -1.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -919,7 +901,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4094860100383712337}
+        - m_Target: {fileID: 1783983116779955147}
           m_MethodName: OnPointEnter
           m_Mode: 1
           m_Arguments:
@@ -934,7 +916,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4094860100383712337}
+        - m_Target: {fileID: 1783983116779955147}
           m_MethodName: OnPointExit
           m_Mode: 1
           m_Arguments:
@@ -1389,8 +1371,8 @@ MonoBehaviour:
   - {fileID: 2857694487115228541}
   - {fileID: 4160848001138252716}
   m_Bounds:
-    m_Center: {x: 0.028379813, y: 0.13301496, z: 0}
-    m_Extent: {x: 0.21161997, y: 0.15687492, z: 0}
+    m_Center: {x: 0.028379783, y: 0.13301496, z: 0}
+    m_Extent: {x: 0.21161994, y: 0.15687492, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7771921460019517482
@@ -1404,6 +1386,7 @@ GameObject:
   - component: {fileID: 200020271281446452}
   - component: {fileID: 7708718015885800413}
   - component: {fileID: 7602615704463519274}
+  - component: {fileID: 1783983116779955147}
   m_Layer: 0
   m_Name: jawWorm
   m_TagString: Monster
@@ -1419,7 +1402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7771921460019517482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -3.95, z: 0}
+  m_LocalPosition: {x: 0.65, y: -3.95, z: 0}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children:
   - {fileID: 5883844180841086653}
@@ -1473,6 +1456,24 @@ MonoBehaviour:
   - {fileID: 270840008299615190}
   - {fileID: 6683727154303352315}
   - {fileID: 6034720246789327549}
+--- !u!114 &1783983116779955147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7771921460019517482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30dee372ca80034f9729b569f064a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  shield: 0
+  damage: 0
+  defence: 0
+  charaterPos: {x: 0, y: 0}
+  objectResource: {fileID: 7602615704463519274}
 --- !u!1 &8318752863132621146
 GameObject:
   m_ObjectHideFlags: 0

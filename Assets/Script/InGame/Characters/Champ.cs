@@ -7,12 +7,6 @@ namespace FrameWork
 {
     public class Champ : CharacterBase
     {
-        private void Start()
-        {
-            charaterPos = transform.position;
-            Init();
-        }
-
         public override void Init()
         {
             name = "투사";

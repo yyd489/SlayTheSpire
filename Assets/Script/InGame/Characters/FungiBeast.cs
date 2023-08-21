@@ -7,16 +7,6 @@ namespace FrameWork
 {
     public class FungiBeast : CharacterBase
     {
-        private void Start()
-        {
-            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-            pos.x = 0.65f;
-            transform.position = Camera.main.ViewportToWorldPoint(pos);
-            Debug.Log(gameObject.name + " : " + transform.position.x);
-            charaterPos = transform.position;
-            Init();
-        }
-
         public override void Init()
         {
             name = "동물하초";

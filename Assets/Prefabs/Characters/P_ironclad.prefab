@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233887975915651516}
-  - component: {fileID: 233887975915651517}
   m_Layer: 0
   m_Name: P_ironclad
   m_TagString: Untagged
@@ -32,23 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &233887975915651517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233887975915651518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25aa1c06d8c52243be9a2c041076e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  shield: 0
-  damage: 0
-  defence: 0
-  objectResource: {fileID: 3878070976184505617}
 --- !u!1 &830634470385732833
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +147,7 @@ GameObject:
   - component: {fileID: 7134908745791666107}
   - component: {fileID: 8968235021618798737}
   - component: {fileID: 3878070976184505617}
+  - component: {fileID: 5615855585876055984}
   m_Layer: 0
   m_Name: ironclad
   m_TagString: Untagged
@@ -232,6 +215,24 @@ MonoBehaviour:
   - {fileID: 5550987201239186727}
   - {fileID: 8869024659901416389}
   - {fileID: 3520558484368824285}
+--- !u!114 &5615855585876055984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927822097131624019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25aa1c06d8c52243be9a2c041076e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  shield: 0
+  damage: 0
+  defence: 0
+  charaterPos: {x: 0, y: 0}
+  objectResource: {fileID: 3878070976184505617}
 --- !u!1 &984458670411166183
 GameObject:
   m_ObjectHideFlags: 0
