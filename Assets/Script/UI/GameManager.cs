@@ -23,9 +23,9 @@ namespace FrameWork
 
         [SerializeField] Initializer initilizer;
 
+
         private void Start()
         {
-            
             Init();
         }
 

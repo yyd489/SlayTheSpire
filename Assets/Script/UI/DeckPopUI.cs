@@ -6,11 +6,13 @@ using UnityEngine.UI;
 namespace FrameWork
 {
     using FrameWork.Data;
+      
+
     public class DeckPopUI : MonoBehaviour
     {
         public GameObject cardPrefab;
         public Transform cardPanel;
-
+       
 
         private void Start()
         {
@@ -33,12 +35,18 @@ namespace FrameWork
                 {
                     cardObj.AddComponent<Button>().onClick.AddListener(() => DeleteChanceCard(cardObj));
                 }
-                cardObj.GetComponent<UnityEngine.EventSystems.EventTrigger>().enabled = false;
+
+                ShopManager.ChangeSize(cardObj);
+                Destroy(cardObj.GetComponent<UnityEngine.EventSystems.EventTrigger>());
                 cardObj.GetComponent<CardBase>().Init(cardDatas[listDeckCards[i]]);
             }
 
            // DeleteChanceCard();
         }
+
+
+        
+
 
         public void DeleteChanceCard(GameObject card)
         {
