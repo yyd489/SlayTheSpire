@@ -31,6 +31,9 @@ namespace FrameWork
 
         public List<BuffStatus> listBuff = new List<BuffStatus>();
 
+        [SerializeField] private GameObject hpBarPrefab;
+        private HealthBar hpBar;
+
         [SerializeField] protected ObjectResource objectResource;
 
         public abstract void Init();
@@ -46,6 +49,8 @@ namespace FrameWork
         private void Start()
         {
             Init();
+            hpBar = Instantiate(hpBarPrefab, transform.parent).transform.GetChild(0).GetComponent<HealthBar>();
+            hpBar.Init(hp, maxHp, shield,transform.parent.gameObject);
         }
 
         public void ActiveRender(bool isActive)
@@ -82,7 +87,7 @@ namespace FrameWork
                                 targetCharacter.AddBuffStat(newBuff);
                             }
 
-                            TargetHit(cardDamage);
+                            target.Hit(damage, cardDamage);
                         }
                     }
                     else
@@ -93,7 +98,7 @@ namespace FrameWork
                             newBuff.InitBuff(Buff.DefenceDown, debuffTurn);
                             targetCharacter.AddBuffStat(newBuff);
                         }
-                        TargetHit(cardDamage);
+                        target.Hit(damage, cardDamage);
                     }
 
                     ReturnPosition();
@@ -103,38 +108,40 @@ namespace FrameWork
             return true;
         }
 
-        private async void TargetHit(int cardDamage)
+        public async void Hit(int attackdamage, int cardDamage)
         {
             float modifyPos = -1f;
-            if (targetCharacter.isMonster) modifyPos *= -1f;
+            if (isMonster) modifyPos *= -1f;
 
-            float knockBackPosX = targetCharacter.transform.position.x + modifyPos;
+            float knockBackPosX = transform.position.x + modifyPos;
 
-            int targetShield = targetCharacter.shield;
-            int attackDamage = damage + cardDamage + targetCharacter.defence;
+            int targetShield = shield;
+            int hitDamage = attackdamage + cardDamage + defence;
 
             if (targetShield > 0 )
             {
-                if (targetShield > attackDamage)
-                    targetCharacter.shield -= attackDamage;
+                if (targetShield > hitDamage)
+                    shield -= hitDamage;
                 else
                 {
-                    attackDamage -= shield;
-                    targetCharacter.shield = 0;
+                    hitDamage -= shield;
+                    shield = 0;
                 }
             }
 
-            targetCharacter.hp -= attackDamage;
+            hp -= hitDamage;
 
-            if (targetCharacter.IsDead())
+            hpBar.SetHealthGauge(hp, maxHp, shield);
+
+            if (IsDead())
             {
-                if (targetCharacter.isMonster) targetCharacter.objectResource.ActiveRender(false);
+                if (isMonster) objectResource.ActiveRender(false);
             }
             else
             {
-                await targetCharacter.transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
+                await transform.DOMoveX(knockBackPosX, 0.05f).SetEase(Ease.Linear);
 
-                targetCharacter.ReturnPosition();
+                ReturnPosition();
             }
         }
 
@@ -159,6 +166,7 @@ namespace FrameWork
         public void SetShield(int getShield)
         {
             shield += getShield;
+            hpBar.SetHealthGauge(hp, maxHp, shield);
         }
 
         public void InputBuffStat()

@@ -30,7 +30,7 @@ namespace FrameWork
                 if (Input.GetMouseButtonDown(0))
                 {
                     Vector3 pos = Camera.main.WorldToViewportPoint(Input.mousePosition);
-                    Debug.Log(pos.y);
+
                     if (pos.y < 20f) return;
 
                     if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
