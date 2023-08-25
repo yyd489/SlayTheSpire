@@ -47,6 +47,10 @@ namespace FrameWork
                     transform.rotation = Quaternion.identity;
                     cardManager.SelectCard(this);
                 }
+                else if (cardData.cardCost > GameManager.Instance.battleManager.energy)
+                {
+                    GameManager.Instance.battleManager.Narration("Energy");
+                }
             }
         }
 

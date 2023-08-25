@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using Cysharp.Threading.Tasks;
@@ -31,6 +31,9 @@ namespace FrameWork
         [SerializeField] private TextMeshProUGUI useDeckCount;
         [SerializeField] private TextMeshProUGUI energyText;
 
+        [SerializeField] private TextMeshProUGUI narrationText;
+        private IEnumerator coNarration;
+
         public void Init()
         {
             maxEnergy = 3;
@@ -38,7 +41,7 @@ namespace FrameWork
             battleState = BattleState.Ready;
             playerCharacter = GameManager.Instance.playerControler.playerCharacter;
             TurnChange();
-            spawnManager.Init();
+            spawnManager.Init();            
         }
 
         public void TurnChange()
@@ -50,6 +53,7 @@ namespace FrameWork
                     break;
                 case BattleState.PlayerTurn:
                     battleState = BattleState.EnemyTurn;
+                    Narration("Enemy Turn");
                     EnemyTurn();
                     RefreshBuff(playerCharacter);
                     GameManager.Instance.cardManager.RemovePlayerCard();
@@ -73,6 +77,7 @@ namespace FrameWork
 
             if(battleState == BattleState.PlayerTurn)
             {
+                Narration("Player Turn");
                 TurnEndBtn.SetActive(true);
                 energy = maxEnergy;
                 RefreshEnergyText();
@@ -106,6 +111,39 @@ namespace FrameWork
         {
             energy -= useEnergy;
             energyText.text = string.Format("{0}/3", energy);
+        }
+
+        public void Narration(string text)
+        {
+            if (coNarration != null)
+            {
+                StopCoroutine(coNarration);
+                coNarration = null;
+            }
+
+            coNarration = OnNarration(text);
+            StartCoroutine(coNarration);
+        }
+
+        private IEnumerator OnNarration(string text)
+        {
+            narrationText.gameObject.SetActive(true);
+            narrationText.text = text;
+            narrationText.alpha = 0f;
+
+            float alpha = 0.025f;
+
+            while(narrationText.alpha < 1f)
+            {
+                narrationText.alpha += alpha;
+                yield return null;
+            }
+
+            while (narrationText.alpha > 0f)
+            {
+                narrationText.alpha -= alpha;
+                yield return null;
+            }
         }
 
         // 테스트용---------------------------------------------------------------------------------------------------------
