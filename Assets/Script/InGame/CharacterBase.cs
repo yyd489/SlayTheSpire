@@ -21,6 +21,8 @@ namespace FrameWork
         [SerializeField] protected int shield;
         [SerializeField] protected int damage;
         [SerializeField] protected int defence;
+        private int buffDamage;
+        private int buffDefence;
         protected bool isMonster;
         protected bool isHold;
         protected Animator animator;
@@ -59,6 +61,7 @@ namespace FrameWork
                 objectResource.ActiveRender(isActive);
         }
 
+        // 공격, 피격등 이동
         public async Task<bool> Attack(CharacterBase target, int cardDamage, int debuffTurn, bool isAllAttack = false)
         {
             targetCharacter = target;
@@ -84,7 +87,7 @@ namespace FrameWork
                             {
                                 BuffStatus newBuff = new BuffStatus();
                                 newBuff.InitBuff(Buff.DefenceDown, debuffTurn);
-                                targetCharacter.AddBuffStat(newBuff);
+                                targetCharacter.AddBuffList(newBuff);
                             }
 
                             target.Hit(damage, cardDamage);
@@ -96,7 +99,7 @@ namespace FrameWork
                         {
                             BuffStatus newBuff = new BuffStatus();
                             newBuff.InitBuff(Buff.DefenceDown, debuffTurn);
-                            targetCharacter.AddBuffStat(newBuff);
+                            targetCharacter.AddBuffList(newBuff);
                         }
                         target.Hit(damage, cardDamage);
                     }
@@ -151,6 +154,8 @@ namespace FrameWork
             ChangeState(0);
         }
 
+
+        // 스텟 관련
         public bool IsDead()
         {
             return hp <= 0;
@@ -169,10 +174,11 @@ namespace FrameWork
             hpBar.SetHealthGauge(hp, maxHp, shield);
         }
 
+        // 버프
         public void InputBuffStat()
         {
-            int buffDamage = 0;
-            int buffDefence = 0;
+            buffDamage = 0;
+            buffDefence = 0;
 
             for (int i = 0; i < listBuff.Count; i++)
             {
@@ -180,11 +186,11 @@ namespace FrameWork
                 else if (listBuff[i].buff == Buff.DefenceDown) buffDefence = 2;
             }
 
-            damage = buffDamage;
-            defence = buffDefence;
+            damage += buffDamage;
+            defence += buffDefence;
         }
 
-        public void AddBuffStat(BuffStatus buffStatus)
+        public void AddBuffList(BuffStatus buffStatus)
         {
             listBuff.Add(buffStatus);
             InputBuffStat();

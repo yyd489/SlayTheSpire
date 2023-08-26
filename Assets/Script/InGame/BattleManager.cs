@@ -20,8 +20,10 @@ namespace FrameWork
         private BattleState battleState;
         private int maxEnergy;
         public int energy;
+        public bool firstTurn;
 
         private CharacterBase playerCharacter;
+        private Ironclad ironclad;
         public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
 
         [SerializeField] private SpawnManager spawnManager;
@@ -40,6 +42,7 @@ namespace FrameWork
             energy = maxEnergy;
             battleState = BattleState.Ready;
             playerCharacter = GameManager.Instance.playerControler.playerCharacter;
+            ironclad = playerCharacter.GetComponent<Ironclad>();
             TurnChange();
             spawnManager.Init();            
         }
@@ -49,9 +52,15 @@ namespace FrameWork
             switch (battleState)
             {
                 case BattleState.Ready:
+                    firstTurn = true;
                     battleState = BattleState.PlayerTurn;
                     break;
                 case BattleState.PlayerTurn:
+                    if (firstTurn)
+                    {
+                        firstTurn = false;
+                        ironclad.SetRelicStatus(firstTurn);
+                    }
                     battleState = BattleState.EnemyTurn;
                     Narration("Enemy Turn");
                     EnemyTurn();
@@ -71,6 +80,7 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
+                    if (!playerCharacter.IsDead()) ironclad.RelicHeal();
                     Debug.Log("전투 종료");
                     break;
             }

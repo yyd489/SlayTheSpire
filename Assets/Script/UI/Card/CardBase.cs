@@ -79,7 +79,7 @@ namespace FrameWork
                 {
                     BuffStatus newBuff = new BuffStatus();
                     newBuff.InitBuff(Buff.PowerUp, 1);
-                    playerCharacter.AddBuffStat(newBuff);
+                    playerCharacter.AddBuffList(newBuff);
                 }
                 else
                 {

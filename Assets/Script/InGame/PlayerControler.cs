@@ -16,6 +16,7 @@ namespace FrameWork
         // 카드
         [HideInInspector] public CardBase selectCard;
         [HideInInspector] public bool onDrag;
+        [HideInInspector] public int selectPotion;
 
         public void Init()
         {
@@ -54,6 +55,13 @@ namespace FrameWork
                     selectCard = null;
                 }
             }
+        }
+
+        public void UsePotion()
+        {
+            var dicPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion;
+
+            
         }
     }
 }

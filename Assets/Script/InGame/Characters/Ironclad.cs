@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading;
 
 namespace FrameWork
 {
@@ -22,6 +21,44 @@ namespace FrameWork
             pos.y = 0.5f;
             transform.parent.position = Camera.main.ViewportToWorldPoint(pos);
             charaterPos = transform.parent.position;
+
+            //SetRelicStatus(true);
+        }
+
+        public void SetRelicStatus(bool first)
+        {
+            if (first)
+            {
+                var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHaveRelic;
+
+                if (dicRelic.ContainsKey(Data.RelicType.Accursed))
+                    damage += 2;
+                else if (dicRelic.ContainsKey(Data.RelicType.Void))
+                    defence += 10;
+            }
+            else
+            {
+                damage = defence = 0;
+            }
+        }
+
+        public void RelicHeal()
+        {
+            var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHaveRelic;
+
+            if (dicRelic.ContainsKey(Data.RelicType.HealFire))
+            {
+                hp += 10;
+                if (hp > maxHp) hp = maxHp;
+            }
+        }
+
+        public void RelicHealth()
+        {
+            maxHp += 10;
+            hp += 10;
+
+            if (hp > maxHp) hp = maxHp;
         }
     }
 }
