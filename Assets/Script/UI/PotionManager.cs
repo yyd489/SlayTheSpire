@@ -7,24 +7,29 @@ namespace FrameWork
     public class PotionManager : MonoBehaviour
     {
         [SerializeField] private GameObject popUsePotion;
-
-        [SerializeField] PotionBase[] potionBases = new PotionBase[3];
+        [SerializeField] private GameObject[] potionBtn;
 
         private List<Data.PotionType> listPotions = new List<Data.PotionType>();
+        private int selectPotionIndex;
 
         public void Init()
         {
             var dicPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion;
-            Data.PotionType potionType = Data.PotionType.Card;
 
             for (int i = 0; i < dicPotion.Count; i++)
             {
-                potionBases[i].Init(potionType);
+                listPotions.Add(dicPotion[i]);
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        public void PopUpPotion(int potionIndex)
+        {
+            popUsePotion.transform.position = new Vector2(potionBtn[potionIndex].transform.position.x, popUsePotion.transform.position.y);
+            selectPotionIndex = potionIndex;
+            popUsePotion.SetActive(true);
+        }
+
+        public void UsePotion()
         {
 
         }

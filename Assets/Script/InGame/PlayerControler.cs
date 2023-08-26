@@ -16,7 +16,7 @@ namespace FrameWork
         // 카드
         [HideInInspector] public CardBase selectCard;
         [HideInInspector] public bool onDrag;
-        [HideInInspector] public int selectPotion;
+        [HideInInspector] public Data.PotionType selectPotion;
 
         public void Init()
         {
@@ -34,17 +34,24 @@ namespace FrameWork
 
                     if (pos.y < 20f) return;
 
-                    if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
+                    if (selectCard != null)
                     {
-                        onDrag = false;
-                        selectCard.UseSelectCard();
-                        GameManager.Instance.cardManager.UseCard(selectCard);
+                        if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
+                        {
+                            onDrag = false;
+                            selectCard.UseSelectCard();
+                            GameManager.Instance.cardManager.UseCard(selectCard);
+                        }
+                        else if (selectCard.cardData.cardType != Data.CardType.Attack)
+                        {
+                            onDrag = false;
+                            selectCard.UseSelectCard();
+                            GameManager.Instance.cardManager.UseCard(selectCard);
+                        }
                     }
-                    else if(selectCard.cardData.cardType != Data.CardType.Attack)
+                    else if (selectPotion != null)
                     {
-                        onDrag = false;
-                        selectCard.UseSelectCard();
-                        GameManager.Instance.cardManager.UseCard(selectCard);
+
                     }
                 }
                 else if (Input.GetMouseButtonDown(1))
@@ -52,6 +59,7 @@ namespace FrameWork
                     onDrag = false;
                     selectCard.gameObject.SetActive(true);
                     selectCard.CancleDrag();
+                    
                     selectCard = null;
                 }
             }
