@@ -3,24 +3,28 @@
     {
       "name": "꺼지지 않는 화염",
       "relicEffect": 10,
+      "effectGuide": "스테이지 클리어 시 체력을 10 채워줍니다.",
       "relicType": 0,
       "cost": 30
     },
     {
       "name": "꽈배기",
       "relicEffect": 10,
+      "effectGuide": "최대 체력이 10 증가합니다 체력이 닳아있다면 최대 10 회복합니다.",
       "relicType": 1,
       "cost": 20
     },
     {
       "name": "저주받은 부적",
-      "relicEffect": 5,
+      "relicEffect": 2,
+      "effectGuide": "스테이지 첫턴에 공격력 2증가",
       "relicType": 2,
       "cost": 20
     },
     {
       "name": "공허의 선물",
       "relicEffect": 10,
+      "effectGuide": "스테이지 첫턴에 방어력 10증가",
       "relicType": 3,
       "cost": 30
     }

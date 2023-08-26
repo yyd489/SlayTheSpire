@@ -1463,6 +1463,11 @@ PrefabInstance:
       propertyPath: mapPop
       value: 
       objectReference: {fileID: 1380609455}
+    - target: {fileID: 6956102832313555875, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Name
+      value: potionImageFirst
+      objectReference: {fileID: 0}
     - target: {fileID: 6956102833069347722, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}
       propertyPath: m_Name
