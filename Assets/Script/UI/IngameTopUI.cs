@@ -33,7 +33,7 @@ namespace FrameWork
             if(mapPop == null)
             mapPop = GameManager.Instance.mapManager.gameObject;
 
-            var dicRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.dicHaveRelic;
+            var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHaveRelic;
             int relicCount = dicRelic.Count;
            
 
