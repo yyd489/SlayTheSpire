@@ -95,10 +95,24 @@ namespace FrameWork
 
             if(gold >= cost)
             {
-                Destroy(item);
-                Destroy(itemPanel.GetChild(itemIndex).gameObject);
-                GameManager.Instance.ingameUI.AddCard(itemDataIndex);
+                //Destroy(item);
+                //Destroy(itemPanel.GetChild(itemIndex).gameObject);  
                 characterData.gold -= cost;
+
+                if( itemType == 0)
+                {
+                    GameManager.Instance.ingameUI.AddCard(itemDataIndex);
+                }
+
+                else if (itemType == 1)
+                {
+                    GameManager.Instance.ingameUI.AddRelic(itemDataIndex);
+                }
+
+                else if (itemType == 2)
+                {
+                    GameManager.Instance.ingameUI.AddPotion(itemDataIndex);
+                }
             }
            
         }
