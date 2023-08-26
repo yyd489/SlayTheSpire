@@ -9,11 +9,9 @@ namespace FrameWork
         private Data.PotionType potionType;
         public int itemIndex;
 
-        public void Init()
+        public void Init(Data.PotionType potionType)
         {
-            var dicPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion;
-
-            //potionType = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion[];
+            this.potionType = potionType;
         }
     }
 }

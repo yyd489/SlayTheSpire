@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 1791140856169367552}
   - component: {fileID: 1791140856169367558}
   - component: {fileID: 1791140856169367559}
+  - component: {fileID: 6769857462673896930}
   m_Layer: 5
   m_Name: CardPotion
   m_TagString: Untagged
@@ -149,3 +150,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6769857462673896930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791140856169367553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda435e873c50b043bf80684f8e65ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIndex: 0
