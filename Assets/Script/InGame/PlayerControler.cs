@@ -57,11 +57,11 @@ namespace FrameWork
             }
         }
 
-        public void UsePotion()
-        {
-            var dicPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion;
-
-            
-        }
+        //public void UsePotion()
+        //{
+        //    var dicPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion;
+        //
+        //    
+        //}
     }
 }
