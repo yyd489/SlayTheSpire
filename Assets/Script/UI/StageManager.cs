@@ -21,7 +21,6 @@ namespace FrameWork
           public GameObject shopPop;
           public GameObject restPop;
           public GameObject[] arrEvents;
-         
 
           public void ControlField(MapField fieldInfo)
           {

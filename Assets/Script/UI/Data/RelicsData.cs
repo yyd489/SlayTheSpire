@@ -33,7 +33,7 @@ namespace FrameWork.Data
         public string name;
         public int relicEffect;
         public RelicType relicType;
-
+        public int cost;
     }
 
     public class PotionJsonData
@@ -41,7 +41,7 @@ namespace FrameWork.Data
         public string name;
         public int potionEffect;
         public PotionType potionType;
-
+        public int cost;
     }
 
     public class ItemData : DataInterface
@@ -67,11 +67,18 @@ namespace FrameWork.Data
             });
         }
 
-        public List<RelicJsonData> GetEventData()
+        public List<RelicJsonData> GetRelicData()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
             List<RelicJsonData> listRelicData = itemData.listRelicData;
             return listRelicData;
+        }
+
+        public List<PotionJsonData> GetPotionData()
+        {
+            // await UniTask.WaitUntil(() => characterInfoCollect != null);
+            List<PotionJsonData> listPotionData = itemData.listPotionData;
+            return listPotionData;
         }
 
         //public void WriteJson()

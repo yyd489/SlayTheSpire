@@ -1443,6 +1443,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1945194676640396871, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Spacing
+      value: -290
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945194676640396871, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Padding.m_Top
+      value: -140
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945194676640396871, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Padding.m_Left
+      value: -145
+      objectReference: {fileID: 0}
     - target: {fileID: 4302363333649287277, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}
       propertyPath: mapPop
@@ -1905,6 +1920,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 46730788, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1037125442, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
       propertyPath: playerCharacter
       value: 

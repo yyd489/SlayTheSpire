@@ -21,6 +21,7 @@ namespace FrameWork
         public TextMeshProUGUI nowHpText;
 
         public List<Sprite> listRelicSprites = new List<Sprite>();
+        public List<GameObject> listPotionPrefab;
         public GameObject relicObject;
 
         // Start is called before the first frame update
