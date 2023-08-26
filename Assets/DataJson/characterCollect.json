@@ -5,12 +5,12 @@
     "maxHp": 88,
     "mp": 3,
     "gold": 100,
-    "dicHaveRelic": {
-      "10" : "HealFire"
-    },
-    "dicHavePotion": {
-     
-    },
+    "listHaveRelic": [
+      "HealFire"
+    ],
+    "listHavePotion": [
+
+    ],
 
     "listHaveCard": [ 2, 2, 2, 2, 2, 1, 1, 1, 1, 0 ]
   }

@@ -33,15 +33,14 @@ namespace FrameWork
             if(mapPop == null)
             mapPop = GameManager.Instance.mapManager.gameObject;
 
-            var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHaveRelic;
-            int relicCount = dicRelic.Count;
+            var listRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+            int relicCount = listRelic.Count;
            
 
             for (int i = 0; i < relicCount; i++)
             {
                Image relicImage = Instantiate(relicObject,GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
                
-               if(dicRelic.ContainsKey(i) == true)
                relicImage.sprite = listRelicSprites[i]; 
             }
 
