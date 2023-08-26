@@ -31,9 +31,9 @@ namespace FrameWork
             {
                 var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHaveRelic;
 
-                if (dicRelic.ContainsKey(Data.RelicType.Accursed))
+                if (dicRelic.ContainsValue(Data.RelicType.Accursed))
                     damage += 2;
-                else if (dicRelic.ContainsKey(Data.RelicType.Void))
+                else if (dicRelic.ContainsValue(Data.RelicType.Void))
                     defence += 10;
             }
             else
@@ -46,7 +46,7 @@ namespace FrameWork
         {
             var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHaveRelic;
 
-            if (dicRelic.ContainsKey(Data.RelicType.HealFire))
+            if (dicRelic.ContainsValue(Data.RelicType.HealFire))
             {
                 hp += 10;
                 if (hp > maxHp) hp = maxHp;

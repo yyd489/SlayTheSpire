@@ -63,8 +63,8 @@ namespace FrameWork
                     }
                     battleState = BattleState.EnemyTurn;
                     Narration("Enemy Turn");
-                    EnemyTurn();
                     RefreshBuff(playerCharacter);
+                    EnemyTurn();
                     GameManager.Instance.cardManager.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
