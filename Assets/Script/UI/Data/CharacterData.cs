@@ -24,7 +24,7 @@ namespace FrameWork.Data
         public string name;
         public int hp;
         public int maxHp = 88;
-        public int mp;
+        public int mp; 
         public int gold;
         public Dictionary<int, RelicType> dicHaveRelic = new Dictionary<int, RelicType>();
         public Dictionary< int, PotionType> dicHavePotion = new Dictionary< int, PotionType>();

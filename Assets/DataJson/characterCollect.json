@@ -6,7 +6,7 @@
     "mp": 3,
     "gold": 100,
     "dicHaveRelic": {
-      "HealFire": 10
+      "10" : "HealFire"
     },
     "dicHavePotion": {
      
