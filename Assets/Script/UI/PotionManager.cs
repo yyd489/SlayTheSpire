@@ -14,12 +14,7 @@ namespace FrameWork
 
         public void Init()
         {
-            var dicPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().dicHavePotion;
-
-            for (int i = 0; i < dicPotion.Count; i++)
-            {
-                listPotions.Add(dicPotion[i]);
-            }
+            listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
         }
 
         public void PopUpPotion(int potionIndex)
@@ -31,7 +26,23 @@ namespace FrameWork
 
         public void UsePotion()
         {
+            switch (listPotions[selectPotionIndex])
+            {
+                case Data.PotionType.Fire:
+                    GameManager.Instance.playerControler.selectPotion = listPotions[selectPotionIndex];
+                    break;
 
+                case Data.PotionType.Heal:
+                    GameManager.Instance.playerControler.ironclad.Heal(10);
+                    break;
+
+                case Data.PotionType.Card:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        GameManager.Instance.cardManager.DrawCard();
+                    }
+                    break;
+            }
         }
     }
 }

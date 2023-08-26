@@ -42,7 +42,7 @@ namespace FrameWork
             energy = maxEnergy;
             battleState = BattleState.Ready;
             playerCharacter = GameManager.Instance.playerControler.playerCharacter;
-            ironclad = playerCharacter.GetComponent<Ironclad>();
+            ironclad = GameManager.Instance.playerControler.ironclad;
             TurnChange();
             spawnManager.Init();            
         }
@@ -80,7 +80,12 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
-                    if (!playerCharacter.IsDead()) ironclad.RelicHeal();
+                    if (!playerCharacter.IsDead())
+                    {
+                        var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+                        if(ralic.Contains(Data.RelicType.HealFire))
+                            ironclad.Heal(10);
+                    }
                     Debug.Log("전투 종료");
                     break;
             }

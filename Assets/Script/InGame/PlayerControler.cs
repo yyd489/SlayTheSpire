@@ -11,6 +11,7 @@ namespace FrameWork
 
         // 캐릭터
         public CharacterBase playerCharacter;
+        [HideInInspector] public Ironclad ironclad;
         [HideInInspector] public CharacterBase targetCharacter;
 
         // 카드
