@@ -32,9 +32,8 @@ namespace FrameWork
             List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
             int allCardCount = GameManager.Instance.dataManager.data.cardData.cardCollect.listcardData.Count;
             CardManager cardManager = GameManager.Instance.cardManager;
-
-
             int cardGoodsCount = 5;
+            
             
 
             for (int i = 0; i < cardGoodsCount; i++)
@@ -44,7 +43,7 @@ namespace FrameWork
                 CardBase cardBase = Instantiate(cardPrefab, cardPanel).GetComponent<CardBase>();
                 cardBase.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>().enabled = false;
               
-                cardBase.gameObject.AddComponent<Button>().onClick.AddListener(() => AddItem(cost,cardBase.gameObject,randomCardIndex));
+                cardBase.gameObject.AddComponent<Button>().onClick.AddListener(() => AddItem(cost,cardBase.gameObject,randomCardIndex,cardPanel,0));
                 cardBase.cardManager = cardManager;
                 cardBase.Init(cardDatas[randomCardIndex]);
                 cardCostParent.GetChild(i).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
@@ -61,7 +60,7 @@ namespace FrameWork
                 int cost = relicList[randomRelicIndex].cost;
                 GameObject relicObj = Instantiate(relicPrefab, relicPanel);
                 relicObj.GetComponent<Image>().sprite = GameManager.Instance.ingameUI.listRelicSprites[randomRelicIndex];
-                
+                relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, randomRelicIndex, cardPanel,1));
                 ChangeSize(relicObj);
 
                 itemCostBox.GetChild(i-1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
@@ -70,6 +69,7 @@ namespace FrameWork
                 //GameObject potionObj = Instantiate(cardPrefab, cardPanel).gameObject
             }
 
+            Debug.Log(potionList.Count);
 
             for (int i = 0; i < potionList.Count; i++)
             {
@@ -77,25 +77,27 @@ namespace FrameWork
                 int cost = potionList[randomPotionIndex].cost;
                 var potionObject = GameManager.Instance.ingameUI.listPotionPrefab[randomPotionIndex];
                 GameObject potionObj = Instantiate(potionObject, potionPanel);
+                potionObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, potionObj, randomPotionIndex, cardPanel,2));
                 itemCostBox.GetChild(i + 3).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
 
                 ChangeSize(potionObj);
             }
 
+         
         }
 
-        public void AddItem(int cost, GameObject item,int itemDataIndex)
+        public void AddItem(int cost, GameObject item,int itemDataIndex,Transform itemPanel,int itemType)
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
             int gold = characterData.gold;
-
-            int cardShopIndex = item.transform.GetSiblingIndex();
+           
+            int itemIndex = item.transform.GetSiblingIndex();
 
             if(gold >= cost)
             {
                 Destroy(item);
-                Destroy(cardCostParent.GetChild(cardShopIndex).gameObject);
-                characterData.listHaveCard.Add(itemDataIndex);
+                Destroy(itemPanel.GetChild(itemIndex).gameObject);
+                GameManager.Instance.ingameUI.AddCard(itemDataIndex);
                 characterData.gold -= cost;
             }
            
@@ -134,7 +136,6 @@ namespace FrameWork
 
         public static void OnPointerEnter(PointerEventData data)
         {
-         
            data.pointerEnter.gameObject.transform.DOScale(0.75f, 0.25f);// = new Vector3(0.7f, 0.7f, 0.7f);
            saveBeforeCard = data.pointerEnter.gameObject;    
         }
@@ -144,5 +145,7 @@ namespace FrameWork
           
             saveBeforeCard.transform.DOScale(0.5f, 0.5f);
         }
+
+        
     }
 }

@@ -67,6 +67,24 @@ namespace FrameWork
             nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
 
         }
+
+        public void AddCard(int itemDataIndex)
+        {
+            var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
+            characterData.listHaveCard.Add(itemDataIndex);
+        }
+
+        public void AddPotion(int itemDataIndex)
+        {
+            var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
+            characterData.dicHavePotion.Add((PotionType)itemDataIndex, GameManager.Instance.dataManager.data.itemData.GetPotionData()[itemDataIndex].potionEffect);
+        }
+
+        public void AddRelic(int itemDataIndex)
+        {
+            var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
+            characterData.dicHaveRelic.Add((RelicType)itemDataIndex, GameManager.Instance.dataManager.data.itemData.GetRelicData()[itemDataIndex].relicEffect);
+        }
     }
 }
 
