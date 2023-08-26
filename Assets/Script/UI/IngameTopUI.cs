@@ -41,7 +41,7 @@ namespace FrameWork
             {
                Image relicImage = Instantiate(relicObject,GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
                
-               if(dicRelic.ContainsKey((RelicType)i) == true)
+               if(dicRelic.ContainsKey(i) == true)
                relicImage.sprite = listRelicSprites[i]; 
             }
 
@@ -77,13 +77,13 @@ namespace FrameWork
         public void AddPotion(int itemDataIndex)
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
-            characterData.dicHavePotion.Add((PotionType)itemDataIndex, GameManager.Instance.dataManager.data.itemData.GetPotionData()[itemDataIndex].potionEffect);
+          //  characterData.dicHavePotion.Add((PotionType)itemDataIndex, GameManager.Instance.dataManager.data.itemData.GetPotionData()[itemDataIndex].potionEffect);
         }
 
         public void AddRelic(int itemDataIndex)
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
-            characterData.dicHaveRelic.Add((RelicType)itemDataIndex, GameManager.Instance.dataManager.data.itemData.GetRelicData()[itemDataIndex].relicEffect);
+            //characterData.dicHaveRelic.Add((RelicType)itemDataIndex, GameManager.Instance.dataManager.data.itemData.GetRelicData()[itemDataIndex].relicEffect);
         }
     }
 }
