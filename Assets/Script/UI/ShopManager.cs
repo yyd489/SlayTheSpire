@@ -131,6 +131,7 @@ namespace FrameWork
                 {
                     GameManager.Instance.ingameUI.AddPotion(itemDataIndex);
                     Destroy(textPanel.GetChild(itemIndex).gameObject);
+                   
                 }
             }
            

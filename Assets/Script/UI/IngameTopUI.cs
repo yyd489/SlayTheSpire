@@ -23,6 +23,7 @@ namespace FrameWork
         public List<Sprite> listRelicSprites = new List<Sprite>();
         public List<GameObject> listPotionPrefab;
         public GameObject relicObject;
+        public Transform potionsPanel;
 
         // Start is called before the first frame update
 
@@ -64,7 +65,28 @@ namespace FrameWork
             goldText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
             maxHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
             nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
+        }
 
+        public void ChangePotion()
+        {
+            var listPotion = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHavePotion;
+           for(int i = potionsPanel.childCount; i <listPotion.Count; i++)
+           {
+                Instantiate(listPotionPrefab[(int)listPotion[i]], potionsPanel);
+           }
+        }
+
+        public void ChangeRelic()
+        {
+            var listRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveRelic;
+            var relicsPanel = GameObject.Find("RelicsPanel").transform;
+
+            for (int i = relicsPanel.childCount; i < listRelic.Count; i++)
+            {
+                Image relicImage = Instantiate(relicObject, GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
+
+                relicImage.sprite = listRelicSprites[(int)listRelic[i]];
+            }
         }
 
         public void AddCard(int itemDataIndex)
@@ -77,12 +99,14 @@ namespace FrameWork
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
             characterData.listHavePotion.Add((PotionType)itemDataIndex);
+            ChangePotion();
         }
 
         public void AddRelic(int itemDataIndex)
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
             characterData.listHaveRelic.Add((RelicType)itemDataIndex);
+            ChangeRelic();
         }
     }
 }

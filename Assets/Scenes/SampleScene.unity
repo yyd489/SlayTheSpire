@@ -1358,6 +1358,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66b46cfb532bff4688b5dac27ecb336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1794503725 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7564962027622944516, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1810541266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1801035733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,6 +1621,11 @@ PrefabInstance:
       objectReference: {fileID: 1380609455}
     - target: {fileID: 4302363333649287277, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}
+      propertyPath: potionsPanel
+      value: 
+      objectReference: {fileID: 1794503725}
+    - target: {fileID: 4302363333649287277, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
       propertyPath: listPotionPrefab.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1794,6 +1805,11 @@ PrefabInstance:
     - target: {fileID: 6956102833069347734, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158795554518230304, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
