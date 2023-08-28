@@ -15,10 +15,17 @@ namespace FrameWork
         public void Init()
         {
             listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
+            listPotions.Add(Data.PotionType.Heal);
+            for (int i = 0; i < listPotions.Count; i++)
+            {
+                potionBtn[i].SetActive(true);
+            }
         }
 
-        public void PopUpPotion(int potionIndex)
+        public void PopUpPotionUi(int potionIndex)
         {
+            if (GameManager.Instance.playerControler.onDrag) return;
+
             popUsePotion.transform.position = new Vector2(potionBtn[potionIndex].transform.position.x, popUsePotion.transform.position.y);
             selectPotionIndex = potionIndex;
             popUsePotion.SetActive(true);
@@ -26,14 +33,36 @@ namespace FrameWork
 
         public void UsePotion()
         {
+            var potionData = GameManager.Instance.dataManager.data.itemData.itemData.listPotionData;
+
             switch (listPotions[selectPotionIndex])
             {
                 case Data.PotionType.Fire:
-                    GameManager.Instance.playerControler.selectPotion = listPotions[selectPotionIndex];
+                    for (int i = 0; i < potionData.Count; i++)
+                    {
+                        if (potionData[i].potionType == Data.PotionType.Fire)
+                        {
+                            GameManager.Instance.playerControler.SelectPorionData(potionData[i]);
+                            break;
+                        }
+                    }
                     break;
 
                 case Data.PotionType.Heal:
-                    GameManager.Instance.playerControler.ironclad.Heal(10);
+                    for (int i = 0; i < potionData.Count; i++)
+                    {
+                        Debug.Log(potionData[i].potionType);
+                        if (potionData[i].potionType == Data.PotionType.Heal)
+                        {
+                            Debug.Log(potionData[i].potionEffect);
+                            GameManager.Instance.playerControler.ironclad.Heal(potionData[i].potionEffect);
+                    
+                            DropPotion();
+                            break;
+                        }
+                    }
+
+                    DropPotion();
                     break;
 
                 case Data.PotionType.Card:
@@ -41,8 +70,23 @@ namespace FrameWork
                     {
                         GameManager.Instance.cardManager.DrawCard();
                     }
+                    GameManager.Instance.cardManager.DefaltCardSorting();
+                    DropPotion();
                     break;
             }
+            CancelPopPotionUI();
+        }
+
+        public void DropPotion()
+        {
+            potionBtn[selectPotionIndex].SetActive(false);
+            listPotions.RemoveAt(selectPotionIndex);
+            if (popUsePotion.activeSelf) CancelPopPotionUI();
+        }
+
+        public void CancelPopPotionUI()
+        {
+            popUsePotion.SetActive(false);
         }
     }
 }

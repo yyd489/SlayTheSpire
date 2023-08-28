@@ -17,6 +17,7 @@ namespace FrameWork
         public StageManager stageManager;
         public PlayerControler playerControler;
         public CardManager cardManager;
+        public PotionManager potionManager;
         public BattleManager battleManager;
 
         public MapManager mapManager;
@@ -65,6 +66,12 @@ namespace FrameWork
                 stageManager = this.GetComponent<StageManager>();
 
             }
+
+            if (potionManager == null)
+            {
+                potionManager = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<PotionManager>();
+            }
+            potionManager.Init();
 
             GameObject ingameUi = GameObject.Find("InGameUiCanvas");
 

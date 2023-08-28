@@ -34,7 +34,7 @@ namespace FrameWork
         public List<BuffStatus> listBuff = new List<BuffStatus>();
 
         [SerializeField] private GameObject hpBarPrefab;
-        private HealthBar hpBar;
+        protected HealthBar hpBar;
 
         [SerializeField] protected ObjectResource objectResource;
 

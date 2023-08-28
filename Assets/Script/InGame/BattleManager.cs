@@ -22,8 +22,6 @@ namespace FrameWork
         public int energy;
         public bool firstTurn;
 
-        private CharacterBase playerCharacter;
-        private Ironclad ironclad;
         public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
 
         [SerializeField] private SpawnManager spawnManager;
@@ -41,8 +39,6 @@ namespace FrameWork
             maxEnergy = 3;
             energy = maxEnergy;
             battleState = BattleState.Ready;
-            playerCharacter = GameManager.Instance.playerControler.playerCharacter;
-            ironclad = GameManager.Instance.playerControler.ironclad;
             TurnChange();
             spawnManager.Init();            
         }
@@ -59,16 +55,16 @@ namespace FrameWork
                     if (firstTurn)
                     {
                         firstTurn = false;
-                        ironclad.SetRelicStatus(firstTurn);
+                        GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
                     }
                     battleState = BattleState.EnemyTurn;
                     Narration("Enemy Turn");
-                    RefreshBuff(playerCharacter);
+                    RefreshBuff(GameManager.Instance.playerControler.playerCharacter);
                     EnemyTurn();
                     GameManager.Instance.cardManager.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
-                    if (!playerCharacter.IsDead()) battleState = BattleState.PlayerTurn;
+                    if (!GameManager.Instance.playerControler.playerCharacter.IsDead()) battleState = BattleState.PlayerTurn;
                     else battleState = BattleState.EndBattle;
 
                     GameManager.Instance.cardManager.ReloadPlayerCard();
@@ -80,11 +76,11 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
-                    if (!playerCharacter.IsDead())
+                    if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
                         var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
                         if(ralic.Contains(Data.RelicType.HealFire))
-                            ironclad.Heal(10);
+                            GameManager.Instance.playerControler.ironclad.Heal(10);
                     }
                     Debug.Log("전투 종료");
                     break;
@@ -170,10 +166,10 @@ namespace FrameWork
             for (int i = 0; i < enemyCharacters.Count; i++)
             {
                 await UniTask.Delay(delayTime);
-                await enemyCharacters[i].Attack(playerCharacter, 0, 0);
+                await enemyCharacters[i].Attack(GameManager.Instance.playerControler.playerCharacter, 0, 0);
                 await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
 
-                if (playerCharacter.IsDead())
+                if (GameManager.Instance.playerControler.playerCharacter.IsDead())
                 {
                     isLosePlayer = true;
                     break;
