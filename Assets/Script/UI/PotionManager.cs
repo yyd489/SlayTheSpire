@@ -40,7 +40,7 @@ namespace FrameWork
                 case Data.PotionType.Fire:
                     for (int i = 0; i < potionData.Count; i++)
                     {
-                        if (potionData[i].potionType == Data.PotionType.Fire)
+                        if (potionData[i].itemType == Data.PotionType.Fire)
                         {
                             GameManager.Instance.playerControler.SelectPorionData(potionData[i]);
                             break;
@@ -51,8 +51,8 @@ namespace FrameWork
                 case Data.PotionType.Heal:
                     for (int i = 0; i < potionData.Count; i++)
                     {
-                        Debug.Log(potionData[i].potionType);
-                        if (potionData[i].potionType == Data.PotionType.Heal)
+                        Debug.Log(potionData[i].itemType);
+                        if (potionData[i].itemType == Data.PotionType.Heal)
                         {
                             Debug.Log(potionData[i].potionEffect);
                             GameManager.Instance.playerControler.ironclad.Heal(potionData[i].potionEffect);
@@ -61,8 +61,6 @@ namespace FrameWork
                             break;
                         }
                     }
-
-                    DropPotion();
                     break;
 
                 case Data.PotionType.Card:
