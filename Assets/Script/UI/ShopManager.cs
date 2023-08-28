@@ -7,7 +7,18 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 namespace FrameWork
 {
+   
     using FrameWork.Data;
+
+    public enum itemType
+    {
+        Card,
+        Relic,
+        Potion
+
+    }
+
+
     public class ShopManager : MonoBehaviour
     {
         public Transform cardPanel;
@@ -171,7 +182,9 @@ namespace FrameWork
         public static void OnPointerEnter(PointerEventData data)
         {
            data.pointerEnter.gameObject.transform.DOScale(0.75f, 0.25f);// = new Vector3(0.7f, 0.7f, 0.7f);
-           saveBeforeCard = data.pointerEnter.gameObject;    
+           saveBeforeCard = data.pointerEnter.gameObject;
+           var Index = data.pointerEnter.transform.GetSiblingIndex();
+           
         }
 
         public static void OnPointerExit()

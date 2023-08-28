@@ -32,7 +32,7 @@ namespace FrameWork.Data
     {
         public string name;
         public int relicEffect;
-        public RelicType relicType;
+        public RelicType itemType;
         public int cost;
     }
 
@@ -40,7 +40,7 @@ namespace FrameWork.Data
     {
         public string name;
         public int potionEffect;
-        public PotionType potionType;
+        public PotionType itemType;
         public int cost;
     }
 
