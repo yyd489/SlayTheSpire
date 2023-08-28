@@ -310,7 +310,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1342274348443990078}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1681,6 +1681,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PotionMiddle
       objectReference: {fileID: 0}
+    - target: {fileID: 6956102833069347721, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6956102833069347722, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}
       propertyPath: m_Name
@@ -2275,6 +2280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InGameUiCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342274349401344466, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1342274350508181188, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}

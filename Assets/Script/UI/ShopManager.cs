@@ -11,7 +11,7 @@ namespace FrameWork
     public class ShopManager : MonoBehaviour
     {
         public Transform cardPanel;
-        public Transform cardCostParent;
+        public Transform cardCostBox;
         public GameObject cardPrefab;
         public static bool activeShop;
         public Sprite soldOut;
@@ -19,8 +19,9 @@ namespace FrameWork
         public static GameObject saveBeforeCard;
         public Transform relicPanel;
         public Transform potionPanel;
-        public Transform itemCostBox;
-
+        public Transform shopPanel;
+        public Transform relicCostBox;
+        public Transform PotionCostBox;
 
         private void Start()
         {
@@ -43,10 +44,10 @@ namespace FrameWork
                 CardBase cardBase = Instantiate(cardPrefab, cardPanel).GetComponent<CardBase>();
                 cardBase.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>().enabled = false;
               
-                cardBase.gameObject.AddComponent<Button>().onClick.AddListener(() => AddItem(cost,cardBase.gameObject,randomCardIndex,cardPanel,0));
+                cardBase.gameObject.AddComponent<Button>().onClick.AddListener(() => AddItem(cost,cardBase.gameObject,randomCardIndex,cardPanel,0,cardCostBox));
                 cardBase.cardManager = cardManager;
                 cardBase.Init(cardDatas[randomCardIndex]);
-                cardCostParent.GetChild(i).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
+                cardCostBox.GetChild(i).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
                 ChangeSize(cardBase.gameObject);
                 
             }
@@ -60,16 +61,16 @@ namespace FrameWork
                 int cost = relicList[randomRelicIndex].cost;
                 GameObject relicObj = Instantiate(relicPrefab, relicPanel);
                 relicObj.GetComponent<Image>().sprite = GameManager.Instance.ingameUI.listRelicSprites[randomRelicIndex];
-                relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, randomRelicIndex, cardPanel,1));
+                relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, randomRelicIndex, relicPanel,1,relicCostBox));
                 ChangeSize(relicObj);
 
-                itemCostBox.GetChild(i-1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
-                //ChangeSize(cardBase.gameObject);
-                // Instantiate(relicPrefab, ).GetComponent<CardBase>();
-                //GameObject potionObj = Instantiate(cardPrefab, cardPanel).gameObject
+                relicCostBox.GetChild(i-1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
+                
+               
+               
             }
 
-            Debug.Log(potionList.Count);
+            
 
             for (int i = 0; i < potionList.Count; i++)
             {
@@ -77,41 +78,59 @@ namespace FrameWork
                 int cost = potionList[randomPotionIndex].cost;
                 var potionObject = GameManager.Instance.ingameUI.listPotionPrefab[randomPotionIndex];
                 GameObject potionObj = Instantiate(potionObject, potionPanel);
-                potionObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, potionObj, randomPotionIndex, cardPanel,2));
-                itemCostBox.GetChild(i + 3).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
-
+                potionObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, potionObj, randomPotionIndex, potionPanel,2,PotionCostBox));
+                PotionCostBox.GetChild(i).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
                 ChangeSize(potionObj);
             }
 
-         
+            StartCoroutine(UnActiveGrid());
+
         }
 
-        public void AddItem(int cost, GameObject item,int itemDataIndex,Transform itemPanel,int itemType)
+        IEnumerator UnActiveGrid()
+        {
+            yield return new WaitUntil(()=> shopPanel.gameObject.activeSelf==true);
+            yield return new WaitForSeconds(0.1f);
+
+            cardPanel.GetComponent<GridLayoutGroup>().enabled = false;
+            relicPanel.GetComponent<GridLayoutGroup>().enabled = false;
+            potionPanel.GetComponent<GridLayoutGroup>().enabled = false;
+            cardCostBox.GetComponent<GridLayoutGroup>().enabled = false;
+            relicCostBox.GetComponent<GridLayoutGroup>().enabled = false;
+            PotionCostBox.GetComponent<GridLayoutGroup>().enabled = false;
+        }
+
+        public void AddItem(int cost, GameObject item, int itemDataIndex, Transform itemPanel, int itemType, Transform textPanel)
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
             int gold = characterData.gold;
-           
             int itemIndex = item.transform.GetSiblingIndex();
+            Debug.Log(itemIndex);
 
-            if(gold >= cost)
+
+            if(gold >= 0)
             {
-                //Destroy(item);
-                //Destroy(itemPanel.GetChild(itemIndex).gameObject);  
+                Destroy(item);
+                Destroy(itemPanel.GetChild(itemIndex).gameObject);
+                
                 characterData.gold -= cost;
 
-                if( itemType == 0)
+                if( itemType == 0)//카드
                 {
                     GameManager.Instance.ingameUI.AddCard(itemDataIndex);
+                    Destroy(textPanel.GetChild(itemIndex).gameObject);
                 }
 
-                else if (itemType == 1)
+                else if (itemType == 1)//유물
                 {
                     GameManager.Instance.ingameUI.AddRelic(itemDataIndex);
+                    Destroy(textPanel.GetChild(itemIndex).gameObject);
                 }
 
-                else if (itemType == 2)
+                else if (itemType == 2)//포션
                 {
                     GameManager.Instance.ingameUI.AddPotion(itemDataIndex);
+                    Destroy(textPanel.GetChild(itemIndex).gameObject);
                 }
             }
            
