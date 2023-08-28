@@ -9,8 +9,8 @@ namespace FrameWork
         public override void Init()
         {
             name = "아이언 클래드";
+            maxHp = 100;
             hp = 100;
-            maxHp = hp;
             damage = 0;
             defence = 0;
             isMonster = false;
@@ -44,8 +44,11 @@ namespace FrameWork
 
         public void Heal(int heal)
         {
-                hp += heal;
-                if (hp > maxHp) hp = maxHp;
+            hp += heal;
+
+            if (hp > maxHp) hp = maxHp;
+
+            hpBar.SetHealthGauge(hp, maxHp, shield);
         }
 
         public void RelicHealthUp()
@@ -54,6 +57,8 @@ namespace FrameWork
             hp += 10;
 
             if (hp > maxHp) hp = maxHp;
+
+            hpBar.SetHealthGauge(hp, maxHp, shield);
         }
     }
 }
