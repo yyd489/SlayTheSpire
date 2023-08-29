@@ -42,10 +42,7 @@ namespace FrameWork
                 relicImage.sprite = listRelicSprites[(int)listRelic[i]]; 
             }
 
-            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[0].monsterName);
-            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[1].monsterName);
-            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[2].monsterName);
-            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[3].monsterName);
+         
         }
 
         public void ControlTopButton()
