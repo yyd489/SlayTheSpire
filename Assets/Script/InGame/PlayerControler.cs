@@ -27,7 +27,7 @@ namespace FrameWork
             ironclad = playerCharacter.GetComponent<Ironclad>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (onDrag)
             {
