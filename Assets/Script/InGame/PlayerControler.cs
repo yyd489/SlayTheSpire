@@ -27,53 +27,50 @@ namespace FrameWork
             ironclad = playerCharacter.GetComponent<Ironclad>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            if (onDrag)
+            if (Input.GetMouseButtonDown(0) && onDrag)
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Vector3 pos = Camera.main.WorldToViewportPoint(Input.mousePosition);
+                Vector3 pos = Camera.main.WorldToViewportPoint(Input.mousePosition);
 
-                    if (pos.y < 20f) return;
-                    
-                    if (selectPotion != null && targetCharacter != null)
+                if (pos.y < 20f) return;
+
+                if (selectPotion != null && targetCharacter != null)
+                {
+                    targetCharacter.Hit(0, selectPotion.potionEffect);
+                    GameManager.Instance.potionManager.DropPotion();
+                    selectPotion = null;
+                }
+                else
+                {
+                    if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
                     {
-                        targetCharacter.Hit(0, selectPotion.potionEffect);
-                        GameManager.Instance.potionManager.DropPotion();
+                        selectCard.UseSelectCard();
+                        GameManager.Instance.cardManager.UseCard(selectCard);
                         selectPotion = null;
                     }
-                    else
+                    else if (selectCard.cardData.cardType != Data.CardType.Attack)
                     {
-                        if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
-                        {
-                            selectCard.UseSelectCard();
-                            GameManager.Instance.cardManager.UseCard(selectCard);
-                            selectPotion = null;
-                        }
-                        else if (selectCard.cardData.cardType != Data.CardType.Attack)
-                        {
-                            selectCard.UseSelectCard();
-                            GameManager.Instance.cardManager.UseCard(selectCard);
-                        }
+                        selectCard.UseSelectCard();
+                        GameManager.Instance.cardManager.UseCard(selectCard);
                     }
-
-                    TargetSet(null);
-                    onDrag = false;
                 }
-                else if (Input.GetMouseButtonDown(1))
+
+                TargetSet(null);
+                onDrag = false;
+            }
+            else if (Input.GetMouseButtonDown(1) && onDrag)
+            {
+                if (selectPotion != null)
+                    selectPotion = null;
+                else
                 {
-                    if (selectPotion != null)
-                        selectPotion = null;
-                    else
-                    {
-                        selectCard.gameObject.SetActive(true);
-                        selectCard.CancleDrag();
-                        selectCard = null;
-                    }
-
-                    onDrag = false;
+                    selectCard.gameObject.SetActive(true);
+                    selectCard.CancleDrag();
+                    selectCard = null;
                 }
+
+                onDrag = false;
             }
         }
 
