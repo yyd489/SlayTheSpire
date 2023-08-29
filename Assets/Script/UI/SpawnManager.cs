@@ -19,7 +19,7 @@ namespace FrameWork
 
         public void Init()
         {
-            SpawnMonster(Stage.NormalMonster);
+            SpawnMonster(Stage.BossMonster);
         }
 
         private void SpawnMonster(Stage enemyStage)
