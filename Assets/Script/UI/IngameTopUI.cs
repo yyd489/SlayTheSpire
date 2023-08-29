@@ -12,39 +12,40 @@ namespace FrameWork
         public Button optionButton;
         public Button deckButton;
         public Button mapButton;
-
         public GameObject mapPop;
         public GameObject optionPop;
-
         public TextMeshProUGUI goldText;
-        public TextMeshProUGUI maxHpText;
         public TextMeshProUGUI nowHpText;
-
         public List<Sprite> listRelicSprites = new List<Sprite>();
         public List<GameObject> listPotionPrefab;
         public GameObject relicObject;
         public Transform potionsPanel;
+        public GameObject itemTipPrefab;
 
         // Start is called before the first frame update
 
         public void Init()
         {
             ControlTopButton();
-
-            if(mapPop == null)
+            ChangeState();
+            if (mapPop == null)
             mapPop = GameManager.Instance.mapManager.gameObject;
 
             var listRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
             int relicCount = listRelic.Count;
-           
+            var itemData = GameManager.Instance.dataManager.data.itemData;
 
             for (int i = 0; i < relicCount; i++)
             {
                Image relicImage = Instantiate(relicObject,GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
-             
-               relicImage.sprite = listRelicSprites[(int)listRelic[i]]; 
+                ShopManager.ChangeSize(relicImage.gameObject, ItemType.Relic, i, itemData);
+                relicImage.sprite = listRelicSprites[(int)listRelic[i]]; 
             }
 
+            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[0].monsterName);
+            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[1].monsterName);
+            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[2].monsterName);
+            Debug.Log(GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData[3].monsterName);
         }
 
         public void ControlTopButton()
@@ -63,29 +64,34 @@ namespace FrameWork
         public void ChangeState()
         {
             goldText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
-            maxHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
-            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString();
+            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString() +"/" +
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
         }
 
         public void ChangePotion()
         {
-            var listPotion = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHavePotion;
-           for(int i = potionsPanel.childCount; i <listPotion.Count; i++)
+            var listPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
+
+            var itemData = GameManager.Instance.dataManager.data.itemData;
+           for (int i = potionsPanel.childCount; i <listPotion.Count; i++)
            {
-                Instantiate(listPotionPrefab[(int)listPotion[i]], potionsPanel);
-           }
+               GameObject potionObject = Instantiate(listPotionPrefab[(int)listPotion[i]], potionsPanel);
+                potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
+                ShopManager.ChangeSize(potionObject, ItemType.Potion,i, itemData);
+            }
         }
 
         public void ChangeRelic()
         {
             var listRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveRelic;
             var relicsPanel = GameObject.Find("RelicsPanel").transform;
+            var itemData = GameManager.Instance.dataManager.data.itemData;
 
             for (int i = relicsPanel.childCount; i < listRelic.Count; i++)
             {
                 Image relicImage = Instantiate(relicObject, GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
-
                 relicImage.sprite = listRelicSprites[(int)listRelic[i]];
+                ShopManager.ChangeSize(relicImage.gameObject, ItemType.Relic, i, itemData);
             }
         }
 

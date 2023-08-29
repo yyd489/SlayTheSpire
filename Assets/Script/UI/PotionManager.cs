@@ -9,23 +9,20 @@ namespace FrameWork
         [SerializeField] private GameObject popUsePotion;
         [SerializeField] private GameObject[] potionBtn;
 
+        [SerializeField]
         private List<Data.PotionType> listPotions = new List<Data.PotionType>();
         private int selectPotionIndex;
 
         public void Init()
         {
             listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
-            listPotions.Add(Data.PotionType.Heal);
-            for (int i = 0; i < listPotions.Count; i++)
-            {
-                potionBtn[i].SetActive(true);
-            }
         }
 
         public void PopUpPotionUi(int potionIndex)
         {
             if (GameManager.Instance.playerControler.onDrag) return;
 
+            potionBtn[potionIndex] = GameManager.Instance.ingameUI.potionsPanel.GetChild(potionIndex).gameObject;
             popUsePotion.transform.position = new Vector2(potionBtn[potionIndex].transform.position.x, popUsePotion.transform.position.y);
             selectPotionIndex = potionIndex;
             popUsePotion.SetActive(true);
