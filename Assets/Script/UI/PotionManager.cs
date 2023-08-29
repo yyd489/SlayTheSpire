@@ -15,7 +15,7 @@ namespace FrameWork
         public void Init()
         {
             listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
-            listPotions.Add(Data.PotionType.Heal);
+
             for (int i = 0; i < listPotions.Count; i++)
             {
                 potionBtn[i].SetActive(true);

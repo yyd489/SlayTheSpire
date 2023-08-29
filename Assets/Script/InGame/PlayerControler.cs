@@ -14,6 +14,8 @@ namespace FrameWork
         [HideInInspector] public Ironclad ironclad;
         public CharacterBase targetCharacter;
 
+        [SerializeField] private GameObject targetBox;
+
         // 카드
         [HideInInspector] public CardBase selectCard;
         [HideInInspector] public bool onDrag;
@@ -33,9 +35,9 @@ namespace FrameWork
                 {
                     Vector3 pos = Camera.main.WorldToViewportPoint(Input.mousePosition);
 
-                    if (pos.y < 20f || targetCharacter == null) return;
+                    if (pos.y < 20f) return;
                     
-                    if (selectPotion != null)
+                    if (selectPotion != null && targetCharacter != null)
                     {
                         targetCharacter.Hit(0, selectPotion.potionEffect);
                         GameManager.Instance.potionManager.DropPotion();
@@ -55,6 +57,8 @@ namespace FrameWork
                             GameManager.Instance.cardManager.UseCard(selectCard);
                         }
                     }
+
+                    TargetSet(null);
                     onDrag = false;
                 }
                 else if (Input.GetMouseButtonDown(1))
@@ -77,6 +81,18 @@ namespace FrameWork
         {
             selectPotion = potionData;
             onDrag = true;
+        }
+
+        public void TargetSet(CharacterBase target)
+        {
+            targetCharacter = target;
+            if (targetCharacter != null)
+            {
+                targetBox.SetActive(true);
+                targetBox.transform.position = Camera.main.WorldToScreenPoint(target.transform.parent.transform.position + new Vector3(0f, -0.3f));
+            }
+            else
+                targetBox.SetActive(false);
         }
     }
 }
