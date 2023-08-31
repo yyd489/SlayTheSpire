@@ -69,17 +69,17 @@ namespace FrameWork
                     DropPotion();
                     break;
             }
-            CancelPopPotionUI();
+            CanclePopPotionUI();
         }
 
         public void DropPotion()
         {
             potionBtn[selectPotionIndex].SetActive(false);
             listPotions.RemoveAt(selectPotionIndex);
-            if (popUsePotion.activeSelf) CancelPopPotionUI();
+            if (popUsePotion.activeSelf) CanclePopPotionUI();
         }
 
-        public void CancelPopPotionUI()
+        public void CanclePopPotionUI()
         {
             popUsePotion.SetActive(false);
         }

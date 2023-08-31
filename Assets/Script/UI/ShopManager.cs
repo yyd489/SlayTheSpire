@@ -40,7 +40,6 @@ namespace FrameWork
             Init();
         }
         public void Init()
-
         {
             List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
             int allCardCount = GameManager.Instance.dataManager.data.cardData.cardCollect.listcardData.Count;
@@ -188,7 +187,6 @@ namespace FrameWork
             {
                 case ItemType.Potion:
 
-               
                     var itemGuide = GameManager.Instance.ingameUI.itemTipPrefab;
                     itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y);
                     var titleText = itemData.GetPotionData()[itemDataIndex].name;

@@ -40,7 +40,7 @@ namespace FrameWork
             energy = maxEnergy;
             battleState = BattleState.Ready;
             TurnChange();
-            spawnManager.Init();            
+            //spawnManager.Init();            
         }
 
         public void TurnChange()

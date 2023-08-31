@@ -9,5 +9,12 @@ namespace FrameWork
         public AudioSource backgroundAudio;
         public AudioSource effectAudio;
 
+        public GameObject inGameCanvas;
+        public GameObject inGameUiCanvas;
+        public GameObject uiTopCanvas;
+        public GameObject mapPop;
+        public GameObject fade;
+        public GameObject characterObj;
+        
     }
 }

@@ -166,10 +166,10 @@ namespace FrameWork
                     if(listMapGraph[listMapGraph.Count - 1].field == MapField.EliteMonster)//엘리트 확률 줄이기
                     listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
 
-                    if(listMapGraph[listMapGraph.Count - 1].myFloor == 10)
+                    if(listMapGraph[listMapGraph.Count - 1].myFloor == 10)//첫턴은 무조건 몬스터
                         listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
 
-                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 1)
+                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 1)// 보스 전은 무조건 휴식
                         listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
 
                     int Index = listMapGraph.Count - 1;
