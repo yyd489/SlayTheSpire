@@ -40,10 +40,13 @@ namespace FrameWork
 
                     case MapField.Monster:
 
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
+                    GameManager.Instance.spawnManager.Init(MapField.Monster);
                     break;
 
                     case MapField.EliteMonster:
-
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
+                    GameManager.Instance.spawnManager.Init(MapField.EliteMonster);
                     break;
 
                     case MapField.Shop:
@@ -51,6 +54,8 @@ namespace FrameWork
                     GameObject shopObj = Instantiate(shopPop);
                     //shopObj.transform.Find("ShopPanel").Find("BackButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
                     shopObj.transform.Find("Canvas").Find("NextButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
+
                     
                     break;
 
@@ -59,11 +64,13 @@ namespace FrameWork
                     GameObject restObj = Instantiate(restPop);
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => FillHp());
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(restObj));
-                   
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     break;
 
                     case MapField.Boss:
 
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
+                    GameManager.Instance.spawnManager.Init(MapField.Boss);
                     break;
 
                 }

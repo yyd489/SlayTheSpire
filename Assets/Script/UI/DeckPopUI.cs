@@ -36,7 +36,7 @@ namespace FrameWork
                     cardObj.AddComponent<Button>().onClick.AddListener(() => DeleteChanceCard(cardObj));
                 }
 
-                ShopManager.ChangeSize(cardObj);
+                ShopManager.ChangeSize(cardObj, ItemType.Card);
                 Destroy(cardObj.GetComponent<UnityEngine.EventSystems.EventTrigger>());
                 cardObj.GetComponent<CardBase>().Init(cardDatas[listDeckCards[i]]);
             }

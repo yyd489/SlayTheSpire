@@ -4,12 +4,7 @@ using UnityEngine;
 
 namespace FrameWork
 {
-    public enum Stage
-    {
-        NormalMonster,
-        NamedMonster,
-        BossMonster
-    }
+  
 
     public class SpawnManager : MonoBehaviour
     {
@@ -17,27 +12,27 @@ namespace FrameWork
         [SerializeField] GameObject namedMonster;
         [SerializeField] GameObject bossMonster;
 
-        public void Init()
+        public void Init(MapField enemyStage)
         {
-            SpawnMonster(Stage.BossMonster);
+            SpawnMonster(enemyStage);
         }
 
-        private void SpawnMonster(Stage enemyStage)
+        private void SpawnMonster(MapField enemyStage)
         {
             List<GameObject> listSpawnMonster = new List<GameObject>();
 
             switch(enemyStage)
             {
-                case Stage.NormalMonster:
+                case MapField.Monster:
                     int unitCount = Random.Range(1, 4);
                     for(int i = 0; i < unitCount; i++)
                         listSpawnMonster.Add(arrNormarMonsters[Random.Range(0, arrNormarMonsters.Length)]);
                     break;
-                case Stage.NamedMonster:
+                case MapField.EliteMonster:
                     for (int i = 0; i < 3; i++)
                         listSpawnMonster.Add(namedMonster);
                     break;
-                case Stage.BossMonster:
+                case MapField.Boss:
                     listSpawnMonster.Add(bossMonster);
                     break;
             }
@@ -69,5 +64,6 @@ namespace FrameWork
                 GameManager.Instance.battleManager.enemyCharacters.Add(character);
             }
         }
+
     }
 }

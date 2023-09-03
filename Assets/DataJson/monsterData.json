@@ -1,0 +1,49 @@
+{
+  "listMonsterData": [
+    {
+      "monsterName": "노예상인",
+      "monsterAttack": "5",
+      "hp": "40",
+      "monsterType": 0
+
+    },
+    {
+      "monsterName": "투사",
+      "monsterAttack": "10",
+      "hp": "30",
+      "monsterType": 0
+    },
+    {
+      "monsterName": "광신자",
+      "monsterAttack": "7",
+      "hp": "35",
+      "monsterType": 0
+    },
+    {
+      "monsterName": "동물하초",
+      "monsterAttack": "3",
+      "hp": "45",
+      "monsterType": 0
+    },
+    {
+      "monsterName": "턱벌레",
+      "monsterAttack": "8",
+      "hp": "32",
+      "monsterType": 0
+    },
+    {
+      "monsterName": "도적",
+      "monsterAttack": "15",
+      "hp": "60",
+      "monsterType": 1
+    },
+    {
+      "monsterName": "보초기",
+      "monsterAttack": "15",
+      "hp": "100",
+      "monsterType": 2
+    }
+
+  ]
+
+}

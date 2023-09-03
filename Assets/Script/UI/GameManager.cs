@@ -22,7 +22,9 @@ namespace FrameWork
 
         public MapManager mapManager;
 
-        [SerializeField] Initializer initilizer;
+        public Initializer initilizer;
+
+        public SpawnManager spawnManager;
 
 
         private void Start()
@@ -91,6 +93,13 @@ namespace FrameWork
             {
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             }
+
+            if(spawnManager == null)
+            {
+                spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+            }
+
+
             cardManager.Init();
 
             DontDestroyOnLoad(gameObject);
