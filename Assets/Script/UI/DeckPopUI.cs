@@ -29,7 +29,6 @@ namespace FrameWork
             for (int i = 0; i < listDeckCards.Count; i++)
             {
                 GameObject cardObj = Instantiate(cardPrefab, cardPanel);
-                cardObj.GetComponent<CardBase>().cardManager = GameManager.Instance.cardManager;
 
                 if(ShopManager.activeShop ==true)
                 {

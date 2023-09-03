@@ -761,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b14ca4929a76e849b656a59c3599c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleState: 0
   energy: 0
   firstTurn: 0
   enemyCharacters: []
@@ -770,6 +771,8 @@ MonoBehaviour:
   useDeckCount: {fileID: 1342274350261199944}
   energyText: {fileID: 1342274350475043197}
   narrationText: {fileID: 46730789}
+  rewardPop: {fileID: 8120939737636642387, guid: bdd99ff18873e374da0df41db2c9cee7,
+    type: 3}
 --- !u!1 &1342274349534530672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2225,6 @@ MonoBehaviour:
   CardPoint: {fileID: 3113702211912785776}
   CardType: {fileID: 5803486023759757302}
   CardImg: {fileID: 2911873939398877439}
-  cardManager: {fileID: 8881844238791264494}
   cardIndex: 0
   defaultPos: {x: 0, y: 0}
 --- !u!114 &1670711887505479027
@@ -2249,7 +2251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3395970252379630510}
-  - component: {fileID: 3383696962793408571}
+  - component: {fileID: 2359856561167893165}
   m_Layer: 5
   m_Name: UsedCardDeck
   m_TagString: Untagged
@@ -2276,7 +2278,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3383696962793408571
+--- !u!114 &2359856561167893165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

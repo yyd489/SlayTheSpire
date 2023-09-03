@@ -59,7 +59,6 @@ namespace FrameWork
                 cardBase.gameObject.GetComponent<UnityEngine.EventSystems.EventTrigger>().enabled = false;
               
                 cardBase.gameObject.AddComponent<Button>().onClick.AddListener(() => AddItem(cost,cardBase.gameObject,randomCardIndex,cardPanel, ItemType.Card, cardCostBox));
-                cardBase.cardManager = cardManager;
                 cardBase.Init(cardDatas[randomCardIndex]);
                 cardCostBox.GetChild(i).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
                 ChangeSize(cardBase.gameObject, ItemType.Card, 0,itemData);

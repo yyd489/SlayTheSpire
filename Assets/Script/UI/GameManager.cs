@@ -93,14 +93,12 @@ namespace FrameWork
             {
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             }
+            cardManager.Init();
 
-            if(spawnManager == null)
+            if (spawnManager == null)
             {
                 spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
             }
-
-
-            cardManager.Init();
 
             DontDestroyOnLoad(gameObject);
 

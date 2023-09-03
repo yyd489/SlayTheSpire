@@ -7,7 +7,7 @@ using System;
 
 namespace FrameWork
 {
-    enum BattleState
+    public enum BattleState
     {
         Ready,
         PlayerTurn,
@@ -17,7 +17,7 @@ namespace FrameWork
 
     public class BattleManager : MonoBehaviour
     {
-        private BattleState battleState;
+        public BattleState battleState;
         private int maxEnergy;
         public int energy;
         public bool firstTurn;
@@ -32,6 +32,8 @@ namespace FrameWork
         [SerializeField] private TextMeshProUGUI energyText;
 
         [SerializeField] private TextMeshProUGUI narrationText;
+
+        [SerializeField] private GameObject rewardPop;
         private IEnumerator coNarration;
 
         public void Init()
@@ -79,10 +81,14 @@ namespace FrameWork
                     if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
                         var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
-                        if(ralic.Contains(Data.RelicType.HealFire))
+                        if (ralic.Contains(Data.RelicType.HealFire))
                             GameManager.Instance.playerControler.ironclad.Heal(10);
                     }
-                    Debug.Log("전투 종료");
+                    else
+                    {
+                        Instantiate(rewardPop);
+                        Debug.Log("전투 종료");
+                    }
                     break;
             }
 

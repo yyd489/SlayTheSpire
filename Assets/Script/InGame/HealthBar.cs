@@ -18,6 +18,8 @@ namespace FrameWork
 
         private GameObject character;
 
+        public ObjectPool iconPool;
+
         Color shieldColor;
 
         public void Init(int hp, int maxHp, int shield, GameObject initCharacter)
@@ -49,7 +51,6 @@ namespace FrameWork
 
             tmpShild.text = shield.ToString();
             tmpHealth.text = string.Format("{0}/{1}", hp, maxHp);
-
         }
     }
 }

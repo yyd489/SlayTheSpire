@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace FrameWork
 {
-    public class CardPool : MonoBehaviour
+    public class ObjectPool : MonoBehaviour
     {
-        public static CardPool Instance;
+        public static ObjectPool Instance;
 
         private static GameObject objParent;
 
         [SerializeField] private GameObject poolingObjectPrefab;
 
-        Queue<CardBase> poolingObjectQueue = new Queue<CardBase>();
+        Queue<GameObject> poolingObjectQueue = new Queue<GameObject>();
 
         public void Awake()
         {
@@ -30,22 +30,23 @@ namespace FrameWork
         }
 
         // Queue에 오브젝트 추가
-        public CardBase CreateNewObject()
+        public GameObject CreateNewObject()
         {
-            var newObj = Instantiate(poolingObjectPrefab).GetComponent<CardBase>();
+            var newObj = Instantiate(poolingObjectPrefab);
             newObj.gameObject.SetActive(false);
             newObj.transform.SetParent(objParent.transform);
             return newObj;
         }
 
         // Queue에 빼서 오브젝트 사용
-        public CardBase GetObject(Transform parent)
+        public GameObject GetObject(Transform parent)
         {
             if (Instance.poolingObjectQueue.Count > 0)
             {
                 var obj = Instance.poolingObjectQueue.Dequeue();
                 obj.transform.SetParent(parent);
                 obj.gameObject.SetActive(true);
+                Debug.Log(obj.name);
                 return obj;
             }
             else
@@ -58,7 +59,7 @@ namespace FrameWork
         }
 
         // 사용한 오브젝트 다시 Queue에 추가
-        public void ReturnObject(CardBase obj)
+        public void ReturnObject(GameObject obj)
         {
             obj.gameObject.SetActive(false);
             obj.transform.SetParent(objParent.transform);

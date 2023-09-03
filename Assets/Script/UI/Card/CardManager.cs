@@ -13,23 +13,23 @@ namespace FrameWork
         [SerializeField] CardBase selectCard;
 
         [SerializeField] GameObject usedCardBox;
-        private CardPool cardPool;
+        private ObjectPool cardPool;
 
         [SerializeField] private List<Sprite> cardImages;
         [HideInInspector] public Dictionary<string, Sprite> dicCardImages = new Dictionary<string, Sprite>();
         private List<CardJsonData> cardDatas;
 
         // 덱
-        [SerializeField] Queue<CardJsonData> queMainDeck = new Queue<CardJsonData>();
+        Queue<CardJsonData> queMainDeck = new Queue<CardJsonData>();
         [SerializeField] List<CardJsonData> listUseDeck = new List<CardJsonData>();
 
         public int GetMainDeckCount() { return queMainDeck.Count; }
         public int GetUseDeckCount() { return listUseDeck.Count - cards.Count; }
 
-        // 덱 만드는중
+
         public void Init()
         {
-            cardPool = usedCardBox.GetComponent<CardPool>();
+            cardPool = usedCardBox.GetComponent<ObjectPool>();
             //await UniTask.WaitUntil(() => GameManager.Instance.dataManager.data.cardData.cardCollect != null);
 
             cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
@@ -53,10 +53,8 @@ namespace FrameWork
 
             for (int i = 0; i < 5; i++)
             {
-                cards.Add(cardPool.GetObject(this.transform));
-                cards[i].cardManager = this;
+                cards.Add(cardPool.GetObject(this.transform).GetComponent<CardBase>());
 
-                //캐릭터 데이터에 있는 덱 데이터 입력으로 변경필요
                 CardJsonData newCard = queMainDeck.Dequeue();
                 listUseDeck.Add(newCard);
                 cards[i].Init(newCard);
@@ -142,7 +140,7 @@ namespace FrameWork
 
         public void UseCard(CardBase useCard)
         {
-            cardPool.ReturnObject(useCard);
+            cardPool.ReturnObject(useCard.gameObject);
             selectCard.gameObject.SetActive(false);
             cards.Remove(useCard);
             GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
@@ -153,9 +151,7 @@ namespace FrameWork
         {
             CardBase tempCard;
 
-            tempCard = cardPool.GetObject(this.transform);
-
-            tempCard.cardManager = this;
+            tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
 
             //tempCard.Init(cardDatas[0]);
             if (queMainDeck.Count <= 0)
@@ -170,7 +166,7 @@ namespace FrameWork
         public void RemovePlayerCard()
         {
             for (int i = 0; i < cards.Count; i++)
-                cardPool.ReturnObject(cards[i]);
+                cardPool.ReturnObject(cards[i].gameObject);
 
             cards.Clear();
             GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
@@ -187,8 +183,7 @@ namespace FrameWork
 
                 if(!tempDeckCard.canDelete) listUseDeck.Add(tempDeckCard);
 
-                tempCard = cardPool.GetObject(this.transform);
-                tempCard.cardManager = this;
+                tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
                 tempCard.Init(cardDatas[i]);
                 cards.Add(tempCard);
             }
