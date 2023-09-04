@@ -12,7 +12,7 @@ namespace FrameWork
 
         public DataManager dataManager;
         public Soundmanager soundManager;
-        public IngameTopUI ingameUI;
+        public IngameTopUI ingameTopUI;
 
         public StageManager stageManager;
         public PlayerControler playerControler;
@@ -54,13 +54,13 @@ namespace FrameWork
             
             soundManager.Init(initilizer);
 
-            if (ingameUI == null)
+            if (ingameTopUI == null)
             {
-                ingameUI = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<IngameTopUI>();
+                ingameTopUI = GameObject.Find("UITopCanvas").transform.Find("IngameTopUI").GetComponent<IngameTopUI>();
              
             }
             
-            ingameUI.Init();
+            ingameTopUI.Init();
 
 
             if (stageManager == null)
@@ -71,7 +71,7 @@ namespace FrameWork
 
             if (potionManager == null)
             {
-                potionManager = GameObject.Find("UITopCanvas").transform.Find("IngameUI").GetComponent<PotionManager>();
+                potionManager = GameObject.Find("UITopCanvas").transform.Find("IngameTopUI").GetComponent<PotionManager>();
             }
             potionManager.Init();
 

@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff48e2ffb47b8f439909ddf18f70fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingameUI: {fileID: 0}
+  ingameTopUI: {fileID: 1207937747}
   stageManager: {fileID: 0}
   playerControler: {fileID: 0}
   cardManager: {fileID: 0}
@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 1413133874364988830, guid: 3ba55267bbc686740b5c8f4d03da1849,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3885716202100502825, guid: 3ba55267bbc686740b5c8f4d03da1849,
         type: 3}
@@ -1136,6 +1136,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 394506779}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1207937747 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4302363333649287277, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1810541266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becc3a615cada404a9f13cc72556afb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1310271756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7340514124574821400, guid: 9686ce54bffba024a99f31c355d39bd4,
@@ -1623,6 +1635,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Padding.m_Left
       value: -145
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574096746055465934, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Name
+      value: IngameTopUI
       objectReference: {fileID: 0}
     - target: {fileID: 2705673093223639015, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}

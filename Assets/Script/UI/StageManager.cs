@@ -81,7 +81,7 @@ namespace FrameWork
         public void ClearStage(GameObject targetObj = null)
         {
             Destroy(targetObj);
-            GameManager.Instance.ingameUI.mapPop.SetActive(true);
+            GameManager.Instance.ingameTopUI.mapPop.SetActive(true);
 
         }
 

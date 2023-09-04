@@ -22,7 +22,7 @@ namespace FrameWork
         {
             if (GameManager.Instance.playerControler.onDrag) return;
 
-            potionBtn[potionIndex] = GameManager.Instance.ingameUI.potionsPanel.GetChild(potionIndex).gameObject;
+            potionBtn[potionIndex] = GameManager.Instance.ingameTopUI.potionsPanel.GetChild(potionIndex).gameObject;
             popUsePotion.transform.position = new Vector2(potionBtn[potionIndex].transform.position.x, popUsePotion.transform.position.y);
             selectPotionIndex = potionIndex;
             popUsePotion.SetActive(true);

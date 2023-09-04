@@ -179,10 +179,8 @@ namespace FrameWork
 
             }
 
-            //임시 인덱스 셋팅  
             linkNodes();
             SettingNodeButton();
-
 
         }
 

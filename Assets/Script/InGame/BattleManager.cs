@@ -78,7 +78,7 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
-                    if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
+                    if (GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
                         var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
                         if (ralic.Contains(Data.RelicType.HealFire))

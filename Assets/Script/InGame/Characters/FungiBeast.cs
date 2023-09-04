@@ -10,7 +10,7 @@ namespace FrameWork
         public override void Init()
         {
             name = "동물하초";
-            hp = 100;
+            hp = 1;
             maxHp = hp;
             damage = 0;
             defence = 0;

@@ -270,7 +270,6 @@ MonoBehaviour:
   CardPoint: {fileID: 1493233375423560537}
   CardType: {fileID: 1493233374990243341}
   CardImg: {fileID: 5218256062925309934}
-  cardManager: {fileID: 0}
   cardIndex: 0
   defaultPos: {x: 0, y: 0}
 --- !u!1 &1493233374529867850
