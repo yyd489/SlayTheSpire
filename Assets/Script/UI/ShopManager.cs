@@ -27,13 +27,13 @@ namespace FrameWork
         public static bool activeShop;
         public Sprite soldOut;
         public Image deleteCardButton;
-        public static GameObject saveBeforeCard;
+        public static GameObject saveBeforeObject;
         public Transform relicPanel;
         public Transform potionPanel;
         public Transform shopPanel;
         public Transform relicCostBox;
         public Transform PotionCostBox;
-       
+        
 
         private void Start()
         {
@@ -180,7 +180,7 @@ namespace FrameWork
            
 
            dataObject.transform.DOScale(dataObject.transform.localScale.x *1.25f, 0.25f);// = new Vector3(0.7f, 0.7f, 0.7f);
-           saveBeforeCard = data.pointerEnter.gameObject;
+           saveBeforeObject = data.pointerEnter.gameObject;
           // var Index = data.pointerEnter.transform.GetSiblingIndex();
 
             switch(itemType)
@@ -215,7 +215,8 @@ namespace FrameWork
         {
 
             GameManager.Instance.ingameTopUI.itemTipPrefab.SetActive(false);
-            saveBeforeCard.transform.DOScale(0.5f, 0.5f);
+
+            saveBeforeObject.transform.DOScale(saveBeforeObject.transform.localScale * 0.75f, 0.5f);
         }
 
         

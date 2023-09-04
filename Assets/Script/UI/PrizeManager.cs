@@ -21,6 +21,8 @@ namespace FrameWork
         public GameObject cardPrefab;
         public Transform selectCardPanel;
 
+
+
         private void Start()
         {
             Init();
@@ -45,7 +47,7 @@ namespace FrameWork
 
         public void ClickRewardButton()
         {
-            int randomReward = Random.Range(0, 2);
+            int randomReward = Random.Range(0, 1);
 
             switch(randomReward)
             {
@@ -103,6 +105,7 @@ namespace FrameWork
                 cardBase.gameObject.GetComponent<Button>().onClick.AddListener(() => Destroy(selectCardPanel.transform.parent.gameObject));
                 cardBase.gameObject.GetComponent<Button>().onClick.AddListener(() => Destroy(rewardButton.gameObject.transform.gameObject));
                 cardBase.Init(cardDatas[randomCardIndex]);
+                cardBase.transform.localScale = new Vector2(1, 1);
                 ShopManager.ChangeSize(cardBase.gameObject, ItemType.Card, 0, itemData);
              
             }

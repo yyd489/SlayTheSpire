@@ -43,10 +43,6 @@ namespace FrameWork
            // DeleteChanceCard();
         }
 
-
-        
-
-
         public void DeleteChanceCard(GameObject card)
         {
             List<int> listDeckCards = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard;
