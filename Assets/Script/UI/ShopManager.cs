@@ -213,9 +213,7 @@ namespace FrameWork
 
         public static void OnPointerExit()
         {
-
             GameManager.Instance.ingameTopUI.itemTipPrefab.SetActive(false);
-
             saveBeforeObject.transform.DOScale(saveBeforeObject.transform.localScale * 0.75f, 0.5f);
         }
 

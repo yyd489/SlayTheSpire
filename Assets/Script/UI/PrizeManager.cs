@@ -47,7 +47,7 @@ namespace FrameWork
 
         public void ClickRewardButton()
         {
-            int randomReward = Random.Range(0, 1);
+            int randomReward = Random.Range(0, 2);
 
             switch(randomReward)
             {
