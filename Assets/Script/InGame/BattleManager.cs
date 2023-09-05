@@ -56,11 +56,9 @@ namespace FrameWork
                     battleState = BattleState.PlayerTurn;
                     break;
                 case BattleState.PlayerTurn:
-                    if (firstTurn)
-                    {
-                        firstTurn = false;
-                        GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
-                    }
+                    GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
+                    if (firstTurn) firstTurn = false;
+
                     battleState = BattleState.EnemyTurn;
                     Narration("Enemy Turn");
                     RefreshBuff(GameManager.Instance.playerControler.playerCharacter);
@@ -86,7 +84,6 @@ namespace FrameWork
                         if (ralic.Contains(Data.RelicType.HealFire))
                         {
                             GameManager.Instance.playerControler.ironclad.Heal(10);
-                            // 원래턴으로 변경필요
                         }
                     }
                     else
