@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 676057555888793322}
   - component: {fileID: 676057555888793324}
   - component: {fileID: 676057555888793325}
+  - component: {fileID: 575664180513761042}
   m_Layer: 5
   m_Name: BuffIconPrefab
   m_TagString: Untagged
@@ -208,3 +209,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &575664180513761042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676057555888793323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b6f55c8ee6d974cb63c41cd3b42223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buff: 0
+  turn: 0
+  iconImg: {fileID: 676057555888793325}
+  turnText: {fileID: 676057555805070951}

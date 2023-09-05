@@ -25,6 +25,7 @@ namespace FrameWork
         {
             Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
             ironclad = playerCharacter.GetComponent<Ironclad>();
+            ironclad.Init(null);
         }
 
         private void Update()
@@ -40,24 +41,27 @@ namespace FrameWork
                     targetCharacter.Hit(0, selectPotion.potionEffect);
                     GameManager.Instance.potionManager.DropPotion();
                     selectPotion = null;
+                    TargetSet(null);
+                    onDrag = false;
                 }
                 else
                 {
-                    if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null)
+                    if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null && selectCard.cardData.cardName != "천둥")
                     {
                         selectCard.UseSelectCard();
                         GameManager.Instance.cardManager.UseCard(selectCard);
                         selectPotion = null;
+                        TargetSet(null);
+                        onDrag = false;
                     }
-                    else if (selectCard.cardData.cardType != Data.CardType.Attack)
+                    else if (selectCard.cardData.cardType != Data.CardType.Attack || selectCard.cardData.cardName == "천둥")
                     {
                         selectCard.UseSelectCard();
                         GameManager.Instance.cardManager.UseCard(selectCard);
+                        TargetSet(null);
+                        onDrag = false;
                     }
                 }
-
-                TargetSet(null);
-                onDrag = false;
             }
             else if (Input.GetMouseButtonDown(1) && onDrag)
             {
@@ -70,6 +74,7 @@ namespace FrameWork
                     selectCard = null;
                 }
 
+                targetBox.SetActive(false);
                 onDrag = false;
             }
         }
@@ -83,7 +88,7 @@ namespace FrameWork
         public void TargetSet(CharacterBase target)
         {
             targetCharacter = target;
-            if (targetCharacter != null)
+            if (targetCharacter != null && selectCard.cardData.cardName != "천둥")
             {
                 targetBox.SetActive(true);
                 targetBox.transform.position = Camera.main.WorldToScreenPoint(target.transform.parent.transform.position + new Vector3(0f, -0.3f));

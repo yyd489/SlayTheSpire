@@ -76,9 +76,7 @@ namespace FrameWork
             {
                 if(cardData.cardName == "발화")
                 {
-                    BuffStatus newBuff = new BuffStatus();
-                    newBuff.InitBuff(Buff.PowerUp, 1);
-                    playerCharacter.AddBuffList(newBuff);
+                    playerCharacter.AddBuffList(Buff.PowerUp, 1);
                 }
                 else
                 {

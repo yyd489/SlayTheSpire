@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_ironclad
       objectReference: {fileID: 0}
+    - target: {fileID: 233887975915651518, guid: 65448676b863dcc45bde940de479b8b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3986791911798404734, guid: 65448676b863dcc45bde940de479b8b9,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2550,7 +2555,7 @@ PrefabInstance:
     - target: {fileID: 1342274349401344466, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1342274350508181188, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}
@@ -2631,5 +2636,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3605619282548399045, guid: 8b75f3c549240584083365d371de4deb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b75f3c549240584083365d371de4deb, type: 3}

@@ -7,15 +7,12 @@ namespace FrameWork
 {
     public class Champ : CharacterBase
     {
-        public override void Init()
+        public override void Init(Data.MonsterJsonData monsterStat)
         {
-            name = "투사";
-            hp = 100;
-            maxHp = hp;
-            damage = 0;
             defence = 0;
             isMonster = true;
-            isHold = false;
+
+            base.Init(monsterStat);
         }
     }
 }

@@ -18,7 +18,8 @@ namespace FrameWork
 
         private GameObject character;
 
-        public ObjectPool iconPool;
+        public Transform iconParent;
+        public ObjectPool buffIconPool;
 
         Color shieldColor;
 
