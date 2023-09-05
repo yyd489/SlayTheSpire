@@ -138,18 +138,29 @@ namespace FrameWork
 
             if (IsDead())
             {
-                List<CharacterBase> enemys = GameManager.Instance.battleManager.enemyCharacters;
-                for (int i = 0; i < enemys.Count; i++)
-                {
-                    if (!enemys[i].IsDead()) return;
-                }
-                GameManager.Instance.battleManager.battleState = BattleState.EndBattle;
-                GameManager.Instance.battleManager.TurnChange();
-
                 if (isMonster)
                 {
-                    transform.parent.gameObject.SetActive(false);
-                    objectResource.ActiveRender(false);
+                    bool isMonsterAllDead = false;
+                    List<CharacterBase> enemys = GameManager.Instance.battleManager.enemyCharacters;
+                    for (int i = 0; i < enemys.Count; i++)
+                    {
+                        if (!enemys[i].IsDead())
+                        {
+                            isMonsterAllDead = false;
+                            break;
+                        }
+                    }
+
+                    if (isMonsterAllDead)
+                    {
+                        GameManager.Instance.battleManager.battleState = BattleState.EndBattle;
+                        GameManager.Instance.battleManager.TurnChange();
+                    }
+
+                    Destroy(transform.parent.gameObject);
+
+                    //objectResource.ActiveRender(false);
+                    //transform.parent.gameObject.SetActive(false);
                 }
             }
             else
