@@ -6,9 +6,7 @@ namespace FrameWork
 {
     public class ObjectPool : MonoBehaviour
     {
-        public static ObjectPool Instance;
-
-        private static GameObject objParent;
+        private GameObject objParent;
 
         [SerializeField] private GameObject poolingObjectPrefab;
 
@@ -16,7 +14,6 @@ namespace FrameWork
 
         public void Awake()
         {
-            Instance = this;
             objParent = this.gameObject;
             Initialize(5);
         }
@@ -41,17 +38,16 @@ namespace FrameWork
         // Queue에 빼서 오브젝트 사용
         public GameObject GetObject(Transform parent)
         {
-            if (Instance.poolingObjectQueue.Count > 0)
+            if (poolingObjectQueue.Count > 0)
             {
-                var obj = Instance.poolingObjectQueue.Dequeue();
+                var obj = poolingObjectQueue.Dequeue();
                 obj.transform.SetParent(parent);
                 obj.gameObject.SetActive(true);
-                Debug.Log(obj.name);
                 return obj;
             }
             else
             {
-                var newObj = Instance.CreateNewObject();
+                var newObj = CreateNewObject();
                 newObj.gameObject.SetActive(true);
                 newObj.transform.SetParent(parent);
                 return newObj;
@@ -63,7 +59,7 @@ namespace FrameWork
         {
             obj.gameObject.SetActive(false);
             obj.transform.SetParent(objParent.transform);
-            Instance.poolingObjectQueue.Enqueue(obj);
+            poolingObjectQueue.Enqueue(obj);
         }
     }
 }

@@ -136,8 +136,8 @@ MonoBehaviour:
   - {fileID: 4359037318963748861}
   - {fileID: 859637464781425827}
   m_Bounds:
-    m_Center: {x: -0.018350124, y: 0.06537503, z: 0}
-    m_Extent: {x: 1.24961, y: 0.57160515, z: 0}
+    m_Center: {x: -0.018350005, y: 0.06537509, z: 0}
+    m_Extent: {x: 1.2496098, y: 0.5716051, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &143115089078750089
@@ -362,8 +362,8 @@ MonoBehaviour:
   - {fileID: 5783816769058858495}
   - {fileID: 598032020206516418}
   m_Bounds:
-    m_Center: {x: 0.014920041, y: 0.004795097, z: 0}
-    m_Extent: {x: 0.24021, y: 0.1211949, z: 0}
+    m_Center: {x: 0.014920071, y: 0.0047951564, z: 0}
+    m_Extent: {x: 0.24020998, y: 0.12119484, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1023741295567744081
@@ -528,8 +528,8 @@ MonoBehaviour:
   - {fileID: 4359037318963748861}
   - {fileID: 859637464781425827}
   m_Bounds:
-    m_Center: {x: -0.0074501634, y: -0.0049949884, z: 0}
-    m_Extent: {x: 0.50245017, y: 0.16999504, z: 0}
+    m_Center: {x: -0.0074501038, y: -0.0049949735, z: 0}
+    m_Extent: {x: 0.5024501, y: 0.16999504, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &1854683174948910189
@@ -821,8 +821,8 @@ MonoBehaviour:
   - {fileID: 3319488021250424668}
   - {fileID: 1745366351484753382}
   m_Bounds:
-    m_Center: {x: 0.039999947, y: -0.0055100173, z: 0}
-    m_Extent: {x: 0.17499986, y: 0.15449002, z: 0}
+    m_Center: {x: 0.039999947, y: -0.005509883, z: 0}
+    m_Extent: {x: 0.17499985, y: 0.15449001, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4094860100383712340
@@ -874,10 +874,10 @@ BoxCollider2D:
   m_Offset: {x: 0.15, y: -1.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.63, y: 1.83}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -1027,8 +1027,8 @@ MonoBehaviour:
   - {fileID: 5783816769058858495}
   - {fileID: 598032020206516418}
   m_Bounds:
-    m_Center: {x: -0.0050001293, y: 0.003399998, z: 0}
-    m_Extent: {x: 0.20499995, y: 0.17160001, z: 0}
+    m_Center: {x: -0.0050000995, y: 0.0033999234, z: 0}
+    m_Extent: {x: 0.20499995, y: 0.17160007, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4965486664907792171
@@ -1371,8 +1371,8 @@ MonoBehaviour:
   - {fileID: 2857694487115228541}
   - {fileID: 4160848001138252716}
   m_Bounds:
-    m_Center: {x: 0.028379858, y: 0.13301513, z: 0}
-    m_Extent: {x: 0.21162, y: 0.15687503, z: 0}
+    m_Center: {x: 0.028379872, y: 0.13301525, z: 0}
+    m_Extent: {x: 0.21162, y: 0.15687491, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7771921460019517482
@@ -1402,8 +1402,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7771921460019517482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.65, y: -3.95, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0, y: -3.95, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_Children:
   - {fileID: 5883844180841086653}
   - {fileID: 8437231430721256305}
@@ -1472,7 +1472,10 @@ MonoBehaviour:
   shield: 0
   damage: 0
   defence: 0
+  buffDamage: 0
+  buffDefence: 0
   charaterPos: {x: 0, y: 0}
+  listBuff: []
   hpBarPrefab: {fileID: 9127624194467943934, guid: ff4c9945872762b48b724589df05dd5e,
     type: 3}
   objectResource: {fileID: 7602615704463519274}

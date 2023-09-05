@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace FrameWork
 {
-  
-
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] GameObject[] arrNormarMonsters;
@@ -20,16 +18,21 @@ namespace FrameWork
         private void SpawnMonster(MapField enemyStage)
         {
             List<GameObject> listSpawnMonster = new List<GameObject>();
+            List<int> listSummonMonstetIndex = new List<int>();
 
             switch(enemyStage)
             {
                 case MapField.Monster:
                     int unitCount = Random.Range(1, 4);
-                    for(int i = 0; i < unitCount; i++)
-                        listSpawnMonster.Add(arrNormarMonsters[Random.Range(0, arrNormarMonsters.Length)]);
+                    for (int i = 0; i < unitCount; i++)
+                    {
+                        int monsterIndex = Random.Range(0, arrNormarMonsters.Length);
+                        listSpawnMonster.Add(arrNormarMonsters[monsterIndex]);
+                        listSummonMonstetIndex.Add(monsterIndex);
+                    }
                     break;
                 case MapField.EliteMonster:
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 2; i++)
                         listSpawnMonster.Add(namedMonster);
                     break;
                 case MapField.Boss:
@@ -52,15 +55,20 @@ namespace FrameWork
                 spawnPosX[2] = 0.9f;
             }
 
+
+            var characterStat = GameManager.Instance.dataManager.data.monsterData.monsterData.listMonsterData;
+
             for (int i = 0; i < listSpawnMonster.Count; i++)
             {
                 GameObject characterParent = Instantiate(listSpawnMonster[i], Vector2.zero, Quaternion.identity, this.transform);
                 CharacterBase character = characterParent.transform.GetChild(0).GetComponent<CharacterBase>();
                 Vector3 pos = Camera.main.WorldToViewportPoint(characterParent.transform.position);
                 pos.x = spawnPosX[i];
-                pos.y = 0.5f;
+                pos.y = 0.57f;
                 pos = Camera.main.ViewportToWorldPoint(pos);
-                characterParent.transform.position = character.charaterPos = pos;
+                characterParent.transform.position = pos;
+                character.charaterPos = character.transform.localPosition;
+                character.Init(characterStat[listSummonMonstetIndex[i]]);
                 GameManager.Instance.battleManager.enemyCharacters.Add(character);
             }
         }

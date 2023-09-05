@@ -707,8 +707,8 @@ MonoBehaviour:
   - {fileID: 5019795479916518970}
   - {fileID: 9146945958208466374}
   m_Bounds:
-    m_Center: {x: 0.0021549165, y: -0.000064730644, z: 0}
-    m_Extent: {x: 0.44784513, y: 0.47993517, z: 0}
+    m_Center: {x: 0.0021549463, y: -0.00006496906, z: 0}
+    m_Extent: {x: 0.44784513, y: 0.4799351, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &4251591962156581173
@@ -861,7 +861,7 @@ Transform:
   m_GameObject: {fileID: 5114481026822602550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.3, y: -3.45, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
   m_Children:
   - {fileID: 7177724864449631187}
   - {fileID: 6936678696701564358}
@@ -922,7 +922,10 @@ MonoBehaviour:
   shield: 0
   damage: 0
   defence: 0
+  buffDamage: 0
+  buffDefence: 0
   charaterPos: {x: 0, y: 0}
+  listBuff: []
   hpBarPrefab: {fileID: 9127624194467943934, guid: ff4c9945872762b48b724589df05dd5e,
     type: 3}
   objectResource: {fileID: 4583686208952031390}
@@ -1115,8 +1118,8 @@ MonoBehaviour:
   - {fileID: 9043129831806123793}
   - {fileID: 7786462739973560390}
   m_Bounds:
-    m_Center: {x: 0.000014901161, y: -0.06952977, z: 0}
-    m_Extent: {x: 1.0699852, y: 0.51382023, z: 0}
+    m_Center: {x: 0.0000150203705, y: -0.06952995, z: 0}
+    m_Extent: {x: 1.0699852, y: 0.51382005, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5574199390988822560
@@ -1323,9 +1326,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.05, y: -1.24}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 2.63, y: 1.83}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

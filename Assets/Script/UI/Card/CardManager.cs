@@ -39,8 +39,7 @@ namespace FrameWork
                 dicCardImages.Add(cardDatas[i].cardName, cardImages[i]);
             }
             
-            List<int> listDeckData = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard;
-            List<int> listHaveCard = listDeckData.ToList();
+            List<int> listHaveCard = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard.ToList();
 
             int haveCount = listHaveCard.Count;
 
@@ -184,7 +183,7 @@ namespace FrameWork
                 if(!tempDeckCard.canDelete) listUseDeck.Add(tempDeckCard);
 
                 tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
-                tempCard.Init(cardDatas[i]);
+                tempCard.Init(tempDeckCard);
                 cards.Add(tempCard);
             }
 

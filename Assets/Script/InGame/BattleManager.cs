@@ -22,7 +22,9 @@ namespace FrameWork
         public int energy;
         public bool firstTurn;
 
-        public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
+        [SerializeField] public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
+
+        public Sprite[] arrBuffIcon;
 
         [SerializeField] private SpawnManager spawnManager;
 
@@ -82,7 +84,10 @@ namespace FrameWork
                     {
                         var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
                         if (ralic.Contains(Data.RelicType.HealFire))
+                        {
                             GameManager.Instance.playerControler.ironclad.Heal(10);
+                            // 원래턴으로 변경필요
+                        }
                     }
                     else
                     {
@@ -109,13 +114,15 @@ namespace FrameWork
         {
             for (int i = 0; i < character.listBuff.Count; i++)
             {
-                character.listBuff[i].turn--;
+                character.listBuff[i].RefreshBuff();
 
-                // 버프아이콘 제거필요
-                if (character.listBuff[i].turn == 0) character.listBuff.RemoveAt(i);
+                if (character.listBuff[i].turn == 0)
+                {
+                    character.RemoveBuffStat(character.listBuff[i]);
+                }
             }
 
-            character.InputBuffStat();
+            character.RefreshBuffStat();
         }
 
         public void RefreshDeckCountText(int deck, int useDeck)

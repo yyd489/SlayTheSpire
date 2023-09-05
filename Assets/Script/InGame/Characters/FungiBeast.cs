@@ -7,15 +7,12 @@ namespace FrameWork
 {
     public class FungiBeast : CharacterBase
     {
-        public override void Init()
+        public override void Init(Data.MonsterJsonData monsterStat)
         {
-            name = "동물하초";
-            hp = 1;
-            maxHp = hp;
-            damage = 0;
             defence = 0;
             isMonster = true;
-            isHold = false;
+
+            base.Init(monsterStat);
         }
     }
 }

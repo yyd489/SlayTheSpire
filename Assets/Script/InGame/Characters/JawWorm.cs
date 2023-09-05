@@ -7,15 +7,12 @@ namespace FrameWork
 {
     public class JawWorm : CharacterBase
     {
-        public override void Init()
+        public override void Init(Data.MonsterJsonData monsterStat)
         {
-            name = "턱벌레";
-            hp = 1;
-            maxHp = hp;
-            damage = 0;
             defence = 0;
             isMonster = true;
-            isHold = false;
+
+            base.Init(monsterStat);
         }
     }
 }
