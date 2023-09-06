@@ -25,7 +25,13 @@ namespace FrameWork
         {
             Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
             ironclad = playerCharacter.GetComponent<Ironclad>();
-            ironclad.Init(null);
+            ironclad.Init(GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect);
+
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            pos.x = 0.25f;
+            pos.y = 0.57f;
+            ironclad.transform.parent.position = Camera.main.ViewportToWorldPoint(pos);
+            ironclad.charaterPos = ironclad.transform.localPosition;
         }
 
         private void Update()

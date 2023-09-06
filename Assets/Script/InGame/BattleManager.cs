@@ -14,6 +14,12 @@ namespace FrameWork
         EnemyTurn,
         EndBattle
     }
+    public enum MonsterAction
+    {
+        Attack,
+        BuffSkill,
+        DeBuffSkill
+    }
 
     public class BattleManager : MonoBehaviour
     {
@@ -54,6 +60,9 @@ namespace FrameWork
                 case BattleState.Ready:
                     firstTurn = true;
                     battleState = BattleState.PlayerTurn;
+                    Narration("Player Turn");
+                    for (int i = 0; i < enemyCharacters.Count; i++)
+                        enemyCharacters[i].monsterAttackIcon.SetActive(true);
                     break;
                 case BattleState.PlayerTurn:
                     GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
@@ -66,15 +75,24 @@ namespace FrameWork
                     GameManager.Instance.cardManager.RemovePlayerCard();
                     break;
                 case BattleState.EnemyTurn:
-                    if (!GameManager.Instance.playerControler.playerCharacter.IsDead()) battleState = BattleState.PlayerTurn;
-                    else battleState = BattleState.EndBattle;
-
-                    GameManager.Instance.cardManager.ReloadPlayerCard();
-                    for (int i = 0; i < enemyCharacters.Count; i++)
+                    if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
-                        if (enemyCharacters[i].IsDead()) continue;
+                        Narration("Player Turn");
+                        battleState = BattleState.PlayerTurn;
 
-                        RefreshBuff(enemyCharacters[i]);
+                        GameManager.Instance.cardManager.ReloadPlayerCard();
+                        for (int i = 0; i < enemyCharacters.Count; i++)
+                        {
+                            if (enemyCharacters[i].IsDead()) continue;
+
+                            RefreshBuff(enemyCharacters[i]);
+                            enemyCharacters[i].monsterAttackIcon.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        battleState = BattleState.EndBattle;
+                        TurnChange();
                     }
                     break;
                 case BattleState.EndBattle:

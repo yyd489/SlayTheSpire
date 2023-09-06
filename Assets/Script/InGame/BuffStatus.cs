@@ -7,7 +7,8 @@ namespace FrameWork
     public enum Buff
     {
         PowerUp = 0,
-        DefenceDown = 1
+        DefenceDown = 1,
+        PowerDown = 2
     }
 
     public class BuffStatus : MonoBehaviour

@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading;
+using TMPro;
 
 namespace FrameWork
 {
     public class BlueSlaver : CharacterBase
     {
+        [SerializeField] TextMeshProUGUI monsterDamageText;
         public override void Init(Data.MonsterJsonData monsterStat)
         {
+            base.Init(monsterStat);
             defence = 0;
             isMonster = true;
+            isHoldUnit = false;
 
-            base.Init(monsterStat);
+            monsterDamageText.text = damage.ToString();
+            monsterAction = MonsterAction.Attack;
         }
+
     }
 }

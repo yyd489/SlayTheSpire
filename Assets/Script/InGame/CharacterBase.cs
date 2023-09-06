@@ -19,7 +19,7 @@ namespace FrameWork
         [SerializeField] private int buffDefence;
         protected bool isMonster;
         protected Animator animator;
-
+        protected bool isHoldUnit;
         private CharacterBase targetCharacter;
 
         public Vector2 charaterPos;
@@ -30,6 +30,8 @@ namespace FrameWork
         protected HealthBar hpBar;
 
         [SerializeField] protected ObjectResource objectResource;
+        public GameObject monsterAttackIcon;
+        protected MonsterAction monsterAction = MonsterAction.Attack;
 
         // 하위 캐릭터 오브젝트에 스크립트 넣고 죽을때 체크해야됨
 
@@ -41,13 +43,19 @@ namespace FrameWork
 #endif
         public virtual void Init(Data.MonsterJsonData monsterStat)
         {
-            if(isMonster)
-            {
-                name = monsterStat.monsterName;
-                hp = monsterStat.hp;
-                maxHp = hp;
-                damage = monsterStat.monsterAttack;
-            }
+            name = monsterStat.monsterName;
+            hp = monsterStat.hp;
+            maxHp = hp;
+            damage = monsterStat.monsterAttack;
+            hpBar = Instantiate(hpBarPrefab, transform.parent).transform.GetChild(0).GetComponent<HealthBar>();
+            hpBar.Init(hp, maxHp, shield, transform.parent.gameObject);
+        }
+
+        public virtual void Init(Data.CharacterCollect characterStat)
+        {
+            name = characterStat.name;
+            hp = characterStat.hp;
+            maxHp = characterStat.maxHp;
 
             hpBar = Instantiate(hpBarPrefab, transform.parent).transform.GetChild(0).GetComponent<HealthBar>();
             hpBar.Init(hp, maxHp, shield, transform.parent.gameObject);
@@ -60,7 +68,7 @@ namespace FrameWork
         }
 
         // 공격, 피격등 이동
-        public async Task<bool> Attack(CharacterBase target, int cardDamage, int debuffTurn, bool isAllAttack = false)
+        public virtual async Task<bool> Attack(CharacterBase target, int cardDamage, int debuffTurn, bool isAllAttack = false)
         {
             if (!isMonster)
             {
@@ -81,7 +89,6 @@ namespace FrameWork
                     ChangeState(1);
                     targetCharacter = target;
                     float modifyPos = -4f;
-                    if (isMonster) modifyPos *= -1f;
 
                     float attackPosX = target.transform.position.x + modifyPos;
 
@@ -100,12 +107,11 @@ namespace FrameWork
             {
                 ChangeState(1);
                 targetCharacter = target;
-                float modifyPos = -4f;
-                if (isMonster) modifyPos *= -1f;
+                float modifyPos = 4f;
 
                 float attackPosX = target.transform.position.x + modifyPos;
 
-                await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
+                if(!isHoldUnit) await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
             }
 
             return true;
@@ -140,23 +146,14 @@ namespace FrameWork
             {
                 if (isMonster)
                 {
-                    bool isMonsterAllDead = false;
                     List<CharacterBase> enemys = GameManager.Instance.battleManager.enemyCharacters;
-                    for (int i = 0; i < enemys.Count; i++)
-                    {
-                        if (!enemys[i].IsDead())
-                        {
-                            isMonsterAllDead = false;
-                            break;
-                        }
-                    }
-
-                    if (isMonsterAllDead)
-                    {
+                    if(enemys.Count == 1)
+                    { 
                         GameManager.Instance.battleManager.battleState = BattleState.EndBattle;
                         GameManager.Instance.battleManager.TurnChange();
                     }
 
+                    enemys.Remove(this);
                     Destroy(transform.parent.gameObject);
 
                     //objectResource.ActiveRender(false);
@@ -172,7 +169,20 @@ namespace FrameWork
         }
 
         // 애니메이션 이벤트용 공격 함수
-        public void TargetHit() => targetCharacter.Hit(damage + buffDamage);
+        public void TargetHit()
+        {
+            if (monsterAction == MonsterAction.Attack)
+                targetCharacter.Hit(damage + buffDamage);
+            else if (monsterAction == MonsterAction.DeBuffSkill)
+            {
+                targetCharacter.Hit(0);
+                targetCharacter.AddBuffList(Buff.PowerDown, 2);
+            }
+            else if (monsterAction == MonsterAction.BuffSkill)
+            {
+                targetCharacter.AddBuffList(Buff.PowerUp, 2);
+            }
+        }
 
         protected async void ReturnPosition()
         {
@@ -201,6 +211,15 @@ namespace FrameWork
         }
 
         // 버프
+        public void AddBuffList(Buff buff, int buffTurn)
+        {
+            BuffStatus newBuff = hpBar.buffIconPool.GetObject(hpBar.iconParent).GetComponent<BuffStatus>();
+            newBuff.InitBuff(buff, buffTurn);
+
+            listBuff.Add(newBuff);
+            RefreshBuffStat();
+        }
+
         public void RefreshBuffStat()
         {
             buffDamage = 0;
@@ -210,16 +229,8 @@ namespace FrameWork
             {
                 if (listBuff[i].buff == Buff.PowerUp) buffDamage = 2;
                 else if (listBuff[i].buff == Buff.DefenceDown) buffDefence = 2;
+                else if (listBuff[i].buff == Buff.PowerDown) buffDamage = -2;
             }
-        }
-
-        public void AddBuffList(Buff buff, int buffTurn)
-        {
-            BuffStatus newBuff = hpBar.buffIconPool.GetObject(hpBar.iconParent).GetComponent<BuffStatus>();
-            newBuff.InitBuff(buff, buffTurn);
-
-            listBuff.Add(newBuff);
-            RefreshBuffStat();
         }
 
         public void RemoveBuffStat(BuffStatus buffStatus)

@@ -766,8 +766,9 @@ MonoBehaviour:
   firstTurn: 0
   enemyCharacters: []
   arrBuffIcon:
-  - {fileID: 21300000, guid: 2bcc3a289fec7a841865c773d85831b4, type: 3}
+  - {fileID: 21300000, guid: b8e7449ee4a251d4b82f389c232a6c01, type: 3}
   - {fileID: 21300000, guid: 10bc141e5ab09ec49a67582156b37e19, type: 3}
+  - {fileID: 21300000, guid: 28310754025ab774090f400e78f7308d, type: 3}
   spawnManager: {fileID: 3067515496752103970, guid: 8b75f3c549240584083365d371de4deb,
     type: 3}
   TurnEndBtn: {fileID: 1342274350204313525}

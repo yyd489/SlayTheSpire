@@ -6,23 +6,12 @@ namespace FrameWork
 {
     public class Ironclad : CharacterBase
     {
-        public virtual void Init(Data.MonsterJsonData monsterStat)
-        {            
-            var characterStat = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect;
-            name = characterStat.name;
-            maxHp = characterStat.hp;
-            hp = characterStat.maxHp;
+        public virtual void Init(Data.CharacterCollect characterStat)
+        {
+            base.Init(characterStat);
+
             damage = defence = 0;
             isMonster = false;
-
-            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-            pos.x = 0.25f;
-            pos.y = 0.57f;
-            transform.parent.position = Camera.main.ViewportToWorldPoint(pos);
-            charaterPos = transform.localPosition;
-
-            base.Init(monsterStat);
-            //SetRelicStatus(true);
         }
 
         public void SetRelicStatus(bool first)
