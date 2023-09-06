@@ -22,7 +22,7 @@ namespace FrameWork
     }
 
 
-    
+  
     public class mapNode
     {
         public List<mapNode> listAdjacent = new List<mapNode>();//연결링크
@@ -144,6 +144,7 @@ namespace FrameWork
             listNodes.Add(listNodeZones[0].transform.GetChild(0).gameObject);
             listMapGraph.Add(new mapNode());
             listMapGraph[listMapGraph.Count - 1].myFloor = 0;
+            listMapGraph[listMapGraph.Count - 1].field = MapField.Boss;
             ///////////////////////////// 보스 노드 오브젝트 넣어주기 끝
             for (int i = 1; i < listNodeZones.Count; i++)//일반 노드 오브젝트 생성 
             {
@@ -261,6 +262,8 @@ namespace FrameWork
 
         public void ClickNodeButton(int index)
         {
+
+            
             for (int i = 0; i < listMapGraph.Count; i++)
             {
                 if (listMapGraph[index].myFloor == listMapGraph[i].myFloor)

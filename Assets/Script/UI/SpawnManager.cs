@@ -23,17 +23,12 @@ namespace FrameWork
             switch(enemyStage)
             {
                 case MapField.Monster:
-                    //int unitCount = Random.Range(1, 4);
-                    //for (int i = 0; i < unitCount; i++)
-                    //{
-                    //    int monsterIndex = Random.Range(0, arrNormarMonsters.Length);
-                    //    listSpawnMonster.Add(arrNormarMonsters[monsterIndex]);
-                    //    listSummonMonstetIndex.Add(monsterIndex);
-                    //}
-                    for (int i = 0; i < 2; i++)
+                    int unitCount = Random.Range(1, 4);
+                    for (int i = 0; i < unitCount; i++)
                     {
-                        listSpawnMonster.Add(namedMonster);
-                        listSummonMonstetIndex.Add(5);
+                        int monsterIndex = Random.Range(0, arrNormarMonsters.Length);
+                        listSpawnMonster.Add(arrNormarMonsters[monsterIndex]);
+                        listSummonMonstetIndex.Add(monsterIndex);
                     }
                     break;
                 case MapField.EliteMonster:
