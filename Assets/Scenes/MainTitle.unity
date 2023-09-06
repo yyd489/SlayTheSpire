@@ -330,6 +330,7 @@ MonoBehaviour:
   - {fileID: 1340468560}
   - {fileID: 1248046864}
   - {fileID: 631926405}
+  cursorImg: {fileID: 2800000, guid: 7997629b55217ac478f9231566d48731, type: 3}
 --- !u!1 &231380052
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ public class MainTitleManager : MonoBehaviour
     public CanvasGroup faidingCanvas;
     public GameObject saveBeforeObject;
     public Button[] buttons;
-    
+    [SerializeField] private Texture2D cursorImg;
+
 
     public void Start()
     {
@@ -31,6 +32,8 @@ public class MainTitleManager : MonoBehaviour
         cloudes[0].transform.DOMoveX(-870, 90);
         cloudes[1].transform.DOMoveX(-870, 90);
         cloudes[4].transform.DOMoveX(-870, 90);
+
+        Cursor.SetCursor(cursorImg, Vector2.zero, CursorMode.Auto);
     }
 
 
