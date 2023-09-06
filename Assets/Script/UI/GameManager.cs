@@ -47,6 +47,13 @@ namespace FrameWork
 
 
             //---------------------------------------DataManager 무조건 선순위----------------------------------------------------------
+            if(mapManager == null)
+            {
+                mapManager = GameObject.Find("MapPopup").transform.GetComponent<MapManager>();
+            }
+
+            mapManager.FadeOut();
+
             if (soundManager == null)
             {
                 soundManager = new Soundmanager();

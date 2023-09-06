@@ -2103,6 +2103,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fade
       objectReference: {fileID: 0}
+    - target: {fileID: 2740150633502208362, guid: 3b05f083f3306c147b21958f6e3abd27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2740150633502208366, guid: 3b05f083f3306c147b21958f6e3abd27,
         type: 3}
       propertyPath: m_Pivot.x
