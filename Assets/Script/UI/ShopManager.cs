@@ -28,6 +28,7 @@ namespace FrameWork
         public Sprite soldOut;
         public Image deleteCardButton;
         public static GameObject saveBeforeObject;
+        public static Vector3 saveScaleSize;
         public Transform relicPanel;
         public Transform potionPanel;
         public Transform shopPanel;
@@ -118,7 +119,7 @@ namespace FrameWork
             {
                 Destroy(item);
                 Destroy(itemPanel.GetChild(itemIndex).gameObject);
-                
+                GameManager.Instance.soundManager.effectPlaySound(3);
                 characterData.gold -= cost;
                 GameManager.Instance.ingameTopUI.ChangeState();
                 if ( itemType == ItemType.Card)//카드
@@ -155,6 +156,9 @@ namespace FrameWork
                 characterData.gold -= cost;
                 deleteCardButton.sprite = soldOut;
                 GameManager.Instance.ingameTopUI.ChangeState();
+
+                GameManager.Instance.soundManager.effectPlaySound(3);
+               
             }
         }
 
@@ -176,17 +180,22 @@ namespace FrameWork
 
         public static void OnPointerEnter(PointerEventData data ,ItemType itemType , ItemData itemData ,int itemDataIndex)
         {
-            GameObject dataObject = data.pointerEnter.gameObject;
+           GameObject dataObject = data.pointerEnter.gameObject;
+
+           saveScaleSize = dataObject.transform.localScale;
+
+           dataObject.transform.DOScale(dataObject.transform.localScale *1.25f, 0.25f);// = new Vector3(0.7f, 0.7f, 0.7f);
+           saveBeforeObject = data.pointerEnter.gameObject;
+
+            // var Index = data.pointerEnter.transform.GetSiblingIndex();
            
 
-           dataObject.transform.DOScale(dataObject.transform.localScale.x *1.25f, 0.25f);// = new Vector3(0.7f, 0.7f, 0.7f);
-           saveBeforeObject = data.pointerEnter.gameObject;
-          // var Index = data.pointerEnter.transform.GetSiblingIndex();
+           
 
-            switch(itemType)
+            switch (itemType)
             {
                 case ItemType.Potion:
-
+                    GameManager.Instance.soundManager.effectPlaySound(2);
                     var itemGuide = GameManager.Instance.ingameTopUI.itemTipPrefab;
                     itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y);
                     var titleText = itemData.GetPotionData()[itemDataIndex].name;
@@ -198,7 +207,7 @@ namespace FrameWork
                     break;
 
                 case ItemType.Relic:
-
+                    GameManager.Instance.soundManager.effectPlaySound(2);
                     itemGuide = GameManager.Instance.ingameTopUI.itemTipPrefab;
                     itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y);
                     titleText = itemData.GetRelicData()[itemDataIndex].name;
@@ -207,6 +216,9 @@ namespace FrameWork
                     itemGuide.transform.Find("ItemGuide").GetComponent<TextMeshProUGUI>().text = guideText;
                     itemGuide.SetActive(true);
                     break;
+                case ItemType.Card:
+                    GameManager.Instance.soundManager.effectPlaySound(5);
+                    break;
             }
            
         }
@@ -214,7 +226,8 @@ namespace FrameWork
         public static void OnPointerExit()
         {
             GameManager.Instance.ingameTopUI.itemTipPrefab.SetActive(false);
-            saveBeforeObject.transform.DOScale(saveBeforeObject.transform.localScale * 0.75f, 0.5f);
+
+            saveBeforeObject.transform.DOScale(saveScaleSize, 0.5f);
         }
 
         

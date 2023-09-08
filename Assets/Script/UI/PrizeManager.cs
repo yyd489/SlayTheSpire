@@ -34,14 +34,18 @@ namespace FrameWork
             gold.text = rewardGold.ToString()+"골드";
             addGoldButton.onClick.AddListener(() => ClickGoldButton());
             nextButton.onClick.AddListener(() => GameManager.Instance.stageManager.ClearStage(this.transform.parent.gameObject));
+            nextButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+
             ClickRewardButton();
 
+           
         }
 
         public void ClickGoldButton()
         {
             GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold += rewardGold;
             GameManager.Instance.ingameTopUI.ChangeState();
+            GameManager.Instance.soundManager.effectPlaySound(2);
             Destroy(addGoldButton.gameObject);
         }
 
@@ -56,7 +60,7 @@ namespace FrameWork
                     rewardText.text = "덱으로 카드 추가";
                     SelectCard();
                     rewardButton.onClick.AddListener(() => selectCardPanel.transform.parent.gameObject.SetActive(true));
-                
+               
                     break;
 
                 case 1:
@@ -68,6 +72,7 @@ namespace FrameWork
                     rewardText.text = potionList[randomPotionIndex].name;
                     rewardButton.onClick.AddListener(() => AddPotion(randomPotionIndex));
                     rewardImage.gameObject.SetActive(false);
+                
                     break;
             }
         }
@@ -76,13 +81,15 @@ namespace FrameWork
         public void AddPotion(int radomPotionIndex)
         {
             var havePotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
-            
-            if(havePotion.Count >= 3)
+           
+            if (havePotion.Count >= 3)
             {
                 Debug.Log("불가");
+                
             }
             else
             {
+                GameManager.Instance.soundManager.effectPlaySound(2);
                 GameManager.Instance.ingameTopUI.AddPotion(radomPotionIndex);
                 Destroy(rewardButton.gameObject);
             }
@@ -94,7 +101,7 @@ namespace FrameWork
             int allCardCount = GameManager.Instance.dataManager.data.cardData.cardCollect.listcardData.Count;
             List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
             var itemData = GameManager.Instance.dataManager.data.itemData;
-
+            GameManager.Instance.soundManager.effectPlaySound(5); 
             for (int i = 0; i < cardGoodsCount; i++)
             {
                 int randomCardIndex = Random.Range(0, allCardCount);

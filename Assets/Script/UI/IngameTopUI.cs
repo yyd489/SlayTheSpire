@@ -42,7 +42,9 @@ namespace FrameWork
                 relicImage.sprite = listRelicSprites[(int)listRelic[i]]; 
             }
 
-         
+            optionButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+            deckButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+            mapButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(0));
         }
 
         public void ControlTopButton()

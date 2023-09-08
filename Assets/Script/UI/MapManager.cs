@@ -175,7 +175,7 @@ namespace FrameWork
 
                     int Index = listMapGraph.Count - 1;
                     obj.GetComponent<Button>().onClick.AddListener(() => ClickNodeButton(Index));
-                    
+                    obj.GetComponent<Button>().onClick.AddListener(()=>   GameManager.Instance.soundManager.effectPlaySound(1)); 
                 }
 
             }

@@ -54,12 +54,12 @@ namespace FrameWork
 
             mapManager.FadeOut();
 
-            if (soundManager == null)
-            {
-                soundManager = new Soundmanager();
-            }
-            
-            soundManager.Init(initilizer);
+            //if (soundManager == null)
+            //{
+            //    soundManager = GameObject.Find("SoundManager").GetComponent<Soundmanager>();
+            //}
+
+            //soundManager.ChangeBGM();
 
             if (ingameTopUI == null)
             {
@@ -80,6 +80,7 @@ namespace FrameWork
             {
                 potionManager = GameObject.Find("UITopCanvas").transform.Find("IngameTopUI").GetComponent<PotionManager>();
             }
+
             potionManager.Init();
 
             GameObject ingameUi = GameObject.Find("InGameUiCanvas");
@@ -88,18 +89,21 @@ namespace FrameWork
             {
                 playerControler = ingameUi.GetComponent<PlayerControler>();
             }
+
             playerControler.Init();
 
             if (battleManager == null)
             {
                 battleManager = ingameUi.GetComponent<BattleManager>();
             }
+
             battleManager.Init();
 
             if (cardManager == null)
             {
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();
             }
+
             cardManager.Init();
 
             if (spawnManager == null)
