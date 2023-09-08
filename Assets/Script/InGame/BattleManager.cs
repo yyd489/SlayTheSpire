@@ -31,6 +31,7 @@ namespace FrameWork
         [SerializeField] public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
 
         public Sprite[] arrBuffIcon;
+        public Sprite[] arrMonsterActionIcon;
 
         [SerializeField] private SpawnManager spawnManager;
 
@@ -44,6 +45,8 @@ namespace FrameWork
         [SerializeField] private GameObject rewardPop;
         private IEnumerator coNarration;
 
+        public MapField stage;
+
         public void Init()
         {
             maxEnergy = 3;
@@ -53,7 +56,7 @@ namespace FrameWork
             //spawnManager.Init();            
         }
 
-        public void TurnChange()
+        public async void TurnChange()
         {
             switch (battleState)
             {
@@ -61,15 +64,11 @@ namespace FrameWork
                     firstTurn = true;
                     battleState = BattleState.PlayerTurn;
                     Narration("Player Turn");
-                    for (int i = 0; i < enemyCharacters.Count; i++)
-                        enemyCharacters[i].monsterAttackIcon.SetActive(true);
                     break;
                 case BattleState.PlayerTurn:
                     GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
                     if (firstTurn) firstTurn = false;
 
-                    battleState = BattleState.EnemyTurn;
-                    Narration("Enemy Turn");
                     RefreshBuff(GameManager.Instance.playerControler.playerCharacter);
                     EnemyTurn();
                     GameManager.Instance.cardManager.RemovePlayerCard();
@@ -86,7 +85,7 @@ namespace FrameWork
                             if (enemyCharacters[i].IsDead()) continue;
 
                             RefreshBuff(enemyCharacters[i]);
-                            enemyCharacters[i].monsterAttackIcon.SetActive(true);
+                            enemyCharacters[i].MonsterNextAction();
                         }
                     }
                     else
@@ -185,10 +184,11 @@ namespace FrameWork
             }
         }
 
-        // 테스트용---------------------------------------------------------------------------------------------------------
-
         private async UniTask EnemyTurn()
         {
+            battleState = BattleState.EnemyTurn;
+            Narration("Enemy Turn");
+
             TimeSpan delayTime = TimeSpan.FromSeconds(1);
             bool isLosePlayer = false;
             for (int i = 0; i < enemyCharacters.Count; i++)

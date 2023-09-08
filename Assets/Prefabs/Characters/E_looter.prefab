@@ -865,14 +865,17 @@ MonoBehaviour:
   shield: 0
   damage: 0
   defence: 0
+  skillDamage: 0
   buffDamage: 0
   buffDefence: 0
+  isHaveSkillUnit: 0
   charaterPos: {x: 0, y: 0}
   listBuff: []
   hpBarPrefab: {fileID: 9127624194467943934, guid: ff4c9945872762b48b724589df05dd5e,
     type: 3}
+  monsterAttackIcon: {fileID: 8273223052309950391}
+  damageText: {fileID: 5867763714970983605}
   objectResource: {fileID: 6954459676076264334}
-  monsterAttackIcon: {fileID: 3596313370236201028}
   monsterDamageText: {fileID: 5867763714970983605}
 --- !u!1 &4649009398927933650
 GameObject:
@@ -1752,12 +1755,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7487591151774742457}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3596313370236201028 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6197497962064420861, guid: eee8ff1c9f30f5a4391660bc4aec6222,
+--- !u!114 &8273223052309950391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1529289776860354574, guid: eee8ff1c9f30f5a4391660bc4aec6222,
     type: 3}
   m_PrefabInstance: {fileID: 7487591151774742457}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5867763714970983605 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3929171295872330508, guid: eee8ff1c9f30f5a4391660bc4aec6222,
