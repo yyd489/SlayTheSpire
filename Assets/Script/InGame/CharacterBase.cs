@@ -116,7 +116,7 @@ namespace FrameWork
                 monsterAttackIcon.gameObject.SetActive(false);
                 ChangeState(1);
                 targetCharacter = target;
-                Debug.Log(monsterAction);
+
                 if (!isHoldUnit && monsterAction != MonsterAction.BuffSkill)
                 {
                     float modifyPos = 4f;
