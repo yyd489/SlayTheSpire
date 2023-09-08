@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Threading.Tasks;
+using TMPro;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -15,11 +15,14 @@ namespace FrameWork
         [SerializeField] protected int shield;
         [SerializeField] protected int damage;
         [SerializeField] protected int defence;
+        [SerializeField] protected int skillDamage;
         [SerializeField] private int buffDamage;
         [SerializeField] private int buffDefence;
         protected bool isMonster;
-        protected Animator animator;
         protected bool isHoldUnit;
+        public bool isHaveSkillUnit;
+
+        protected Animator animator;
         private CharacterBase targetCharacter;
 
         public Vector2 charaterPos;
@@ -29,9 +32,11 @@ namespace FrameWork
         [SerializeField] private GameObject hpBarPrefab;
         protected HealthBar hpBar;
 
-        [SerializeField] protected ObjectResource objectResource;
-        public GameObject monsterAttackIcon;
+        [SerializeField] protected Image monsterAttackIcon;
+        [SerializeField] protected TextMeshProUGUI monsterDamageText;
         protected MonsterAction monsterAction = MonsterAction.Attack;
+
+        [SerializeField] protected ObjectResource objectResource;
 
         // 하위 캐릭터 오브젝트에 스크립트 넣고 죽을때 체크해야됨
 
@@ -49,6 +54,9 @@ namespace FrameWork
             damage = monsterStat.monsterAttack;
             hpBar = Instantiate(hpBarPrefab, transform.parent).transform.GetChild(0).GetComponent<HealthBar>();
             hpBar.Init(hp, maxHp, shield, transform.parent.gameObject);
+
+            monsterAttackIcon.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 4.5f, 0));
+            MonsterNextAction();
         }
 
         public virtual void Init(Data.CharacterCollect characterStat)
@@ -68,7 +76,7 @@ namespace FrameWork
         }
 
         // 공격, 피격등 이동
-        public virtual async Task<bool> Attack(CharacterBase target, int cardDamage, int debuffTurn, bool isAllAttack = false)
+        public async UniTask Attack(CharacterBase target, int cardDamage, int debuffTurn, bool isAllAttack = false)
         {
             if (!isMonster)
             {
@@ -105,16 +113,19 @@ namespace FrameWork
             }
             else
             {
+                monsterAttackIcon.gameObject.SetActive(false);
                 ChangeState(1);
                 targetCharacter = target;
-                float modifyPos = 4f;
 
-                float attackPosX = target.transform.position.x + modifyPos;
+                if (!isHoldUnit && monsterAction != MonsterAction.BuffSkill)
+                {
+                    float modifyPos = 4f;
 
-                if(!isHoldUnit) await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
+                    float attackPosX = target.transform.position.x + modifyPos;
+
+                    await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
+                }
             }
-
-            return true;
         }
 
         public async void Hit(int attackdamage, int cardDamage = 0)
@@ -175,12 +186,12 @@ namespace FrameWork
                 targetCharacter.Hit(damage + buffDamage);
             else if (monsterAction == MonsterAction.DeBuffSkill)
             {
-                targetCharacter.Hit(0);
+                targetCharacter.Hit(skillDamage);
                 targetCharacter.AddBuffList(Buff.PowerDown, 2);
             }
             else if (monsterAction == MonsterAction.BuffSkill)
             {
-                targetCharacter.AddBuffList(Buff.PowerUp, 2);
+                AddBuffList(Buff.PowerUp, 2);
             }
         }
 
@@ -190,6 +201,10 @@ namespace FrameWork
             ChangeState(0);
         }
 
+        public virtual void MonsterNextAction()
+        {
+            monsterAttackIcon.gameObject.SetActive(true);
+        }
 
         // 스텟 관련
         public bool IsDead()

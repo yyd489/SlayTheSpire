@@ -23,7 +23,7 @@ namespace FrameWork
             switch(enemyStage)
             {
                 case MapField.Monster:
-                    int unitCount = Random.Range(1, 4);
+                    int unitCount = Random.Range(1, 3);
                     for (int i = 0; i < unitCount; i++)
                     {
                         int monsterIndex = Random.Range(0, arrNormarMonsters.Length);
