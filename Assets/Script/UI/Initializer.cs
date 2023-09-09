@@ -15,6 +15,7 @@ namespace FrameWork
         public GameObject mapPop;
         public GameObject fade;
         public GameObject characterObj;
+        public GameObject lostPop;
         
     }
 }

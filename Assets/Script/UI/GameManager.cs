@@ -27,6 +27,26 @@ namespace FrameWork
         public SpawnManager spawnManager;
 
 
+        //void OnEnable()
+        //{
+        //    // 델리게이트 체인 추가
+        //    SceneManager.sceneLoaded += OnSceneLoaded;
+        //}
+
+        //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        //{
+        //    Debug.Log("씬 교체됨, 현재 씬: " + scene.name);
+
+
+
+        //    if (scene.name == "GameScence")
+        //    {
+        //        Init();
+        //    }
+        //    // 씬 전환 효과 (Fade In)
+
+        //}
+
         private void Start()
         {
             Init();
@@ -111,10 +131,14 @@ namespace FrameWork
                 spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
             }
 
-            DontDestroyOnLoad(gameObject);
+            
 
         }
 
+        public void LoadMainTitle()
+        {
+            SceneManager.LoadSceneAsync("MainTitle");
+        }
         //private void Update()
         //{
         //    if(Input.GetKeyDown(KeyCode.T))

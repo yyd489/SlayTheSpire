@@ -2010,9 +2010,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e532cde339e3948a47c602da922d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundAudio: {fileID: 0}
-  effectAudio: {fileID: 0}
-  effectAudio2: {fileID: 0}
+  backgroundAudio: {fileID: 364133042}
+  effectAudio: {fileID: 1888749951}
+  effectAudio2: {fileID: 847862489}
   backgroundSound:
   - {fileID: 8300000, guid: e968b5d08f92a8f409020c35e7f938ae, type: 3}
   - {fileID: 8300000, guid: dbbbfc4242bccdf4ab5972701deafcc8, type: 3}

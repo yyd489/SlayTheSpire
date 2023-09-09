@@ -18,9 +18,36 @@ namespace FrameWork
 
         public AudioClip[] battleEffectSound;
 
-        private void Start()
+        public static Soundmanager instance;
+
+        void OnEnable()
+        {
+            // 델리게이트 체인 추가
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+           
+
+            ChangeBGM();
+          
+        }
+
+
+        private void Awake()
         {
             Init();
+
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(this.gameObject);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         public void Init()

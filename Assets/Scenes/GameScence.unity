@@ -330,6 +330,7 @@ MonoBehaviour:
   mapPop: {fileID: 1380609455}
   fade: {fileID: 1350277638}
   characterObj: {fileID: 527286818}
+  lostPop: {fileID: 0}
 --- !u!4 &245512511
 Transform:
   m_ObjectHideFlags: 0
@@ -357,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff48e2ffb47b8f439909ddf18f70fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 0}
   ingameTopUI: {fileID: 1207937747}
   stageManager: {fileID: 0}
   playerControler: {fileID: 0}
@@ -935,7 +937,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
@@ -944,14 +945,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0

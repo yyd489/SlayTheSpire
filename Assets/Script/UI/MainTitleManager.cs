@@ -21,7 +21,8 @@ namespace FrameWork
 
         public void Start()
         {
-           
+
+            soundManager = Soundmanager.instance;
 
             for (int i = 0; i <cloudes.Length; i++)
             {

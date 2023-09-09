@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Cysharp.Threading.Tasks;
 using System;
-
+using DG.Tweening;
 namespace FrameWork
 {
     public enum BattleState
@@ -95,15 +95,20 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
-                    if (GameManager.Instance.playerControler.playerCharacter.IsDead())
+                    if (GameManager.Instance.playerControler.playerCharacter.IsDead())//죽었을 때
                     {
                         var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
                         if (ralic.Contains(Data.RelicType.HealFire))
                         {
                             GameManager.Instance.playerControler.ironclad.Heal(10);
                         }
+
+                       var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
+
+                       await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
+                        GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
                     }
-                    else
+                    else//이겻을 때
                     {
                         Instantiate(rewardPop);
                         Debug.Log("전투 종료");
