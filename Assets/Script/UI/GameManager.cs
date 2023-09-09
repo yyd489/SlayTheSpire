@@ -74,12 +74,12 @@ namespace FrameWork
 
             mapManager.FadeOut();
 
-            //if (soundManager == null)
-            //{
-            //    soundManager = GameObject.Find("SoundManager").GetComponent<Soundmanager>();
-            //}
+            if (soundManager == null)
+            {
+                soundManager = GameObject.Find("SoundManager").GetComponent<Soundmanager>();
+            }
 
-            //soundManager.ChangeBGM();
+            soundManager.ChangeBGM();
 
             if (ingameTopUI == null)
             {

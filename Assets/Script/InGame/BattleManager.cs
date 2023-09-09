@@ -104,13 +104,22 @@ namespace FrameWork
                         }
 
                        var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
-
                        await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
                         GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
+                        GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
                     }
                     else//이겻을 때
                     {
-                        Instantiate(rewardPop);
+                        if (MapManager.fieldInfo != MapField.Boss)
+                            Instantiate(rewardPop);
+                        else
+                        {
+                            AsyncUIregister.InstansUI("Assets/Prefabs/UI/WinPanel.prefab");
+
+                            await UniTask.WaitUntil(() => GameObject.Find("WinPanel(Clone)") != null);
+                            GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+                            GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
+                        }
                         Debug.Log("전투 종료");
                     }
                     break;

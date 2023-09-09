@@ -12,7 +12,7 @@ namespace FrameWork
    public static class AsyncUIregister
    {
         public async static 
-            void InstansUI(string path)
+         void InstansUI(string path)
         {   
            // Addressables.LoadAssetAsync<GameObject>(path).Completed += InstansPrefab;
             var instantsObject = Addressables.LoadAssetAsync<GameObject>(path);
