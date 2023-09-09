@@ -330,7 +330,7 @@ MonoBehaviour:
   mapPop: {fileID: 1380609455}
   fade: {fileID: 1350277638}
   characterObj: {fileID: 527286818}
-  lostPop: {fileID: 0}
+  lostPop: {fileID: 8212510652746507239, guid: b31977f4db7c38746b5e4cd8086bc0d8, type: 3}
 --- !u!4 &245512511
 Transform:
   m_ObjectHideFlags: 0
