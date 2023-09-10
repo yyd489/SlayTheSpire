@@ -35,8 +35,6 @@ namespace FrameWork
 
         [SerializeField] private SpawnManager spawnManager;
 
-        [SerializeField] private TextMeshProUGUI narrationText;
-
         public ObjectPool hitEffectPool;
         [SerializeField] private GameObject rewardPop;
         private IEnumerator coNarration;
@@ -159,29 +157,8 @@ namespace FrameWork
                 coNarration = null;
             }
 
-            coNarration = OnNarration(text);
+            coNarration = GameManager.Instance.inGameUIManager.OnNarration(text);
             StartCoroutine(coNarration);
-        }
-
-        private IEnumerator OnNarration(string text)
-        {
-            narrationText.gameObject.SetActive(true);
-            narrationText.text = text;
-            narrationText.alpha = 0f;
-
-            float alpha = 0.025f;
-
-            while (narrationText.alpha < 1f)
-            {
-                narrationText.alpha += alpha;
-                yield return null;
-            }
-
-            while (narrationText.alpha > 0f)
-            {
-                narrationText.alpha -= alpha;
-                yield return null;
-            }
         }
 
         private async UniTask EnemyTurn()
