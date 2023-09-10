@@ -97,21 +97,23 @@ namespace FrameWork
                 case BattleState.EndBattle:
                     if (GameManager.Instance.playerControler.playerCharacter.IsDead())//죽었을 때
                     {
-                        var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
-                        if (ralic.Contains(Data.RelicType.HealFire))
-                        {
-                            GameManager.Instance.playerControler.ironclad.Heal(10);
-                        }
-
-                       var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
-                       await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
+                        var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
+                        await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
                         GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
                         GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
                     }
                     else//이겻을 때
                     {
                         if (MapManager.fieldInfo != MapField.Boss)
+                        {
                             Instantiate(rewardPop);
+
+                            var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+                            if (ralic.Contains(Data.RelicType.HealFire))
+                            {
+                                GameManager.Instance.playerControler.ironclad.Heal(10);
+                            }
+                        }
                         else
                         {
                             AsyncUIregister.InstansUI("Assets/Prefabs/UI/WinPanel.prefab");
@@ -125,7 +127,7 @@ namespace FrameWork
                     break;
             }
 
-            if(battleState == BattleState.PlayerTurn)
+            if (battleState == BattleState.PlayerTurn)
             {
                 Narration("Player Turn");
                 TurnEndBtn.SetActive(true);
@@ -185,7 +187,7 @@ namespace FrameWork
 
             float alpha = 0.025f;
 
-            while(narrationText.alpha < 1f)
+            while (narrationText.alpha < 1f)
             {
                 narrationText.alpha += alpha;
                 yield return null;
@@ -222,6 +224,17 @@ namespace FrameWork
                 await UniTask.Delay(delayTime);
 
             TurnChange();
+        }
+
+        public async void GetHitEffect(Transform hitCharacter)
+        {
+            ParticleSystem hitEffect = hitEffectPool.GetObject(hitCharacter).GetComponent<ParticleSystem>();
+
+            hitEffect.transform.localPosition = Vector2.zero;
+            await new WaitUntil(() => !hitEffect.IsAlive());
+
+            hitEffectPool.ReturnObject(hitEffect.gameObject);
+            ////////////////////////
         }
     }
 }
