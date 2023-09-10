@@ -35,13 +35,9 @@ namespace FrameWork
 
         [SerializeField] private SpawnManager spawnManager;
 
-        [SerializeField] private GameObject TurnEndBtn;
-        [SerializeField] private TextMeshProUGUI deckCount;
-        [SerializeField] private TextMeshProUGUI useDeckCount;
-        [SerializeField] private TextMeshProUGUI energyText;
-
         [SerializeField] private TextMeshProUGUI narrationText;
 
+        public ObjectPool hitEffectPool;
         [SerializeField] private GameObject rewardPop;
         private IEnumerator coNarration;
 
@@ -130,13 +126,13 @@ namespace FrameWork
             if (battleState == BattleState.PlayerTurn)
             {
                 Narration("Player Turn");
-                TurnEndBtn.SetActive(true);
+                GameManager.Instance.inGameUIManager.SetTurnEndBtn(true);
                 energy = maxEnergy;
-                RefreshEnergyText();
+                GameManager.Instance.inGameUIManager.RefreshEnergyText(0);
             }
             else
             {
-                TurnEndBtn.SetActive(false);
+                GameManager.Instance.inGameUIManager.SetTurnEndBtn(false);
             }
         }
 
@@ -153,18 +149,6 @@ namespace FrameWork
             }
 
             character.RefreshBuffStat();
-        }
-
-        public void RefreshDeckCountText(int deck, int useDeck)
-        {
-            deckCount.text = deck.ToString();
-            useDeckCount.text = useDeck.ToString();
-        }
-
-        public void RefreshEnergyText(int useEnergy = 0)
-        {
-            energy -= useEnergy;
-            energyText.text = string.Format("{0}/3", energy);
         }
 
         public void Narration(string text)
