@@ -34,6 +34,8 @@ namespace FrameWork
                 ChangeSize(buttons[i].gameObject);
             }
 
+            buttons[1].onClick.AddListener(() => AsyncUIregister.InstansUI("Assets/Prefabs/UI/OptionCanvas.prefab"));
+
             cloudes[2].transform.DOMoveX(2800, 90);
             cloudes[3].transform.DOMoveX(2800, 90);
             cloudes[0].transform.DOMoveX(-870, 90);
