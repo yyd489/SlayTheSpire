@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 245512512}
   - component: {fileID: 245512510}
   - component: {fileID: 245512513}
+  - component: {fileID: 245512514}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -365,6 +366,7 @@ MonoBehaviour:
   cardManager: {fileID: 0}
   potionManager: {fileID: 0}
   battleManager: {fileID: 0}
+  inGameUIManager: {fileID: 0}
   mapManager: {fileID: 341558384}
   initilizer: {fileID: 245512510}
   spawnManager: {fileID: 1562705372}
@@ -386,6 +388,33 @@ MonoBehaviour:
   - {fileID: 229633827753391445, guid: fa3bf7601e1ffd3468680aced78f96dc, type: 3}
   - {fileID: 2818005693517923400, guid: 569ff83fd40783049aef9a4ed6710abc, type: 3}
   - {fileID: 1402067711938934722, guid: 5788815c214e17b4c8629982ab193fc1, type: 3}
+--- !u!114 &245512514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245512509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b14ca4929a76e849b656a59c3599c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleState: 0
+  energy: 0
+  firstTurn: 0
+  enemyCharacters: []
+  arrBuffIcon:
+  - {fileID: 21300000, guid: b8e7449ee4a251d4b82f389c232a6c01, type: 3}
+  - {fileID: 21300000, guid: 10bc141e5ab09ec49a67582156b37e19, type: 3}
+  - {fileID: 21300000, guid: 28310754025ab774090f400e78f7308d, type: 3}
+  arrMonsterActionIcon:
+  - {fileID: 21300000, guid: b4718f45fc5e7b34385deb20ca54b967, type: 3}
+  - {fileID: 21300000, guid: 2bcc3a289fec7a841865c773d85831b4, type: 3}
+  - {fileID: 21300000, guid: 50364cc9a9e4449489d12b71c72a0eb9, type: 3}
+  spawnManager: {fileID: 1562705372}
+  rewardPop: {fileID: 8120939737636642387, guid: bdd99ff18873e374da0df41db2c9cee7,
+    type: 3}
 --- !u!114 &341558384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1343458532563064067, guid: 3ba55267bbc686740b5c8f4d03da1849,
@@ -591,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 1413133874364988830, guid: 3ba55267bbc686740b5c8f4d03da1849,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1413133874649943547, guid: 3ba55267bbc686740b5c8f4d03da1849,
         type: 3}
@@ -915,6 +944,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ba55267bbc686740b5c8f4d03da1849, type: 3}
+--- !u!1 &564006564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 564006566}
+  - component: {fileID: 564006565}
+  m_Layer: 0
+  m_Name: EffectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &564006565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564006564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81daec08ccb45b14aa524745e9f6d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolingObjectPrefab: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c,
+    type: 3}
+--- !u!4 &564006566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564006564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &639569758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1342274349401344465, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
@@ -2129,7 +2203,7 @@ PrefabInstance:
     - target: {fileID: 2740150633502208362, guid: 3b05f083f3306c147b21958f6e3abd27,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2740150633502208366, guid: 3b05f083f3306c147b21958f6e3abd27,
         type: 3}
@@ -2464,34 +2538,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 46730788, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1037125442, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
       propertyPath: playerCharacter
       value: 
       objectReference: {fileID: 1806910316}
-    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
-      propertyPath: spawnManager
-      value: 
-      objectReference: {fileID: 1562705372}
-    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
-      propertyPath: playerCharacter
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
-      propertyPath: enemyCharacters.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
-      propertyPath: enemyCharacters.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1037125443, guid: 05cfe49671d5d6a43be8b48d760f4ecc, type: 3}
-      propertyPath: enemyCharacters.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1342274349401344461, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2602,17 +2652,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameUiCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1342274349401344466, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1342274350508181188, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1342274350517954785, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
+    - target: {fileID: 1342274350204313520, guid: 05cfe49671d5d6a43be8b48d760f4ecc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

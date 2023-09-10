@@ -19,6 +19,7 @@ namespace FrameWork
         public CardManager cardManager;
         public PotionManager potionManager;
         public BattleManager battleManager;
+        public InGameUIManager inGameUIManager;
 
         public MapManager mapManager;
 
@@ -112,9 +113,14 @@ namespace FrameWork
 
             playerControler.Init();
 
+            if (inGameUIManager == null)
+            {
+                inGameUIManager = ingameUi.GetComponent<InGameUIManager>();
+            }
+
             if (battleManager == null)
             {
-                battleManager = ingameUi.GetComponent<BattleManager>();
+                battleManager = GetComponent<BattleManager>();
             }
 
             battleManager.Init();

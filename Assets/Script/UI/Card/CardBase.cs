@@ -55,7 +55,7 @@ namespace FrameWork
 
         public void UseSelectCard()
         {
-            GameManager.Instance.battleManager.RefreshEnergyText(cardData.cardCost);
+            GameManager.Instance.inGameUIManager.RefreshEnergyText(cardData.cardCost);
             CharacterBase playerCharacter = GameManager.Instance.playerControler.playerCharacter;
 
             if (cardData.cardType == Data.CardType.Attack)
