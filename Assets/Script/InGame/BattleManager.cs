@@ -187,15 +187,14 @@ namespace FrameWork
             TurnChange();
         }
 
-        public async void GetHitEffect(Transform hitCharacter)
+        public async UniTask GetHitEffect(CharacterBase hitCharater)
         {
-            ParticleSystem hitEffect = hitEffectPool.GetObject(hitCharacter).GetComponent<ParticleSystem>();
+            ParticleSystem hitEffect = hitEffectPool.GetObject(hitEffectPool.transform).GetComponent<ParticleSystem>();
 
-            hitEffect.transform.localPosition = Vector2.zero;
-            await new WaitUntil(() => !hitEffect.IsAlive());
+            hitEffect.transform.position = hitCharater.centerPos.position;
+            await UniTask.Delay(TimeSpan.FromSeconds(hitEffect.duration));
 
             hitEffectPool.ReturnObject(hitEffect.gameObject);
-            ////////////////////////
         }
     }
 }

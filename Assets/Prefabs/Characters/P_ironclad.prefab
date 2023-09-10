@@ -231,12 +231,17 @@ MonoBehaviour:
   shield: 0
   damage: 0
   defence: 0
+  skillDamage: 0
   buffDamage: 0
   buffDefence: 0
+  isHaveSkillUnit: 0
   charaterPos: {x: 0, y: 0}
   listBuff: []
   hpBarPrefab: {fileID: 9127624194467943934, guid: ff4c9945872762b48b724589df05dd5e,
     type: 3}
+  monsterAttackIcon: {fileID: 0}
+  monsterDamageText: {fileID: 0}
+  centerPos: {fileID: 6316833046003732785}
   objectResource: {fileID: 3878070976184505617}
 --- !u!1 &984458670411166183
 GameObject:

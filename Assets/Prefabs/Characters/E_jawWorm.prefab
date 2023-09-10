@@ -1483,6 +1483,7 @@ MonoBehaviour:
     type: 3}
   monsterAttackIcon: {fileID: 9060279767813520174}
   monsterDamageText: {fileID: 6774131789694404652}
+  centerPos: {fileID: 8526039533104041152}
   objectResource: {fileID: 7602615704463519274}
 --- !u!1 &8318752863132621146
 GameObject:

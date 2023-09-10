@@ -264,6 +264,7 @@ MonoBehaviour:
     type: 3}
   monsterAttackIcon: {fileID: 2600361484348242148}
   monsterDamageText: {fileID: 551777218476067814}
+  centerPos: {fileID: 679266993311763163}
   objectResource: {fileID: 39990601930732881}
   buffSkillTurn: 0
   debuffSkillTurn: 0

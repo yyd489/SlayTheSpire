@@ -48,7 +48,7 @@ namespace FrameWork
                 }
                 else if (cardData.cardCost > GameManager.Instance.battleManager.energy)
                 {
-                    GameManager.Instance.battleManager.Narration("Energy");
+                    GameManager.Instance.battleManager.Narration("에너지가 부족합니다");
                 }
             }
         }

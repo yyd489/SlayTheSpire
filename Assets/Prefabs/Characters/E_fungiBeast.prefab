@@ -931,9 +931,9 @@ MonoBehaviour:
   hpBarPrefab: {fileID: 9127624194467943934, guid: ff4c9945872762b48b724589df05dd5e,
     type: 3}
   monsterAttackIcon: {fileID: 7125543251493015944}
-  damageText: {fileID: 4709950881958208138}
-  objectResource: {fileID: 4583686208952031390}
   monsterDamageText: {fileID: 4709950881958208138}
+  centerPos: {fileID: 6759583808451952394}
+  objectResource: {fileID: 4583686208952031390}
 --- !u!1 &5283638376259178919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1622,21 @@ PrefabInstance:
     - target: {fileID: 8195967090675645725, guid: eee8ff1c9f30f5a4391660bc4aec6222,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195967090675645725, guid: eee8ff1c9f30f5a4391660bc4aec6222,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195967090675645725, guid: eee8ff1c9f30f5a4391660bc4aec6222,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195967090675645725, guid: eee8ff1c9f30f5a4391660bc4aec6222,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8195967090675645725, guid: eee8ff1c9f30f5a4391660bc4aec6222,

@@ -36,6 +36,7 @@ namespace FrameWork
         [SerializeField] protected TextMeshProUGUI monsterDamageText;
         protected MonsterAction monsterAction = MonsterAction.Attack;
 
+        public Transform centerPos;
         [SerializeField] protected ObjectResource objectResource;
 
         // 하위 캐릭터 오브젝트에 스크립트 넣고 죽을때 체크해야됨
@@ -138,7 +139,7 @@ namespace FrameWork
             int targetShield = shield;
             int hitDamage = attackdamage + cardDamage + defence + buffDefence;
 
-
+            GameManager.Instance.battleManager.GetHitEffect(this);
             if (targetShield > 0 )
             {
                 if (targetShield > hitDamage)
