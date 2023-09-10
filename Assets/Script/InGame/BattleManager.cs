@@ -33,19 +33,10 @@ namespace FrameWork
         public Sprite[] arrBuffIcon;
         public Sprite[] arrMonsterActionIcon;
 
+        public ObjectPool hitEffectPool;
         [SerializeField] private SpawnManager spawnManager;
-
-        [SerializeField] private GameObject TurnEndBtn;
-        [SerializeField] private TextMeshProUGUI deckCount;
-        [SerializeField] private TextMeshProUGUI useDeckCount;
-        [SerializeField] private TextMeshProUGUI energyText;
-
-        [SerializeField] private TextMeshProUGUI narrationText;
-
         [SerializeField] private GameObject rewardPop;
         private IEnumerator coNarration;
-
-        public MapField stage;
 
         public void Init()
         {
@@ -53,6 +44,7 @@ namespace FrameWork
             energy = maxEnergy;
             battleState = BattleState.Ready;
             TurnChange();
+
             //spawnManager.Init();            
         }
 
@@ -97,16 +89,18 @@ namespace FrameWork
                 case BattleState.EndBattle:
                     if (GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
+                        Debug.Log("패배");
+                    }
+                    else
+                    {
                         var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
                         if (ralic.Contains(Data.RelicType.HealFire))
                         {
                             GameManager.Instance.playerControler.ironclad.Heal(10);
                         }
-                    }
-                    else
-                    {
+
                         Instantiate(rewardPop);
-                        Debug.Log("전투 종료");
+                        Debug.Log("승리");
                     }
                     break;
             }
@@ -114,13 +108,13 @@ namespace FrameWork
             if(battleState == BattleState.PlayerTurn)
             {
                 Narration("Player Turn");
-                TurnEndBtn.SetActive(true);
+                GameManager.Instance.inGameUIManager.SetTurnEndBtn(true);
                 energy = maxEnergy;
-                RefreshEnergyText();
+                GameManager.Instance.inGameUIManager.RefreshEnergyText();
             }
             else
             {
-                TurnEndBtn.SetActive(false);
+                GameManager.Instance.inGameUIManager.SetTurnEndBtn(false);
             }
         }
 
@@ -139,18 +133,6 @@ namespace FrameWork
             character.RefreshBuffStat();
         }
 
-        public void RefreshDeckCountText(int deck, int useDeck)
-        {
-            deckCount.text = deck.ToString();
-            useDeckCount.text = useDeck.ToString();
-        }
-
-        public void RefreshEnergyText(int useEnergy = 0)
-        {
-            energy -= useEnergy;
-            energyText.text = string.Format("{0}/3", energy);
-        }
-
         public void Narration(string text)
         {
             if (coNarration != null)
@@ -159,29 +141,8 @@ namespace FrameWork
                 coNarration = null;
             }
 
-            coNarration = OnNarration(text);
+            coNarration = GameManager.Instance.inGameUIManager.OnNarration(text);
             StartCoroutine(coNarration);
-        }
-
-        private IEnumerator OnNarration(string text)
-        {
-            narrationText.gameObject.SetActive(true);
-            narrationText.text = text;
-            narrationText.alpha = 0f;
-
-            float alpha = 0.025f;
-
-            while(narrationText.alpha < 1f)
-            {
-                narrationText.alpha += alpha;
-                yield return null;
-            }
-
-            while (narrationText.alpha > 0f)
-            {
-                narrationText.alpha -= alpha;
-                yield return null;
-            }
         }
 
         private async UniTask EnemyTurn()
@@ -208,6 +169,17 @@ namespace FrameWork
                 await UniTask.Delay(delayTime);
 
             TurnChange();
+        }
+
+        public async void GetHitEffect(Transform hitCharacter)
+        {
+            ParticleSystem hitEffect = hitEffectPool.GetObject(hitCharacter).GetComponent<ParticleSystem>();
+
+            hitEffect.transform.localPosition = Vector2.zero;
+            await new WaitUntil(() => !hitEffect.IsAlive());
+
+            hitEffectPool.ReturnObject(hitEffect.gameObject);
+            ////////////////////////
         }
     }
 }

@@ -8,7 +8,7 @@ namespace FrameWork
     {
         private GameObject objParent;
 
-        [SerializeField] private GameObject poolingObjectPrefab;
+        public GameObject poolingObjectPrefab;
 
         Queue<GameObject> poolingObjectQueue = new Queue<GameObject>();
 
