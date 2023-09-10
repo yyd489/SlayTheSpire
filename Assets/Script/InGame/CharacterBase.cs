@@ -138,6 +138,7 @@ namespace FrameWork
             int targetShield = shield;
             int hitDamage = attackdamage + cardDamage + defence + buffDefence;
 
+
             if (targetShield > 0 )
             {
                 if (targetShield > hitDamage)

@@ -59,7 +59,7 @@ namespace FrameWork
                 cards[i].Init(newCard);
             }
 
-            GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
             DefaltCardSorting();
         }
 
@@ -142,7 +142,7 @@ namespace FrameWork
             cardPool.ReturnObject(useCard.gameObject);
             selectCard.gameObject.SetActive(false);
             cards.Remove(useCard);
-            GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
             DefaltCardSorting();
         }
 
@@ -159,7 +159,7 @@ namespace FrameWork
             tempCard.Init(queMainDeck.Dequeue());
 
             cards.Add(tempCard);
-            GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
         }
 
         public void RemovePlayerCard()
@@ -168,7 +168,7 @@ namespace FrameWork
                 cardPool.ReturnObject(cards[i].gameObject);
 
             cards.Clear();
-            GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
         }
 
         public void ReloadPlayerCard()
@@ -187,7 +187,7 @@ namespace FrameWork
                 cards.Add(tempCard);
             }
 
-            GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
             DefaltCardSorting();
         }
 
@@ -204,7 +204,7 @@ namespace FrameWork
                 listUseDeck.RemoveAt(random);
             }
 
-            GameManager.Instance.battleManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
         }
     }
 }
