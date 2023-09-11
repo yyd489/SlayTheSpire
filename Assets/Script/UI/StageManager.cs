@@ -29,7 +29,7 @@ namespace FrameWork
                 {
 
                     case MapField.Event:
-
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
                     int randomEvent = Random.Range(0, arrEvents.Length);
                     Transform eventObj = Instantiate(arrEvents[randomEvent].transform);
                     eventObj.Find("EffectButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(eventObj.gameObject));
@@ -51,20 +51,21 @@ namespace FrameWork
 
                     case MapField.Shop:
 
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
                     GameObject shopObj = Instantiate(shopPop);
                     //shopObj.transform.Find("ShopPanel").Find("BackButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
                     shopObj.transform.Find("Canvas").Find("NextButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
-                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
+                    
 
                     
                     break;
 
                     case MapField.Sleep:
-
+                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
                     GameObject restObj = Instantiate(restPop);
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => FillHp());
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(restObj));
-                    GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
+                   
                     break;
 
                     case MapField.Boss:

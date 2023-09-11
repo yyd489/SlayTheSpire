@@ -15,8 +15,16 @@ namespace FrameWork
         private void Start()
         {
            
+            backButton.onClick.AddListener(() => Soundmanager.instance.effectPlaySound(2));
             backButton.onClick.AddListener(() => Destroy(this.transform.parent.gameObject));
+
+            quitButton.onClick.AddListener(() => Soundmanager.instance.effectPlaySound(2));
             quitButton.onClick.AddListener(() => Application.Quit());
+
+            wideDropdown.value= PlayerPrefs.GetInt("WideSizeValue", wideDropdown.value);
+
+            frameDropdown.value = PlayerPrefs.GetInt("FrameValue", frameDropdown.value);
+
 
             wideDropdown.onValueChanged.AddListener(delegate
             {
@@ -37,11 +45,15 @@ namespace FrameWork
             string[] sizeXY = wideSize.Split('x');
         
             Screen.SetResolution(int.Parse(sizeXY[0]), int.Parse(sizeXY[1]), false);
+
+            PlayerPrefs.SetInt("WideSizeValue", wideDropdown.value);
         }
 
         private void ChangeFrame(string frame)
         {
             Application.targetFrameRate = int.Parse(frame);
+
+            PlayerPrefs.SetInt("FrameValue", frameDropdown.value);
         }
 
         public void ChangeBackGroundSound(float SetVolume)

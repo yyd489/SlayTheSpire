@@ -57,7 +57,8 @@ namespace FrameWork
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
-            
+            mapButton.onClick.AddListener(() => GameManager.Instance.mapManager.ChangeLocalSize());
+          
         }
 
         public void ChangeState()

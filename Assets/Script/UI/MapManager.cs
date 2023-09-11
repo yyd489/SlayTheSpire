@@ -352,6 +352,49 @@ namespace FrameWork
                     }     
                 }
             }
+
+
+            ChangeLocalSize();
+
+
+        }
+
+        public void ChangeLocalSize()
+        {
+            List<Transform> listActivityObject = new List<Transform>();
+
+            for (int i = 0; i < listNodes.Count; i++)
+            {
+                if (listNodes[i].GetComponent<Button>().interactable == true)
+                {
+                    listActivityObject.Add(listNodes[i].transform);
+                }
+            }
+
+            for(int i = 0; i<listActivityObject.Count;i++)
+            {
+               
+               StartCoroutine(COChangeLoopScale(listActivityObject[i]));
+            }
+        }
+
+        IEnumerator COChangeLoopScale(Transform obj)
+        {
+
+
+            while (this.transform.parent.gameObject.activeInHierarchy == true)
+            {
+                yield return new WaitUntil(() => obj.transform.localScale.x == 1f);
+
+                obj.DOScale(1.3f, 2f);
+
+                yield return new WaitUntil(() => obj.transform.localScale.x == 1.3f);
+
+                obj.DOScale(1, 2f);
+
+            }
+
+            
         }
 
         public void FadeOut()
