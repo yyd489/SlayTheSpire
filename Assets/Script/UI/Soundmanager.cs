@@ -28,10 +28,7 @@ namespace FrameWork
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-           
-
             ChangeBGM();
-          
         }
 
 
@@ -52,7 +49,6 @@ namespace FrameWork
 
         public void Init()
         {
-
             if(backgroundAudio == null)
             {
                 backgroundAudio = this.transform.Find("BGM").GetComponent<AudioSource>();
@@ -61,13 +57,11 @@ namespace FrameWork
             if(effectAudio == null)
             {
               effectAudio = this.transform.Find("Effect").GetComponent<AudioSource>();
-
             }
 
             if (effectAudio2 == null)
             {
                 effectAudio2 = this.transform.Find("Effect2").GetComponent<AudioSource>();
-
             }
 
             ChangeBGM();
@@ -95,8 +89,10 @@ namespace FrameWork
             effectAudio.Play();
         }
 
-
-        
-
+        public void playBattleEffectSound(int index)
+        {
+            effectAudio2.clip = battleEffectSound[index];
+            effectAudio2.Play();
+        }
     }
 }

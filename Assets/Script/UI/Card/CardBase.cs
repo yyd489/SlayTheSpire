@@ -69,6 +69,7 @@ namespace FrameWork
             else if (cardData.cardType == Data.CardType.Defence)
             {
                 playerCharacter.SetShield(cardData.cardEffect);
+                GameManager.Instance.soundManager.playBattleEffectSound(1);
 
                 if (cardData.cardSubEffect > 0) GameManager.Instance.cardManager.DrawCard();
             }
@@ -77,10 +78,12 @@ namespace FrameWork
                 if(cardData.cardName == "발화")
                 {
                     playerCharacter.AddBuffList(Buff.PowerUp, 1);
+                    GameManager.Instance.soundManager.playBattleEffectSound(1);
                 }
                 else
                 {
                     GameManager.Instance.battleManager.energy += 2;
+                    GameManager.Instance.soundManager.playBattleEffectSound(1);
                 }
             }
         }

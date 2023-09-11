@@ -83,6 +83,8 @@ namespace FrameWork
             {
                 if (isAllAttack)
                 {
+                    GameManager.Instance.soundManager.playBattleEffectSound(0);
+
                     for (int i = 0; i < GameManager.Instance.battleManager.enemyCharacters.Count; i++)
                     {
                         targetCharacter = GameManager.Instance.battleManager.enemyCharacters[i];
@@ -92,6 +94,9 @@ namespace FrameWork
 
                         targetCharacter.Hit(damage + buffDamage, cardDamage);
                     }
+
+                    await UniTask.Delay(System.TimeSpan.FromSeconds(0.5f));
+                    GameManager.Instance.soundManager.playBattleEffectSound(2);
                 }
                 else
                 {
@@ -103,13 +108,18 @@ namespace FrameWork
 
                     await transform.DOMoveX(attackPosX, 0.1f).SetEase(Ease.Linear);
 
-                    if (debuffTurn > 0)
-                        targetCharacter.AddBuffList(Buff.DefenceDown, debuffTurn);
-
                     target.Hit(damage + buffDamage, cardDamage);
-
+                    GameManager.Instance.soundManager.playBattleEffectSound(0);
 
                     ReturnPosition();
+
+                    if (debuffTurn > 0)
+                    {
+                        targetCharacter.AddBuffList(Buff.DefenceDown, debuffTurn);
+
+                        await UniTask.Delay(System.TimeSpan.FromSeconds(0.5f));
+                        GameManager.Instance.soundManager.playBattleEffectSound(2);
+                    }
                 }
             }
             else
@@ -139,7 +149,9 @@ namespace FrameWork
             int targetShield = shield;
             int hitDamage = attackdamage + cardDamage + defence + buffDefence;
 
-            GameManager.Instance.battleManager.GetHitEffect(this);
+            if (attackdamage + cardDamage > 0)
+                GameManager.Instance.battleManager.GetHitEffect(this);
+
             if (targetShield > 0 )
             {
                 if (targetShield > hitDamage)
@@ -182,18 +194,28 @@ namespace FrameWork
         }
 
         // 애니메이션 이벤트용 공격 함수
-        public void TargetHit()
+        public async UniTask TargetHit()
         {
             if (monsterAction == MonsterAction.Attack)
+            {
                 targetCharacter.Hit(damage + buffDamage);
+                GameManager.Instance.soundManager.playBattleEffectSound(0);
+            }
             else if (monsterAction == MonsterAction.DeBuffSkill)
             {
                 targetCharacter.Hit(skillDamage);
                 targetCharacter.AddBuffList(Buff.PowerDown, 2);
+                if(skillDamage > 0)
+                {
+                    GameManager.Instance.soundManager.playBattleEffectSound(0);
+                    await UniTask.Delay(System.TimeSpan.FromSeconds(0.5f));
+                }
+                GameManager.Instance.soundManager.playBattleEffectSound(2);
             }
             else if (monsterAction == MonsterAction.BuffSkill)
             {
                 AddBuffList(Buff.PowerUp, 2);
+                GameManager.Instance.soundManager.playBattleEffectSound(1);
             }
         }
 
