@@ -2025,7 +2025,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f56d99ec4a2346046a5ab190cdc0c03f, type: 3}
   - {fileID: 8300000, guid: 2f899e27011cf7e4b9cbb1576887d3c5, type: 3}
   - {fileID: 8300000, guid: 142785688952e7f4b926b4ef96af5354, type: 3}
-  battleEffectSound: []
+  battleEffectSound:
+  - {fileID: 8300000, guid: a326f9926dba9304f8ecb5ec5b4ea029, type: 3}
+  - {fileID: 8300000, guid: 4fa5d0ac74448cc48ae633f5d1278a0d, type: 3}
+  - {fileID: 8300000, guid: c55ed47c55b576c41addedc8ba025572, type: 3}
 --- !u!1 &1888749949
 GameObject:
   m_ObjectHideFlags: 0
