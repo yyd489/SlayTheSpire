@@ -53,5 +53,11 @@ namespace FrameWork
 
             GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
         }
+
+        public void ResetShield()
+        {
+            shield = 0;
+            hpBar.SetHealthGauge(hp, maxHp, shield);
+        }
     }
 }

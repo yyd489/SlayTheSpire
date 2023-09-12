@@ -18,7 +18,6 @@ namespace FrameWork
 
         [SerializeField] private List<Sprite> cardImages;
         [HideInInspector] public Dictionary<string, Sprite> dicCardImages = new Dictionary<string, Sprite>();
-        private List<CardJsonData> cardDatas;
 
         // 덱
         public Queue<int> queMainDeck = new Queue<int>();
@@ -30,6 +29,8 @@ namespace FrameWork
         {
             cardPool = usedCardBox.GetComponent<ObjectPool>();
             //await UniTask.WaitUntil(() => GameManager.Instance.dataManager.data.cardData.cardCollect != null);
+
+            List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
 
             for (int i = 0; i < cardDatas.Count; i++)
             {
@@ -43,8 +44,7 @@ namespace FrameWork
             listUseDeck.Clear();
             listHandCard.Clear();
 
-            cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
-
+            List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
             List<int> listHaveCard = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard.ToList();
 
             int haveCount = listHaveCard.Count;
@@ -166,11 +166,12 @@ namespace FrameWork
 
         public void DrawCard()
         {
+            List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
+
             CardBase tempCard;
 
             tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
 
-            //tempCard.Init(cardDatas[0]);
             if (queMainDeck.Count <= 0)
                 ReloadCardDeck();
 
@@ -197,6 +198,8 @@ namespace FrameWork
 
         public void ReloadPlayerCard()
         {
+            List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
+
             CardBase tempCard;
             for(int i = 0; i < 5; i++)
             {
@@ -227,8 +230,6 @@ namespace FrameWork
 
                 listUseDeck.RemoveAt(random);
             }
-
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
         }
     }
 }

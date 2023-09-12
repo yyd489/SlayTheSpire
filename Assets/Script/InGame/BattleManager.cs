@@ -72,6 +72,7 @@ namespace FrameWork
                     {
                         Narration("Player Turn");
                         battleState = BattleState.PlayerTurn;
+                        GameManager.Instance.playerControler.ironclad.ResetShield();
 
                         GameManager.Instance.cardManager.ReloadPlayerCard();
                         for (int i = 0; i < enemyCharacters.Count; i++)
@@ -98,6 +99,7 @@ namespace FrameWork
                     }
                     else//이겻을 때
                     {
+                        GameManager.Instance.playerControler.ironclad.ResetShield();
                         if (MapManager.fieldInfo != MapField.Boss)
                         {
                             Instantiate(rewardPop);
