@@ -102,7 +102,6 @@ namespace FrameWork
                 potionManager = GameObject.Find("UITopCanvas").transform.Find("IngameTopUI").GetComponent<PotionManager>();
             }
 
-            potionManager.Init();
 
             GameObject ingameUi = GameObject.Find("InGameUiCanvas");
 
