@@ -54,6 +54,8 @@ namespace FrameWork
 
             deckButton = GameObject.Find("DeckButton").GetComponent<Button>();
             deckButton.onClick.AddListener(() => AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab"));
+            deckButton.onClick.AddListener(() => DeckPopUI.listDeckCards = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard);
+            
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
