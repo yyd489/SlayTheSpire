@@ -24,7 +24,7 @@ namespace FrameWork
     public class BattleManager : MonoBehaviour
     {
         public BattleState battleState;
-        private int maxEnergy;
+        private int maxEnergy = 3;
         public int energy;
         public bool firstTurn;
 
@@ -37,13 +37,12 @@ namespace FrameWork
 
         public ObjectPool hitEffectPool;
         [SerializeField] private GameObject rewardPop;
-        private IEnumerator coNarration;
 
         public MapField stage;
 
         public void Init()
         {
-            maxEnergy = 3;
+            energy = maxEnergy;
             battleState = BattleState.Ready;
             TurnChange();
             //spawnManager.Init();            
@@ -51,13 +50,14 @@ namespace FrameWork
 
         public async void TurnChange()
         {
+            if (GameManager.Instance.playerControler.onDrag) return;
+
             switch (battleState)
             {
                 case BattleState.Ready:
-                    energy = maxEnergy;
                     firstTurn = true;
                     battleState = BattleState.PlayerTurn;
-                    Narration("Player Turn");
+                    GameManager.Instance.inGameUIManager.Narration("Player Turn");
                     break;
                 case BattleState.PlayerTurn:
                     GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
@@ -70,7 +70,7 @@ namespace FrameWork
                 case BattleState.EnemyTurn:
                     if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
-                        Narration("Player Turn");
+                        GameManager.Instance.inGameUIManager.Narration("Player Turn");
                         battleState = BattleState.PlayerTurn;
                         GameManager.Instance.playerControler.ironclad.ResetShield();
 
@@ -126,7 +126,7 @@ namespace FrameWork
 
             if (battleState == BattleState.PlayerTurn)
             {
-                Narration("Player Turn");
+                GameManager.Instance.inGameUIManager.Narration("Player Turn");
                 GameManager.Instance.inGameUIManager.SetTurnEndBtn(true);
                 energy = maxEnergy;
                 GameManager.Instance.inGameUIManager.RefreshEnergyText(0);
@@ -152,22 +152,10 @@ namespace FrameWork
             character.RefreshBuffStat();
         }
 
-        public void Narration(string text)
-        {
-            if (coNarration != null)
-            {
-                StopCoroutine(coNarration);
-                coNarration = null;
-            }
-
-            coNarration = GameManager.Instance.inGameUIManager.OnNarration(text);
-            StartCoroutine(coNarration);
-        }
-
         private async UniTask EnemyTurn()
         {
             battleState = BattleState.EnemyTurn;
-            Narration("Enemy Turn");
+            GameManager.Instance.inGameUIManager.Narration("Enemy Turn");
 
             TimeSpan delayTime = TimeSpan.FromSeconds(1);
             bool isLosePlayer = false;

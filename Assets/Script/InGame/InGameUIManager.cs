@@ -17,6 +17,8 @@ namespace FrameWork
 
         [SerializeField] private Button usedCardDeckBtn;
         [SerializeField] private Button haveCardDeckBtn;
+        
+        private IEnumerator coNarration;
 
         public void Init()
         {
@@ -39,6 +41,18 @@ namespace FrameWork
         {
             GameManager.Instance.battleManager.energy -= useEnergy;
             energyText.text = string.Format("{0}/3", GameManager.Instance.battleManager.energy);
+        }
+
+        public void Narration(string text)
+        {
+            if (coNarration != null)
+            {
+                StopCoroutine(coNarration);
+                coNarration = null;
+            }
+
+            coNarration = GameManager.Instance.inGameUIManager.OnNarration(text);
+            StartCoroutine(coNarration);
         }
 
         public IEnumerator OnNarration(string text)
@@ -64,6 +78,8 @@ namespace FrameWork
 
         public void HaveCardDeckOpen()
         {
+            if (GameManager.Instance.playerControler.onDrag) return;
+
             AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab");
             List<int> cardList = new List<int>(GameManager.Instance.cardManager.queMainDeck);
 
@@ -73,6 +89,8 @@ namespace FrameWork
 
         public void UsedCardDeckOpen()
         {
+            if (GameManager.Instance.playerControler.onDrag) return;
+
             AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab");
             List<int> cardList = new List<int>();
 
