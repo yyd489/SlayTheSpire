@@ -44,7 +44,7 @@ namespace FrameWork
         public void ClickGoldButton()
         {
             GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold += rewardGold;
-            GameManager.Instance.ingameTopUI.ChangeState();
+            GameManager.Instance.ingameTopUI.goldText.text ="" + GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold;
             GameManager.Instance.soundManager.effectPlaySound(2);
             Destroy(addGoldButton.gameObject);
         }

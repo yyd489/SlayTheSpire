@@ -42,11 +42,13 @@ namespace FrameWork
 
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.Monster);
+                    //GameManager.Instance.cardManager.Init();
                     break;
 
                     case MapField.EliteMonster:
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.EliteMonster);
+                    //GameManager.Instance.cardManager.Init();
                     break;
 
                     case MapField.Shop:
@@ -75,6 +77,7 @@ namespace FrameWork
                     GameManager.Instance.spawnManager.Init(MapField.Boss);
                     GameManager.Instance.soundManager.backgroundAudio.clip = GameManager.Instance.soundManager.backgroundSound[2];
                     GameManager.Instance.soundManager.backgroundAudio.Play();
+                    //GameManager.Instance.cardManager.Init();
                     break;
 
                 }
@@ -111,20 +114,29 @@ namespace FrameWork
 
         public void ActiveEvent(FieldEvenets eventType)
         {
+
+            var characterData = GameManager.Instance.dataManager.data.characterData;
             switch (eventType)
             {
                 case FieldEvenets.GoldEvent:
 
                     int rewardGold = 30;
-                    GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold += rewardGold;
 
+                    characterData.characterInfoCollect.characterCollect.gold += rewardGold;
+                    GameManager.Instance.ingameTopUI.goldText.text = characterData.characterInfoCollect.characterCollect.gold.ToString();
                     break;
 
                 case FieldEvenets.FireEvenet:
 
                     int fillHp = 30;
-                    GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillHp;
+                    characterData.characterInfoCollect.characterCollect.hp += fillHp;
+                    
+                    if (characterData.characterInfoCollect.characterCollect.hp > characterData.characterInfoCollect.characterCollect.maxHp)
+                    {
+                        characterData.characterInfoCollect.characterCollect.hp = characterData.characterInfoCollect.characterCollect.maxHp;
 
+                    }
+                    GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
                     break;
 
                 case FieldEvenets.ClericEvent:
@@ -133,7 +145,8 @@ namespace FrameWork
 
                     GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
                     GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
-                    
+                    GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
+
                     break;
             }
 

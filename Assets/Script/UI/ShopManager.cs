@@ -124,7 +124,8 @@ namespace FrameWork
 
                 characterData.gold -= cost;
 
-                GameManager.Instance.ingameTopUI.ChangeState();
+                GameManager.Instance.ingameTopUI.goldText.text = characterData.gold.ToString();
+
                 if ( itemType == ItemType.Card)//카드
                 {
                     GameManager.Instance.ingameTopUI.AddCard(itemDataIndex);
@@ -148,7 +149,7 @@ namespace FrameWork
                     characterData.gold += cost;
                 }
 
-                GameManager.Instance.ingameTopUI.ChangeState();
+                GameManager.Instance.ingameTopUI.goldText.text = characterData.gold.ToString();
             }
            
         }
@@ -165,7 +166,7 @@ namespace FrameWork
                 GameManager.Instance.ingameTopUI.deckButton.onClick.Invoke();
                 characterData.gold -= cost;
                 deleteCardButton.sprite = soldOut;
-                GameManager.Instance.ingameTopUI.ChangeState();
+                GameManager.Instance.ingameTopUI.goldText.text = characterData.gold.ToString();
 
                 GameManager.Instance.soundManager.effectPlaySound(3);
                
