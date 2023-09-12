@@ -55,7 +55,7 @@ namespace FrameWork
                     GameObject shopObj = Instantiate(shopPop);
                     //shopObj.transform.Find("ShopPanel").Find("BackButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
                     shopObj.transform.Find("Canvas").Find("NextButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
-                    
+                   
 
                     
                     break;
@@ -65,7 +65,8 @@ namespace FrameWork
                     GameObject restObj = Instantiate(restPop);
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => FillHp());
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(restObj));
-                   
+                  
+
                     break;
 
                     case MapField.Boss:

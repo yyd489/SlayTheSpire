@@ -226,13 +226,14 @@ namespace FrameWork
 
         public void DrawLinkLine()
         {
-           
-            for(int i = listMapGraph.Count -1; i > -1; i--)
+            List<GameObject> listLink = new List<GameObject>();
+
+            for (int i = listMapGraph.Count - 1; i > -1; i--)
             {
                 List<int> listLinkIndex = new List<int>();
-
+                
                 for (int z = 0; z < listMapGraph[i].listAdjacent.Count; z++)
-                {   
+                {
                     listLinkIndex.Add(listMapGraph[i].listAdjacent[z].myIndex);
                 }
 
@@ -240,7 +241,7 @@ namespace FrameWork
 
                 for (int z = 0; z < listLinkIndex.Count; z++)
                 {
-                    Vector2 standardNode =  listNodes[i].transform.position;
+                    Vector2 standardNode = listNodes[i].transform.position;
                     Vector2 targetNode = listNodes[listLinkIndex[z]].transform.position;
 
                     float x = standardNode.x + targetNode.x;
@@ -250,14 +251,44 @@ namespace FrameWork
 
                     float deg = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
                     float width = Vector2.Distance(standardNode, targetNode);
-                    //float angle = Vector2.Angle(Up.transform.position, Down.transform.position);
 
-                    GameObject obj = Instantiate(objectLine, new Vector2(x / 2, y / 2), Quaternion.Euler(0, 0, deg), parent);
-                    obj.GetComponent<RectTransform>().sizeDelta = new Vector2(width - 85, obj.GetComponent<RectTransform>().sizeDelta.y);
                     
+                   GameObject linkLine = Instantiate(objectLine, new Vector2(x / 2, y / 2), Quaternion.Euler(0, 0, deg), parent);
+                   linkLine.GetComponent<RectTransform>().sizeDelta = new Vector2(width - 85, linkLine.GetComponent<RectTransform>().sizeDelta.y);
+                   listLink.Add(linkLine);
+
+                  
+
+
                 }
-               
+
             }
+
+            for (int i = listLink.Count - 1; i > 1; i--)
+            {
+                for (int z = i - 1; z > 0; z--)
+                {
+
+                    if (listLink[i].transform.position == listLink[z].transform.position)
+                    {
+                        Destroy(listLink[z]);
+                        listLink.Remove(listLink[z]);
+                        i = listLink.Count -1;
+                        z = i-1;
+
+                    }
+                }
+            }
+
+            for(int i = 0; i < listLink.Count; i++)
+            {
+                if(listLink[i].transform.parent.name == "BossObjectZone")
+                {
+                    listLink[i].transform.position = new Vector2(listLink[i].transform.position.x, listLink[i].transform.position.y -60);
+                    listLink[i].GetComponent<RectTransform>().sizeDelta = new Vector2(listLink[i].GetComponent<RectTransform>().sizeDelta.x -130, listLink[i].GetComponent<RectTransform>().sizeDelta.y);
+                }
+            }
+
         }
 
         public void ClickNodeButton(int index)
@@ -302,8 +333,9 @@ namespace FrameWork
             {
                   if(listMapGraph[nowIndex].myFloor -1 ==  listMapGraph[nowIndex].listAdjacent[i].myFloor)
                   {
-                      if(listMapGraph[nowIndex].listAdjacent[i].myFloor != 0)
-                      listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().interactable = true;
+                    listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().interactable = true;
+                    listNodes[listMapGraph[nowIndex].listAdjacent[i].myIndex].GetComponent<Button>().enabled = true;
+
                   }
             }
 
@@ -323,6 +355,8 @@ namespace FrameWork
                         listNodes[i].GetComponent<Button>().interactable = true;
                     }
                }
+
+               
             }
 
            for (int i = 0; i <listNodes.Count;i++)
@@ -342,13 +376,16 @@ namespace FrameWork
 
             if (nowIndex != 999)
             {
+              
                 for (int i = 0; i < listMapGraph[nowIndex].listAdjacent.Count; i++)
                 {
 
                     if (listMapGraph[nowIndex].myFloor - 1 == listMapGraph[nowIndex].listAdjacent[i].myFloor)
                     {
+                        
                         int index = listMapGraph[nowIndex].listAdjacent[i].myIndex;
                         listNodes[index].GetComponent<Button>().interactable = true;
+                        
                     }     
                 }
             }

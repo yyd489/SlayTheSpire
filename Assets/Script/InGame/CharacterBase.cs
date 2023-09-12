@@ -164,8 +164,13 @@ namespace FrameWork
             }
 
             hp -= hitDamage;
-
+           
             hpBar.SetHealthGauge(hp, maxHp, shield);
+
+            if(!isMonster)
+            GameManager.Instance.ingameTopUI.nowHpText.text ="" + hp + "/" + maxHp;
+            
+               
 
             if (IsDead())
             {

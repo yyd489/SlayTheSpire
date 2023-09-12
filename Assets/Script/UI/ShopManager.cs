@@ -114,13 +114,16 @@ namespace FrameWork
             
             int gold = characterData.gold;
             int itemIndex = item.transform.GetSiblingIndex();
+
             
             if(gold >= cost)
             {
                 Destroy(item);
                 Destroy(itemPanel.GetChild(itemIndex).gameObject);
                 GameManager.Instance.soundManager.effectPlaySound(3);
+
                 characterData.gold -= cost;
+
                 GameManager.Instance.ingameTopUI.ChangeState();
                 if ( itemType == ItemType.Card)//카드
                 {
@@ -134,11 +137,18 @@ namespace FrameWork
                     Destroy(textPanel.GetChild(itemIndex).gameObject);
                 }
 
-                else if (itemType == ItemType.Potion)//포션
+                else if (itemType == ItemType.Potion && characterData.listHavePotion.Count < 3)//포션
                 {  
                     GameManager.Instance.ingameTopUI.AddPotion(itemDataIndex);
                     Destroy(textPanel.GetChild(itemIndex).gameObject);  
                 }
+
+                else if(itemType == ItemType.Potion && characterData.listHavePotion.Count >= 3)
+                {
+                    characterData.gold += cost;
+                }
+
+                GameManager.Instance.ingameTopUI.ChangeState();
             }
            
         }

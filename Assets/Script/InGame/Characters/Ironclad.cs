@@ -38,6 +38,8 @@ namespace FrameWork
             if (hp > maxHp) hp = maxHp;
 
             hpBar.SetHealthGauge(hp, maxHp, shield);
+
+            GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
         }
 
         public void RelicHealthUp()
@@ -48,6 +50,8 @@ namespace FrameWork
             if (hp > maxHp) hp = maxHp;
 
             hpBar.SetHealthGauge(hp, maxHp, shield);
+
+            GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
         }
     }
 }
