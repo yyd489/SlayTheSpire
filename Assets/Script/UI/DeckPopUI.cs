@@ -12,7 +12,8 @@ namespace FrameWork
     {
         public GameObject cardPrefab;
         public Transform cardPanel;
-       
+
+        public static List<int> listDeckCards = new List<int>();
 
         private void Start()
         {
@@ -21,10 +22,6 @@ namespace FrameWork
 
         public void Init()
         {
-           
-            List<int> listDeckCards = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard;
-
-
             List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
             for (int i = 0; i < listDeckCards.Count; i++)
             {

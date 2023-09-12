@@ -11,6 +11,7 @@ namespace FrameWork
     {
         [SerializeField] List<CardBase> cards;
         [SerializeField] CardBase selectCard;
+        private int selectIndex;
 
         [SerializeField] GameObject usedCardBox;
         private ObjectPool cardPool;
@@ -20,11 +21,9 @@ namespace FrameWork
         private List<CardJsonData> cardDatas;
 
         // 덱
-        Queue<CardJsonData> queMainDeck = new Queue<CardJsonData>();
-        [SerializeField] List<CardJsonData> listUseDeck = new List<CardJsonData>();
-
-        public int GetMainDeckCount() { return queMainDeck.Count; }
-        public int GetUseDeckCount() { return listUseDeck.Count - cards.Count; }
+        public Queue<int> queMainDeck = new Queue<int>();
+        public List<int> listUseDeck = new List<int>();
+        private List<int> listHandCard = new List<int>();
 
 
         public void Init()
@@ -32,13 +31,20 @@ namespace FrameWork
             cardPool = usedCardBox.GetComponent<ObjectPool>();
             //await UniTask.WaitUntil(() => GameManager.Instance.dataManager.data.cardData.cardCollect != null);
 
-            cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
-
             for (int i = 0; i < cardDatas.Count; i++)
             {
                 dicCardImages.Add(cardDatas[i].cardName, cardImages[i]);
             }
-            
+        }
+
+        public void StageStart()
+        {
+            queMainDeck.Clear();
+            listUseDeck.Clear();
+            listHandCard.Clear();
+
+            cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
+
             List<int> listHaveCard = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard.ToList();
 
             int haveCount = listHaveCard.Count;
@@ -46,7 +52,7 @@ namespace FrameWork
             for (int i = 0; i < haveCount; i++)
             {
                 int random = Random.Range(0, listHaveCard.Count);
-                queMainDeck.Enqueue(cardDatas[listHaveCard[random]]);
+                queMainDeck.Enqueue(listHaveCard[random]);
                 listHaveCard.RemoveAt(random);
             }
 
@@ -54,12 +60,13 @@ namespace FrameWork
             {
                 cards.Add(cardPool.GetObject(this.transform).GetComponent<CardBase>());
 
-                CardJsonData newCard = queMainDeck.Dequeue();
-                listUseDeck.Add(newCard);
+                int index = queMainDeck.Dequeue();
+                listHandCard.Add(index);
+                CardJsonData newCard = cardDatas[index];
                 cards[i].Init(newCard);
             }
 
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
             DefaltCardSorting();
         }
 
@@ -124,6 +131,15 @@ namespace FrameWork
             selectCard.gameObject.SetActive(true);
             selectCard.Init(useCard.cardData);
 
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if (cards[i] == useCard)
+                {
+                    selectIndex = listHandCard[i];
+                    break;
+                }
+            }
+
             if (cardIndex > 0)
             {
                 Vector3 movePos = cards[cardIndex - 1].transform.localPosition - new Vector3(50f, 0f);
@@ -141,8 +157,10 @@ namespace FrameWork
         {
             cardPool.ReturnObject(useCard.gameObject);
             selectCard.gameObject.SetActive(false);
+            if (!useCard.cardData.canDelete) listUseDeck.Add(selectIndex);
+            listHandCard.Remove(selectIndex);
             cards.Remove(useCard);
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
             DefaltCardSorting();
         }
 
@@ -156,19 +174,25 @@ namespace FrameWork
             if (queMainDeck.Count <= 0)
                 ReloadCardDeck();
 
-            tempCard.Init(queMainDeck.Dequeue());
+            int index = queMainDeck.Dequeue();
+            listHandCard.Add(index);
+            tempCard.Init(cardDatas[index]);
 
             cards.Add(tempCard);
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
         }
 
         public void RemovePlayerCard()
         {
             for (int i = 0; i < cards.Count; i++)
+            {
                 cardPool.ReturnObject(cards[i].gameObject);
+                listUseDeck.Add(listHandCard[i]);
+            }
 
+            listHandCard.Clear();
             cards.Clear();
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
         }
 
         public void ReloadPlayerCard()
@@ -178,16 +202,16 @@ namespace FrameWork
             {
                 if (queMainDeck.Count == 0) ReloadCardDeck();
 
-                CardJsonData tempDeckCard = queMainDeck.Dequeue();
-
-                if(!tempDeckCard.canDelete) listUseDeck.Add(tempDeckCard);
+                int index = queMainDeck.Dequeue();
+                listHandCard.Add(index);
+                CardJsonData tempDeckCard = cardDatas[index];
 
                 tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
                 tempCard.Init(tempDeckCard);
                 cards.Add(tempCard);
             }
 
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
             DefaltCardSorting();
         }
 
@@ -204,7 +228,7 @@ namespace FrameWork
                 listUseDeck.RemoveAt(random);
             }
 
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(GetMainDeckCount(), GetUseDeckCount());
+            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
         }
     }
 }

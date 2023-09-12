@@ -117,6 +117,7 @@ namespace FrameWork
             {
                 inGameUIManager = ingameUi.GetComponent<InGameUIManager>();
             }
+            inGameUIManager.Init();
 
             if (battleManager == null)
             {

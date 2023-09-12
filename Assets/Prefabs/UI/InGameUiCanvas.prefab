@@ -767,6 +767,8 @@ MonoBehaviour:
   useDeckCount: {fileID: 1342274350261199944}
   energyText: {fileID: 1342274350475043197}
   narrationText: {fileID: 46730789}
+  usedCardDeckBtn: {fileID: 1342274350508181188}
+  haveCardDeckBtn: {fileID: 1342274350517954785}
 --- !u!1 &1342274349534530672
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace FrameWork
@@ -13,7 +14,16 @@ namespace FrameWork
         [SerializeField] private TextMeshProUGUI energyText;
 
         [SerializeField] private TextMeshProUGUI narrationText;
-                
+
+        [SerializeField] private Button usedCardDeckBtn;
+        [SerializeField] private Button haveCardDeckBtn;
+
+        public void Init()
+        {
+            usedCardDeckBtn.onClick.AddListener(() => UsedCardDeckOpen());
+            haveCardDeckBtn.onClick.AddListener(() => HaveCardDeckOpen());
+        }
+
         public void SetTurnEndBtn(bool active)
         {
             TurnEndBtn.SetActive(active);
@@ -50,6 +60,29 @@ namespace FrameWork
                 narrationText.alpha -= alpha;
                 yield return null;
             }
+        }
+
+        public void HaveCardDeckOpen()
+        {
+            AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab");
+            List<int> cardList = new List<int>(GameManager.Instance.cardManager.queMainDeck);
+
+            cardList.Sort();
+            DeckPopUI.listDeckCards = cardList;
+        }
+
+        public void UsedCardDeckOpen()
+        {
+            AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab");
+            List<int> cardList = new List<int>();
+
+            for (int i = 0; i < GameManager.Instance.cardManager.listUseDeck.Count; i++)
+            {
+                cardList.Add(GameManager.Instance.cardManager.listUseDeck[i]);
+            }
+
+            cardList.Sort();
+            DeckPopUI.listDeckCards = cardList;
         }
     }
 }
