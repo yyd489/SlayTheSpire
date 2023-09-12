@@ -40,10 +40,6 @@ namespace FrameWork
 
         public void StageStart()
         {
-            queMainDeck.Clear();
-            listUseDeck.Clear();
-            listHandCard.Clear();
-
             List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
             List<int> listHaveCard = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard.ToList();
 
@@ -216,6 +212,15 @@ namespace FrameWork
 
             GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
             DefaltCardSorting();
+        }
+
+        public void ResetCardDecks()
+        {
+            RemovePlayerCard();
+            queMainDeck.Clear();
+            listUseDeck.Clear();
+            listHandCard.Clear();
+            cards.Clear();
         }
 
         public void ReloadCardDeck()

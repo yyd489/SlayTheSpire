@@ -42,13 +42,15 @@ namespace FrameWork
 
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.Monster);
-                    //GameManager.Instance.cardManager.Init();
+                    GameManager.Instance.battleManager.Init();
+                    GameManager.Instance.cardManager.StageStart();
                     break;
 
                     case MapField.EliteMonster:
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.EliteMonster);
-                    //GameManager.Instance.cardManager.Init();
+                    GameManager.Instance.battleManager.Init();
+                    GameManager.Instance.cardManager.StageStart();
                     break;
 
                     case MapField.Shop:

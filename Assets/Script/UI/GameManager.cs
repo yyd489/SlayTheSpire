@@ -124,8 +124,6 @@ namespace FrameWork
                 battleManager = GetComponent<BattleManager>();
             }
 
-            battleManager.Init();
-
             if (cardManager == null)
             {
                 cardManager = ingameUi.transform.Find("Card").transform.Find("Hand").GetComponent<CardManager>();

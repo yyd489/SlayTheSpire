@@ -44,7 +44,6 @@ namespace FrameWork
         public void Init()
         {
             maxEnergy = 3;
-            energy = maxEnergy;
             battleState = BattleState.Ready;
             TurnChange();
             //spawnManager.Init();            
@@ -55,6 +54,7 @@ namespace FrameWork
             switch (battleState)
             {
                 case BattleState.Ready:
+                    energy = maxEnergy;
                     firstTurn = true;
                     battleState = BattleState.PlayerTurn;
                     Narration("Player Turn");
@@ -100,6 +100,7 @@ namespace FrameWork
                     else//이겻을 때
                     {
                         GameManager.Instance.playerControler.ironclad.ResetShield();
+                        GameManager.Instance.cardManager.ResetCardDecks();
                         if (MapManager.fieldInfo != MapField.Boss)
                         {
                             Instantiate(rewardPop);
