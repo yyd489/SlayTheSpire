@@ -80,18 +80,17 @@ namespace FrameWork
 
         public void AddPotion(int radomPotionIndex)
         {
-            var havePotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
-           
-            if (havePotion.Count >= 3)
+            var havePotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
+
+            for (int i = 0; i < havePotion.Length; i++)
             {
-                Debug.Log("불가");
-                
-            }
-            else
-            {
-                GameManager.Instance.soundManager.effectPlaySound(2);
-                GameManager.Instance.ingameTopUI.AddPotion(radomPotionIndex);
-                Destroy(rewardButton.gameObject);
+                if( havePotion[i] == PotionType.None)
+                {
+                    GameManager.Instance.soundManager.effectPlaySound(2);
+                    GameManager.Instance.ingameTopUI.AddPotion(radomPotionIndex);
+                    Destroy(rewardButton.gameObject);
+                    break;
+                }
             }
         }
 

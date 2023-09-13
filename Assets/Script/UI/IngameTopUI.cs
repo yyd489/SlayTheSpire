@@ -21,6 +21,7 @@ namespace FrameWork
         public GameObject relicObject;
         public Transform potionsPanel;
         public GameObject itemTipPrefab;
+        public Transform potionBlock;
 
         // Start is called before the first frame update
 
@@ -45,6 +46,13 @@ namespace FrameWork
             optionButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
             deckButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
             mapButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(0));
+
+            var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
+
+           
+            //GameManager.Instance.ingameTopUI.AddPotion(0);
+            //GameManager.Instance.ingameTopUI.AddPotion(1);
+            //GameManager.Instance.ingameTopUI.AddPotion(2);
         }
 
         public void ControlTopButton()
@@ -72,15 +80,19 @@ namespace FrameWork
 
         public void ChangePotion()
         {
-            var listPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
-
+           
+            var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
             var itemData = GameManager.Instance.dataManager.data.itemData;
-           for (int i = potionsPanel.childCount; i <listPotion.Count; i++)
-           {
-               GameObject potionObject = Instantiate(listPotionPrefab[(int)listPotion[i]], potionsPanel);
-                potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
-                ShopManager.ChangeSize(potionObject, ItemType.Potion,i, itemData);
-            }
+
+            for (int i = potionsPanel.childCount; i <arrPotion.Length; i++)
+            {
+                if (arrPotion[i] != PotionType.None)
+                {
+                    GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[i]], potionsPanel);
+                    potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
+                    ShopManager.ChangeSize(potionObject, ItemType.Potion, i, itemData);
+                }
+           }
         }
 
         public void ChangeRelic()
@@ -106,8 +118,17 @@ namespace FrameWork
         public void AddPotion(int itemDataIndex)
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
-            characterData.listHavePotion.Add((PotionType)itemDataIndex);
-            ChangePotion();
+
+            for (int i = 0; i < characterData.arrHavePotion.Length; i++)
+            {
+                if (characterData.arrHavePotion[i] == PotionType.None)
+                {
+                    characterData.arrHavePotion[i] = (PotionType)itemDataIndex;
+                    break;
+                }
+
+            }
+                ChangePotion();
         }
 
         public void AddRelic(int itemDataIndex)

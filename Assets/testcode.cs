@@ -12,6 +12,8 @@ public class testcode : MonoBehaviour
 {
     //Graph g = new Graph(16);
 
+    public int[] aa = new int[3];
+
     private void Start()
     {
         //g.addEdge(g.nodes[0], g.nodes[1]);

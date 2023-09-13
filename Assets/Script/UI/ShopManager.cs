@@ -118,8 +118,7 @@ namespace FrameWork
             
             if(gold >= cost)
             {
-                Destroy(item);
-                Destroy(itemPanel.GetChild(itemIndex).gameObject);
+               
                 GameManager.Instance.soundManager.effectPlaySound(3);
 
                 characterData.gold -= cost;
@@ -128,25 +127,46 @@ namespace FrameWork
 
                 if ( itemType == ItemType.Card)//카드
                 {
+                    Destroy(item);
+                    Destroy(itemPanel.GetChild(itemIndex).gameObject);
                     GameManager.Instance.ingameTopUI.AddCard(itemDataIndex);
                     Destroy(textPanel.GetChild(itemIndex).gameObject);
+
                 }
 
                 else if (itemType == ItemType.Relic)//유물
-                { 
+                {
+                    Destroy(item);
+                    Destroy(itemPanel.GetChild(itemIndex).gameObject);
                     GameManager.Instance.ingameTopUI.AddRelic(itemDataIndex);
                     Destroy(textPanel.GetChild(itemIndex).gameObject);
                 }
 
-                else if (itemType == ItemType.Potion && characterData.listHavePotion.Count < 3)//포션
-                {  
-                    GameManager.Instance.ingameTopUI.AddPotion(itemDataIndex);
-                    Destroy(textPanel.GetChild(itemIndex).gameObject);  
-                }
 
-                else if(itemType == ItemType.Potion && characterData.listHavePotion.Count >= 3)
+                if (itemType == ItemType.Potion)
                 {
-                    characterData.gold += cost;
+                  
+                    for (int i = 0; i < characterData.arrHavePotion.Length; i++)
+                    {
+                                               
+                        if(characterData.arrHavePotion[i] == PotionType.None)
+                        {
+                            Destroy(item);
+                            Destroy(itemPanel.GetChild(itemIndex).gameObject);
+                            GameManager.Instance.ingameTopUI.AddPotion(itemDataIndex);
+                            Destroy(textPanel.GetChild(itemIndex).gameObject);
+
+                            break;
+                        }
+
+                        if(characterData.arrHavePotion[i] != PotionType.None && i == characterData.arrHavePotion.Length -1)
+                        {
+                            characterData.gold += cost;
+                        }
+                       
+
+                    }
+
                 }
 
                 GameManager.Instance.ingameTopUI.goldText.text = characterData.gold.ToString();

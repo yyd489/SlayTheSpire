@@ -17,9 +17,11 @@ namespace FrameWork.Data
 
     public enum PotionType
     {
+       
         Fire,
         Heal,
         Card,
+        None = 999
     }
 
     public class ItemDataCollect

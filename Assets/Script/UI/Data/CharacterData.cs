@@ -27,7 +27,7 @@ namespace FrameWork.Data
         public int mp; 
         public int gold;
         public List<RelicType> listHaveRelic = new List<RelicType>();
-        public List<PotionType> listHavePotion = new List<PotionType>();
+        public PotionType[] arrHavePotion = new PotionType[3];
         public List<int> listHaveCard = new List<int>();
     }
 

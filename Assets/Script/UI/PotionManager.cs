@@ -10,12 +10,12 @@ namespace FrameWork
         [SerializeField] private GameObject[] potionBtn;
 
         [SerializeField]
-        private List<Data.PotionType> listPotions = new List<Data.PotionType>();
+        private Data.PotionType[] listPotions = new Data.PotionType[3];
         private int selectPotionIndex;
 
         public void Init()
         {
-            listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
+            listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
         }
 
         public void PopUpPotionUi(int potionIndex)
@@ -75,7 +75,7 @@ namespace FrameWork
         public void DropPotion()
         {
             potionBtn[selectPotionIndex].SetActive(false);
-            listPotions.RemoveAt(selectPotionIndex);
+            //listPotions.RemoveAt(selectPotionIndex);
             if (popUsePotion.activeSelf) CanclePopPotionUI();
         }
 
