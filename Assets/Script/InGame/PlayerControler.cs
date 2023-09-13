@@ -94,7 +94,7 @@ namespace FrameWork
         public void TargetSet(CharacterBase target)
         {
             targetCharacter = target;
-            if (targetCharacter != null && selectCard.cardData.cardName != "천둥")
+            if (targetCharacter != null && ((selectCard != null && selectCard.cardData.cardName != "천둥") || selectPotion !=null))
             {
                 targetBox.SetActive(true);
                 targetBox.transform.position = Camera.main.WorldToScreenPoint(target.transform.parent.transform.position + new Vector3(0f, -0.3f));
