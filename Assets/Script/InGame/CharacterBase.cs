@@ -287,19 +287,24 @@ namespace FrameWork
         // 이벤트 트리거 함수
         public void OnPointEnter()
         {
-            if (GameManager.Instance.playerControler.onDrag &&
-                (GameManager.Instance.playerControler.selectCard.cardData.cardType == Data.CardType.Attack && GameManager.Instance.playerControler.selectCard.cardData.cardName != "천둥" 
-                || GameManager.Instance.playerControler.selectPotion != null))
-
+            if (GameManager.Instance.playerControler.onDrag && CheckPlayerSelectItem())
+            {
                 GameManager.Instance.playerControler.TargetSet(this);
+            }
         }
 
         public void OnPointExit()
         {
-            if (GameManager.Instance.playerControler.onDrag &&
-                (GameManager.Instance.playerControler.selectCard.cardData.cardType == Data.CardType.Attack && GameManager.Instance.playerControler.selectCard.cardData.cardName != "천둥"
-                || GameManager.Instance.playerControler.selectPotion != null))
+            if (GameManager.Instance.playerControler.onDrag && CheckPlayerSelectItem())
                 GameManager.Instance.playerControler.TargetSet(null);
+        }
+
+        private bool CheckPlayerSelectItem()
+        {
+            return (GameManager.Instance.playerControler.selectCard != null
+                && GameManager.Instance.playerControler.selectCard.cardData.cardType == Data.CardType.Attack
+                    && GameManager.Instance.playerControler.selectCard.cardData.cardName != "천둥")
+                    || GameManager.Instance.playerControler.selectPotion != null;
         }
     }
 }

@@ -9,29 +9,24 @@ namespace FrameWork
         [SerializeField] private GameObject popUsePotion;
         [SerializeField] private GameObject[] potionBtn;
 
-        [SerializeField]
-        private Data.PotionType[] listPotions = new Data.PotionType[3];
         private int selectPotionIndex;
-
-        public void Init()
-        {
-            listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
-        }
 
         public void PopUpPotionUi(int potionIndex)
         {
+            Debug.Log(potionIndex);
             if (GameManager.Instance.playerControler.onDrag) return;
 
             potionBtn[potionIndex] = GameManager.Instance.ingameTopUI.potionsPanel.GetChild(potionIndex).gameObject;
             popUsePotion.transform.position = new Vector2(potionBtn[potionIndex].transform.position.x, popUsePotion.transform.position.y);
-            selectPotionIndex = potionIndex;
             popUsePotion.SetActive(true);
+            selectPotionIndex = potionIndex;
         }
 
         public void UsePotion()
         {
             var potionData = GameManager.Instance.dataManager.data.itemData.itemData.listPotionData;
 
+            List<Data.PotionType> listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
             switch (listPotions[selectPotionIndex])
             {
                 case Data.PotionType.Fire:
@@ -48,7 +43,6 @@ namespace FrameWork
                 case Data.PotionType.Heal:
                     for (int i = 0; i < potionData.Count; i++)
                     {
-                        Debug.Log(potionData[i].itemType);
                         if (potionData[i].itemType == Data.PotionType.Heal)
                         {
                             Debug.Log(potionData[i].potionEffect);
@@ -74,8 +68,9 @@ namespace FrameWork
 
         public void DropPotion()
         {
+            List<Data.PotionType> listPotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHavePotion;
             potionBtn[selectPotionIndex].SetActive(false);
-            //listPotions.RemoveAt(selectPotionIndex);
+            listPotions.RemoveAt(selectPotionIndex);
             if (popUsePotion.activeSelf) CanclePopPotionUI();
         }
 

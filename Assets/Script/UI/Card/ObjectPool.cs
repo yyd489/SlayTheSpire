@@ -29,9 +29,8 @@ namespace FrameWork
         // Queue에 오브젝트 추가
         public GameObject CreateNewObject()
         {
-            var newObj = Instantiate(poolingObjectPrefab);
+            var newObj = Instantiate(poolingObjectPrefab, objParent.transform);
             newObj.gameObject.SetActive(false);
-            newObj.transform.SetParent(objParent.transform);
             return newObj;
         }
 
