@@ -34,21 +34,21 @@
     {
       "name": "화염 포션",
       "potionEffect": 10,
-      "itemType": 1,
+      "itemType": 0,
       "effectGuide": "대상에게 피해를 10 입힙니다.",
       "cost": 20
     },
     {
       "name": "체력 포션",
       "potionEffect": 10,
-      "itemType": 2,
+      "itemType": 1,
       "effectGuide": "체력을 10 회복합니다.",
       "cost": 10
     },
     {
       "name": "카드 포션",
       "potionEffect": 2,
-      "itemType": 3,
+      "itemType": 2,
       "effectGuide": "카드를 2장 뽑습니다.",
       "cost": 10
     }
