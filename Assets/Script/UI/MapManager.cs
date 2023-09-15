@@ -411,11 +411,11 @@ namespace FrameWork
             for(int i = 0; i<listActivityObject.Count;i++)
             {
                
-               StartCoroutine(COChangeLoopScale(listActivityObject[i]));
+               StartCoroutine(CoChangeLoopScale(listActivityObject[i]));
             }
         }
 
-        IEnumerator COChangeLoopScale(Transform obj)
+        IEnumerator CoChangeLoopScale(Transform obj)
         {
 
 

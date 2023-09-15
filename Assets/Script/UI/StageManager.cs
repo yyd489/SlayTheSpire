@@ -90,8 +90,9 @@ namespace FrameWork
         public void ClearStage(GameObject targetObj = null)
         {
             Destroy(targetObj);
+          //  GameManager.Instance.mapManager.ChangeLocalSize();
             GameManager.Instance.ingameTopUI.mapPop.SetActive(true);
-
+            GameManager.Instance.mapManager.ChangeLocalSize();
         }
 
         public void FillHp()
@@ -154,7 +155,7 @@ namespace FrameWork
                     break;
             }
 
-            GameManager.Instance.playerControler.ironclad.Heal(0);
+            GameManager.Instance.playerControler.ironclad.ChangeHealthGauage();
         }
         // Start is called before the first frame update
 
