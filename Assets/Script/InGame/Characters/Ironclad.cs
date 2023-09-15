@@ -33,7 +33,11 @@ namespace FrameWork
 
         public void Heal(int heal)
         {
-            hp += heal;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += heal;
+
+            hp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp;
+
+            maxHp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp;
 
             if (hp > maxHp) hp = maxHp;
 
@@ -44,8 +48,13 @@ namespace FrameWork
 
         public void RelicHealthUp()
         {
-            maxHp += 10;
-            hp += 10;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += 10;
+
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += 10;
+
+            hp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp;
+
+            maxHp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp;
 
             if (hp > maxHp) hp = maxHp;
 
@@ -59,5 +68,7 @@ namespace FrameWork
             shield = 0;
             hpBar.SetHealthGauge(hp, maxHp, shield);
         }
+
+
     }
 }

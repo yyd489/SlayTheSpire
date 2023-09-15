@@ -105,6 +105,7 @@ namespace FrameWork
                 GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp = maxHp;
             }
 
+            GameManager.Instance.ingameTopUI.nowHpText.text = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().hp + "/" + GameManager.Instance.dataManager.data.characterData.GetCharacterStat().maxHp.ToString();
         }
 
         public void ControlEventText( Transform eventTransform,int eventType)
@@ -116,13 +117,14 @@ namespace FrameWork
 
         public void ActiveEvent(FieldEvenets eventType)
         {
+           
 
             var characterData = GameManager.Instance.dataManager.data.characterData;
             switch (eventType)
             {
                 case FieldEvenets.GoldEvent:
 
-                    int rewardGold = 30;
+                    int rewardGold = 10;
 
                     characterData.characterInfoCollect.characterCollect.gold += rewardGold;
                     GameManager.Instance.ingameTopUI.goldText.text = characterData.characterInfoCollect.characterCollect.gold.ToString();
@@ -152,6 +154,7 @@ namespace FrameWork
                     break;
             }
 
+            GameManager.Instance.playerControler.ironclad.Heal(0);
         }
         // Start is called before the first frame update
 

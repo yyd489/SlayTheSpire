@@ -71,7 +71,7 @@
       "cardName": "혈안",
       "cardType": 1,
       "cardGuide": "2 코스트를 얻습니다. <color=yellow> 소멸 </color>",
-      "cardCost": 1,
+      "cardCost": 0,
       "cardEffect": 2,
       "cardSubEffect": 0,
       "rare": 2,
