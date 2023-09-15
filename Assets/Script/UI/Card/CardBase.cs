@@ -83,6 +83,7 @@ namespace FrameWork
                 else
                 {
                     GameManager.Instance.battleManager.energy += 2;
+                    GameManager.Instance.inGameUIManager.RefreshEnergyText();
                     GameManager.Instance.soundManager.playBattleEffectSound(1);
                 }
             }

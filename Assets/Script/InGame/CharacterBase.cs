@@ -170,25 +170,24 @@ namespace FrameWork
             if(!isMonster)
             GameManager.Instance.ingameTopUI.nowHpText.text ="" + hp + "/" + maxHp;
             
-               
-
             if (IsDead())
             {
                 if (isMonster)
                 {
                     List<CharacterBase> enemys = GameManager.Instance.battleManager.enemyCharacters;
-                    if(enemys.Count == 1)
-                    { 
-                        GameManager.Instance.battleManager.battleState = BattleState.EndBattle;
+                    enemys.Remove(this);
+                    if (enemys.Count == 0)
+                    {
+                        //GameManager.Instance.playerControler.onDrag = false;
                         GameManager.Instance.battleManager.TurnChange();
                     }
-
-                    enemys.Remove(this);
                     Destroy(transform.parent.gameObject);
 
                     //objectResource.ActiveRender(false);
                     //transform.parent.gameObject.SetActive(false);
                 }
+                else
+                    GameManager.Instance.battleManager.TurnChange();
             }
             else
             {
