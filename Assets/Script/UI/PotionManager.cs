@@ -35,6 +35,7 @@ namespace FrameWork
                         if (potionData[i].itemType == Data.PotionType.Fire)
                         {
                             GameManager.Instance.playerControler.SelectPorionData(potionData[i]);
+                            Destroy(potionBtn[selectPotionIndex].gameObject);
                             break;
                         }
                     }
@@ -68,7 +69,7 @@ namespace FrameWork
         public void DropPotion()
         {
             Data.PotionType[] arrPorion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
-            potionBtn[selectPotionIndex].SetActive(false);
+           Destroy( potionBtn[selectPotionIndex].gameObject);
             arrPorion[selectPotionIndex] = Data.PotionType.None;
 
             if (popUsePotion.activeSelf) CanclePopPotionUI();

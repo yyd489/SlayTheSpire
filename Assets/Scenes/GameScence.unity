@@ -1847,6 +1847,11 @@ PrefabInstance:
       propertyPath: m_Padding.m_Left
       value: -145
       objectReference: {fileID: 0}
+    - target: {fileID: 2357720973494444584, guid: 1b1aeada843c5374cac0191d2c68bc4d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2574096746055465934, guid: 1b1aeada843c5374cac0191d2c68bc4d,
         type: 3}
       propertyPath: m_Name

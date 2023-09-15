@@ -79,7 +79,7 @@ namespace FrameWork
                     GameManager.Instance.spawnManager.Init(MapField.Boss);
                     GameManager.Instance.soundManager.backgroundAudio.clip = GameManager.Instance.soundManager.backgroundSound[2];
                     GameManager.Instance.soundManager.backgroundAudio.Play();
-                    //GameManager.Instance.cardManager.Init();
+                    GameManager.Instance.cardManager.StageStart();
                     break;
 
                 }

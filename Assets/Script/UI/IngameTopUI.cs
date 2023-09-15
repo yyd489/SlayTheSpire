@@ -80,22 +80,7 @@ namespace FrameWork
             GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
         }
 
-        public void ChangePotion()
-        {
-           
-            var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
-            var itemData = GameManager.Instance.dataManager.data.itemData;
-
-            for (int i = potionsPanel.childCount; i <arrPotion.Length; i++)
-            {
-                if (arrPotion[i] != PotionType.None)
-                {
-                    GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[i]], potionsPanel);
-                    potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
-                    ShopManager.ChangeSize(potionObject, ItemType.Potion, i, itemData);
-                }
-           }
-        }
+       
 
         public void ChangeRelic()
         {
@@ -119,23 +104,45 @@ namespace FrameWork
 
         public void AddPotion(int itemDataIndex)
         {
-            var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
+            var havePotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
 
-            for (int i = 0; i < characterData.arrHavePotion.Length; i++)
+         
+            for (int i = 0; i < havePotions.Length; i++)
             {
-                if (characterData.arrHavePotion[i] == PotionType.None)
+                if (havePotions[i] == PotionType.None)
                 {
-                    characterData.arrHavePotion[i] = (PotionType)itemDataIndex;
+                    
+                    havePotions[i] = (PotionType)itemDataIndex;
+                    Debug.Log(havePotions[i]+"타입");
                     break;
                 }
 
-                else if (i == characterData.arrHavePotion.Length - 1 && characterData.arrHavePotion[i] != PotionType.None)
+                else if (i == havePotions.Length - 1 && havePotions[i] != PotionType.None)
                 {
+                    
                     StartCoroutine(OnPotionBlock());
                 }
 
             }
-                ChangePotion();
+                ChangePotion(itemDataIndex);
+        }
+
+        public void ChangePotion(int index)
+        {
+           var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
+           var itemData = GameManager.Instance.dataManager.data.itemData;
+
+           GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[index]], potionsPanel);
+           potionObject.transform.localScale = new Vector2(0.3f, 0.3f);
+
+           potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
+           ShopManager.ChangeSize(potionObject, ItemType.Potion, index, itemData);
+            
+           for(int i = 0; i <potionsPanel.transform.childCount; i++)
+           {
+              potionObject.transform.position = new Vector2(potionsPanel.transform.position.x + (i * 70) - 70, potionsPanel.transform.position.y);
+           }
+
         }
 
         public void AddRelic(int itemDataIndex)
