@@ -162,6 +162,7 @@ namespace FrameWork
                         if(characterData.arrHavePotion[i] != PotionType.None && i == characterData.arrHavePotion.Length -1)
                         {
                             characterData.gold += cost;
+                           StartCoroutine(GameManager.Instance.ingameTopUI.OnPotionBlock());
                         }
                        
 

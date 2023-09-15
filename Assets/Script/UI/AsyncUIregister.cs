@@ -11,24 +11,27 @@ namespace FrameWork
    
    public static class AsyncUIregister
    {
-        public async static 
-         void InstansUI(string path)
+      
+        public async static void InstansUI(string path, Transform parent = null)
         {   
            // Addressables.LoadAssetAsync<GameObject>(path).Completed += InstansPrefab;
             var instantsObject = Addressables.LoadAssetAsync<GameObject>(path);
             await UniTask.WaitUntil(() => instantsObject.Result != null);
             var instantGameobject = instantsObject.Result;
-            MonoBehaviour.Instantiate(instantGameobject);
+           
+            MonoBehaviour.Instantiate(instantGameobject,parent);
         }
 
-        //public async static Task<GameObject> AsyncInstansUI(string path, Vector2 pos = new Vector2(), Transform parent = null)
-        //{
-        //    // Addressables.LoadAssetAsync<GameObject>(path).Completed += InstansPrefab;
-        //    var instantsObject = Addressables.LoadAssetAsync<GameObject>(path);
-        //    await UniTask.WaitUntil(() => instantsObject.Result != null);
-        //    var instantGameobject = instantsObject.Result; 
-        //    return InstansPrefab(instantsObject, pos, parent);
-        //}
+        public async static Task<GameObject> AsyncInstansUI(string path, Vector2 pos = new Vector2(), Transform parent = null)
+        {
+            // Addressables.LoadAssetAsync<GameObject>(path).Completed += InstansPrefab;
+            var instantsObject = Addressables.LoadAssetAsync<GameObject>(path);
+            await UniTask.WaitUntil(() => instantsObject.Result != null);
+            var instantGameobject = instantsObject.Result;
+            return InstansPrefab(instantsObject);
+        }
+
+      
 
         //public async static Task<GameObject> RegisterPrefab(string path)
         //{
@@ -39,11 +42,12 @@ namespace FrameWork
         //    return instantGameobject;
         //}
 
-        //public static void InstansPrefab(AsyncOperationHandle<GameObject> obj)
-        //{
-        //    GameObject prefab = obj.Result;
-        //    MonoBehaviour.Instantiate(prefab);
-        //}
+        public static GameObject InstansPrefab(AsyncOperationHandle<GameObject> obj)
+        {
+                GameObject prefab = obj.Result;
+                return MonoBehaviour.Instantiate(prefab);
+            
+        }
 
         //public static void InstansPrefab(AsyncOperationHandle<GameObject> obj, Vector2 pos, Transform parent)
         //{
@@ -54,7 +58,7 @@ namespace FrameWork
         //public static GameObject InstansPrefab(AsyncOperationHandle<GameObject> obj, Vector2 pos, Transform parent)
         //{
         //    GameObject prefab = obj.Result;
-            
+
         //    return MonoBehaviour.Instantiate(prefab, pos, Quaternion.identity, parent);
         //}
     }

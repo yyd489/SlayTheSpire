@@ -42,6 +42,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3738f5dfceaad54a94047f576d4e462
+    m_Address: Assets/Prefabs/UI/PotionBlock.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5eafa0ea37ea8954fb08bd026222dd6f, type: 2}
   m_SchemaSet:

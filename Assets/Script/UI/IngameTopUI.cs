@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
+
 namespace FrameWork
 {
     using FrameWork.Data;
@@ -21,7 +23,7 @@ namespace FrameWork
         public GameObject relicObject;
         public Transform potionsPanel;
         public GameObject itemTipPrefab;
-        public Transform potionBlock;
+    
 
         // Start is called before the first frame update
 
@@ -49,7 +51,7 @@ namespace FrameWork
 
             var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
 
-           
+
             //GameManager.Instance.ingameTopUI.AddPotion(0);
             //GameManager.Instance.ingameTopUI.AddPotion(1);
             //GameManager.Instance.ingameTopUI.AddPotion(2);
@@ -127,6 +129,11 @@ namespace FrameWork
                     break;
                 }
 
+                else if (i == characterData.arrHavePotion.Length - 1 && characterData.arrHavePotion[i] != PotionType.None)
+                {
+                    StartCoroutine(OnPotionBlock());
+                }
+
             }
                 ChangePotion();
         }
@@ -137,6 +144,25 @@ namespace FrameWork
             characterData.listHaveRelic.Add((RelicType)itemDataIndex);
             ChangeRelic();
         }
+
+       public IEnumerator OnPotionBlock()
+        {
+           AsyncUIregister.InstansUI("Assets/Prefabs/UI/PotionBlock.prefab",this.gameObject.transform.parent);
+
+            yield return new WaitUntil(() => this.transform.parent.Find("PotionBlock(Clone)") != null);
+
+           var potionOject = this.transform.parent.Find("PotionBlock(Clone)").transform.GetComponent<CanvasGroup>();
+
+        
+
+           potionOject.DOFade(1, 0.2f);
+
+           yield return new WaitUntil(() => potionOject.alpha == 1);
+
+           potionOject.DOFade(0, 0.2f);
+        }
+
+       
     }
 }
 

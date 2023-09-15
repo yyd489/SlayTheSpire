@@ -91,6 +91,11 @@ namespace FrameWork
                     Destroy(rewardButton.gameObject);
                     break;
                 }
+
+                else if(i == havePotion.Length - 1 && havePotion[i] != PotionType.None)
+                {
+                   StartCoroutine( GameManager.Instance.ingameTopUI.OnPotionBlock());
+                }
             }
         }
 
