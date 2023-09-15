@@ -8,12 +8,6 @@
 
     },
     {
-      "monsterName": "투사",
-      "monsterAttack": "10",
-      "hp": "30",
-      "monsterType": 0
-    },
-    {
       "monsterName": "광신자",
       "monsterAttack": "7",
       "hp": "35",
@@ -35,12 +29,18 @@
       "monsterName": "도적",
       "monsterAttack": "15",
       "hp": "60",
-      "monsterType": 1
+      "monsterType": 0
     },
     {
       "monsterName": "보초기",
       "monsterAttack": "15",
       "hp": "100",
+      "monsterType": 1
+    },
+    {
+      "monsterName": "투사",
+      "monsterAttack": "10",
+      "hp": "150",
       "monsterType": 2
     }
 
