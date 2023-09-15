@@ -4,7 +4,7 @@
     {
       "cardName": "강타",
       "cardType": 0,
-      "cardGuide": "피해를 8 부여합니다.<color=yellow> 취약을 2 부여합니다. : </color>",
+      "cardGuide": "피해를 8 부여합니다.<color=yellow> 취약을 2 부여합니다. </color>",
       "cardCost": 2,
       "cardEffect": 8,
       "cardSubEffect": 2,
@@ -37,7 +37,7 @@
     {
       "cardName": "천둥",
       "cardType": 0,
-      "cardGuide": "적 전체에게 피해를 4 주고 <color=yellow> 취약을 1 부여합니다. : </color>",
+      "cardGuide": "적 전체에게 피해를 4 주고 <color=yellow> 취약을 1 부여합니다. </color>",
       "cardCost": 1,
       "cardEffect": 4,
       "cardSubEffect": 1,
@@ -48,7 +48,7 @@
     {
       "cardName": "흘려보내기",
       "cardType": 2,
-      "cardGuide": "<color=yellow> 방어도를 8 얻습니다. : </color> 카드를 1장 뽑습니다.",
+      "cardGuide": "<color=yellow> 방어도를 8 얻습니다.</color> 카드를 1장 뽑습니다.",
       "cardCost": 1,
       "cardEffect": 8,
       "cardSubEffect": 1,
@@ -70,7 +70,7 @@
     {
       "cardName": "혈안",
       "cardType": 1,
-      "cardGuide": "2 코스트를 얻습니다. <color=yellow> 소멸 : </color>",
+      "cardGuide": "2 코스트를 얻습니다. <color=yellow> 소멸 </color>",
       "cardCost": 1,
       "cardEffect": 2,
       "cardSubEffect": 0,
