@@ -44,28 +44,28 @@ namespace FrameWork
 
                 if (selectPotion != null && targetCharacter != null)
                 {
+                    onDrag = false;
                     targetCharacter.Hit(0, selectPotion.potionEffect);
                     GameManager.Instance.potionManager.DropPotion();
                     selectPotion = null;
                     TargetSet(null);
-                    onDrag = false;
                 }
-                else
+                else if (selectPotion == null)
                 {
                     if (selectCard.cardData.cardType == Data.CardType.Attack && targetCharacter != null && selectCard.cardData.cardName != "천둥")
                     {
+                        onDrag = false;
                         selectCard.UseSelectCard();
                         GameManager.Instance.cardManager.UseCard(selectCard);
                         selectPotion = null;
                         TargetSet(null);
-                        onDrag = false;
                     }
                     else if (selectCard.cardData.cardType != Data.CardType.Attack || selectCard.cardData.cardName == "천둥")
                     {
+                        onDrag = false;
                         selectCard.UseSelectCard();
                         GameManager.Instance.cardManager.UseCard(selectCard);
                         TargetSet(null);
-                        onDrag = false;
                     }
                 }
             }

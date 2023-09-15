@@ -64,8 +64,10 @@ namespace FrameWork
                     if (firstTurn) firstTurn = false;
 
                     RefreshBuff(GameManager.Instance.playerControler.playerCharacter);
-                    EnemyTurn();
                     GameManager.Instance.cardManager.RemovePlayerCard();
+
+                    if (enemyCharacters.Count == 0 || GameManager.Instance.playerControler.ironclad.IsDead()) EndBattle();
+                    else EnemyTurn();
                     break;
                 case BattleState.EnemyTurn:
                     if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
@@ -90,37 +92,6 @@ namespace FrameWork
                     }
                     break;
                 case BattleState.EndBattle:
-                    if (GameManager.Instance.playerControler.playerCharacter.IsDead())//죽었을 때
-                    {
-                        var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
-                        await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
-                        GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
-                        GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
-                    }
-                    else//이겻을 때
-                    {
-                        GameManager.Instance.playerControler.ironclad.ResetShield();
-                        GameManager.Instance.cardManager.ResetCardDecks();
-                        if (MapManager.fieldInfo != MapField.Boss)
-                        {
-                            Instantiate(rewardPop);
-
-                            var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
-                            if (ralic.Contains(Data.RelicType.HealFire))
-                            {
-                                GameManager.Instance.playerControler.ironclad.Heal(10);
-                            }
-                        }
-                        else
-                        {
-                            AsyncUIregister.InstansUI("Assets/Prefabs/UI/WinPanel.prefab");
-
-                            await UniTask.WaitUntil(() => GameObject.Find("WinPanel(Clone)") != null);
-                            GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
-                            GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
-                        }
-                        Debug.Log("전투 종료");
-                    }
                     break;
             }
 
@@ -176,6 +147,43 @@ namespace FrameWork
                 await UniTask.Delay(delayTime);
 
             TurnChange();
+        }
+
+        private async void EndBattle()
+        {
+            battleState = BattleState.EndBattle;
+
+            if (GameManager.Instance.playerControler.playerCharacter.IsDead())//죽었을 때
+            {
+                var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
+                await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
+                GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
+                GameObject.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+            }
+            else//이겻을 때
+            {
+                GameManager.Instance.playerControler.ironclad.ResetShield();
+                GameManager.Instance.cardManager.ResetCardDecks();
+                if (MapManager.fieldInfo != MapField.Boss)
+                {
+                    Instantiate(rewardPop);
+
+                    var ralic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+                    if (ralic.Contains(Data.RelicType.HealFire))
+                    {
+                        GameManager.Instance.playerControler.ironclad.Heal(10);
+                    }
+                }
+                else
+                {
+                    AsyncUIregister.InstansUI("Assets/Prefabs/UI/WinPanel.prefab");
+
+                    await UniTask.WaitUntil(() => GameObject.Find("WinPanel(Clone)") != null);
+                    GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+                    GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
+                }
+                Debug.Log("전투 종료");
+            }
         }
 
         public async UniTask GetHitEffect(CharacterBase hitCharater)
