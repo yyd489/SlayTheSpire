@@ -41,7 +41,7 @@ namespace FrameWork
 
             if (hp > maxHp) hp = maxHp;
 
-            ChangeHealthGauage();
+          
 
             GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
         }
@@ -58,7 +58,7 @@ namespace FrameWork
 
             if (hp > maxHp) hp = maxHp;
 
-            ChangeHealthGauage();
+            
 
             GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
         }
@@ -69,14 +69,7 @@ namespace FrameWork
             hpBar.SetHealthGauge(hp, maxHp, shield);
         }
 
-        public void ChangeHealthGauage()
-        {
-
-
-            hpBar.SetHealthGauge(hp, maxHp, shield);
-
-            GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
-        }
+       
 
     }
 }

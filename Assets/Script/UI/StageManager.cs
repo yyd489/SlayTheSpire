@@ -155,7 +155,7 @@ namespace FrameWork
                     break;
             }
 
-            GameManager.Instance.playerControler.ironclad.ChangeHealthGauage();
+            GameManager.Instance.playerControler.ironclad.Heal(0);
         }
         // Start is called before the first frame update
 
