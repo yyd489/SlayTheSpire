@@ -158,6 +158,12 @@ namespace FrameWork
 
         public IEnumerator OnPotionBlock()
         {
+            if (this.transform.parent.Find("PotionBlock(Clone)") != null)
+            {
+                Destroy(this.transform.parent.Find("PotionBlock(Clone)").gameObject);
+            }
+
+
             AsyncUIregister.InstansUI("Assets/Prefabs/UI/PotionBlock.prefab", this.gameObject.transform.parent);
 
             yield return new WaitUntil(() => this.transform.parent.Find("PotionBlock(Clone)") != null);
@@ -171,6 +177,8 @@ namespace FrameWork
             yield return new WaitUntil(() => potionOject.alpha == 1);
 
             potionOject.DOFade(0, 0.2f);
+
+            Destroy(potionOject.gameObject);
         }
     }
 }
