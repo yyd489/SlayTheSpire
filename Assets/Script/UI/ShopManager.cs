@@ -197,6 +197,7 @@ namespace FrameWork
 
         public static void ChangeSize(GameObject Obj,ItemType itemType, int itemDataIndex =0, ItemData itemdata = default)
         {
+          
             EventTrigger eventTrigger = Obj.AddComponent<EventTrigger>();
             EventTrigger.Entry entry_PointerEnter = new EventTrigger.Entry();
             entry_PointerEnter.eventID = EventTriggerType.PointerEnter;
@@ -248,6 +249,8 @@ namespace FrameWork
                     itemGuide.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = titleText;
                     itemGuide.transform.Find("ItemGuide").GetComponent<TextMeshProUGUI>().text = guideText;
                     itemGuide.SetActive(true);
+                  
+                    
                     break;
                 case ItemType.Card:
                     GameManager.Instance.soundManager.effectPlaySound(5);
