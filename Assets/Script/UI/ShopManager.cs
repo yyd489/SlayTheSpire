@@ -46,12 +46,8 @@ namespace FrameWork
             int allCardCount = GameManager.Instance.dataManager.data.cardData.cardCollect.listcardData.Count;
             CardManager cardManager = GameManager.Instance.cardManager;
             int cardGoodsCount = 5;
-
             var itemData = GameManager.Instance.dataManager.data.itemData;
-            var relicList = itemData.GetRelicData();
-            var potionList = itemData.GetPotionData();
-            var relicPrefab = GameManager.Instance.ingameTopUI.relicObject;
-
+ 
             for (int i = 0; i < cardGoodsCount; i++)
             {
                 int randomCardIndex = Random.Range(0, allCardCount);
@@ -66,19 +62,81 @@ namespace FrameWork
                 
             }
 
-            for(int i = 1; i < relicList.Count; i++)
+            var haveRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+            var allRelicList = itemData.GetRelicData();
+            var relicPrefab = GameManager.Instance.ingameTopUI.relicObject;
+            var listRelic = new List<RelicType>();
+
+           
+            for (int i = 1; i < allRelicList.Count; i++)
             {
-                int randomRelicIndex = Random.Range(1,relicList.Count);
-                int cost = relicList[randomRelicIndex].cost;
-                GameObject relicObj = Instantiate(relicPrefab, relicPanel);
-                relicObj.GetComponent<Image>().sprite = GameManager.Instance.ingameTopUI.listRelicSprites[randomRelicIndex];
-                relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, randomRelicIndex, relicPanel, ItemType.Relic, relicCostBox));
-                ChangeSize(relicObj, ItemType.Relic, randomRelicIndex, itemData);
-                relicCostBox.GetChild(i-1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
-               
+
+              
+                for (int z = 0; z < haveRelic.Count; z++)
+                {
+                  
+                    if (allRelicList[i].relicType == haveRelic[z])
+                    {
+                     
+                        break;
+                    }
+                    else if (allRelicList[i].relicType != haveRelic[z] && z == haveRelic.Count - 1)
+                    {
+                        listRelic.Add(allRelicList[i].relicType);
+                      
+                        break;
+                    }
+                    
+                }
             }
 
+
+     
+
+
+            for (int z = 0; z < 3; z++)
+            {
+                var randomIndex = Random.Range(0, listRelic.Count);
+
+                if (listRelic.Count == 0)
+                {
+                    relicCostBox.gameObject.SetActive(false);
+                    break;
+
+                }
+
+                for (int i = 1; i < allRelicList.Count; i++)
+                {
+                    if (listRelic[randomIndex] == allRelicList[i].relicType)
+                    {
+                        int cost = allRelicList[i].cost;
+                        GameObject relicObj = Instantiate(relicPrefab, relicPanel);
+                        relicObj.GetComponent<Image>().sprite = GameManager.Instance.ingameTopUI.listRelicSprites[i];
+                        relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, i, relicPanel, ItemType.Relic, relicCostBox));
+                        ChangeSize(relicObj, ItemType.Relic, i, itemData);
+                        relicCostBox.GetChild(i - 1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
+                        listRelic.RemoveAt(randomIndex);
+                        break;
+                    }
+
+                }
+            }
             
+
+
+            //for (int i = 1; i < allRelicList.Count; i++)
+            //{
+             //    int randomRelicIndex = Random.Range(1,allRelicList.Count);
+             //    int cost = allRelicList[randomRelicIndex].cost;
+             //    GameObject relicObj = Instantiate(relicPrefab, relicPanel);
+             //    relicObj.GetComponent<Image>().sprite = GameManager.Instance.ingameTopUI.listRelicSprites[randomRelicIndex];
+             //    relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, randomRelicIndex, relicPanel, ItemType.Relic, relicCostBox));
+             //    ChangeSize(relicObj, ItemType.Relic, randomRelicIndex, itemData);
+             //    relicCostBox.GetChild(i-1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
+
+             //}
+
+                var potionList = itemData.GetPotionData();
 
             for (int i = 0; i < potionList.Count; i++)
             {

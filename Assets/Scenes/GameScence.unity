@@ -402,7 +402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleState: 0
   energy: 0
-  firstTurn: 0
   enemyCharacters: []
   arrBuffIcon:
   - {fileID: 21300000, guid: b8e7449ee4a251d4b82f389c232a6c01, type: 3}

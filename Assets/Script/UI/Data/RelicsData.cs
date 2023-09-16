@@ -34,7 +34,7 @@ namespace FrameWork.Data
     {
         public string name;
         public int relicEffect;
-        public RelicType itemType;
+        public RelicType relicType;
         public string effectGuide;
         public int cost;
     }
