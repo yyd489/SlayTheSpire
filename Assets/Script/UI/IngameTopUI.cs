@@ -84,15 +84,16 @@ namespace FrameWork
 
         public void ChangeRelic()
         {
-            var listRelic = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveRelic;
+            var listRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
             var relicsPanel = GameObject.Find("RelicsPanel").transform;
             var itemData = GameManager.Instance.dataManager.data.itemData;
 
+  
             for (int i = relicsPanel.childCount; i < listRelic.Count; i++)
             {
                 Image relicImage = Instantiate(relicObject, GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
                 relicImage.sprite = listRelicSprites[(int)listRelic[i]];
-                ShopManager.ChangeSize(relicImage.gameObject, ItemType.Relic, i, itemData);
+                ShopManager.ChangeSize(relicImage.gameObject, ItemType.Relic, (int)listRelic[i], itemData);
             }
         }
 
@@ -140,9 +141,11 @@ namespace FrameWork
             
            for(int i = 0; i <potionsPanel.transform.childCount; i++)
            {
-              potionObject.transform.position = new Vector2(potionsPanel.transform.position.x + (i * 70) - 70, potionsPanel.transform.position.y);
+                potionsPanel.transform.GetChild(i).transform.position = new Vector2(potionsPanel.transform.position.x + (i * 70) - 70, potionsPanel.transform.position.y);
            }
 
+            //for (int i = 0; i < arrPotion.Length; i++)
+            //    Debug.Log(arrPotion[i]);
         }
 
         public void AddRelic(int itemDataIndex)
