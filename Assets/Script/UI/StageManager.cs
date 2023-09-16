@@ -75,6 +75,7 @@ namespace FrameWork
 
                     case MapField.Boss:
 
+                    GameManager.Instance.battleManager.Init();
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.Boss);
                     GameManager.Instance.soundManager.backgroundAudio.clip = GameManager.Instance.soundManager.backgroundSound[2];
@@ -107,6 +108,7 @@ namespace FrameWork
             }
 
             GameManager.Instance.ingameTopUI.nowHpText.text = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().hp + "/" + GameManager.Instance.dataManager.data.characterData.GetCharacterStat().maxHp.ToString();
+            GameManager.Instance.playerControler.ironclad.Heal(0);
         }
 
         public void ControlEventText( Transform eventTransform,int eventType)
@@ -142,6 +144,7 @@ namespace FrameWork
 
                     }
                     GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
+                    GameManager.Instance.playerControler.ironclad.Heal(0);
                     break;
 
                 case FieldEvenets.ClericEvent:
@@ -151,7 +154,7 @@ namespace FrameWork
                     GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
                     GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
                     GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
-
+                    GameManager.Instance.playerControler.ironclad.Heal(0);
                     break;
             }
 

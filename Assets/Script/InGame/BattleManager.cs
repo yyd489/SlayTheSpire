@@ -178,6 +178,7 @@ namespace FrameWork
                 }
                 else
                 {
+                    Debug.Log("보스끝");
                     AsyncUIregister.InstansUI("Assets/Prefabs/UI/WinPanel.prefab");
 
                     await UniTask.WaitUntil(() => GameObject.Find("WinPanel(Clone)") != null);
