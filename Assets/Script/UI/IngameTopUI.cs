@@ -23,7 +23,7 @@ namespace FrameWork
         public GameObject relicObject;
         public Transform potionsPanel;
         public GameObject itemTipPrefab;
-    
+
 
         // Start is called before the first frame update
 
@@ -32,7 +32,7 @@ namespace FrameWork
             ControlTopButton();
             ChangeState();
             if (mapPop == null)
-            mapPop = GameManager.Instance.mapManager.gameObject;
+                mapPop = GameManager.Instance.mapManager.gameObject;
 
             var listRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
             int relicCount = listRelic.Count;
@@ -40,9 +40,9 @@ namespace FrameWork
 
             for (int i = 0; i < relicCount; i++)
             {
-               Image relicImage = Instantiate(relicObject,GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
+                Image relicImage = Instantiate(relicObject, GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
                 ShopManager.ChangeSize(relicImage.gameObject, ItemType.Relic, i, itemData);
-                relicImage.sprite = listRelicSprites[(int)listRelic[i]]; 
+                relicImage.sprite = listRelicSprites[(int)listRelic[i]];
             }
 
             optionButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
@@ -65,22 +65,22 @@ namespace FrameWork
             deckButton = GameObject.Find("DeckButton").GetComponent<Button>();
             deckButton.onClick.AddListener(() => AsyncUIregister.InstansUI("Assets/Prefabs/UI/DeckPopup.prefab"));
             deckButton.onClick.AddListener(() => DeckPopUI.listDeckCards = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.listHaveCard);
-            
+
 
             mapButton = GameObject.Find("MapButton").GetComponent<Button>();
             mapButton.onClick.AddListener(() => mapPop.gameObject.SetActive(true));
             mapButton.onClick.AddListener(() => GameManager.Instance.mapManager.ChangeLocalSize());
-          
+
         }
 
         public void ChangeState()
         {
             goldText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
-            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString() +"/" +
+            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString() + "/" +
             GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
         }
 
-       
+
 
         public void ChangeRelic()
         {
@@ -88,7 +88,7 @@ namespace FrameWork
             var relicsPanel = GameObject.Find("RelicsPanel").transform;
             var itemData = GameManager.Instance.dataManager.data.itemData;
 
-  
+
             for (int i = relicsPanel.childCount; i < listRelic.Count; i++)
             {
                 Image relicImage = Instantiate(relicObject, GameObject.Find("RelicsPanel").transform).GetComponent<Image>();
@@ -107,42 +107,43 @@ namespace FrameWork
         {
             var havePotions = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
 
-         
+
             for (int i = 0; i < havePotions.Length; i++)
             {
                 if (havePotions[i] == PotionType.None)
                 {
-                    
+
                     havePotions[i] = (PotionType)itemDataIndex;
-                    
+
                     break;
                 }
 
                 else if (i == havePotions.Length - 1 && havePotions[i] != PotionType.None)
                 {
-                    
+
                     StartCoroutine(OnPotionBlock());
                 }
 
             }
-                ChangePotion(itemDataIndex);
+            ChangePotion(itemDataIndex);
         }
 
         public void ChangePotion(int index)
         {
-           var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
-           var itemData = GameManager.Instance.dataManager.data.itemData;
+            var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
+            var itemData = GameManager.Instance.dataManager.data.itemData;
 
-           GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[index]], potionsPanel);
-           potionObject.transform.localScale = new Vector2(0.3f, 0.3f);
+            GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[index]], potionsPanel);
+            potionObject.transform.localScale = new Vector2(0.3f, 0.3f);
+            potionObject.transform.SetSiblingIndex(index);
 
-           potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
-           ShopManager.ChangeSize(potionObject, ItemType.Potion, index, itemData);
-            
-           for(int i = 0; i <potionsPanel.transform.childCount; i++)
-           {
+            potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
+            ShopManager.ChangeSize(potionObject, ItemType.Potion, index, itemData);
+
+            for (int i = 0; i < potionsPanel.transform.childCount; i++)
+            {
                 potionsPanel.transform.GetChild(i).transform.position = new Vector2(potionsPanel.transform.position.x + (i * 70) - 70, potionsPanel.transform.position.y);
-           }
+            }
 
             //for (int i = 0; i < arrPotion.Length; i++)
             //    Debug.Log(arrPotion[i]);
@@ -155,24 +156,22 @@ namespace FrameWork
             ChangeRelic();
         }
 
-       public IEnumerator OnPotionBlock()
+        public IEnumerator OnPotionBlock()
         {
-           AsyncUIregister.InstansUI("Assets/Prefabs/UI/PotionBlock.prefab",this.gameObject.transform.parent);
+            AsyncUIregister.InstansUI("Assets/Prefabs/UI/PotionBlock.prefab", this.gameObject.transform.parent);
 
             yield return new WaitUntil(() => this.transform.parent.Find("PotionBlock(Clone)") != null);
 
-           var potionOject = this.transform.parent.Find("PotionBlock(Clone)").transform.GetComponent<CanvasGroup>();
+            var potionOject = this.transform.parent.Find("PotionBlock(Clone)").transform.GetComponent<CanvasGroup>();
 
-        
 
-           potionOject.DOFade(1, 0.2f);
 
-           yield return new WaitUntil(() => potionOject.alpha == 1);
+            potionOject.DOFade(1, 0.2f);
 
-           potionOject.DOFade(0, 0.2f);
+            yield return new WaitUntil(() => potionOject.alpha == 1);
+
+            potionOject.DOFade(0, 0.2f);
         }
-
-       
     }
 }
 

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 7564962027622944516}
   - component: {fileID: 8194915789318116391}
   - component: {fileID: 7158795554518230304}
-  - component: {fileID: 2357720973494444584}
-  - component: {fileID: 8877763192256120514}
   m_Layer: 5
   m_Name: Potions
   m_TagString: Untagged
@@ -76,47 +74,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2357720973494444584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459101291093108781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: -7
-    m_Right: 0
-    m_Top: -39
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 128, y: 128}
-  m_Spacing: {x: -65, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 3
---- !u!114 &8877763192256120514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459101291093108781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e6fd5f5846d2f4493108ea39f834e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popUsePotion: {fileID: 0}
-  potionBtn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &2574096746055465934
 GameObject:
   m_ObjectHideFlags: 0
