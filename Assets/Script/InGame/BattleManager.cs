@@ -26,7 +26,6 @@ namespace FrameWork
         public BattleState battleState;
         private int maxEnergy = 3;
         public int energy;
-        public bool firstTurn;
 
         [SerializeField] public List<CharacterBase> enemyCharacters = new List<CharacterBase>();
 
@@ -55,14 +54,12 @@ namespace FrameWork
             switch (battleState)
             {
                 case BattleState.Ready:
-                    firstTurn = true;
+                    GameManager.Instance.playerControler.ironclad.SetRelicStatus();
                     battleState = BattleState.PlayerTurn;
                     GameManager.Instance.inGameUIManager.Narration("Player Turn");
                     break;
 
                 case BattleState.PlayerTurn:
-                    GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
-                    if (firstTurn) firstTurn = false;
 
                     RefreshBuff(GameManager.Instance.playerControler.playerCharacter);
                     GameManager.Instance.cardManager.RemovePlayerCard();
