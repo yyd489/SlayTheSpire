@@ -230,7 +230,7 @@ namespace FrameWork
                 case ItemType.Potion:
                     GameManager.Instance.soundManager.effectPlaySound(2);
                     var itemGuide = GameManager.Instance.ingameTopUI.itemTipPrefab;
-                    itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y);
+                    itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y - 50);
                     var titleText = itemData.GetPotionData()[itemDataIndex].name;
                     var guideText = itemData.GetPotionData()[itemDataIndex].effectGuide;
                     itemGuide.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = titleText;
@@ -242,7 +242,7 @@ namespace FrameWork
                 case ItemType.Relic:
                     GameManager.Instance.soundManager.effectPlaySound(2);
                     itemGuide = GameManager.Instance.ingameTopUI.itemTipPrefab;
-                    itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y);
+                    itemGuide.transform.position = new Vector2(dataObject.transform.position.x + 250, dataObject.transform.position.y - 50);
                     titleText = itemData.GetRelicData()[itemDataIndex].name;
                     guideText = itemData.GetRelicData()[itemDataIndex].effectGuide;
                     itemGuide.transform.Find("TitleText").GetComponent<TextMeshProUGUI>().text = titleText;

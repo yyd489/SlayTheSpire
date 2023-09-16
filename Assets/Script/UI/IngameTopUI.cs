@@ -52,9 +52,9 @@ namespace FrameWork
             var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
 
 
-            //GameManager.Instance.ingameTopUI.AddPotion(0);
-            //GameManager.Instance.ingameTopUI.AddPotion(1);
-            //GameManager.Instance.ingameTopUI.AddPotion(2);
+            GameManager.Instance.ingameTopUI.AddPotion(0);
+            GameManager.Instance.ingameTopUI.AddPotion(1);
+            GameManager.Instance.ingameTopUI.AddPotion(2);
         }
 
         public void ControlTopButton()
@@ -113,7 +113,7 @@ namespace FrameWork
                 {
                     
                     havePotions[i] = (PotionType)itemDataIndex;
-                    Debug.Log(havePotions[i]+"타입");
+                    
                     break;
                 }
 
