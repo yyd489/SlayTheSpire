@@ -14,20 +14,18 @@ namespace FrameWork
             isMonster = false;
         }
 
-        public void SetRelicStatus(bool first)
+        public void SetRelicStatus()
         {
-            if (first)
-            {
-                var dicRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+            var listRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
 
-                if (dicRelic.Contains(Data.RelicType.Accursed))
-                    damage += 2;
-                else if (dicRelic.Contains(Data.RelicType.Void))
-                    defence += 10;
-            }
-            else
+            if (listRelic.Contains(Data.RelicType.Accursed))
             {
-                damage = defence = 0;
+                AddBuffList(Buff.PowerUp, 1);
+            }
+            else if (listRelic.Contains(Data.RelicType.Void))
+            {
+                shield = 10;
+                hpBar.SetHealthGauge(hp, maxHp, shield);
             }
         }
 
