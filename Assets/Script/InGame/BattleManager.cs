@@ -59,6 +59,7 @@ namespace FrameWork
                     battleState = BattleState.PlayerTurn;
                     GameManager.Instance.inGameUIManager.Narration("Player Turn");
                     break;
+
                 case BattleState.PlayerTurn:
                     GameManager.Instance.playerControler.ironclad.SetRelicStatus(firstTurn);
                     if (firstTurn) firstTurn = false;
@@ -66,9 +67,14 @@ namespace FrameWork
                     RefreshBuff(GameManager.Instance.playerControler.playerCharacter);
                     GameManager.Instance.cardManager.RemovePlayerCard();
 
-                    if (enemyCharacters.Count == 0 || GameManager.Instance.playerControler.ironclad.IsDead()) EndBattle();
-                    else EnemyTurn();
+                    if (enemyCharacters.Count == 0 || GameManager.Instance.playerControler.ironclad.IsDead())
+                    {
+                        EndBattle();
+                    }
+                    else 
+                        EnemyTurn();
                     break;
+
                 case BattleState.EnemyTurn:
                     if (!GameManager.Instance.playerControler.playerCharacter.IsDead())
                     {
@@ -87,8 +93,7 @@ namespace FrameWork
                     }
                     else
                     {
-                        battleState = BattleState.EndBattle;
-                        TurnChange();
+                        EndBattle();
                     }
                     break;
                 case BattleState.EndBattle:
@@ -137,10 +142,7 @@ namespace FrameWork
                 await UniTask.Delay(TimeSpan.FromSeconds(1.5f));
 
                 if (GameManager.Instance.playerControler.playerCharacter.IsDead())
-                {
-                    isLosePlayer = true;
-                    break;
-                }
+                    return;
             }
 
             if (!isLosePlayer)
@@ -153,7 +155,7 @@ namespace FrameWork
         {
             battleState = BattleState.EndBattle;
 
-            if (GameManager.Instance.playerControler.playerCharacter.IsDead())//죽었을 때
+            if (GameManager.Instance.playerControler.ironclad.IsDead())//죽었을 때
             {
                 var GameObject = Instantiate(GameManager.Instance.initilizer.lostPop);//.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
                 await GameObject.GetComponent<CanvasGroup>().DOFade(0.8f, 0.5f);
@@ -182,7 +184,6 @@ namespace FrameWork
                     GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
                     GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
                 }
-                Debug.Log("전투 종료");
             }
         }
 

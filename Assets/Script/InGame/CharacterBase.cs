@@ -85,9 +85,11 @@ namespace FrameWork
                 {
                     GameManager.Instance.soundManager.playBattleEffectSound(0);
 
-                    for (int i = 0; i < GameManager.Instance.battleManager.enemyCharacters.Count; i++)
+                    List<CharacterBase> enemys = GameManager.Instance.battleManager.enemyCharacters;
+
+                    for (int i = enemys.Count - 1; i >= 0; i--)
                     {
-                        targetCharacter = GameManager.Instance.battleManager.enemyCharacters[i];
+                        targetCharacter = enemys[i];
 
                         if (debuffTurn > 0)
                             targetCharacter.AddBuffList(Buff.DefenceDown, debuffTurn);
@@ -146,24 +148,24 @@ namespace FrameWork
 
             float knockBackPosX = transform.position.x + modifyPos;
 
-            int targetShield = shield;
             int hitDamage = attackdamage + cardDamage + defence + buffDefence;
 
             if (attackdamage + cardDamage > 0)
                 GameManager.Instance.battleManager.GetHitEffect(this);
 
-            if (targetShield > 0 )
+            if (shield > hitDamage)
             {
-                if (targetShield > hitDamage)
-                    shield -= hitDamage;
-                else
-                {
-                    hitDamage -= shield;
-                    shield = 0;
-                }
+                shield -= hitDamage;
+            }
+            else
+            {
+                hitDamage -= shield;
+                shield = 0;
+
+                hp -= hitDamage;
             }
 
-            hp -= hitDamage;
+            if (hp < 0) hp = 0;
            
             hpBar.SetHealthGauge(hp, maxHp, shield);
 
@@ -187,7 +189,9 @@ namespace FrameWork
                     //transform.parent.gameObject.SetActive(false);
                 }
                 else
+                {
                     GameManager.Instance.battleManager.TurnChange();
+                }
             }
             else
             {
