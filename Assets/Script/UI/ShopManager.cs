@@ -91,6 +91,12 @@ namespace FrameWork
             }
 
 
+
+            for(int i = 0; i<relicCostBox.childCount; i++)
+            {
+                var costBox = relicCostBox.GetChild(i).gameObject;
+                costBox.gameObject.SetActive(false);
+            }
      
 
 
@@ -100,7 +106,7 @@ namespace FrameWork
 
                 if (listRelic.Count == 0)
                 {
-                    relicCostBox.gameObject.SetActive(false);
+                 //   relicCostBox.gameObject.SetActive(false);
                     break;
 
                 }
@@ -114,7 +120,11 @@ namespace FrameWork
                         relicObj.GetComponent<Image>().sprite = GameManager.Instance.ingameTopUI.listRelicSprites[i];
                         relicObj.AddComponent<Button>().onClick.AddListener(() => AddItem(cost, relicObj, i, relicPanel, ItemType.Relic, relicCostBox));
                         ChangeSize(relicObj, ItemType.Relic, i, itemData);
-                        relicCostBox.GetChild(i - 1).Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
+
+                        var costBox = relicCostBox.GetChild(i - 1);
+                        costBox.gameObject.SetActive(true);
+                        costBox.Find("CostText").GetComponent<TextMeshProUGUI>().text = "" + cost;
+
                         listRelic.RemoveAt(randomIndex);
                         break;
                     }

@@ -189,34 +189,34 @@ namespace FrameWork
         {
             for (int i = 0; i < listMapGraph.Count; i++)
             {
-                    List<mapNode> listUnderFloor = new List<mapNode>();
-                    List<mapNode> listUpperFloor = new List<mapNode>();
+                List<mapNode> listUnderFloor = new List<mapNode>();
+                List<mapNode> listUpperFloor = new List<mapNode>();
 
-                    for (int z = i - 1; z > -1; z--) // 왼쪽부터 위로
+                for (int z = i - 1; z > -1; z--) // 왼쪽부터 위로
+                {
+                    if (listMapGraph[i].myFloor -1 == listMapGraph[z].myFloor)
                     {
-                        if (listMapGraph[i].myFloor -1 == listMapGraph[z].myFloor)
-                        {
-                            listUpperFloor.Add(listMapGraph[z]);
-                        }
+                        listUpperFloor.Add(listMapGraph[z]);
                     }
+                }
 
-                    var linkTargetUpObject = listMapGraph[i].FindLink(listMapGraph[i], listMapGraph[i].myPosition, listUpperFloor);
+                var linkTargetUpObject = listMapGraph[i].FindLink(listMapGraph[i], listMapGraph[i].myPosition, listUpperFloor);
                   
-                    if (linkTargetUpObject != null)
-                        listMapGraph[i].addEdge(listMapGraph[i], linkTargetUpObject);
+                if (linkTargetUpObject != null)
+                    listMapGraph[i].addEdge(listMapGraph[i], linkTargetUpObject);
 
-                    for (int z = i + 1; z < listMapGraph.Count; z++)//우측부터 밑으로 
+                for (int z = i + 1; z < listMapGraph.Count; z++)//우측부터 밑으로 
+                {
+                    if (listMapGraph[i].myFloor + 1 == listMapGraph[z].myFloor )
                     {
-                        if (listMapGraph[i].myFloor + 1 == listMapGraph[z].myFloor )
-                        {
-                            listUnderFloor.Add(listMapGraph[z]);
-                        }
+                        listUnderFloor.Add(listMapGraph[z]);
                     }
+                }
 
-                    var linkTargetDownObject = listMapGraph[i].FindLink(listMapGraph[i],listMapGraph[i].myPosition, listUnderFloor);
+                var linkTargetDownObject = listMapGraph[i].FindLink(listMapGraph[i],listMapGraph[i].myPosition, listUnderFloor);
 
-                    if (linkTargetDownObject != null)
-                        listMapGraph[i].addEdge(listMapGraph[i], linkTargetDownObject);
+                if (linkTargetDownObject != null)
+                    listMapGraph[i].addEdge(listMapGraph[i], linkTargetDownObject);
 
             }
 
@@ -370,8 +370,10 @@ namespace FrameWork
                     Quaternion.identity, listNodes[i].transform.parent);
                 }
 
-                if( i >= 1)
-                listNodes[i].GetComponent<Image>().sprite = nodeImages[(int)listMapGraph[i].field];
+                if (i >= 1)
+                {
+                    listNodes[i].GetComponent<Image>().sprite = nodeImages[(int)listMapGraph[i].field];
+                }
            }
 
             if (nowIndex != 999)
