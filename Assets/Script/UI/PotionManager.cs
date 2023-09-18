@@ -11,11 +11,11 @@ namespace FrameWork
 
         private int selectPotionIndex;
 
-        public void PopUpPotionUi(int potionIndex)
+        public void PopUpPotionUi(GameObject potionObject, int potionIndex)
         {
             if (GameManager.Instance.playerControler.onDrag) return;
 
-            potionBtn[potionIndex] = GameManager.Instance.ingameTopUI.potionsPanel.GetChild(potionIndex).gameObject;
+            GameManager.Instance.potionManager.potionBtn[potionIndex] = potionObject;
             popUsePotion.transform.position = new Vector2(potionBtn[potionIndex].transform.position.x, popUsePotion.transform.position.y);
             popUsePotion.SetActive(true);
             selectPotionIndex = potionIndex;

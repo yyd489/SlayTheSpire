@@ -136,8 +136,9 @@ namespace FrameWork
             GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[index]], potionsPanel);
             potionObject.transform.localScale = new Vector2(0.3f, 0.3f);
             potionObject.transform.SetSiblingIndex(index);
+            potionObject.name = index.ToString();
 
-            potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject.transform.GetSiblingIndex()));
+            potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject, int.Parse(potionObject.name)));
             ShopManager.ChangeSize(potionObject, ItemType.Potion, index, itemData);
 
             for (int i = 0; i < potionsPanel.transform.childCount; i++)
