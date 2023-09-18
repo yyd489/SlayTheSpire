@@ -114,7 +114,7 @@ namespace FrameWork
                 {
 
                     havePotions[i] = (PotionType)itemDataIndex;
-
+                    ChangePotion(itemDataIndex, i);
                     break;
                 }
 
@@ -125,21 +125,23 @@ namespace FrameWork
                 }
 
             }
-            ChangePotion(itemDataIndex);
+         
         }
 
-        public void ChangePotion(int index)
+        public void ChangePotion(int itemDataIndex,int index)
         {
             var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
             var itemData = GameManager.Instance.dataManager.data.itemData;
 
-            GameObject potionObject = Instantiate(listPotionPrefab[(int)arrPotion[index]], potionsPanel);
+            GameObject potionObject = Instantiate(listPotionPrefab[itemDataIndex], potionsPanel);
             potionObject.transform.localScale = new Vector2(0.3f, 0.3f);
             potionObject.transform.SetSiblingIndex(index);
             potionObject.name = index.ToString();
 
             potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject, int.Parse(potionObject.name)));
-            ShopManager.ChangeSize(potionObject, ItemType.Potion, index, itemData);
+            ShopManager.ChangeSize(potionObject, ItemType.Potion, itemDataIndex, itemData);
+
+            Debug.Log(itemDataIndex + "인덱스");
 
             for (int i = 0; i < potionsPanel.transform.childCount; i++)
             {
