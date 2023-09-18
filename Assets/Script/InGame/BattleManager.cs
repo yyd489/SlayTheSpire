@@ -194,8 +194,8 @@ namespace FrameWork
 
             hitEffect.transform.position = hitCharater.centerPos.position;
             await UniTask.Delay(TimeSpan.FromSeconds(hitEffect.duration));
-
-            hitEffectPool.ReturnObject(hitEffect.gameObject);
+            if(!GameManager.Instance.playerControler.ironclad.IsDead())
+                hitEffectPool.ReturnObject(hitEffect.gameObject);
         }
 
         public bool IsBattleStage()
