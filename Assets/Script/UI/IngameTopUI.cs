@@ -55,6 +55,8 @@ namespace FrameWork
             GameManager.Instance.ingameTopUI.AddPotion(0);
             GameManager.Instance.ingameTopUI.AddPotion(1);
             GameManager.Instance.ingameTopUI.AddPotion(2);
+
+
         }
 
         public void ControlTopButton()
@@ -99,8 +101,11 @@ namespace FrameWork
 
         public void AddCard(int itemDataIndex)
         {
+ 
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
+
             characterData.listHaveCard.Add(itemDataIndex);
+
         }
 
         public void AddPotion(int itemDataIndex)
@@ -171,20 +176,19 @@ namespace FrameWork
                 Destroy(this.transform.parent.Find("PotionBlock(Clone)").gameObject);
             }
 
-
             AsyncUIregister.InstansUI("Assets/Prefabs/UI/PotionBlock.prefab", this.gameObject.transform.parent);
 
             yield return new WaitUntil(() => this.transform.parent.Find("PotionBlock(Clone)") != null);
 
             var potionOject = this.transform.parent.Find("PotionBlock(Clone)").transform.GetComponent<CanvasGroup>();
 
-
-
             potionOject.DOFade(1, 0.2f);
 
             yield return new WaitUntil(() => potionOject.alpha == 1);
 
             potionOject.DOFade(0, 0.2f);
+
+            yield return new WaitUntil(() => potionOject.alpha == 0);
 
             Destroy(potionOject.gameObject);
         }
