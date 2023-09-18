@@ -34,14 +34,14 @@ namespace FrameWork
             buffSkillTurn++;
             debuffSkillTurn++;
 
-            if (buffSkillTurn == 5)
+            if (buffSkillTurn >= 5)
             {
                 monsterAction = MonsterAction.BuffSkill;
                 monsterAttackIcon.sprite = GameManager.Instance.battleManager.arrMonsterActionIcon[1];
                 monsterDamageText.text = "";
                 buffSkillTurn = Random.Range(0, 3);
             }
-            else if (debuffSkillTurn == 4)
+            else if (debuffSkillTurn >= 4)
             {
                 monsterAction = MonsterAction.DeBuffSkill;
                 monsterAttackIcon.sprite = GameManager.Instance.battleManager.arrMonsterActionIcon[2];

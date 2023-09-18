@@ -29,7 +29,7 @@ namespace FrameWork
         {
             base.MonsterNextAction();
 
-            if (turn == 3)
+            if (turn >= 3)
             {
                 monsterAction = MonsterAction.DeBuffSkill;
                 monsterDamageText.text = "";
