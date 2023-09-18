@@ -112,14 +112,17 @@ namespace FrameWork
 
         public void RefreshBuff(CharacterBase character)
         {
-            for (int i = 0; i < character.listBuff.Count; i++)
+            int indexCount = character.listBuff.Count;
+            int index = 0;
+            for (int i = 0; i < indexCount; i++)
             {
-                character.listBuff[i].RefreshBuff();
+                character.listBuff[index].RefreshBuff();
 
-                if (character.listBuff[i].turn == 0)
+                if (character.listBuff[index].turn == 0)
                 {
-                    character.RemoveBuffStat(character.listBuff[i]);
+                    character.RemoveBuffStat(character.listBuff[index]);
                 }
+                else index++;
             }
 
             character.RefreshBuffStat();
