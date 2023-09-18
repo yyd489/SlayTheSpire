@@ -54,12 +54,13 @@ namespace FrameWork
 
             for (int i = 0; i < 5; i++)
             {
-                cards.Add(cardPool.GetObject(this.transform).GetComponent<CardBase>());
-
                 int index = queMainDeck.Dequeue();
                 listHandCard.Add(index);
+
+                CardBase tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();                
                 CardJsonData newCard = cardDatas[index];
-                cards[i].Init(newCard);
+                tempCard.Init(newCard);
+                cards.Add(tempCard);
             }
 
             GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
@@ -151,23 +152,25 @@ namespace FrameWork
 
         public void UseCard(CardBase useCard)
         {
-            cardPool.ReturnObject(useCard.gameObject);
             selectCard.gameObject.SetActive(false);
-            if (!useCard.cardData.canDelete) listUseDeck.Add(selectIndex);
-            listHandCard.Remove(selectIndex);
-            cards.Remove(useCard);
-            GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
-            DefaltCardSorting();
+            if (GameManager.Instance.battleManager.battleState != BattleState.EndBattle)
+            {
+                cardPool.ReturnObject(useCard.gameObject);
+
+                if (!useCard.cardData.canDelete) listUseDeck.Add(selectIndex);
+                listHandCard.Remove(selectIndex);
+                cards.Remove(useCard);
+                GameManager.Instance.inGameUIManager.RefreshDeckCountText(queMainDeck.Count, listUseDeck.Count);
+                DefaltCardSorting();
+            }
         }
 
         public void DrawCard()
         {
             List<CardJsonData> cardDatas = GameManager.Instance.dataManager.data.cardData.GetCardStat();
 
-            CardBase tempCard;
-
-            tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
-
+            CardBase tempCard = cardPool.GetObject(this.transform).GetComponent<CardBase>();
+            
             if (queMainDeck.Count <= 0)
                 ReloadCardDeck();
 
@@ -214,15 +217,6 @@ namespace FrameWork
             DefaltCardSorting();
         }
 
-        public void ResetCardDecks()
-        {
-            RemovePlayerCard();
-            queMainDeck.Clear();
-            listUseDeck.Clear();
-            listHandCard.Clear();
-            cards.Clear();
-        }
-
         public void ReloadCardDeck()
         {
             int listCount = listUseDeck.Count;
@@ -235,6 +229,14 @@ namespace FrameWork
 
                 listUseDeck.RemoveAt(random);
             }
+        }
+
+        public void ResetCardDecks()
+        {
+            RemovePlayerCard();
+            queMainDeck.Clear();
+            listUseDeck.Clear();
+            cards.Clear();
         }
     }
 }
