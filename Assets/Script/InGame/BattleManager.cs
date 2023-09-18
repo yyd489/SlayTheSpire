@@ -68,7 +68,7 @@ namespace FrameWork
                     {
                         EndBattle();
                     }
-                    else 
+                    else
                         EnemyTurn();
                     break;
 
@@ -193,6 +193,16 @@ namespace FrameWork
             await UniTask.Delay(TimeSpan.FromSeconds(hitEffect.duration));
 
             hitEffectPool.ReturnObject(hitEffect.gameObject);
+        }
+
+        public bool IsBattleStage()
+        {
+            if (stage == MapField.Monster || stage == MapField.EliteMonster || stage == MapField.Boss)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
