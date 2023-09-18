@@ -33,7 +33,8 @@ namespace FrameWork
         {
             GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += heal;
 
-            hp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp;
+            hp+=10;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp = hp;
 
             maxHp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp;
 
@@ -55,13 +56,13 @@ namespace FrameWork
 
             GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += 10;
 
-            hp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp;
-
+            hp += 10;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp = hp;
             maxHp = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp;
 
             if (hp > maxHp) hp = maxHp;
 
-       
+
 
             GameManager.Instance.ingameTopUI.nowHpText.text = "" + hp + "/" + maxHp;
 

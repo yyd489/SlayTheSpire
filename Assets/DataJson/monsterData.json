@@ -27,8 +27,8 @@
     },
     {
       "monsterName": "도적",
-      "monsterAttack": "15",
-      "hp": "60",
+      "monsterAttack": "7",
+      "hp": "30",
       "monsterType": 0
     },
     {
