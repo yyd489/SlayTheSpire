@@ -155,6 +155,12 @@ namespace FrameWork
         {
             var characterData = GameManager.Instance.dataManager.data.characterData.GetCharacterStat();
             characterData.listHaveRelic.Add((RelicType)itemDataIndex);
+            if((RelicType)itemDataIndex == RelicType.Twist)
+            {
+                GameManager.Instance.playerControler.ironclad.RelicHealthUp();
+             
+            }
+
             ChangeRelic();
         }
 
