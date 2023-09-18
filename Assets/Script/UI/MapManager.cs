@@ -162,12 +162,29 @@ namespace FrameWork
                     listMapGraph[listMapGraph.Count - 1].myFloor = i;
                     listMapGraph[listMapGraph.Count - 1].myPosition = z;
                     listMapGraph[listMapGraph.Count - 1].myIndex = listMapGraph.Count - 1;
-                    listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
+                    int fieldIndex = Random.Range(0, 101);
+                    
+                    if(fieldIndex < 5)
+                    listMapGraph[listMapGraph.Count - 1].field = MapField.Shop;
 
-                    if(listMapGraph[listMapGraph.Count - 1].field == MapField.EliteMonster)//엘리트 확률 줄이기
-                    listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
+                    else if( fieldIndex >= 5 && fieldIndex < 27)
+                    listMapGraph[listMapGraph.Count - 1].field = MapField.Event;
+                    
+                    else if (fieldIndex >= 22 && fieldIndex < 34)
+                    listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
+                    
+                    else if (fieldIndex >= 34 && fieldIndex < 40)
+                    listMapGraph[listMapGraph.Count - 1].field = MapField.EliteMonster;
+                    
+                    else if (fieldIndex >= 40)
+                    listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
+                    
+                    //listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
 
-                    if(listMapGraph[listMapGraph.Count - 1].myFloor == 10)//첫턴은 무조건 몬스터
+                    //if(listMapGraph[listMapGraph.Count - 1].field == MapField.EliteMonster)//엘리트 확률 줄이기
+                    //listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
+
+                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 10)//첫턴은 무조건 몬스터
                         listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
 
                     if (listMapGraph[listMapGraph.Count - 1].myFloor == 1)// 보스 전은 무조건 휴식
