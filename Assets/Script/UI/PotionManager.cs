@@ -23,13 +23,20 @@ namespace FrameWork
 
         public void UsePotion()
         {
+            BattleState battleState = GameManager.Instance.battleManager.battleState;
+            if (battleState == BattleState.EnemyTurn) return;
+
             var potionData = GameManager.Instance.dataManager.data.itemData.itemData.listPotionData;
 
             Data.PotionType[] arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
 
+            bool isBattle = GameManager.Instance.battleManager.IsBattleStage();
+
             switch (arrPotion[selectPotionIndex])
             {
                 case Data.PotionType.Fire:
+                    if (!isBattle || battleState != BattleState.PlayerTurn) return;
+
                     for (int i = 0; i < potionData.Count; i++)
                     {
                         if (potionData[i].itemType == Data.PotionType.Fire)
@@ -54,6 +61,8 @@ namespace FrameWork
                     break;
 
                 case Data.PotionType.Card:
+                    if (!isBattle || battleState != BattleState.PlayerTurn) return;
+
                     for (int i = 0; i < 2; i++)
                     {
                         GameManager.Instance.cardManager.DrawCard();

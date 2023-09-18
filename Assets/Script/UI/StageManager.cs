@@ -22,13 +22,13 @@ namespace FrameWork
           public GameObject restPop;
           public GameObject[] arrEvents;
 
-          public void ControlField(MapField fieldInfo)
-          {
+        public void ControlField(MapField fieldInfo)
+        {
+            GameManager.Instance.battleManager.stage = fieldInfo;
+            switch (fieldInfo)
+            {
 
-                switch(fieldInfo)
-                {
-
-                    case MapField.Event:
+                case MapField.Event:
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
                     int randomEvent = Random.Range(0, arrEvents.Length);
                     Transform eventObj = Instantiate(arrEvents[randomEvent].transform);
@@ -38,7 +38,7 @@ namespace FrameWork
 
                     break;
 
-                    case MapField.Monster:
+                case MapField.Monster:
 
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.Monster);
@@ -46,34 +46,34 @@ namespace FrameWork
                     GameManager.Instance.cardManager.StageStart();
                     break;
 
-                    case MapField.EliteMonster:
+                case MapField.EliteMonster:
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
                     GameManager.Instance.spawnManager.Init(MapField.EliteMonster);
                     GameManager.Instance.battleManager.Init();
                     GameManager.Instance.cardManager.StageStart();
                     break;
 
-                    case MapField.Shop:
+                case MapField.Shop:
 
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
                     GameObject shopObj = Instantiate(shopPop);
                     //shopObj.transform.Find("ShopPanel").Find("BackButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
                     shopObj.transform.Find("Canvas").Find("NextButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(shopObj));
-                   
 
-                    
+
+
                     break;
 
-                    case MapField.Sleep:
+                case MapField.Sleep:
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(false);
                     GameObject restObj = Instantiate(restPop);
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => FillHp());
                     restObj.transform.Find("RestButton").GetComponent<Button>().onClick.AddListener(() => ClearStage(restObj));
-                  
+
 
                     break;
 
-                    case MapField.Boss:
+                case MapField.Boss:
 
                     GameManager.Instance.battleManager.Init();
                     GameManager.Instance.initilizer.inGameUiCanvas.gameObject.SetActive(true);
@@ -83,10 +83,10 @@ namespace FrameWork
                     GameManager.Instance.cardManager.StageStart();
                     break;
 
-                }
-                
+            }
 
-          }
+
+        }
 
         public void ClearStage(GameObject targetObj = null)
         {

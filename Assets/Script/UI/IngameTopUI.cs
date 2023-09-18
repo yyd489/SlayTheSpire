@@ -141,8 +141,6 @@ namespace FrameWork
             potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject, int.Parse(potionObject.name)));
             ShopManager.ChangeSize(potionObject, ItemType.Potion, itemDataIndex, itemData);
 
-            Debug.Log(itemDataIndex + "인덱스");
-
             for (int i = 0; i < potionsPanel.transform.childCount; i++)
             {
                 potionsPanel.transform.GetChild(i).transform.position = new Vector2(potionsPanel.transform.position.x + (i * 70) - 70, potionsPanel.transform.position.y);
