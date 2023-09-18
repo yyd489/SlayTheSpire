@@ -22,7 +22,8 @@ namespace FrameWork
             {
                 AddBuffList(Buff.PowerUp, 1);
             }
-            else if (listRelic.Contains(Data.RelicType.Void))
+
+            if (listRelic.Contains(Data.RelicType.Void))
             {
                 shield = 10;
                 hpBar.SetHealthGauge(hp, maxHp, shield);
