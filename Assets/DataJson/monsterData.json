@@ -15,7 +15,7 @@
     },
     {
       "monsterName": "동물하초",
-      "monsterAttack": "3",
+      "monsterAttack": "4",
       "hp": "45",
       "monsterType": 0
     },
@@ -33,13 +33,13 @@
     },
     {
       "monsterName": "보초기",
-      "monsterAttack": "15",
-      "hp": "100",
+      "monsterAttack": "7",
+      "hp": "70",
       "monsterType": 1
     },
     {
       "monsterName": "투사",
-      "monsterAttack": "10",
+      "monsterAttack": "15",
       "hp": "150",
       "monsterType": 2
     }
