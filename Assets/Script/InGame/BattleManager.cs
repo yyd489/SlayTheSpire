@@ -182,8 +182,11 @@ namespace FrameWork
                     AsyncUIregister.InstansUI("Assets/Prefabs/UI/WinPanel.prefab");
 
                     await UniTask.WaitUntil(() => GameObject.Find("WinPanel(Clone)") != null);
-                    GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
-                    GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
+
+                    var winPanel = GameObject.Find("WinPanel(Clone)").transform.Find("NextButton").GetComponent<UnityEngine.UI.Button>();
+                    winPanel.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
+                    winPanel.onClick.AddListener(() => GameManager.Instance.LoadMainTitle());
+                    await GameObject.Find("WinPanel(Clone)").GetComponent<CanvasGroup>().DOFade(1, 1f);
                 }
             }
         }
