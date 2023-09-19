@@ -193,13 +193,14 @@ namespace FrameWork
 
                 GameManager.Instance.ingameTopUI.goldText.text = characterData.gold.ToString();
 
+                var itemGuide = GameManager.Instance.ingameTopUI.itemTipPrefab;
                 if ( itemType == ItemType.Card)//카드
                 {
                     Destroy(item);
                     Destroy(itemPanel.GetChild(itemIndex).gameObject);
                     GameManager.Instance.ingameTopUI.AddCard(itemDataIndex);
                     Destroy(textPanel.GetChild(itemIndex).gameObject);
-
+                    itemGuide.gameObject.SetActive(false);
                 }
 
                 else if (itemType == ItemType.Relic)//유물
@@ -208,6 +209,7 @@ namespace FrameWork
                     Destroy(itemPanel.GetChild(itemIndex).gameObject);
                     GameManager.Instance.ingameTopUI.AddRelic(itemDataIndex);
                     Destroy(textPanel.GetChild(itemIndex).gameObject);
+                    itemGuide.gameObject.SetActive(false);
                 }
 
 
@@ -224,7 +226,7 @@ namespace FrameWork
                          
                             GameManager.Instance.ingameTopUI.AddPotion(itemDataIndex);
                             Destroy(textPanel.GetChild(itemIndex).gameObject);
-
+                            itemGuide.gameObject.SetActive(false);
                             break;
                         }
 
