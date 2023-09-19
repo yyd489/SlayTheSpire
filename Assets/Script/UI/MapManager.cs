@@ -123,10 +123,7 @@ namespace FrameWork
            // Debug.LogError(FrameWork.Data.DataManager.data.eventData.GetEventData()[0].effectText);
         }
 
-        public void Start()
-        {
-            Init();
-        }
+       
 
         public void Save()
         {

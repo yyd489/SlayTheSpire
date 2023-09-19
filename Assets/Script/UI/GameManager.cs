@@ -73,6 +73,7 @@ namespace FrameWork
                 mapManager = GameObject.Find("MapPopup").transform.GetComponent<MapManager>();
             }
 
+            mapManager.Init();
             mapManager.FadeOut();
 
             if (soundManager == null)
