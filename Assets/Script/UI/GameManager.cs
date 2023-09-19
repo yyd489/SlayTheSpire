@@ -50,10 +50,10 @@ namespace FrameWork
 
         private void Start()
         {
-            Init();
+            StartCoroutine(Init());
         }
 
-        public async UniTaskVoid Init()
+        public IEnumerator Init()
         {
             if (dataManager == null)
             {
@@ -62,9 +62,7 @@ namespace FrameWork
 
             dataManager.Init();
 
-            await UniTask.WaitUntil(() => dataManager.data.characterData.characterInfoCollect != null &&
-              dataManager.data.cardData.cardCollect != null   && dataManager.data.itemData.itemData != null
-              && dataManager.data.eventData.eventData != null);
+           yield return new WaitUntil(() => dataManager.ReadyData() == true);
 
 
             //---------------------------------------DataManager 무조건 선순위----------------------------------------------------------

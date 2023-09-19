@@ -4,10 +4,6 @@ using UnityEngine;
 
 namespace FrameWork.Data
 {    
-    public partial class DataManager 
-    {
-        // Start is called before the first frame update
-       
-    }
+   
 
 }
