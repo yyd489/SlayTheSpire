@@ -173,10 +173,10 @@ namespace FrameWork
                     else if (fieldIndex >= 22 && fieldIndex < 34)
                     listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
                     
-                    else if (fieldIndex >= 34 && fieldIndex < 40)
+                    else if (fieldIndex >= 34 && fieldIndex < 37)
                     listMapGraph[listMapGraph.Count - 1].field = MapField.EliteMonster;
                     
-                    else if (fieldIndex >= 40)
+                    else if (fieldIndex >= 37)
                     listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
                     
                     //listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
@@ -189,6 +189,9 @@ namespace FrameWork
 
                     if (listMapGraph[listMapGraph.Count - 1].myFloor == 1)// 보스 전은 무조건 휴식
                         listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
+
+                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 5)// 5층은 무조건 엘리트 몬스터
+                        listMapGraph[listMapGraph.Count - 1].field = MapField.EliteMonster;
 
                     int Index = listMapGraph.Count - 1;
                     obj.GetComponent<Button>().onClick.AddListener(() => ClickNodeButton(Index));
