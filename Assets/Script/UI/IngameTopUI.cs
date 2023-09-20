@@ -31,12 +31,14 @@ namespace FrameWork
         {
             ControlTopButton();
             ChangeState();
+            var gameManagerInstance = GameManager.Instance;
             if (mapPop == null)
-                mapPop = GameManager.Instance.mapManager.gameObject;
+                mapPop = gameManagerInstance.mapManager.gameObject;
 
-            var listRelic = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
+            var listRelic = gameManagerInstance.dataManager.data.characterData.GetCharacterStat().listHaveRelic;
             int relicCount = listRelic.Count;
-            var itemData = GameManager.Instance.dataManager.data.itemData;
+            var itemData = gameManagerInstance.dataManager.data.itemData;
+            
 
             for (int i = 0; i < relicCount; i++)
             {
@@ -45,16 +47,19 @@ namespace FrameWork
                 relicImage.sprite = listRelicSprites[(int)listRelic[i]];
             }
 
-            optionButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
-            deckButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(2));
-            mapButton.onClick.AddListener(() => GameManager.Instance.soundManager.effectPlaySound(0));
+            var soundManager = gameManagerInstance.soundManager;
+
+            optionButton.onClick.AddListener(() => soundManager.effectPlaySound(2));
+            deckButton.onClick.AddListener(() => soundManager.effectPlaySound(2));
+            mapButton.onClick.AddListener(() => soundManager.effectPlaySound(0));
 
             var arrPotion = GameManager.Instance.dataManager.data.characterData.GetCharacterStat().arrHavePotion;
 
+            var ingameTopUI = gameManagerInstance.ingameTopUI;
 
-            GameManager.Instance.ingameTopUI.AddPotion(0);
-            GameManager.Instance.ingameTopUI.AddPotion(1);
-            GameManager.Instance.ingameTopUI.AddPotion(2);
+            ingameTopUI.AddPotion(0);
+            ingameTopUI.AddPotion(1);
+            ingameTopUI.AddPotion(2);
 
 
         }
@@ -77,9 +82,10 @@ namespace FrameWork
 
         public void ChangeState()
         {
-            goldText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.gold.ToString();
-            nowHpText.text = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp.ToString() + "/" +
-            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp.ToString();
+            var character = GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect;
+
+            goldText.text = character.gold.ToString();
+            nowHpText.text = character.hp.ToString() + "/" + character.maxHp.ToString();
         }
 
 
@@ -139,8 +145,9 @@ namespace FrameWork
             var itemData = GameManager.Instance.dataManager.data.itemData;
 
             GameObject potionObject = Instantiate(listPotionPrefab[itemDataIndex], potionsPanel);
-            potionObject.transform.localScale = new Vector2(0.3f, 0.3f);
-            potionObject.transform.SetSiblingIndex(index);
+            Transform potionTr = potionObject.transform;
+            potionTr.localScale = new Vector2(0.3f, 0.3f);
+            potionTr.SetSiblingIndex(index);
             potionObject.name = index.ToString();
 
             potionObject.AddComponent<Button>().onClick.AddListener(() => GameManager.Instance.potionManager.PopUpPotionUi(potionObject, int.Parse(potionObject.name)));
