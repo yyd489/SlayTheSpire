@@ -140,8 +140,9 @@ namespace FrameWork
             ///////////////////////////// 보스 노드 오브젝트 넣어주기
             listNodes.Add(listNodeZones[0].transform.GetChild(0).gameObject);
             listMapGraph.Add(new mapNode());
-            listMapGraph[listMapGraph.Count - 1].myFloor = 0;
-            listMapGraph[listMapGraph.Count - 1].field = MapField.Boss;
+            var bossCount = listMapGraph.Count - 1;
+            listMapGraph[bossCount].myFloor = 0;
+            listMapGraph[bossCount].field = MapField.Boss;
             ///////////////////////////// 보스 노드 오브젝트 넣어주기 끝
             for (int i = 1; i < listNodeZones.Count; i++)//일반 노드 오브젝트 생성 
             {
@@ -156,41 +157,42 @@ namespace FrameWork
 
                     listNodes.Add(obj);
                     listMapGraph.Add(new mapNode());
-                    listMapGraph[listMapGraph.Count - 1].myFloor = i;
-                    listMapGraph[listMapGraph.Count - 1].myPosition = z;
-                    listMapGraph[listMapGraph.Count - 1].myIndex = listMapGraph.Count - 1;
+                    var newMapCount = listMapGraph.Count - 1;
+                    listMapGraph[newMapCount].myFloor = i;
+                    listMapGraph[newMapCount].myPosition = z;
+                    listMapGraph[newMapCount].myIndex = listMapGraph.Count - 1;
                     int fieldIndex = Random.Range(0, 101);
                     
                     if(fieldIndex < 5)
-                    listMapGraph[listMapGraph.Count - 1].field = MapField.Shop;
+                    listMapGraph[newMapCount].field = MapField.Shop;
 
                     else if( fieldIndex >= 5 && fieldIndex < 27)
-                    listMapGraph[listMapGraph.Count - 1].field = MapField.Event;
+                    listMapGraph[newMapCount].field = MapField.Event;
                     
                     else if (fieldIndex >= 22 && fieldIndex < 34)
-                    listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
+                    listMapGraph[newMapCount].field = MapField.Sleep;
                     
                     else if (fieldIndex >= 34 && fieldIndex < 37)
-                    listMapGraph[listMapGraph.Count - 1].field = MapField.EliteMonster;
+                    listMapGraph[newMapCount].field = MapField.EliteMonster;
                     
                     else if (fieldIndex >= 37)
-                    listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
+                    listMapGraph[newMapCount].field = MapField.Monster;
                     
                     //listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
 
                     //if(listMapGraph[listMapGraph.Count - 1].field == MapField.EliteMonster)//엘리트 확률 줄이기
                     //listMapGraph[listMapGraph.Count - 1].field = ((MapField)Random.Range(0, 5));
 
-                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 10)//첫턴은 무조건 몬스터
-                        listMapGraph[listMapGraph.Count - 1].field = MapField.Monster;
+                    if (listMapGraph[newMapCount].myFloor == 10)//첫턴은 무조건 몬스터
+                        listMapGraph[newMapCount].field = MapField.Monster;
 
-                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 1)// 보스 전은 무조건 휴식
-                        listMapGraph[listMapGraph.Count - 1].field = MapField.Sleep;
+                    if (listMapGraph[newMapCount].myFloor == 1)// 보스 전은 무조건 휴식
+                        listMapGraph[newMapCount].field = MapField.Sleep;
 
-                    if (listMapGraph[listMapGraph.Count - 1].myFloor == 5)// 5층은 무조건 엘리트 몬스터
-                        listMapGraph[listMapGraph.Count - 1].field = MapField.EliteMonster;
+                    if (listMapGraph[newMapCount].myFloor == 5)// 5층은 무조건 엘리트 몬스터
+                        listMapGraph[newMapCount].field = MapField.EliteMonster;
 
-                    int Index = listMapGraph.Count - 1;
+                    int Index = newMapCount;
                     obj.GetComponent<Button>().onClick.AddListener(() => ClickNodeButton(Index));
                     obj.GetComponent<Button>().onClick.AddListener(()=>   GameManager.Instance.soundManager.effectPlaySound(1)); 
                 }
