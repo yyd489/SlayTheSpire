@@ -22,12 +22,12 @@ namespace FrameWork.Data
 
     public class EventData : DataInterface
     {
-        public EventDataCollect eventData;
+        public EventDataCollect eventDataCollect;
 
         public async void AwaitFileRead(string filePath)
         {
             var fileTest = await ReadAllTextAsync(filePath);
-            eventData = JsonConvert.DeserializeObject<EventDataCollect>(fileTest);
+            eventDataCollect = JsonConvert.DeserializeObject<EventDataCollect>(fileTest);
 
         }
 
@@ -45,10 +45,10 @@ namespace FrameWork.Data
             });
         }
 
-        public List<EventJsonData> GetEventData()
+        public List<EventJsonData> eventData()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
-            List<EventJsonData> listEventData = eventData.listEventData;
+            List<EventJsonData> listEventData = eventDataCollect.listEventData;
             return listEventData;
         }
     }

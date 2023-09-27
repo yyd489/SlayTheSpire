@@ -30,12 +30,12 @@ namespace FrameWork.Data
 
     public class MonsterData : DataInterface
     {
-        public MonsterDataCollect monsterData;
+        public MonsterDataCollect monsterDataCollect;
 
         public async void AwaitFileRead(string filePath)
         {
             var fileTest = await ReadAllTextAsync(filePath);
-            monsterData = JsonConvert.DeserializeObject<MonsterDataCollect>(fileTest);
+            monsterDataCollect = JsonConvert.DeserializeObject<MonsterDataCollect>(fileTest);
 
         }
 
@@ -53,10 +53,10 @@ namespace FrameWork.Data
             });
         }
 
-        public List<MonsterJsonData> GetEventData()
+        public List<MonsterJsonData> monsterData()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
-            List<MonsterJsonData> listMonsterData = monsterData.listMonsterData;
+            List<MonsterJsonData> listMonsterData = monsterDataCollect.listMonsterData;
             return listMonsterData;
         }
     }

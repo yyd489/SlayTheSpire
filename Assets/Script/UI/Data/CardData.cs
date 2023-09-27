@@ -66,7 +66,7 @@ namespace FrameWork.Data
             });
         }
 
-        public List<CardJsonData> GetCardStat()
+        public List<CardJsonData> cardStat()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
             List<CardJsonData> listCardData = cardCollect.listcardData;

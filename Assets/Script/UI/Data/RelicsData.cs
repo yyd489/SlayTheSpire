@@ -71,14 +71,14 @@ namespace FrameWork.Data
             });
         }
 
-        public List<RelicJsonData> GetRelicData()
+        public List<RelicJsonData> relicData()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
             List<RelicJsonData> listRelicData = itemData.listRelicData;
             return listRelicData;
         }
 
-        public List<PotionJsonData> GetPotionData()
+        public List<PotionJsonData> potionData()
         {
             // await UniTask.WaitUntil(() => characterInfoCollect != null);
             List<PotionJsonData> listPotionData = itemData.listPotionData;
