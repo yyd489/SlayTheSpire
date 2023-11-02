@@ -165,10 +165,11 @@ namespace FrameWork
 
         private void OnFireEvent(Data.CharacterData characterData)
         {
-            int fillLittleHp = 10;
+            int fillLittleHp = 20;
 
-            characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
-            characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
+            if (characterData.characterInfoCollect.characterCollect.hp > characterData.characterInfoCollect.characterCollect.maxHp)
+                characterData.characterInfoCollect.characterCollect.hp = characterData.characterInfoCollect.characterCollect.maxHp;
             GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
             GameManager.Instance.playerControler.ironclad.Heal(0);
         }
@@ -177,11 +178,10 @@ namespace FrameWork
 
         private void OnClericEvent(Data.CharacterData characterData)
         {
-            int fillLittleHp = 20;
+            int fillLittleHp = 10;
 
-            characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
-            if (characterData.characterInfoCollect.characterCollect.hp > characterData.characterInfoCollect.characterCollect.maxHp)
-                characterData.characterInfoCollect.characterCollect.hp = characterData.characterInfoCollect.characterCollect.maxHp;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
             GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
             GameManager.Instance.playerControler.ironclad.Heal(0);
         }
