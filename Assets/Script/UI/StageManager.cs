@@ -22,7 +22,7 @@ namespace FrameWork
           public GameObject restPop;
           public GameObject[] arrEvents;
           private System.Action[] arrStage = new System.Action[6];
-          private System.Action<Data.CharacterData>[] arrEvent = new System.Action<Data.CharacterData>[3];
+          private System.Action<Data.CharacterData,FieldEvenets> arrEvent;
 
         public void init()
         {
@@ -34,9 +34,8 @@ namespace FrameWork
             arrStage[(int)MapField.Boss] = OnBossStage;
 
             
-            arrEvent[(int)FieldEvenets.GoldEvent] = OnGoldEvent;
-            arrEvent[(int)FieldEvenets.FireEvenet] = OnFireEvenet;
-            arrEvent[(int)FieldEvenets.ClericEvent] = OnClericEvent;
+            arrEvent = OnEvent;
+           
         }
 
         public void ControlField(MapField fieldInfo)
@@ -131,11 +130,30 @@ namespace FrameWork
         {
       
             var characterData = GameManager.Instance.dataManager.data.characterData;
-            arrEvent[(int)eventType](characterData);
-
+            arrEvent(characterData,eventType);
             GameManager.Instance.playerControler.ironclad.Heal(0);
+           
         }
 
+
+        private void OnEvent(Data.CharacterData characterData,FieldEvenets fieldEvnet)
+        {
+            switch (fieldEvnet)
+            {
+                case FieldEvenets.GoldEvent:
+                    OnGoldEvent(characterData);
+                    break;
+
+                case FieldEvenets.FireEvenet:
+                    OnFireEvent(characterData);
+                    break;
+                case FieldEvenets.ClericEvent:
+
+                    OnClericEvent(characterData);
+                    break;
+            }
+            
+        }
 
         private void OnGoldEvent(Data.CharacterData characterData)
         {
@@ -144,19 +162,17 @@ namespace FrameWork
             GameManager.Instance.ingameTopUI.goldText.text = characterData.characterInfoCollect.characterCollect.gold.ToString();
         }
 
-        private void OnFireEvenet(Data.CharacterData characterData)
+        private void OnFireEvent(Data.CharacterData characterData)
         {
-            int fillHp = 30;
-            characterData.characterInfoCollect.characterCollect.hp += fillHp;
+            int fillLittleHp = 10;
 
-            if (characterData.characterInfoCollect.characterCollect.hp > characterData.characterInfoCollect.characterCollect.maxHp)
-            {
-                characterData.characterInfoCollect.characterCollect.hp = characterData.characterInfoCollect.characterCollect.maxHp;
-
-            }
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.hp += fillLittleHp;
+            GameManager.Instance.dataManager.data.characterData.characterInfoCollect.characterCollect.maxHp += fillLittleHp;
             GameManager.Instance.ingameTopUI.nowHpText.text = characterData.characterInfoCollect.characterCollect.hp + "/" + characterData.characterInfoCollect.characterCollect.maxHp.ToString();
             GameManager.Instance.playerControler.ironclad.Heal(0);
         }
+
+
 
         private void OnClericEvent(Data.CharacterData characterData)
         {
